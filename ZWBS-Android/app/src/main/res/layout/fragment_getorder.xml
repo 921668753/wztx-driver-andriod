@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/titlebar_height"
+        android:background="@color/titlebackground">
+
+        <TextView
+            android:id="@+id/tv_goToWork"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen25"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_gotowork"
+            android:gravity="center"
+            android:text="@string/goToWork"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_afterWork"
+            android:layout_width="@dimen/dimen52"
+            android:layout_height="@dimen/dimen25"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_goToWork"
+            android:background="@drawable/shape_afterwork1"
+            android:gravity="center"
+            android:text="@string/afterWork"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/getorder"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18" />
+
+        <ImageView
+            android:id="@+id/img_massage"
+            style="@style/WrapWrap"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen5"
+            android:src="@mipmap/message" />
+
+        <TextView
+            android:id="@+id/tv_tag"
+            android:layout_width="@dimen/dimen10"
+            android:layout_height="@dimen/dimen10"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen7"
+            android:background="@drawable/shape_dot"
+            android:gravity="center"
+            android:maxLength="2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_10"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <TextView style="@style/TitleDividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:visibility="gone">
+
+        <!--item_getorder.xml-->
+        <ListView
+            android:id="@+id/lv_getorder"
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_getorder" />
+
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        layout="@layout/common_error"
+        android:visibility="gone" />
+</LinearLayout>

@@ -1,0 +1,131 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/AppTheme.MyDrawerArrowStyle</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:homeAsUpIndicator">@mipmap/back</item>
+    </style>
+    <!--加入一個新的 navigation drarwer 的風格-->
+    <style name="AppTheme.MyDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <!--將 spinBars 屬性設定為 false-->
+        <item name="spinBars">false</item>
+        <!--設定 drawer arrow 的顏色-->
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.AppStartLoadTranslucent" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--TitleDividerWidth分割线-->
+    <style name="TitleDividerWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/titledivider</item>
+    </style>
+
+    <!--分割线-->
+    <style name="DividerWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/dividercolors</item>
+    </style>
+
+    <style name="DividerHeight">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/dividercolors</item>
+    </style>
+    <!--nav_header_main.xml-->
+    <style name="NavHeaderMainLL">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="NavHeaderMainText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/mian_font_size</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/titlebar_height</item>
+        <item name="android:background">@color/titlebackground</item>
+        <item name="bgatitlebar_leftAndRightTextColor">@color/lonincolors</item>
+        <item name="bgatitlebar_leftAndRightTextSize">@dimen/textsize16</item>
+        <item name="bgatitlebar_titleTextColor">@color/textColor</item>
+        <item name="bgatitlebar_titleTextSize">@dimen/textsize18</item>
+        <item name="bgatitlebar_rightMaxWidth">@dimen/dimen100</item>
+        <item name="bgatitlebar_leftAndRightPadding">@dimen/dimen15</item>
+    </style>
+
+    <style name="bottombar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">@dimen/textsize13</item>
+        <!--<item name="android:textColor">#333</item>-->
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
+    </style>
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- dim:模糊的 阴影效果 -->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Match44">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen44</item>
+    </style>
+
+
+    <!--评价评分星级-->
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/room_rating_bar</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+    </style>
+
+    <style name="Match1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="Image20">
+        <item name="android:layout_width">@dimen/dimen20</item>
+        <item name="android:layout_height">@dimen/dimen20</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+
+    <style name="Auto1">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+</resources>

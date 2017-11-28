@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen15">
+
+        <LinearLayout
+            android:id="@+id/ll_startingpoint"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_startingpoint"
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/startingPoint"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen3"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/belowarrow" />
+        </LinearLayout>
+
+        <TextView style="@style/DividerHeight" />
+
+        <LinearLayout
+            android:id="@+id/ll_endpoint"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_endpoint"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/endPoint"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen3"
+                android:layout_marginRight="@dimen/dimen10"
+                android:src="@mipmap/belowarrow" />
+        </LinearLayout>
+
+
+        <TextView style="@style/DividerHeight" />
+
+        <LinearLayout
+            android:id="@+id/ll_conductormodels"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_conductormodels"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/conductorModels1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen3"
+                android:src="@mipmap/belowarrow" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/background">
+
+        <!-- item_order -->
+        <ListView
+            android:id="@+id/lv_order"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_getorder" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error"></include>
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/mainColor"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/AutoMatch">
+
+            <TextView
+                android:id="@+id/tv_notPaymentBill"
+                style="@style/MatchMatch"
+                android:gravity="center"
+                android:text="@string/notPaymentBill"
+                android:textColor="@color/lonincolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_notPaymentBill1"
+                style="@style/Match1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/dimen20"
+                android:layout_marginRight="@dimen/dimen20"
+                android:background="@color/lonincolors" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/AutoMatch">
+
+            <TextView
+                android:id="@+id/tv_paymentBill"
+                style="@style/MatchMatch"
+                android:gravity="center"
+                android:text="@string/paymentBill"
+                android:textColor="@color/lonincolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                android:id="@+id/tv_paymentBill1"
+                style="@style/Match1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/dimen20"
+                android:layout_marginRight="@dimen/dimen20"
+                android:background="@color/lonincolors" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--<TextView style="@style/DividerWidth" />-->
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        style="@style/MatchMatch" />
+
+</LinearLayout>

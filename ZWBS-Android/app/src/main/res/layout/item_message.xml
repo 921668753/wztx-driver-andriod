@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/mainColor"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen10"
+    android:paddingRight="@dimen/dimen10">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/WrapWrap"
+        android:paddingBottom="@dimen/dimen20"
+        android:paddingTop="@dimen/dimen20"
+        android:text="你好"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize16" />
+
+    <ImageView
+        android:id="@+id/iv_tag"
+        android:layout_width="@dimen/dimen10"
+        android:layout_height="@dimen/dimen10"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:background="@drawable/shape_dot" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/AutoMatch"
+        android:gravity="right|center_vertical"
+        android:text="2017-12-12"
+        android:textColor="@color/hintcolors"
+        android:textSize="@dimen/textsize13" />
+
+
+</LinearLayout>

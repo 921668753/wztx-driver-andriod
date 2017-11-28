@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen50"
+        android:gravity="center"
+        android:text="公告通知"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize18" />
+
+
+    <TextView
+        style="@style/DividerWidth"
+        android:layout_marginBottom="@dimen/dimen30"
+        android:layout_marginLeft="@dimen/dimen35"
+        android:layout_marginRight="@dimen/dimen35"
+        android:layout_marginTop="@dimen/dimen20" />
+
+
+    <TextView
+        style="@style/MatchAuto"
+        android:textColor="@color/announcementColors"
+        android:textSize="@dimen/textsize16" />
+
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:gravity="center"
+        android:text="@string/close"
+        android:textColor="@color/announcementCloseColors"
+        android:textSize="@dimen/textsize16" />
+
+
+</LinearLayout>

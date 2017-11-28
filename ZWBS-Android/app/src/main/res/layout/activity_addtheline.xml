@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/startingpoint"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_marginTop="@dimen/dimen5"
+                android:scaleType="fitXY"
+                android:src="@mipmap/arrowhead" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/endpoint"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen15">
+
+            <LinearLayout
+                android:id="@+id/ll_start"
+                style="@style/MatchAuto"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen10">
+
+                <TextView
+                    android:id="@+id/tv_start"
+                    style="@style/AutoMatch"
+                    android:gravity="center"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:id="@+id/img_start"
+                    style="@style/WrapWrap"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/belowarrow" />
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_stop"
+                style="@style/MatchAuto"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen10">
+
+                <TextView
+                    android:id="@+id/tv_stop"
+                    style="@style/AutoMatch"
+                    android:gravity="center"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    android:id="@+id/img_stop"
+                    style="@style/WrapWrap"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/belowarrow" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

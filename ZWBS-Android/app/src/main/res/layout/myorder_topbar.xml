@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myorder_topbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen50"
+    android:background="@color/mainColor"
+    android:orientation="horizontal">
+
+    <RelativeLayout style="@style/AutoMatch">
+
+        <!--<TextView-->
+        <!--android:layout_width="15dp"-->
+        <!--android:layout_height="15dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:background="@drawable/shape_dot"-->
+        <!--android:gravity="center"-->
+        <!--android:text="1"-->
+        <!--android:textColor="@color/mainColor"-->
+        <!--android:textSize="@dimen/textsize12" />-->
+
+
+        <TextView
+            android:id="@+id/tv_allOrder"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/all"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_allOrder1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        style="@style/AutoMatch"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_quotedPrices"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/quotedPrices"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_quotedPrices1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/AutoMatch">
+
+        <TextView
+            android:id="@+id/tv_noDistribution"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/noDistribution"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_noDistribution1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+    </RelativeLayout>
+
+
+    <RelativeLayout style="@style/AutoMatch">
+
+        <TextView
+            android:id="@+id/tv_inDistribution"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/inDistribution"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_inDistribution1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+    </RelativeLayout>
+
+
+    <RelativeLayout style="@style/AutoMatch">
+
+        <TextView
+            android:id="@+id/tv_distributionComplete"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/distributionComplete"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_distributionComplete1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/AutoMatch">
+
+        <TextView
+            android:id="@+id/tv_customerEvaluation"
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:text="@string/customerEvaluation"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_customerEvaluation1"
+            style="@style/Match1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:background="@color/lonincolors" />
+    </RelativeLayout>
+
+</LinearLayout>

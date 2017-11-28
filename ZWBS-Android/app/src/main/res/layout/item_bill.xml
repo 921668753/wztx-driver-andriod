@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    android:padding="@dimen/dimen10">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/WrapWrap"
+            android:text="张三"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="right"
+            android:text="@string/freight"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_freight"
+            style="@style/WrapWrap"
+            android:text="3000.00"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/yuan"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_start"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="上海"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen7"
+                android:layout_marginRight="@dimen/dimen7"
+                android:src="@mipmap/horizontalarrows" />
+
+            <TextView
+                android:id="@+id/tv_stop"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="苏州"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/AutoMatch"
+            android:gravity="right"
+            android:text="2017-1-1"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+</LinearLayout>

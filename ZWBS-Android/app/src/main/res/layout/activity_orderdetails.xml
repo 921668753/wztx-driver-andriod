@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:layout_marginBottom="@dimen/dimen10"
+            android:background="@color/mainColor"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/orderStatus"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_orderStatus"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_orderNumber"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/orderNumber"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_orderNumber"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/descriptionGoods"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_descriptionGoods"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/weight"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen72"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/receiptGoods"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_receiptGoods"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_inTransitTime"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/inTransitTime"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_inTransitTime"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_insurancePolicy"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/insurancePolicy"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_insurancePolicy"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_checkDetails"
+                    android:layout_width="@dimen/dimen75"
+                    android:layout_height="@dimen/dimen26"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@drawable/shape_code"
+                    android:gravity="center"
+                    android:text="@string/checkDetails"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize13" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/origin"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_origin"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/destination"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_destination"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_deliveryInformation"
+                style="@style/MatchWrap"
+                android:orientation="vertical">
+
+
+                <TextView style="@style/DividerWidth" />
+
+                <LinearLayout
+                    style="@style/Match44"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/consigneeName"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_consigneeName"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:text="--"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/Match44"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/consigneeTelephone"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_consigneeTelephone"
+                        style="@style/AutoMatch"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:text="--"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen88"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen44"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/consigneeAddress"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <LinearLayout
+
+                        style="@style/MatchMatch"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_consigneeAddress"
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:text="--"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            android:id="@+id/tv_consigneeAddress1"
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:text="--"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize15" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView style="@style/DividerWidth" />
+
+                <LinearLayout
+                    style="@style/Match44"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/senderName"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_senderName"
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:text="--"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/Match44"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/senderPhone"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <TextView
+                        android:id="@+id/tv_senderPhone"
+                        style="@style/AutoMatch"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:text="--"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen88"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen44"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:gravity="center"
+                        android:text="@string/senderAddress"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:layout_marginLeft="@dimen/dimen26"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_senderAddress"
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:text="--"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            android:id="@+id/tv_senderAddress1"
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:text="--"
+                            android:textColor="@color/textColor"
+                            android:textSize="@dimen/textsize15" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/transportTime"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_transportTime"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_deliveryTime1"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_deliveryTime"
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/deliveryTime1"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_deliveryTime1"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_arrivalTime"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_arrivalTime"
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/arrivalTime"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_arrivalTime1"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_ownerName"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/ownerName"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_ownerName"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_contactPhoneNumber"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/contactPhoneNumber"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_contactPhoneNumber"
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen41"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_totalFreight"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/totalFreight"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_totalFreight"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="0.00元"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_driverQuotation"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen10"
+                android:background="@color/background" />
+
+            <LinearLayout
+                android:id="@+id/ll_driverQuotation"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/driverQuotation"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_driverQuotation"
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen56"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseFillOut"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/yuan"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
+
+            <TextView
+                android:id="@+id/tv_remark"
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen10"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!--<include-->
+    <!--android:id="@+id/ll_bottombar"-->
+    <!--layout="@layout/common_bottombar"></include>-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_commonBottombar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen60"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mainColor"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen10">
+
+        <TextView
+            android:id="@+id/tv_bottombar"
+            style="@style/AutoMatch"
+            android:background="@drawable/shape_login"
+            android:gravity="center"
+            android:text="@string/checkeValuation"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize16" />
+    </LinearLayout>
+
+</LinearLayout>

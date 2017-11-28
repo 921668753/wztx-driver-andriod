@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titlebarl"
+    style="@style/MatchWrap"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.titlebar.BGATitleBar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/titlebar"
+        style="@style/TitleBar"
+        app:bgatitlebar_isTitleTextBold="false"
+        app:bgatitlebar_leftDrawable="@mipmap/back"
+        app:bgatitlebar_rightText="ypu">
+
+    </cn.bingoogolapple.titlebar.BGATitleBar>
+    <!--android:textStyle="normal|bold|italic"-->
+    <TextView style="@style/TitleDividerWidth" />
+</LinearLayout>

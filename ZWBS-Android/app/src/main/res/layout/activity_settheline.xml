@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+    <!--item_settheline.xml-->
+    <ListView
+        android:id="@+id/lv_settheline"
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        tools:listitem="@layout/item_settheline"></ListView>
+
+
+<include layout="@layout/common_error"></include>
+
+</LinearLayout>

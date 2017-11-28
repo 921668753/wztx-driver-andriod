@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen75"
+    android:background="@color/mainColor"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen8">
+
+
+        <LinearLayout
+            style="@style/WrapWrap"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_start"
+                style="@style/WrapWrap"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:text="上海上海上海"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_marginLeft="@dimen/dimen7"
+                android:layout_marginRight="@dimen/dimen7"
+                android:src="@mipmap/horizontalarrows" />
+
+            <TextView
+                android:id="@+id/tv_stop"
+                style="@style/WrapWrap"
+                android:maxLength="5"
+                android:singleLine="true"
+                android:text="苏州上海上海"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_nameWeight"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen16"
+            android:singleLine="true"
+            android:text="木材/312"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/WrapMatch"
+        android:gravity="center|right"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/dimen10">
+
+        <TextView
+            android:id="@+id/tv_freight"
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen10"
+            android:text="运价：￥5000.00"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize15" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_navigation"
+            style="@style/MatchMatch">
+
+            <TextView
+                android:id="@+id/tv_navigation"
+                android:layout_width="@dimen/dimen75"
+                android:layout_height="@dimen/dimen28"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dimen8"
+                android:background="@drawable/shape_code"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/navigation"
+                android:textColor="@color/lonincolors"
+                android:textSize="@dimen/textsize15" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

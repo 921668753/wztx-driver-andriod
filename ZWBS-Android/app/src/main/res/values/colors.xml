@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="transparent">#00000000</color>
+    <color name="transparent_1">#01000000</color>
+
+    <color name="timertext">#B3B3B3</color>
+    <color name="timertext1">#18B777</color>
+
+
+    <!--主页下面button字体颜色  color_text_selected按下 -->
+    <color name="color_text_selected">#303F9F</color>
+    <color name="color_text_normal">#FF4081</color>
+
+    <color name="partTranslucent">#39000000</color>
+
+    <color name="mainColor">#FFFFFF</color>
+    <color name="hintcolors">#999999</color>
+    <color name="black">#000000</color>
+
+    <!--标题栏-->
+    <color name="titletextcolors">#333333</color>
+    <color name="titlebackground">#fafafa</color>
+    <color name="background">#ededed</color>
+    <color name="titledivider">#bbbbbb</color>
+
+    <color name="dividercolors">#dcdcdc</color>
+
+    <!--SelectRegisterTypeActivity-->
+    <color name="typecolors">#666666</color>
+
+
+    <!--<color name="timertext">#B3B3B3</color>-->
+    <color name="strokecolors">#DDDDDD</color>
+    <color name="solidcolors">#FFE2DC</color>
+
+
+    <color name="white">#ffffff</color>
+
+    <color name="certificationcolors">#dcdcdc</color>
+    <color name="certificationcolors1">#62d405</color>
+
+    <!--货源-->
+    <color name="namecommoditycolor">#349De5</color>
+    <color name="weightcolor">#46cd6c</color>
+
+    <!--登录-->
+    <color name="lonin1colors">#d7d7d7</color>
+    <color name="lonincolors">#ff6243</color>
+    <color name="textColor">#52565c</color>
+
+    <!--推荐奖励-->
+    <color name="cashcolors">#ff8b47</color>
+
+
+    <!--接单-->
+    <color name="cityColors">#191919</color>
+    <color name="announceColors">#2c2e35</color>
+    <color name="descriptionGoodsColors">#959494</color>
+    <color name="ff9A06Colors">#FF9A06</color>
+    <color name="aFF007Colors">#007AFF</color>
+
+
+
+    <!--公告通知-->
+    <color name="announcementColors">#2c2e35</color>
+    <color name="announcementCloseColors">#FA5A5A</color>
+
+
+
+
+
+
+</resources>

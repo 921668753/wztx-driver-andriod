@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen15">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="唯物速运（上海）有限公司"
+            android:textColor="@color/announceColors"
+            android:textSize="@dimen/textsize16" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:src="@mipmap/label_shishi" />
+
+        <TextView style="@style/AutoWrap" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12"
+        android:singleLine="true"
+        android:text="2017-11-09 10:37"
+        android:textSize="@dimen/textsize13" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/descriptionGoods1"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="快递"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen42"
+            android:text="@string/orderNumber1"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="2017103140026"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen12"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/vehicleDemand"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:text="@string/conductor1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="4.2米"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:text="@string/models1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="厢式货车"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/parametersGoods"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:text="@string/weight1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="5吨"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:text="@string/volume"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="10立方"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/thePlace"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen43"
+            android:singleLine="true"
+            android:text="江苏省昆山市花桥镇"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/destination"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen43"
+            android:singleLine="true"
+            android:text="江苏省苏州市工业园区"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/expectedMileage"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:singleLine="true"
+            android:text="35.5千米"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/estimatedTime"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:singleLine="true"
+            android:text="1小时36分钟"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/actualPrice"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:singleLine="true"
+            android:text="260.00RMB"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen12"
+        android:layout_marginTop="@dimen/dimen12"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12"
+        android:text="@string/orderNeeds"
+        android:textColor="@color/ff9A06Colors"
+        android:textSize="@dimen/textsize12" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:background="@drawable/shape_getorder"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/getorder"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_sendquotation"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/sendQuotation"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

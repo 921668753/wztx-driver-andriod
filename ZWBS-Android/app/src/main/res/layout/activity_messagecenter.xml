@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch">
+
+        <!--item_getorder.xml-->
+        <ListView
+            android:id="@+id/lv_messagecenter"
+            style="@style/MatchWrap"
+            android:background="@color/mainColor"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen10"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_messagecenter" />
+
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        layout="@layout/common_error"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/transparent_1">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mainColor"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen10"
+            android:text="@string/selectNavigation"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_baidu"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/baiDuNavigation"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <include layout="@layout/commom_dividerwidth" />
+
+        <TextView
+            android:id="@+id/tv_gaode"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/gaoDeNavigation"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/cancel"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+    </LinearLayout>
+</RelativeLayout>

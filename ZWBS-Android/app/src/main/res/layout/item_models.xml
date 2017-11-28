@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/mainColor"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_modelsName"
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="不限"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize16" />
+
+    <TextView
+        android:id="@+id/tv_divider"
+        style="@style/DividerWidth" />
+
+</LinearLayout>

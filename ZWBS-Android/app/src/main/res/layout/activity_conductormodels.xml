@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"></include>
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Match44"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:gravity="center_vertical"
+                android:text="@string/models"
+                android:textColor="@color/typecolors"
+                android:textSize="@dimen/textsize15" />
+
+            <com.ruitukeji.zwbs.utils.myview.NoScrollGridView
+                android:id="@+id/gv_vehiclemodel"
+                style="@style/MatchWrap"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:horizontalSpacing="@dimen/dimen10"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/dimen10"
+                tools:listitem="@layout/item_conductormodels" />
+
+
+            <TextView
+                style="@style/Match44"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:gravity="center_vertical"
+                android:text="@string/conductor"
+                android:textColor="@color/typecolors"
+                android:textSize="@dimen/textsize15" />
+
+            <com.ruitukeji.zwbs.utils.myview.NoScrollGridView
+                android:id="@+id/gv_vehiclelength"
+                style="@style/MatchWrap"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:horizontalSpacing="@dimen/dimen10"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/dimen10"
+                tools:listitem="@layout/item_conductormodels" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"/>
+
+    <ScrollView
+        style="@style/MatchAuto"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen75"
+                android:background="@color/mainColor"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Auto1"
+                        android:background="@android:color/transparent" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/certification1" />
+
+                    <TextView
+                        style="@style/Auto1"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:background="#dcdcdc" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/certification1" />
+
+                    <TextView
+                        style="@style/Auto1"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:background="@color/certificationcolors" />
+
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/certification1" />
+
+                    <TextView
+                        style="@style/Auto1"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:background="@color/certificationcolors" />
+
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:src="@mipmap/certification" />
+
+                    <TextView
+                        style="@style/Auto1"
+                        android:background="@android:color/transparent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen8"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="center"
+                        android:text="@string/registeredPhoneNumber" />
+
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="center"
+                        android:text="@string/basicInformation" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="center"
+                        android:text="@string/identityAuthentication" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="center"
+                        android:text="@string/vehicleCertification"
+                        android:textColor="@color/certificationcolors1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/prompt"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <LinearLayout
+                android:id="@+id/ll_vehicleRequirements"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/conductorModels"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_conductorModels"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen65"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/load"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_load"
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen95"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseFillOut"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="@string/tonne"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/carrierProduct"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_carrierProduct"
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen65"
+                    android:layout_marginRight="@dimen/dimen10"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseFillOut"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="@string/cubicMeters"
+                    android:textColor="@color/lonincolors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth"/>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/licenseNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/et_licenseNumber"
+                    style="@style/AutoMatch"
+                    android:layout_marginLeft="@dimen/dimen65"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseLicensePlateNumber"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/img_carLicensePlateNumber"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen200"
+                android:layout_marginTop="@dimen/dimen20"
+                android:background="@color/mainColor"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingLeft="@dimen/dimen40"
+                android:paddingRight="@dimen/dimen40"
+                android:paddingTop="@dimen/dimen20"
+                android:src="@mipmap/carlicenseplatenumber" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_startingDatedriverLicense"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/startingDatedriverLicense"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_startingDatedriverLicense"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                android:id="@+id/ll_closingDatedriverLicense"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/closingDatedriverLicense"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_closingDatedriverLicense"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth" />
+
+            <ImageView
+                android:id="@+id/img_driverLicense"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen180"
+                android:background="@color/mainColor"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingLeft="@dimen/dimen40"
+                android:paddingRight="@dimen/dimen40"
+                android:paddingTop="@dimen/dimen20"
+                android:src="@mipmap/driverlicense" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_startingDatedrivingLicense"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/startingDatedrivingLicense"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_startingDatedrivingLicense"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                android:id="@+id/ll_registrationDeadline"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/registrationDeadline"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_registrationDeadline"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth" />
+
+            <ImageView
+                android:id="@+id/img_vehicleLicense"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen180"
+                android:background="@color/mainColor"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingLeft="@dimen/dimen40"
+                android:paddingRight="@dimen/dimen40"
+                android:paddingTop="@dimen/dimen20"
+                android:src="@mipmap/vehiclelicense" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_policydeadline"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/policydeadline"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_policydeadline"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen35"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                android:id="@+id/ll_policydeadline1"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/policydeadline1"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_policydeadline1"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen35"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth" />
+
+            <ImageView
+                android:id="@+id/img_insurancePolicy"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen180"
+                android:background="@color/mainColor"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingLeft="@dimen/dimen40"
+                android:paddingRight="@dimen/dimen40"
+                android:paddingTop="@dimen/dimen20"
+                android:src="@mipmap/insurancepolicy" />
+
+            <TextView style="@style/DividerWidth" />
+
+            <LinearLayout
+                android:id="@+id/ll_startingDateOperationCertificate"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/startingDateOperationCertificate"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_startingDateOperationCertificate"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth"></include>
+
+            <LinearLayout
+                android:id="@+id/ll_closingDateOperationCertificate"
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/closingDateOperationCertificate"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    android:id="@+id/tv_closingDateOperationCertificate"
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen20"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/pleaseSelect"
+                    android:singleLine="true"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth" />
+
+            <ImageView
+                android:id="@+id/img_operationCertificate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen180"
+                android:layout_marginBottom="@dimen/dimen20"
+                android:background="@color/mainColor"
+                android:paddingBottom="@dimen/dimen20"
+                android:paddingLeft="@dimen/dimen40"
+                android:paddingRight="@dimen/dimen40"
+                android:paddingTop="@dimen/dimen20"
+                android:src="@mipmap/operationcertificate" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/common_bottombar"></include>
+
+
+</LinearLayout>

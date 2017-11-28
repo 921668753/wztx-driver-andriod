@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottombar_group"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen50"
+    android:layout_gravity="bottom"
+    android:background="@color/mainColor"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/bottombar_getorder"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_getorder"
+            style="@style/WrapWrap"
+            android:src="@mipmap/grabsinglepre" />
+
+        <TextView
+            android:id="@+id/tv_getorder"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/getorder"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_order"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_order"
+            style="@style/WrapWrap"
+            android:src="@mipmap/orderpre" />
+
+        <TextView
+            android:id="@+id/tv_order"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/order"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_supplygoods"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_supplygoods"
+            style="@style/WrapWrap"
+            android:src="@mipmap/supplygoodspre" />
+
+        <TextView
+            android:id="@+id/tv_supplygoods"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/supplygoods"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_mine"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_mine"
+            style="@style/WrapWrap"
+            android:src="@mipmap/mypre" />
+
+        <TextView
+            android:id="@+id/tv_mine"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/mine"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+</LinearLayout>
