@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/mainColor"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen15">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:singleLine="true"
+            android:text="唯物速运（上海）有限公司"
+            android:textColor="@color/announceColors"
+            android:textSize="@dimen/textsize16" />
+
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen5"
+            android:src="@mipmap/label_shishi" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen5"
+            android:src="@mipmap/label_shishi" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen12"
+        android:paddingRight="@dimen/dimen12"
+        android:paddingTop="@dimen/dimen8">
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="2017-10-20 09:30"
+                android:textColor="@color/descriptionGoodsColors"
+                android:textSize="@dimen/textsize13" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:paddingTop="@dimen/dimen8"
+                android:text="货物名称"
+                android:textColor="@color/descriptionGoodsColors"
+                android:textSize="@dimen/textsize13" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="订单号：201710310026"
+                android:textColor="@color/descriptionGoodsColors"
+                android:textSize="@dimen/textsize13" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingTop="@dimen/dimen8"
+                    android:text="@string/orderPrice"
+                    android:textColor="@color/descriptionGoodsColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingTop="@dimen/dimen8"
+                    android:text="￥260.00"
+                    android:textColor="@color/ff9A06Colors"
+                    android:textSize="@dimen/textsize14" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/DividerWidth"
+        android:layout_marginBottom="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen21"
+        android:paddingTop="@dimen/dimen11">
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen12">
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/thePlace"
+                    android:textColor="@color/aAAAAAColors"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    style="@style/MatchWrap"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/dimen21"
+                    android:paddingRight="@dimen/dimen25"
+                    android:text="苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/destination"
+                    android:textColor="@color/aAAAAAColors"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    style="@style/MatchWrap"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/dimen21"
+                    android:paddingRight="@dimen/dimen25"
+                    android:text="苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势苏州优势"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView style="@style/DividerHeight" />
+
+
+        <LinearLayout
+            style="@style/WrapMatch"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/dimen12">
+
+
+            <ImageView
+                style="@style/WrapAuto"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen16"
+                android:paddingRight="@dimen/dimen16"
+                android:src="@mipmap/ic_navigation" />
+
+            <ImageView
+                style="@style/WrapAuto"
+                android:paddingLeft="@dimen/dimen16"
+                android:paddingRight="@dimen/dimen16"
+                android:src="@mipmap/ic_phone" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10">
+
+        <ImageView
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginTop="@dimen/dimen20"
+            android:src="@mipmap/ic_start_selected" />
+
+
+        <LinearLayout
+            style="@style/WrapMatch"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dimen20">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="装车剩余时间"
+                android:textColor="@color/aAAAAAColors"
+                android:textSize="@dimen/textSize_10" />
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_width="@dimen/dimen90"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:paddingBottom="@dimen/dimen5"
+                android:paddingTop="@dimen/dimen2"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_renwu_arrow" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="50:46"
+                android:textColor="@color/ff9A06Colors"
+                android:textSize="@dimen/textsize13" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen20"
+            android:src="@mipmap/ic_car_selected" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen90"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen10"
+            android:paddingBottom="@dimen/dimen5"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_renwu_arrow" />
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen20"
+            android:src="@mipmap/ic_end_selected" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen7"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingRight="@dimen/dimen20">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/onArrival"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="10-31 11:31"
+                android:textColor="@color/aAAAAAColors"
+                android:textSize="@dimen/textsize11" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/start"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="10-31 11:31"
+                android:textColor="@color/aAAAAAColors"
+                android:textSize="@dimen/textsize11" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen30">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/destination1"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="10-31 11:31"
+                android:textColor="@color/aAAAAAColors"
+                android:textSize="@dimen/textsize11" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen20"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:background="@drawable/shape_getorder"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/submitDocuments"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_sendquotation"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/exceptionReporting"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

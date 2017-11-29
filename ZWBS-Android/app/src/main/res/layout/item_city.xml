@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen10"
+    android:paddingRight="@dimen/dimen10">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen10"
+        android:singleLine="true"
+        android:text="郑州"
+        android:textColor="@color/announcementCloseColors"
+        android:textSize="@dimen/textsize16" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen2"
+        android:background="@color/announcementCloseColors" />
+
+</LinearLayout>

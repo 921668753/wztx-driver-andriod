@@ -3,9 +3,9 @@
 
     <solid android:color="@color/mainColor" />
     <!-- 圆角 -->
-    <corners
-        android:radius="3dp" />
+    <corners android:radius="3dp" />
+
     <stroke
         android:width="1dp"
-        android:color="@color/strokecolors" />
+        android:color="@color/cCCCCColors" />
 </shape>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/MatchWrap"
+                android:padding="@dimen/dimen15"
+                android:text="@string/uploadPictures"
+                android:textColor="@color/typecolors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <android.support.v7.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen150"
+                android:background="@color/mainColor"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:padding="@dimen/dimen8"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/list_item_image" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen18"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen18">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/abnormalLocation"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/MatchWrap"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:text="江苏省昆山市花桥镇"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen18"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen18">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/abnormalTime"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:hint="@string/pleaseSelectTime"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:src="@mipmap/ic_arrow" />
+
+
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:minHeight="@dimen/dimen100"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dimen18"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen18">
+
+                <TextView
+                    style="@style/WrapMatch"
+                    android:text="@string/abnormalReason"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    style="@style/MatchMatch"
+                    android:background="@android:color/transparent"
+                    android:gravity="top"
+                    android:hint="@string/pleaseFillOut"
+                    android:paddingLeft="@dimen/dimen28"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/hintcolors"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen45"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:layout_marginRight="@dimen/dimen15"
+                android:layout_marginTop="@dimen/dimen25"
+                android:background="@drawable/shape_sendquotation"
+                android:gravity="center"
+                android:paddingBottom="@dimen/dimen10.5"
+                android:paddingTop="@dimen/dimen10.5"
+                android:text="@string/submit"
+                android:textColor="@color/mainColor"
+                android:textSize="@dimen/textsize16" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

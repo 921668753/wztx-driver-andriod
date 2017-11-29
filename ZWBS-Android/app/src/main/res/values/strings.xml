@@ -149,20 +149,13 @@
     <string name="settheline">设定路线</string>
     <string name="addtheline">添加路线</string>
     <string name="mine">我的</string>
-    <string name="startingpoint">出发地</string>
     <string name="startingPoint">出&#160;&#160;&#160;&#160;&#160;发&#160;&#160;&#160;&#160;&#160;地</string>
-    <string name="endpoint">目的地</string>
     <string name="endPoint">目&#160;&#160;&#160;&#160;&#160;的&#160;&#160;&#160;&#160;&#160;地</string>
     <string name="conductormodels">车长车型</string>
     <string name="conductorModels1">车长/车型</string>
 
-
-
-
     <!--公告通知-->
     <string name="close">关闭</string>
-
-
 
     <!--接单-->
     <string name="goToWork">上班</string>
@@ -215,8 +208,44 @@
     <string name="orderUser">下单用户：</string>
     <string name="orderNumber2">订单编号：</string>
 
+    <!--任务-->
+    <string name="todayMission">今日任务</string>
+    <string name="completeMission">完成任务</string>
+    <string name="today">今天</string>
+    <string name="orderPrice">订单价格：</string>
+    <string name="onArrival">到达起运地</string>
+    <string name="start">发车</string>
+    <string name="destination1">到达目的地</string>
+    <string name="submitDocuments">提交凭证</string>
+    <string name="exceptionReporting">异常上报</string>
+
+    <!--上传收货凭证-->
+    <string name="uploadReceiptVoucher">上传收货凭证</string>
+    <string name="submissionCredentials">提交凭证位置</string>
+    <string name="uploadPictures">上传图片</string>
+
+    <!--异常上报-->
+    <string name="abnormalLocation">异常地点</string>
+    <string name="abnormalTime">异常时间</string>
+    <string name="pleaseSelectTime">请选择时间</string>
+    <string name="abnormalReason">异常原因</string>
+
+    <!--填写快递单-->
+    <string name="fillOutExpress">填写快递单</string>
+    <string name="billReceipt">本订单需要签收单，签收单快递费到付（未签收）</string>
+    <string name="mailingAddress">签收单邮寄地址</string>
+    <string name="recipient">签收单收件人</string>
+    <string name="contactInformation">签收单联系方式</string>
+    <string name="expressNumber">签收单快递单号</string>
+    <string name="expressCompany">签收单快递公司</string>
+    <string name="completeOrder">完成订单</string>
 
 
+    <!--货源-->
+    <string name="setLine">设定线路</string>
+    <string name="startingpoint">出发地</string>
+    <string name="endpoint">目的地</string>
+    <string name="emptying">清空</string>
 
 
     <!--订单-->
@@ -231,6 +260,8 @@
     <string name="noEvaluation">未评价</string>
     <string name="haveEvaluation">已评价</string>
     <string name="hang">挂起</string>
+
+
     <!--个人中心-->
     <string name="personalCenter">个人中心</string>
     <string name="name">姓名</string>
@@ -245,8 +276,14 @@
     <string name="pass">认证通过</string>
     <string name="pleaseWait">请耐心等待</string>
     <string name="delete">后台删除</string>
-
     <string name="technicalSupport">技术支持@苏州睿途科技</string>
+    <string name="alwaysSingular">总单数</string>
+    <string name="driverLevel">司机等级</string>
+    <string name="serviceLevel">服务等级</string>
+    <string name="complaintsNumber">投诉次数</string>
+    <string name="abnormalRecords">异常记录</string>
+    <string name="sharePolite">分享有礼</string>
+
 
     <!--个人资料-->
     <string name="personalData">个人资料</string>
@@ -291,6 +328,7 @@
     <string name="tts_toast_format" formatted="false">缓冲进度为%d%%，播放进度为%d%%</string>
 
     <!--设置-->
+    <string name="giveGoodCreditWorld">给物载天下好评</string>
     <string name="changePassword">修改密码</string>
     <string name="versionNumber">版本号</string>
     <string name="clearCache">清除缓存</string>
@@ -391,6 +429,7 @@
     <string name="installedGaoDe">请安装高德地图后，才能为您导航</string>
     <string name="orderId">订单id错误</string>
     <string name="locateFailure">定位失败请重新定位！</string>
+
     <!--评价-->
     <string name="share">分享</string>
     <string name="deliveryTime">发货时效</string>
@@ -420,6 +459,7 @@
     <string name="confirmSubmit2">申请已提交成功！</string>
     <string name="cancel">&#160;&#160;&#160;取&#160;&#160;&#160;&#160;&#160;&#160;&#160;消&#160;&#160;&#160;</string>
     <string name="confirm">&#160;&#160;&#160;确&#160;&#160;&#160;&#160;&#160;&#160;&#160;定&#160;&#160;&#160;</string>
+
     <!--上传凭证-->
     <string name="uploadDocuments">上传凭证</string>
     <string name="warmPrompt">温馨提示</string>
@@ -452,8 +492,6 @@
 
     <!--个人认证-->
     <string name="bindingMobilePhone">绑定手机号</string>
-
-
 
 
     <string name="messagecenter">消息中心</string>

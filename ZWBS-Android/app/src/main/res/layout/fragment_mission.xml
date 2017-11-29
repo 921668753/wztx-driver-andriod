@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen48"
+        android:background="@color/white">
+
+        <LinearLayout
+            style="@style/WrapMatch"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="苏州"
+                android:textColor="@color/cityColors"
+                android:textSize="@dimen/textsize16" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen5"
+                android:src="@mipmap/ic_category_gray" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="@dimen/dimen189"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout style="@style/AutoMatch">
+
+                <TextView
+                    style="@style/WrapMatch"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/todayMission"
+                    android:textColor="@color/announcementCloseColors"
+                    android:textSize="@dimen/textsize16" />
+
+                <TextView
+                    android:layout_width="@dimen/dimen40"
+                    android:layout_height="@dimen/dimen2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/announcementCloseColors" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout style="@style/AutoMatch">
+
+                <TextView
+                    style="@style/WrapMatch"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/completeMission"
+                    android:textColor="@color/announcementCloseColors"
+                    android:textSize="@dimen/textsize16" />
+
+
+                <TextView
+                    android:layout_width="@dimen/dimen40"
+                    android:layout_height="@dimen/dimen2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/announcementCloseColors" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/dimen25"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen15"
+            android:visibility="gone">
+
+            <ImageView
+                style="@style/WrapWrap"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_message" />
+
+            <TextView
+                android:layout_width="@dimen/dimen13"
+                android:layout_height="@dimen/dimen13"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dimen11"
+                android:background="@drawable/shape_dot"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSize_10" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen43"
+        android:background="@color/mainColor"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapMatch"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen33"
+            android:text="@string/today"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen15"
+            android:src="@mipmap/ic_arrow_left" />
+
+        <TextView
+            style="@style/WrapMatch"
+            android:gravity="center"
+            android:text="2017-10-21"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen15"
+            android:src="@mipmap/ic_arrow_right" />
+
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingLeft="@dimen/dimen35"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen5"
+            android:src="@mipmap/ic_calendar" />
+
+
+    </LinearLayout>
+
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:padding="@dimen/dimen10">
+
+        <!--item_getorder.xml-->
+        <ListView
+            android:id="@+id/lv_mission"
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_mission" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        layout="@layout/common_error"
+        android:visibility="gone" />
+
+
+</LinearLayout>

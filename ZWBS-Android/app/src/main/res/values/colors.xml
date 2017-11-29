@@ -66,13 +66,22 @@
     <color name="aFF007Colors">#007AFF</color>
 
 
-
     <!--公告通知-->
     <color name="announcementColors">#2c2e35</color>
     <color name="announcementCloseColors">#FA5A5A</color>
 
 
+    <!-- 任务-->
+    <color name="aAAAAAColors">#AAAAAA</color>
 
+
+    <!-- 填写快递单号-->
+    <color name="c7C7CDColors">#C7C7CD</color>
+
+    <!-- 货源-->
+    <color name="fF4D51Colors">#FF4D51</color>
+    <color name="c0C0CColors">#0C0C0C</color>
+    <color name="cCCCCColors">#CCCCCC</color>
 
 
 

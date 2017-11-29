@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <ScrollView
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/Match44"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:gravity="center_vertical"
+                android:text="@string/models"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <com.ruitukeji.zwbs.utils.myview.NoScrollGridView
+                android:id="@+id/gv_vehiclemodel"
+                style="@style/MatchWrap"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:horizontalSpacing="@dimen/dimen14"
+                android:numColumns="4"
+                android:verticalSpacing="@dimen/dimen10"
+                tools:listitem="@layout/item_conductormodels" />
+
+
+            <TextView
+                style="@style/Match44"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:gravity="center_vertical"
+                android:text="@string/conductor"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <com.ruitukeji.zwbs.utils.myview.NoScrollGridView
+                android:id="@+id/gv_vehiclelength"
+                style="@style/MatchWrap"
+                android:layout_marginLeft="@dimen/dimen10"
+                android:layout_marginRight="@dimen/dimen10"
+                android:horizontalSpacing="@dimen/dimen14"
+                android:numColumns="4"
+                android:verticalSpacing="@dimen/dimen10"
+                tools:listitem="@layout/item_conductormodels" />
+
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen10"
+                android:paddingRight="@dimen/dimen12"
+                android:paddingTop="@dimen/dimen12">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:background="@drawable/shape_conductormodels"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimen13"
+                    android:paddingTop="@dimen/dimen13"
+                    android:text="@string/emptying"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:background="@drawable/shape_sendquotation"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/dimen13"
+                    android:paddingTop="@dimen/dimen13"
+                    android:text="@string/determine"
+                    android:textColor="@color/mainColor"
+                    android:textSize="@dimen/textsize15" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_transparent"
+        style="@style/MatchAuto"
+        android:background="@color/transparent_1" />
+
+
+</LinearLayout>

@@ -30,10 +30,10 @@
             android:layout_height="35dp"
             android:layout_marginRight="5dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/headportrait"
+            android:src="@mipmap/avatar_default"
             app:bga_iv_isCircle="true" />
 
-        <ImageView
+        <ImageViewBU
             style="@style/WrapWrap"
             android:layout_marginRight="@dimen/dimen15"
             android:src="@mipmap/arrow" />
