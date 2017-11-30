@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen35"
+        android:background="@color/fDF0C8Colors"
+        android:gravity="center"
+        android:text="@string/unauthorized"
+        android:textColor="@color/fD8D29Colors"
+        android:textSize="@dimen/textsize15" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen35"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:text="@string/basicInformation"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize14" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_upload"
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/headPortrait"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView style="@style/AutoMatch" />
+
+                <ImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="@dimen/dimen45"
+                    android:layout_height="@dimen/dimen45"
+                    android:layout_marginBottom="@dimen/dimen13"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:layout_marginTop="@dimen/dimen13"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/header" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/ic_arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/userName"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/tv_name"
+                    style="@style/MatchMatch"
+                    android:background="@android:color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseFillOut"
+                    android:paddingRight="@dimen/dimen36"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/c7C7CDColors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/IdNumber"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <EditText
+                    android:id="@+id/tv_IdNumber"
+                    style="@style/MatchMatch"
+                    android:background="@android:color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseFillOut"
+                    android:paddingRight="@dimen/dimen36"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/c7C7CDColors"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen35"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:text="@string/authenticationInformation"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize14" />
+
+
+            <LinearLayout
+                style="@style/Match44"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/validityIdentityCard"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseSelect"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/c7C7CDColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/ic_arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/faceIdentityCard"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploadYourIdCard"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_idcard_front" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/IdCard"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploadClearYourIdCard"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_idcard_back" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/holdingIdPhoto"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploudHoldingIdPhoto"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_idcard_inhand" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match44"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/validityDrivingLicence"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseSelect"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/c7C7CDColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/ic_arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/drivingLicense"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploadDrivingLicensePhotos"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_driver_licence" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/Match44"
+                android:layout_marginTop="@dimen/dimen10"
+                android:background="@color/mainColor"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:text="@string/roadTransportValidityPeriod"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseSelect"
+                    android:paddingRight="@dimen/dimen15"
+                    android:textColor="@color/titletextcolors"
+                    android:textColorHint="@color/c7C7CDColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <ImageView
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:src="@mipmap/ic_arrow" />
+            </LinearLayout>
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/certificateRoadQualification"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploadRoadQualification"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_driver_licence" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <include layout="@layout/commom_dividerwidth1" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingTop="@dimen/dimen16"
+                android:text="@string/recordIntegrityAssessment"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/mainColor"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dimen16">
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/dimen14"
+                        android:paddingTop="@dimen/dimen12"
+                        android:text="@string/uploadIntegrityAssessment"
+                        android:textColor="@color/hintcolors"
+                        android:textSize="@dimen/textSize_10" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen161"
+                        android:layout_height="@dimen/dimen103"
+                        android:background="@mipmap/icon_upload"
+                        android:padding="@dimen/dimen8"
+                        android:src="@mipmap/pic_driver_licence" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/dimen10"
+                        android:text="@string/sampleDiagram"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize12" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen50"
+                android:layout_marginTop="@dimen/dimen23"
+                android:background="@drawable/shape_sendquotation"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textColor="@color/mainColor"
+                android:textSize="@dimen/textsize18" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

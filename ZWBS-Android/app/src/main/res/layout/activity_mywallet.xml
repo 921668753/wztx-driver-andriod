@@ -22,358 +22,196 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/WrapWrap"
+                    style="@style/MatchWrap"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dimen15"
+                    android:background="@color/mainColor"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen25"
                     android:text="@string/accountBalance"
-                    android:textColor="@color/hintcolors"
+                    android:textColor="@color/b2B2B2Colors"
                     android:textSize="@dimen/textsize16" />
 
                 <TextView
                     android:id="@+id/tv_accountBalance"
-                    style="@style/WrapWrap"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/dimen25"
+                    style="@style/MatchWrap"
+                    android:background="@color/mainColor"
+                    android:paddingBottom="@dimen/dimen19"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:paddingRight="@dimen/dimen15"
+                    android:paddingTop="@dimen/dimen20"
+                    android:singleLine="true"
                     android:text="0.00"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize22" />
-
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize33" />
 
                 <LinearLayout
-                    android:id="@+id/ll_withdrawalAmount"
-                    style="@style/Match44"
-                    android:layout_marginTop="@dimen/dimen35"
+                    style="@style/MatchWrap"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimen21">
 
                     <TextView
                         style="@style/WrapWrap"
                         android:layout_marginLeft="@dimen/dimen15"
                         android:text="@string/withdrawalAmount"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14" />
 
                     <TextView
                         android:id="@+id/tv_withdrawalAmount"
                         style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen39"
-                        android:layout_marginRight="@dimen/dimen8"
-                        android:gravity="right"
+                        android:paddingLeft="@dimen/dimen5"
+                        android:paddingRight="@dimen/dimen15"
                         android:singleLine="true"
-                        android:text="0.00元"
-                        android:textColor="@color/hintcolors"
-                        android:textSize="@dimen/textsize15" />
+                        android:text="0.00"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
 
                     <ImageView
-                        style="@style/WrapWrap"
-                        android:layout_marginRight="@dimen/dimen15"
-                        android:src="@mipmap/arrow" />
-
-                </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
+                        style="@style/Image20"
                         android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/myReferralBonuses"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:src="@mipmap/ic_incomedetails" />
 
-                    <TextView
-                        android:id="@+id/tv_myReferralBonuses"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="+0.00"
-                        android:textColor="@color/lonincolors"
-                        android:textSize="@dimen/textsize15" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/automaticDepositAmount"
-                        android:textSize="@dimen/textsize15" />
-                </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    android:id="@+id/ll_withdrawalRecord"
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/withdrawalRecord"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:text="@string/incomeDetails"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize16" />
 
                     <TextView style="@style/AutoWrap" />
 
                     <ImageView
                         style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        android:src="@mipmap/arrow" />
+                        android:src="@mipmap/ic_arrow" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/Match44"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/outstandingSingular"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        android:id="@+id/tv_outstandingSingular"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/single"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
                 </LinearLayout>
 
                 <TextView style="@style/DividerWidth" />
 
                 <LinearLayout
-                    style="@style/Match44"
+                    android:id="@+id/ll_withdrawalRecord"
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/WrapWrap"
+
+                    <ImageView
+                        style="@style/Image20"
                         android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/outstandingAmount"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:src="@mipmap/ic_recharge" />
 
-                    <TextView
-                        android:id="@+id/tv_outstandingAmount"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0.00"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/yuan"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-                </LinearLayout>
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:text="@string/recharge"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize16" />
 
-                <LinearLayout
-                    style="@style/Match44"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    <TextView style="@style/AutoWrap" />
 
-                    <TextView
+                    <ImageView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/thisMonthAccumulativeSingular"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_arrow" />
 
-                    <TextView
-                        android:id="@+id/tv_thisMonthAccumulativeSingular"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/single"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
                 </LinearLayout>
 
                 <TextView style="@style/DividerWidth" />
 
                 <LinearLayout
-                    style="@style/Match44"
+                    style="@style/Match50"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/WrapWrap"
+
+                    <ImageView
+                        style="@style/Image20"
                         android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/cumulativeAmountThisMonth"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:src="@mipmap/ic_withdraw" />
 
-                    <TextView
-                        android:id="@+id/tv_cumulativeAmountThisMonth"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0.00"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/yuan"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-                </LinearLayout>
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:text="@string/cashWithdrawal"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize16" />
 
-                <LinearLayout
-                    style="@style/Match44"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    <TextView style="@style/AutoWrap" />
 
-                    <TextView
-                        android:id="@+id/textView3"
+                    <ImageView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/lastMonthCumulativeSingular"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_arrow" />
 
-                    <TextView
-                        android:id="@+id/tv_lastMonthCumulativeSingular"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/single"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
                 </LinearLayout>
 
                 <TextView style="@style/DividerWidth" />
 
                 <LinearLayout
-                    style="@style/Match44"
+                    style="@style/Match50"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/WrapWrap"
+
+                    <ImageView
+                        style="@style/Image20"
                         android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/aggregateAmountOfLastMonth"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:src="@mipmap/ic_bankcard" />
 
-                    <TextView
-                        android:id="@+id/tv_aggregateAmountOfLastMonth"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0.00"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/yuan"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:text="@string/myBankCard"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize16" />
+
+                    <TextView style="@style/AutoWrap" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_arrow" />
+
                 </LinearLayout>
 
 
-                <LinearLayout
-                    style="@style/Match44"
-                    android:layout_marginBottom="@dimen/dimen15"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                <TextView
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen25"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/withdrawalInstruction"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize12" />
 
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/inAggregateAmount"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        android:id="@+id/tv_inAggregateAmount"
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:gravity="right"
-                        android:singleLine="true"
-                        android:text="0.00"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <TextView
-                        style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen5"
-                        android:layout_marginRight="@dimen/dimen10"
-                        android:singleLine="true"
-                        android:text="@string/yuan"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-                </LinearLayout>
+                <TextView
+                    style="@style/MatchWrap"
+                    android:layout_marginTop="@dimen/dimen3"
+                    android:paddingLeft="@dimen/dimen15"
+                    android:text="@string/withdrawalInstruction1"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize12" />
 
             </LinearLayout>
         </ScrollView>

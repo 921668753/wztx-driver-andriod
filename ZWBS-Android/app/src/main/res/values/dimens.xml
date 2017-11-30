@@ -12,6 +12,7 @@
     <dimen name="dimen1">1dp</dimen>
     <dimen name="dimen2">2dp</dimen>
     <dimen name="dimen3">3dp</dimen>
+    <dimen name="dimen4">4dp</dimen>
     <dimen name="dimen5">5dp</dimen>
     <dimen name="dimen6">6dp</dimen>
     <dimen name="dimen7">7dp</dimen>
@@ -61,6 +62,7 @@
     <dimen name="dimen59">59dp</dimen>
     <dimen name="dimen60">60dp</dimen>
     <dimen name="dimen63">63dp</dimen>
+    <dimen name="dimen64">64dp</dimen>
     <dimen name="dimen65">65dp</dimen>
     <dimen name="dimen70">70dp</dimen>
     <dimen name="dimen72">72dp</dimen>
@@ -73,21 +75,26 @@
     <dimen name="dimen90">90dp</dimen>
     <dimen name="dimen95">95dp</dimen>
     <dimen name="dimen100">100dp</dimen>
+    <dimen name="dimen103">103dp</dimen>
     <dimen name="dimen105">105dp</dimen>
     <dimen name="dimen109">109dp</dimen>
     <dimen name="dimen110">110dp</dimen>
     <dimen name="dimen130">130dp</dimen>
+    <dimen name="dimen131">131dp</dimen>
     <dimen name="dimen140">140dp</dimen>
     <dimen name="dimen150">150dp</dimen>
     <dimen name="dimen160">160dp</dimen>
+    <dimen name="dimen161">161dp</dimen>
     <dimen name="dimen169">169dp</dimen>
     <dimen name="dimen180">180dp</dimen>
     <dimen name="dimen189">189dp</dimen>
     <dimen name="dimen190">190dp</dimen>
+    <dimen name="dimen195">195dp</dimen>
     <dimen name="dimen200">200dp</dimen>
     <dimen name="dimen233">233dp</dimen>
     <dimen name="dimen250">250dp</dimen>
     <dimen name="dimen270">270dp</dimen>
+    <dimen name="dimen290">290dp</dimen>
     <dimen name="dimen295">295dp</dimen>
     <dimen name="dimen300">300dp</dimen>
     <dimen name="dimen310">310dp</dimen>
@@ -105,6 +112,13 @@
     <dimen name="textsize18">18sp</dimen>
     <dimen name="textsize20">20sp</dimen>
     <dimen name="textsize22">22sp</dimen>
+    <dimen name="textsize23">23sp</dimen>
+    <dimen name="textsize24">24sp</dimen>
+    <dimen name="textsize26">26sp</dimen>
+    <dimen name="textsize33">33sp</dimen>
+    <dimen name="textsize35">35sp</dimen>
+    <dimen name="textsize50">50sp</dimen>
+
 
     <!--MIn-->
     <dimen name="titlebar_height">45dp</dimen>

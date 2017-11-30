@@ -170,7 +170,7 @@
 
         <!--我的钱包   提现-->
         <activity
-            android:name=".mine.mywallet.WithdrawalActivity"
+            android:name=".mine.mywallet.withdrawal.WithdrawalActivity"
             android:screenOrientation="portrait"></activity>
 
         <!--我的报价-->

@@ -71,7 +71,7 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawalRecord), true, R.id.titlebar);
+       // ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawalRecord), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_withdrawalrecord.setAdapter(withdrawalRecordViewAdapter);
         lv_withdrawalrecord.setOnItemClickListener(this);

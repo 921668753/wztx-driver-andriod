@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.mywallet.withdrawal;
 
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;

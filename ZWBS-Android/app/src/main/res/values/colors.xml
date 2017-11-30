@@ -50,7 +50,7 @@
     <color name="weightcolor">#46cd6c</color>
 
     <!--登录-->
-    <color name="lonin1colors">#d7d7d7</color>
+    <color name="lonin1colors">#DDDDDD</color>
     <color name="lonincolors">#ff6243</color>
     <color name="textColor">#52565c</color>
 
@@ -82,6 +82,24 @@
     <color name="fF4D51Colors">#FF4D51</color>
     <color name="c0C0CColors">#0C0C0C</color>
     <color name="cCCCCColors">#CCCCCC</color>
+
+
+    <!-- 身份认证-->
+    <color name="fDF0C8Colors">#FDF0C8</color>
+    <color name="fD8D29Colors">#FD8D29</color>
+
+
+    <!--我的钱包-->
+    <color name="b2B2B2Colors">#B2B2B2</color>
+
+
+    <!--我的银行卡-->
+    <color name="aDF6Colors">#68ADF6</color>
+
+    <!--充值-->
+    <color name="f2222Colors">#222222</color>
+    <color name="c12121olors">#121212</color>
+    <color name="cDCDCDColors">#CDCDCD</color>
 
 
 

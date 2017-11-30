@@ -103,6 +103,10 @@
         <item name="android:layout_height">@dimen/dimen44</item>
     </style>
 
+    <style name="Match50">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen50</item>
+    </style>
 
     <!--评价评分星级-->
     <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">

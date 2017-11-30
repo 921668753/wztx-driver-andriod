@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/common_title" />
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@color/mainColor"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen20"
+        android:text="@string/topUpAmount"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize15" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:background="@color/mainColor"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen20">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:text="￥"
+            android:textColor="@color/c12121olors"
+            android:textSize="@dimen/textsize24" />
+
+        <EditText
+            android:id="@+id/et_topUpAmount"
+            style="@style/AutoWrap"
+            android:background="@android:color/transparent"
+            android:hint="@string/topUpAmount"
+            android:inputType="numberDecimal"
+            android:paddingRight="@dimen/dimen15"
+            android:singleLine="true"
+            android:textColor="@color/f2222Colors"
+            android:textColorHint="@color/cDCDCDColors"
+            android:textSize="@dimen/textsize26" />
+
+    </LinearLayout>
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@color/mainColor"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen20"
+        android:text="@string/optionPay"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize14" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:background="@color/mainColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen17"
+        android:paddingTop="@dimen/dimen20">
+
+        <ImageView
+            android:layout_width="@dimen/dimen26"
+            android:layout_height="@dimen/dimen26"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_weixin" />
+
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingLeft="@dimen/dimen21"
+            android:text="@string/weChatPay"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize16" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:padding="@dimen/dimen5"
+            android:src="@mipmap/ic_check_unselect" />
+
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/DividerWidth"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:background="@color/mainColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen17"
+        android:paddingTop="@dimen/dimen20">
+
+        <ImageView
+            android:layout_width="@dimen/dimen26"
+            android:layout_height="@dimen/dimen26"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_zfb" />
+
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingLeft="@dimen/dimen21"
+            android:text="@string/alipayPay"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize16" />
+
+        <ImageView
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen30"
+            android:layout_marginRight="@dimen/dimen5"
+            android:padding="@dimen/dimen5"
+            android:src="@mipmap/ic_checkbox_unselect" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_prepaidImmediately"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@drawable/shape_login1"
+        android:gravity="center"
+        android:text="@string/prepaidImmediately"
+        android:textColor="@color/mainColor"
+        android:textSize="@dimen/textsize16" />
+
+
+</LinearLayout>

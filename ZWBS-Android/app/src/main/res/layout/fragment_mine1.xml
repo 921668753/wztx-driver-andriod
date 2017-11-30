@@ -94,7 +94,8 @@
                 <TextView
                     style="@style/DividerHeight"
                     android:layout_marginBottom="@dimen/dimen14"
-                    android:layout_marginTop="@dimen/dimen14" />
+                    android:layout_marginTop="@dimen/dimen14"
+                    android:visibility="gone" />
 
 
                 <LinearLayout
@@ -122,7 +123,8 @@
                 <TextView
                     style="@style/DividerHeight"
                     android:layout_marginBottom="@dimen/dimen14"
-                    android:layout_marginTop="@dimen/dimen14" />
+                    android:layout_marginTop="@dimen/dimen14"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     style="@style/AutoMatch"
@@ -149,7 +151,8 @@
                 <TextView
                     style="@style/DividerHeight"
                     android:layout_marginBottom="@dimen/dimen14"
-                    android:layout_marginTop="@dimen/dimen14" />
+                    android:layout_marginTop="@dimen/dimen14"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     style="@style/AutoMatch"

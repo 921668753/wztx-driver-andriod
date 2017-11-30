@@ -1,9 +1,10 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.mywallet.withdrawal;
 
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
+import com.ruitukeji.zwbs.mine.mywallet.withdrawal.WithdrawalContract;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.MathUtil;
