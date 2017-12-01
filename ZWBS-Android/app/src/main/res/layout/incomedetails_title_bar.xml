@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen43"
+    android:background="@color/mainColor"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/ll_paidIncome"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_paidIncome"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/paidIncome"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_paidIncome1"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen2"
+            android:background="@color/announcementCloseColors" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_notPaidIncome"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_notPaidIncome"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/notPaidIncome"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_notPaidIncome1"
+            android:layout_width="@dimen/dimen80"
+            android:layout_height="@dimen/dimen2" />
+
+
+    </LinearLayout>
+</LinearLayout>

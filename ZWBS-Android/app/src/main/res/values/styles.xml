@@ -46,7 +46,7 @@
     </style>
 
     <style name="DividerHeight">
-        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_width">0.5dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/dividercolors</item>
     </style>
@@ -68,7 +68,7 @@
     <style name="TitleBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/titlebar_height</item>
-        <item name="android:background">@color/titlebackground</item>
+        <item name="android:background">@color/mainColor</item>
         <item name="bgatitlebar_leftAndRightTextColor">@color/lonincolors</item>
         <item name="bgatitlebar_leftAndRightTextSize">@dimen/textsize16</item>
         <item name="bgatitlebar_titleTextColor">@color/textColor</item>

@@ -10,6 +10,8 @@ import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
  */
 
 public class AddBankCardActivity extends BaseActivity {
+
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_addbankcard);

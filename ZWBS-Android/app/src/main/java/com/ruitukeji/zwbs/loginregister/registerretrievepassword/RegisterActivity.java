@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.loginregister.registerretrievepassword;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -15,6 +15,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -22,11 +23,11 @@ import com.umeng.analytics.MobclickAgent;
 
 
 /**
- * 新用户注册
+ * 注册
  * Created by Administrator on 2017/2/17.
  */
 
-public class NewUserRegisterActivity extends BaseActivity implements RegisterContract.View {
+public class RegisterActivity extends BaseActivity implements RegisterContract.View {
     private String selectRegisterType;
     /**
      * 倒计时内部类
@@ -34,11 +35,6 @@ public class NewUserRegisterActivity extends BaseActivity implements RegisterCon
     private TimeCount time;
 
 
-    /**
-     * 协议图片
-     */
-    @BindView(id = R.id.img_agreement, click = true)
-    private ImageView img_agreement;
     private boolean isClick = true;
     /**
      * 注册协议
@@ -84,7 +80,7 @@ public class NewUserRegisterActivity extends BaseActivity implements RegisterCon
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_newuserregister);
+        setContentView(R.layout.activity_register);
     }
 
     /**
@@ -136,15 +132,15 @@ public class NewUserRegisterActivity extends BaseActivity implements RegisterCon
                 intent.putExtra("type", "driver_registration_protocol");
                 showActivity(aty, intent);
                 break;
-            case R.id.img_agreement:
-                if (isClick) {
-                    img_agreement.setImageResource(R.mipmap.agreement1);
-                    isClick = false;
-                } else {
-                    img_agreement.setImageResource(R.mipmap.agreement);
-                    isClick = true;
-                }
-                break;
+//            case R.id.img_agreement:
+//                if (isClick) {
+//                    img_agreement.setImageResource(R.mipmap.agreement1);
+//                    isClick = false;
+//                } else {
+//                    img_agreement.setImageResource(R.mipmap.agreement);
+//                    isClick = true;
+//                }
+//                break;
 
             default:
                 break;

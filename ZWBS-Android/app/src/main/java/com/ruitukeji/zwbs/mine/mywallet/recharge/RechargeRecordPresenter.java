@@ -1,8 +1,6 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.mywallet.recharge;
 
 import com.kymjs.rxvolley.client.HttpParams;
-import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
@@ -11,11 +9,11 @@ import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
  * Created by Administrator on 2017/2/13.
  */
 
-public class WithdrawalRecordPresenter implements WithdrawalRecordContract.Presenter {
+public class RechargeRecordPresenter implements RechargeRecordContract.Presenter {
 
-    private WithdrawalRecordContract.View mView;
+    private RechargeRecordContract.View mView;
 
-    public WithdrawalRecordPresenter(WithdrawalRecordContract.View view) {
+    public RechargeRecordPresenter(RechargeRecordContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }

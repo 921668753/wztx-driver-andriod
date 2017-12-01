@@ -53,6 +53,7 @@
     <color name="lonin1colors">#DDDDDD</color>
     <color name="lonincolors">#ff6243</color>
     <color name="textColor">#52565c</color>
+    <color name="d7D7D7colors">#D7D7D7</color>
 
     <!--推荐奖励-->
     <color name="cashcolors">#ff8b47</color>
@@ -100,7 +101,6 @@
     <color name="f2222Colors">#222222</color>
     <color name="c12121olors">#121212</color>
     <color name="cDCDCDColors">#CDCDCD</color>
-
 
 
 </resources>

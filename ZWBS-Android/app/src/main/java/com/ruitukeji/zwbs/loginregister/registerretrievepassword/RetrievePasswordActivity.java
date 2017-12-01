@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.loginregister.registerretrievepassword;
 
 import android.os.CountDownTimer;
 import android.view.View;
@@ -13,8 +13,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
 /**
- * 注册
- * 有可能  忘记密码公用此页
+ * 忘记密码
  * Created by ruitu ck on 2016/9/14.
  */
 

@@ -8,7 +8,10 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendedRecordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 /**
  * 充值
@@ -40,7 +43,20 @@ public class RechargeActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.recharge), true, R.id.titlebar);
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                showActivity(aty, RecommendedRecordActivity.class);
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.recharge), getString(R.string.recommendedRecord), R.id.titlebar, simpleDelegate);
         listenTopUpAmount();
     }
 

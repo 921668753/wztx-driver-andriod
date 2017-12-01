@@ -185,7 +185,7 @@
 
         <!--我的钱包   提现记录-->
         <activity
-            android:name=".mine.mywallet.WithdrawalRecordActivity"
+            android:name=".mine.mywallet.withdrawal.WithdrawalRecordActivity"
             android:screenOrientation="portrait"></activity>
         <!--在线客服-->
         <activity
@@ -225,7 +225,7 @@
             android:screenOrientation="portrait"></activity>
         <!--新用户注册 手机注册-->
         <activity
-            android:name=".loginregister.NewUserRegisterActivity"
+            android:name=".loginregister.registerretrievepassword.RegisterActivity"
             android:screenOrientation="portrait"></activity>
         <!--新用户注册  基本信息-->
         <activity
@@ -241,7 +241,7 @@
             android:screenOrientation="portrait"></activity>
         <!--找回密码-->
         <activity
-            android:name=".loginregister.RetrievePasswordActivity"
+            android:name=".loginregister.registerretrievepassword.RetrievePasswordActivity"
             android:screenOrientation="portrait"></activity>
         <!--注册协议-->
         <activity

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.mywallet.recharge;
 
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;
@@ -7,7 +7,7 @@ import com.ruitukeji.zwbs.common.BaseView;
  * Created by Administrator on 2017/2/13.
  */
 
-public interface WithdrawalRecordContract {
+public interface RechargeRecordContract {
     interface Presenter extends BasePresenter {
         /**
          * 获取订单列表信息

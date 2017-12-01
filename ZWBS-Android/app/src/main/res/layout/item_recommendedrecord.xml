@@ -26,7 +26,7 @@
             style="@style/MatchAuto"
             android:gravity="bottom"
             android:text="张三"
-            android:textColor="@color/textColor"
+            android:textColor="@color/titletextcolors"
             android:textSize="@dimen/textsize15" />
 
         <TextView

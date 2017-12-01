@@ -14,6 +14,7 @@ public interface InlandContract {
          * 得到国内全部城市
          */
         void getAllCityIn();
+
         /**
          * 得到国内全部城市（一级全部返回）
          */

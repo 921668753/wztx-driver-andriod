@@ -59,7 +59,12 @@
     <string name="register1">立即注册</string>
     <string name="errorCode">请输入验证码</string>
     <string name="phone">手机号</string>
-    <string name="thirdpartylogin">第三方登录</string>
+    <string name="thirdpartylogin">第三方账号快捷登录</string>
+    <string name="thirdqq">QQ</string>
+    <string name="thirdweixin">微信</string>
+
+
+
     <!--新用户注册-->
     <string name="newUserRegister">新用户注册</string>
     <string name="resetpwd">重置密码成功，请登录！</string>
@@ -74,6 +79,7 @@
     <string name="testGetCode">获取验证码</string>
     <string name="clickFinish">点击完成代表您同意</string>
     <string name="myagreement">我同意</string>
+    <string name="myagreement1">点注册，即表示已阅读并同意</string>
     <string name="agreement">《物载天下服务协议》</string>
     <string name="agreement1">同意《物载天下服务协议》才能注册使用</string>
     <string name="determine">确定</string>
@@ -328,12 +334,6 @@
     <string name="licensePlatesClear">车牌要清晰，车头要完整</string>
 
 
-
-
-
-
-
-
     <!--个人资料-->
     <string name="personalData">个人资料</string>
     <string name="headPortrait">头像</string>
@@ -495,6 +495,8 @@
     <string name="modification">修改</string>
     <string name="consent">同意</string>
     <string name="driverWithdrawAgreement">《司机提现协议》</string>
+    <string name="withdrawalRecord">提现记录</string>
+
 
     <!--我的银行卡-->
     <string name="addBankCard">添加银行卡</string>
@@ -504,8 +506,7 @@
     <string name="bankCardNumber">银行卡号</string>
     <string name="withdrawalsBank">提现银行</string>
     <string name="openingBank">开户行</string>
-
-
+    <string name="confirmAdd">确认添加</string>
     <string name="notHigherWithdrawalLimit">不可高于可提现额度</string>
     <string name="notHigherWithdrawalLimit1">请输入正确的提现金额</string>
     <string name="bankName">银行名称</string>
@@ -525,6 +526,12 @@
     <string name="confirmSubmit2">申请已提交成功！</string>
     <string name="cancel">&#160;&#160;&#160;取&#160;&#160;&#160;&#160;&#160;&#160;&#160;消&#160;&#160;&#160;</string>
     <string name="confirm">&#160;&#160;&#160;确&#160;&#160;&#160;&#160;&#160;&#160;&#160;定&#160;&#160;&#160;</string>
+
+
+    <!--收入明细-->
+    <string name="paidIncome">已支付收入</string>
+    <string name="notPaidIncome">未支付收入</string>
+
 
     <!--上传凭证-->
     <string name="uploadDocuments">上传凭证</string>
@@ -546,15 +553,24 @@
     <string name="withdrawalInstruction1">每月15日、30日为提现日，提现金额3~5个工作日到账</string>
 
 
-
     <!--充值-->
     <string name="topUpAmount">充值金额</string>
     <string name="optionPay">选择支付方式</string>
     <string name="weChatPay">微信支付</string>
     <string name="alipayPay">支付宝支付</string>
     <string name="prepaidImmediately">立即充值</string>
+    <string name="rechargeRecord">充值记录</string>
 
 
+    <!--异常记录-->
+    <string name="thePlace1">起运地：</string>
+    <string name="destination2">目的地：</string>
+
+    <!--异常情况-->
+    <string name="abnormalSituation">异常情况</string>
+    <string name="abnormalLocation1">异常地点：</string>
+    <string name="abnormalTime1">异常时间：</string>
+    <string name="abnormalReason1">异常原因：</string>
 
 
     <!--账单-->

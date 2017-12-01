@@ -16,6 +16,8 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RegisterActivity;
+import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RetrievePasswordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.umeng.analytics.MobclickAgent;
@@ -136,7 +138,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 //                Intent register = new Intent();
 //                register.setClass(aty, SelectRegisterTypeActivity.class);
 //                register.putExtra("title", getString(R.string.register));
-                showActivity(aty, NewUserRegisterActivity.class);
+                showActivity(aty, RegisterActivity.class);
                 break;
             default:
                 break;

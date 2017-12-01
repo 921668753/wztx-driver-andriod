@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
-    android:fitsSystemWindows="true"
     android:background="@color/background"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title"></include>
+    <include layout="@layout/common_title" />
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mRefreshLayout"
-        android:background="@color/background"
-        style="@style/MatchMatch">
+        style="@style/MatchMatch"
+        android:background="@color/background">
 
         <!-- item_order -->
         <ListView
             android:id="@+id/lv_withdrawalrecord"
-            style="@style/MatchMatch"
-            android:divider="@color/background"
-            android:dividerHeight="@dimen/dimen10"
+            style="@style/MatchWrap"
+            android:divider="@color/mainColor"
+            android:dividerHeight="@dimen/dimen1"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_withdrawalrecord" />
+
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
+    <include layout="@layout/common_error" />
 
-    <include layout="@layout/common_error"></include>
 </LinearLayout>

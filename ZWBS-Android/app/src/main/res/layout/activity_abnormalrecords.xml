@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen10">
+
+        <!--item_getorder.xml-->
+
+        <ListView
+            android:id="@+id/lv_abnormalRecords"
+            style="@style/MatchMatch"
+            android:background="@color/background"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_abnormalrecords" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include
+        layout="@layout/common_error"
+        android:visibility="gone" />
+
+
+</LinearLayout>

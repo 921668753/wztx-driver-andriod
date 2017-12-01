@@ -31,7 +31,7 @@ import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
 /**
- * 推荐有礼
+ * 分享有礼
  * Created by Administrator on 2017/2/10.
  */
 
@@ -86,7 +86,7 @@ public class RecommendCourteousActivity extends BaseActivity {
                 showActivity(aty, RecommendedRecordActivity.class);
             }
         };
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.recommend_courteous), getString(R.string.recommendedRecord), R.id.titlebar, simpleDelegate);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.sharePolite), getString(R.string.rechargeRecord), R.id.titlebar, simpleDelegate);
     }
 
     @Override

@@ -14,8 +14,10 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendedRecordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
+import cn.bingoogolapple.titlebar.BGATitleBar;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -67,7 +69,22 @@ public class WithdrawalActivity extends BaseActivity
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawal), true, R.id.titlebar);
+
+
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+                showActivity(aty, RecommendedRecordActivity.class);
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawal), getString(R.string.withdrawalRecord), R.id.titlebar, simpleDelegate);
         String withdraw_begintime = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdraw_begintime");
         String withdraw_endtime = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdraw_endtime");
         //  tv_hintWithdrawal1.setText("提现日期每月" + withdraw_begintime + "号—" + withdraw_endtime + "号");

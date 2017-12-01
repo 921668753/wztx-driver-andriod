@@ -37,10 +37,8 @@ public class RegistrationAgreementActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
-       // initView();
+        // initView();
     }
-
-
 
 
 }

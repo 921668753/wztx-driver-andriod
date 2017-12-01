@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.loginregister.bindphone;
 
 import com.kymjs.common.CipherUtils;
 import com.kymjs.common.StringUtils;
@@ -19,11 +19,11 @@ import cn.jpush.android.api.JPushInterface;
 /**
  * Created by ruitu on 2016/9/24.
  */
-public class RegisterPresenter implements RegisterContract.Presenter {
+public class BindPhonePresenter implements BindPhoneContract.Presenter {
 
-    private RegisterContract.View mView;
+    private BindPhoneContract.View mView;
 
-    public RegisterPresenter(RegisterContract.View view) {
+    public BindPhonePresenter(BindPhoneContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }

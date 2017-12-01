@@ -1,39 +1,46 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.mywallet.incomedetails.incomedetailsfragment;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.WithdrawalRecordViewAdapter;
-import com.ruitukeji.zwbs.application.MyApplication;
-import com.ruitukeji.zwbs.common.BaseActivity;
+import com.ruitukeji.zwbs.adapter.BillViewAdapter;
+import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.WithdrawalRecordBean;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.entity.BillBean;
+import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
+import com.ruitukeji.zwbs.mine.mywallet.BillActivity;
+import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillContract;
+import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillPresenter;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
- * 提现记录
- * Created by Administrator on 2017/2/15.
+ * 已支付收入
+ * Created by Administrator on 2017/3/9.
  */
 
-public class WithdrawalRecordActivity extends BaseActivity implements WithdrawalRecordContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
-
-    @BindView(id = R.id.lv_withdrawalrecord)
-    private ListView lv_withdrawalrecord;
+public class PaidIncomeFragment extends BaseFragment implements BillContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
+    private BillViewAdapter mAdapter;
 
-    private WithdrawalRecordViewAdapter withdrawalRecordViewAdapter;
+    private BillActivity aty;
+
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
     /**
      * 错误提示页
@@ -55,33 +62,41 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
      */
     private boolean isShowLoadingMore = false;
 
+    /**
+     * 是否is_pay  number   1为已支付   0为未支付
+     */
+    private int is_pay = 1;
+
 
     @Override
-    public void setRootView() {
-        setContentView(R.layout.activity_withdrawalrecord);
+    protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+        aty = (BillActivity) getActivity();
+        return View.inflate(aty, R.layout.fragment_paidincome, null);
     }
 
     @Override
-    public void initData() {
+    protected void initData() {
         super.initData();
-        mPresenter = new WithdrawalRecordPresenter(this);
-        withdrawalRecordViewAdapter = new WithdrawalRecordViewAdapter(this);
+        mPresenter = new BillPresenter(this);
+        mAdapter = new BillViewAdapter(getActivity());
     }
 
     @Override
-    public void initWidget() {
-        super.initWidget();
-       // ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawalRecord), true, R.id.titlebar);
+    protected void initWidget(View parentView) {
+        super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_withdrawalrecord.setAdapter(withdrawalRecordViewAdapter);
-        lv_withdrawalrecord.setOnItemClickListener(this);
-        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        ((WithdrawalRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        Intent intent = new Intent(aty, OrderDetailsActivity.class);
+        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+        aty.showActivity(aty, intent);
     }
 
     @Override
@@ -89,7 +104,7 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((WithdrawalRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
     }
 
     @Override
@@ -104,7 +119,7 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((WithdrawalRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
         return true;
     }
 
@@ -126,20 +141,20 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        WithdrawalRecordBean withdrawalRecordBean = (WithdrawalRecordBean) JsonUtil.getInstance().json2Obj(s, WithdrawalRecordBean.class);
-        mMorePageNumber = withdrawalRecordBean.getResult().getPage();
-        totalPageNumber = withdrawalRecordBean.getResult().getPageTotal();
-        if (withdrawalRecordBean.getResult().getList() == null || withdrawalRecordBean.getResult().getList().size() == 0) {
+        BillBean billBean = (BillBean) JsonUtil.getInstance().json2Obj(s, BillBean.class);
+        mMorePageNumber = billBean.getResult().getPage();
+        totalPageNumber = billBean.getResult().getPageTotal();
+        if (billBean.getResult().getList() == null || billBean.getResult().getList().size() == 0) {
             error(getString(R.string.serverReturnsDataNull));
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+            mAdapter.clear();
+            mAdapter.addNewData(billBean.getResult().getList());
             mRefreshLayout.endRefreshing();
-            withdrawalRecordViewAdapter.clear();
-            withdrawalRecordViewAdapter.addNewData(withdrawalRecordBean.getResult().getList());
         } else {
             mRefreshLayout.endLoadingMore();
-            withdrawalRecordViewAdapter.addMoreData(withdrawalRecordBean.getResult().getList());
+            mAdapter.addMoreData(billBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
@@ -160,14 +175,22 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
     }
 
     @Override
-    public void setPresenter(WithdrawalRecordContract.Presenter presenter) {
+    public void setPresenter(BillContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
+    /**
+     * 当通过changeFragment()显示时会被调用(类似于onResume)
+     */
     @Override
-    protected void onDestroy() {
+    public void onChange() {
+        super.onChange();
+    }
+
+    @Override
+    public void onDestroy() {
         super.onDestroy();
-        withdrawalRecordViewAdapter.clear();
-        withdrawalRecordViewAdapter = null;
+        mAdapter.clear();
+        mAdapter = null;
     }
 }
