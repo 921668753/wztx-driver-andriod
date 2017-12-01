@@ -63,7 +63,7 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
     }
 
     @Override
-    public void postResetpwd(String phone, String code, String pwd) {
+    public void postBindPhone(String phone, String code) {
         if (StringUtils.isEmpty(phone)) {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
@@ -76,19 +76,10 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
             mView.error(MyApplication.getContext().getString(R.string.errorCode));
             return;
         }
-        if (StringUtils.isEmpty(pwd)) {
-            mView.error(MyApplication.getContext().getString(R.string.hintPasswordText));
-            return;
-        }
-        if (pwd.length() < 6 || pwd.length() > 20) {
-            mView.error(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText1));
-            return;
-        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("account", phone);
         map.put("captcha", code);
-        map.put("new_password", CipherUtils.md5("RUITU" + pwd + "KEJI"));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
         RequestClient.postResetpwd(httpParams, new ResponseListener<String>() {
             @Override
@@ -104,45 +95,28 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
     }
 
     @Override
-    public void postRegister(String phone, String code, String pwd, String recommendcode) {
-        if (StringUtils.isEmpty(phone)) {
-            mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
-            return;
-        }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
-            return;
-        }
-        if (StringUtils.isEmpty(code)) {
-            mView.error(MyApplication.getContext().getString(R.string.errorCode));
-            return;
-        }
-        if (StringUtils.isEmpty(pwd)) {
-            mView.error(MyApplication.getContext().getString(R.string.hintPasswordText));
-            return;
-        }
-        if (pwd.length() < 6 || pwd.length() > 20) {
-            mView.error(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText1));
-            return;
-        }
+    public void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("user_name", phone);
-        map.put("captcha", code);
-        map.put("password", CipherUtils.md5("RUITU" + pwd + "KEJI"));
-        map.put("recomm_code", recommendcode);
-        map.put("pushToken", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
-        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.postRegister(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 1);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg);
-            }
-        });
+        //   Map<String, Object> map = new HashMap<String, Object>();
+        httpParams.put("openid", openid);
+        httpParams.put("from", from);
+        httpParams.put("nickname", nickname);
+        httpParams.put("head_pic", head_pic);
+        httpParams.put("sex", sex);
+        httpParams.put("push_id", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
+        // httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+//        RequestClient.postThirdLogin(httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response, 2);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.errorMsg(msg, 1);
+//            }
+//        });
     }
+
+
 }

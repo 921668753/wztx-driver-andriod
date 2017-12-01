@@ -21,9 +21,7 @@ public class HttpRequest {
     private static RxVolley.Builder builder = null;
 
     public static void requestHttp(String url, int httpMethod, int contentType, HttpParams params, boolean isCache, ResponseListener responseListener) {
-        if (builder == null) {
-            builder = new RxVolley.Builder();
-        }
+        builder = new RxVolley.Builder();
         //http请求的回调，内置了很多方法，详细请查看源码
 //包括在异步响应的onSuccessInAsync():注不能做UI操作
 //网络请求成功时的回调onSuccess()
@@ -64,6 +62,7 @@ public class HttpRequest {
 
     /**
      * get请求
+     *
      * @param url
      * @param params
      * @param responseListener
@@ -118,12 +117,10 @@ public class HttpRequest {
     @SuppressWarnings("unchecked")
     public static boolean doSuccess(String s, ResponseListener listener) {
         BaseResult baseResult = (BaseResult) JsonUtil.getInstance().json2Obj(s, BaseResult.class);
-
         if (baseResult == null) {
             listener.onFailure(KJActivityStack.create().bottomActivity().getString(R.string.jsonError));
             return false;
         }
-
         if (baseResult.getCode() != NumericConstants.SUCCESS) {
             if (baseResult.getCode() == 4011 || baseResult.getCode() == 4012 || baseResult.getCode() == 4013 || baseResult.getCode() == 4015) {
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "id", 0);

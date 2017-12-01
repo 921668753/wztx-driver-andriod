@@ -1,8 +1,11 @@
 package com.ruitukeji.zwbs.loginregister.registerretrievepassword;
 
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -11,6 +14,10 @@ import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
+import static android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
 
 /**
  * 忘记密码
@@ -25,37 +32,45 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     private TimeCount time;
 
     /**
-     * 注册协议
-     */
-//    @BindView(id = R.id.tv_agreement, click = true)
-//    private TextView tv_agreement;
-
-
-    /**
      * 手机号
      */
     @BindView(id = R.id.et_phone)
     private EditText et_phone;
+
+    @BindView(id = R.id.img_deletePhone, click = true)
+    private ImageView img_deletePhone;
+
     /**
      * 验证码
      */
     @BindView(id = R.id.et_code)
     private EditText et_code;
+
+    @BindView(id = R.id.img_deleteCode, click = true)
+    private ImageView img_deleteCode;
     /**
      * 获取验证码
      */
     @BindView(id = R.id.tv_code, click = true)
     private TextView tv_code;
+
     /**
      * 密码
      */
     @BindView(id = R.id.et_pwd)
     private EditText et_pwd;
+
+    @BindView(id = R.id.img_delete, click = true)
+    private ImageView img_delete;
+
+    @BindView(id = R.id.img_biyan, click = true)
+    private ImageView img_biyan;
+
     /**
-     * 注册
+     * 重置密码
      */
-    @BindView(id = R.id.tv_registe, click = true)
-    private TextView tv_registe;
+    @BindView(id = R.id.tv_resetPassword, click = true)
+    private TextView tv_resetPassword;
 
     /**
      * 验证码类型 reg=注册 restpwd=找回密码 login=登陆 bind=绑定手机号.
@@ -84,51 +99,52 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     public void initWidget() {
         super.initWidget();
         initTitle();
+        changeInputView(et_phone, img_deletePhone);
+        changeInputView(et_code, img_deleteCode);
+        changeInputView(et_pwd, img_delete);
     }
 
     /**
      * 设置标题
      */
     public void initTitle() {
-        String title = getIntent().getStringExtra("title");
-        ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
-//        if (StringUtils.isEmpty(title)) {
-//            type = 1;
-//        } else if (title.equals(getString(R.string.retrievePassword))) {
-//            tv_agreement.setVisibility(View.GONE);
-        tv_registe.setText(getString(R.string.resetPassword));
-//            type = 2;
-//        }
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.retrievePassword), true, R.id.titlebar);
     }
 
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.img_deletePhone:
+                et_phone.setText("");
+                break;
+            case R.id.img_deleteCode:
+                et_code.setText("");
+                break;
             case R.id.tv_code:
                 showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
                 ((RegisterContract.Presenter) mPresenter).postCode(et_phone.getText().toString(), type);
                 break;
-            case R.id.tv_registe:
-                tv_registe.setEnabled(false);
-//                if (type == 1) {
-//                    mPresenter.postRegister(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString());
-//                } else if (type == 2) {
+            case R.id.img_delete:
+                et_pwd.setText("");
+                break;
+            case R.id.img_biyan:
+                if (et_pwd.getInputType() == 0x00000081) {
+                    img_biyan.setImageResource(R.mipmap.ic_zhengkai);
+                    et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                } else {
+                    img_biyan.setImageResource(R.mipmap.ic_biyan);
+                    et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD);
+                }
+                break;
+            case R.id.tv_resetPassword:
+                tv_resetPassword.setEnabled(false);
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
                 ((RegisterContract.Presenter) mPresenter).postResetpwd(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString());
-                //   }
                 break;
-//            case R.id.tv_agreement:
-//                // 注册协议
-//                showActivity(aty, RegistrationAgreementActivity.class);
-//                break;
-
-
             default:
                 break;
         }
-
-
     }
 
     /* 定义一个倒计时的内部类 */
@@ -139,42 +155,74 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
 
         @Override
         public void onFinish() {// 计时完毕时触发
-            tv_code.setText("重新验证");
+            tv_code.setText(getString(R.string.revalidation));
             tv_code.setClickable(true);
-            tv_code.setTextColor(getResources().getColor(R.color.lonincolors));
-            tv_code.setBackgroundResource(R.drawable.shape_code);
+            tv_code.setBackgroundResource(R.drawable.shape_login);
         }
 
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程显示
             tv_code.setClickable(false);
-            tv_code.setText(millisUntilFinished / 1000 + "秒");
-            tv_code.setTextColor(getResources().getColor(R.color.titledivider));
-            tv_code.setBackgroundResource(R.drawable.shape_code1);
+            tv_code.setText(millisUntilFinished / 1000 + getString(R.string.toResend));
+            tv_code.setBackgroundResource(R.drawable.shape_login1);
         }
+    }
+
+
+    /**
+     * 监听EditText输入改变
+     */
+    public void changeInputView(EditText editText, View view) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (editText.getText().toString().length() > 0) {
+                    if (view != null) {
+                        view.setVisibility(View.VISIBLE);
+                    }
+                    if (editText.getId() == R.id.et_phone) {
+                        tv_code.setBackgroundResource(R.drawable.shape_login);
+                    }
+                    if (et_phone.getText().length() > 0 && et_code.getText().length() > 0 && et_pwd.getText().length() > 0) {
+                        tv_resetPassword.setClickable(true);
+                        tv_resetPassword.setBackgroundResource(R.drawable.shape_login);
+                    } else {
+                        tv_resetPassword.setClickable(false);
+                        tv_resetPassword.setBackgroundResource(R.drawable.shape_login1);
+                    }
+                } else {
+                    if (view != null) {
+                        view.setVisibility(View.GONE);
+                    }
+                    if (editText.getId() == R.id.et_phone) {
+                        tv_code.setBackgroundResource(R.drawable.shape_login1);
+                    }
+                    tv_resetPassword.setClickable(false);
+                    tv_resetPassword.setBackgroundResource(R.drawable.shape_login1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     @Override
     public void getSuccess(String s, int flag) {
         dismissLoadingDialog();
-
         if (flag == 0) {
-            tv_registe.setEnabled(true);
+            tv_resetPassword.setEnabled(true);
             //    CodeBean bean = (CodeBean) JsonUtil.getInstance().json2Obj(s, CodeBean.class);
             ViewInject.toast(getString(R.string.testget));
             time.start();
-        }
-//        else if (flag == 1) {
-//            LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
-//            MobclickAgent.onProfileSignIn(et_phone.getText().toString());//账号统计
-//            PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
-//            PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime());
-//            PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
-//            PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
-//            finish();
-//        }
-
-        else if (flag == 2) {
+        } else if (flag == 2) {
             time.cancel();
             time = null;
             ViewInject.toast(getString(R.string.resetpwd));
@@ -186,7 +234,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     public void error(String msg) {
         dismissLoadingDialog();
         ViewInject.toast(msg);
-        tv_registe.setEnabled(true);
+        tv_resetPassword.setEnabled(true);
     }
 
     @Override

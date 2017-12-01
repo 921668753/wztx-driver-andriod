@@ -7,7 +7,6 @@
 
     <include layout="@layout/common_title"></include>
 
-
     <TextView
         style="@style/DividerWidth"
         android:layout_marginTop="@dimen/dimen10" />
@@ -39,6 +38,17 @@
             android:textCursorDrawable="@drawable/shape_cursor"
             android:textSize="@dimen/textsize15" />
 
+
+        <ImageView
+            android:id="@+id/img_deletePhone"
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/delete"
+            android:visibility="gone" />
     </LinearLayout>
 
     <include layout="@layout/commom_dividerwidth1" />
@@ -71,6 +81,17 @@
             android:textCursorDrawable="@drawable/shape_cursor"
             android:textSize="@dimen/textsize15" />
 
+        <ImageView
+            android:id="@+id/img_deleteCode"
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen5"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen13"
+            android:src="@mipmap/delete"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/tv_code"
             android:layout_width="@dimen/dimen75"
@@ -86,7 +107,7 @@
     <TextView style="@style/DividerWidth" />
 
     <TextView
-        android:id="@+id/tv_registe"
+        android:id="@+id/tv_determine"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen45"
         android:layout_marginLeft="@dimen/dimen15"

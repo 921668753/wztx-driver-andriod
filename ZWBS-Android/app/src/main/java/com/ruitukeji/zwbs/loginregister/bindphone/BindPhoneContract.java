@@ -16,14 +16,15 @@ interface BindPhoneContract {
         void postCode(String phone, String type);
 
         /**
-         * 重置密码请求
+         * 绑定手机号
          */
-        void postResetpwd(String phone, String code, String pwd);
+        void postBindPhone(String phone, String code);
 
         /**
-         * 注册
+         * 第三方账号登录
          */
-        void postRegister(String phone, String code, String pwd, String recommendcode);
+        void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex);
+
     }
 
     interface View extends BaseView<Presenter> {

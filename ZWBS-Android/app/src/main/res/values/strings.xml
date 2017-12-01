@@ -63,10 +63,11 @@
     <string name="thirdqq">QQ</string>
     <string name="thirdweixin">微信</string>
 
+    <!--绑定手机号-->
+    <string name="bindPhone">绑定手机号</string>
+    <string name="bindPhoneSuccessfully">绑定手机号成功！</string>
 
-
-    <!--新用户注册-->
-    <string name="newUserRegister">新用户注册</string>
+    <!--注册-->
     <string name="resetpwd">重置密码成功，请登录！</string>
     <string name="password1">确认密码</string>
     <string name="referralcode">推荐码</string>
@@ -77,6 +78,8 @@
     <string name="retrievePassword">找回密码</string>
     <string name="verificationCode">验证码</string>
     <string name="testGetCode">获取验证码</string>
+    <string name="revalidation">重新验证</string>
+    <string name="toResend">s后重发</string>
     <string name="clickFinish">点击完成代表您同意</string>
     <string name="myagreement">我同意</string>
     <string name="myagreement1">点注册，即表示已阅读并同意</string>

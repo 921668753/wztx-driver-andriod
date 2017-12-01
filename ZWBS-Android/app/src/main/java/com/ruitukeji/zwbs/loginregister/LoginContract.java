@@ -13,6 +13,12 @@ public interface LoginContract {
          * 账号登录
          */
         void postToLogin( String phone, String pwd);
+
+        /**
+         * 第三方账号登录
+         */
+        void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex);
+
     }
 
     interface View extends BaseView<Presenter> {

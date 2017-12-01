@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!--<include layout="@layout/common_title"></include>-->
     <LinearLayout
         android:id="@+id/titlebarl"
         style="@style/MatchWrap"
         android:orientation="vertical">
 
-        <cn.bingoogolapple.titlebar.BGATitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        <cn.bingoogolapple.titlebar.BGATitleBar
             android:id="@+id/titlebar"
             style="@style/TitleBar"
-            app:bgatitlebar_isTitleTextBold="false"
             app:bgatitlebar_leftDrawable="@mipmap/logincancel"
-            app:bgatitlebar_rightText="ypu">
-
-        </cn.bingoogolapple.titlebar.BGATitleBar>
+            app:bgatitlebar_rightText="" />
 
         <TextView style="@style/TitleDividerWidth" />
     </LinearLayout>
@@ -67,16 +64,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/MatchWrap"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/DividerWidth"
-            android:layout_marginLeft="@dimen/dimen15"
-            android:layout_marginRight="@dimen/dimen15" />
-    </LinearLayout>
+    <include layout="@layout/commom_dividerwidth1" />
 
     <LinearLayout
         style="@style/Match44"
@@ -100,6 +88,7 @@
             android:layout_marginRight="@dimen/dimen15"
             android:background="@android:color/transparent"
             android:hint="@string/hintPasswordText"
+            android:digits="@string/alphanumeric"
             android:inputType="textPassword"
             android:maxLength="20"
             android:singleLine="true"
@@ -117,9 +106,11 @@
             android:paddingLeft="@dimen/dimen15"
             android:paddingRight="@dimen/dimen5"
             android:paddingTop="@dimen/dimen13"
-            android:src="@mipmap/delete" />
+            android:src="@mipmap/delete"
+            android:visibility="gone" />
 
         <ImageView
+            android:id="@+id/img_biyan"
             android:layout_width="@dimen/dimen40"
             android:layout_height="@dimen/dimen40"
             android:paddingBottom="@dimen/dimen13"

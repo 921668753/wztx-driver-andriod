@@ -2,6 +2,8 @@ package com.ruitukeji.zwbs.loginregister.registerretrievepassword;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,14 +14,20 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.LoginBean;
-import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
+import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.umeng.analytics.MobclickAgent;
+
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
+import static android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
 
 
 /**
@@ -28,41 +36,56 @@ import com.umeng.analytics.MobclickAgent;
  */
 
 public class RegisterActivity extends BaseActivity implements RegisterContract.View {
-    private String selectRegisterType;
+
     /**
      * 倒计时内部类
      */
     private TimeCount time;
 
-
-    private boolean isClick = true;
     /**
      * 注册协议
      */
     @BindView(id = R.id.tv_agreement, click = true)
     private TextView tv_agreement;
+
     /**
      * 手机号
      */
     @BindView(id = R.id.et_phone)
     private EditText et_phone;
+
+    @BindView(id = R.id.img_deletePhone, click = true)
+    private ImageView img_deletePhone;
+
     /**
      * 验证码
      */
     @BindView(id = R.id.et_code)
     private EditText et_code;
+
+    @BindView(id = R.id.img_deleteCode, click = true)
+    private ImageView img_deleteCode;
+
     /**
      * 获取验证码
      */
     @BindView(id = R.id.tv_code, click = true)
     private TextView tv_code;
+
     /**
      * 密码
      */
     @BindView(id = R.id.et_pwd)
     private EditText et_pwd;
+
+    @BindView(id = R.id.img_delete, click = true)
+    private ImageView img_delete;
+
+    @BindView(id = R.id.img_biyan, click = true)
+    private ImageView img_biyan;
+
     /**
-     * 密码
+     * 推荐码
      */
     @BindView(id = R.id.et_referralCode)
     private EditText et_referralCode;
@@ -100,31 +123,48 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     public void initWidget() {
         super.initWidget();
         initTitle();
+        changeInputView(et_phone, img_deletePhone);
+        changeInputView(et_code, img_deleteCode);
+        changeInputView(et_pwd, img_delete);
     }
 
     /**
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.register), true, R.id.titlebar);
     }
 
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.img_deletePhone:
+                et_phone.setText("");
+                break;
             case R.id.tv_code:
                 showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
                 ((RegisterContract.Presenter) mPresenter).postCode(et_phone.getText().toString(), type);
                 break;
-            case R.id.tv_registe:
-                if (isClick) {
-                    showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                    tv_registe.setEnabled(false);
-                    ((RegisterContract.Presenter) mPresenter).postRegister(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString(), et_referralCode.getText().toString());
+            case R.id.img_deleteCode:
+                et_code.setText("");
+                break;
+            case R.id.img_delete:
+                et_pwd.setText("");
+                break;
+            case R.id.img_biyan:
+                if (et_pwd.getInputType() == 0x00000081) {
+                    img_biyan.setImageResource(R.mipmap.ic_zhengkai);
+                    et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 } else {
-                    ViewInject.toast(getString(R.string.agreement1));
+                    img_biyan.setImageResource(R.mipmap.ic_biyan);
+                    et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD);
                 }
+                break;
+            case R.id.tv_registe:
+                showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
+                tv_registe.setEnabled(false);
+                ((RegisterContract.Presenter) mPresenter).postRegister(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString(), et_referralCode.getText().toString());
                 break;
             case R.id.tv_agreement:
                 // 注册协议
@@ -132,16 +172,6 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 intent.putExtra("type", "driver_registration_protocol");
                 showActivity(aty, intent);
                 break;
-//            case R.id.img_agreement:
-//                if (isClick) {
-//                    img_agreement.setImageResource(R.mipmap.agreement1);
-//                    isClick = false;
-//                } else {
-//                    img_agreement.setImageResource(R.mipmap.agreement);
-//                    isClick = true;
-//                }
-//                break;
-
             default:
                 break;
         }
@@ -157,18 +187,16 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
         @Override
         public void onFinish() {// 计时完毕时触发
-            tv_code.setText("重新验证");
+            tv_code.setText(getString(R.string.revalidation));
             tv_code.setClickable(true);
-            tv_code.setTextColor(getResources().getColor(R.color.lonincolors));
-            tv_code.setBackgroundResource(R.drawable.shape_code);
+            tv_code.setBackgroundResource(R.drawable.shape_login);
         }
 
         @Override
         public void onTick(long millisUntilFinished) {// 计时过程显示
             tv_code.setClickable(false);
-            tv_code.setText(millisUntilFinished / 1000 + "秒");
-            tv_code.setTextColor(getResources().getColor(R.color.titledivider));
-            tv_code.setBackgroundResource(R.drawable.shape_code1);
+            tv_code.setText(millisUntilFinished / 1000 + getString(R.string.toResend));
+            tv_code.setBackgroundResource(R.drawable.shape_login1);
         }
     }
 
@@ -185,23 +213,69 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             time = null;
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
             MobclickAgent.onProfileSignIn(et_phone.getText().toString());//账号统计
-            String refreshName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshName");
-            if (refreshName != null && refreshName.equals("GetOrderFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", true);
-            } else if (refreshName != null && refreshName.equals("MineFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
-            }
+            //       String refreshName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshName");
+//            if (refreshName != null && refreshName.equals("GetOrderFragment")) {
+//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", true);
+//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", true);
+//            } else if (refreshName != null && refreshName.equals("MineFragment")) {
+//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
+//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
+//            }
             PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
             PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime() + "");
             PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
             PreferenceHelper.write(this, StringConstants.FILENAME, "userId", bean.getResult().getUserId());
             PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
-            skipActivity(aty, NewUserInformationActivity.class);
+            KJActivityStack.create().finishActivity(LoginActivity.class);
+            skipActivity(aty, IdentityAuthenticationActivity.class);
         }
     }
 
+
+    /**
+     * 监听EditText输入改变
+     */
+    public void changeInputView(EditText editText, View view) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (editText.getText().toString().length() > 0) {
+                    if (view != null) {
+                        view.setVisibility(View.VISIBLE);
+                    }
+                    if (editText.getId() == R.id.et_phone) {
+                        tv_code.setBackgroundResource(R.drawable.shape_login);
+                    }
+                    if (et_phone.getText().length() > 0 && et_code.getText().length() > 0 && et_pwd.getText().length() > 0) {
+                        tv_registe.setClickable(true);
+                        tv_registe.setBackgroundResource(R.drawable.shape_login);
+                    } else {
+                        tv_registe.setClickable(false);
+                        tv_registe.setBackgroundResource(R.drawable.shape_login1);
+                    }
+                } else {
+                    if (view != null) {
+                        view.setVisibility(View.GONE);
+                    }
+                    if (editText.getId() == R.id.et_phone) {
+                        tv_code.setBackgroundResource(R.drawable.shape_login1);
+                    }
+                    tv_registe.setClickable(false);
+                    tv_registe.setBackgroundResource(R.drawable.shape_login1);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
 
     @Override
     public void error(String msg) {

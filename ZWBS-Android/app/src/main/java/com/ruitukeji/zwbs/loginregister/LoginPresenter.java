@@ -65,4 +65,29 @@ public class LoginPresenter implements LoginContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        //   Map<String, Object> map = new HashMap<String, Object>();
+        httpParams.put("openid", openid);
+        httpParams.put("from", from);
+        httpParams.put("nickname", nickname);
+        httpParams.put("head_pic", head_pic);
+        httpParams.put("sex", sex);
+        httpParams.put("push_id", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
+        // httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+//        RequestClient.postThirdLogin(httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response, 2);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.errorMsg(msg, 1);
+//            }
+//        });
+    }
+
 }
