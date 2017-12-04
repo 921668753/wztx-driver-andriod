@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.LengthsViewAdapter;
-import com.ruitukeji.zwbs.adapter.TypesViewAdapter;
+import com.ruitukeji.zwbs.adapter.getorder.LengthsViewAdapter;
+import com.ruitukeji.zwbs.adapter.getorder.TypesViewAdapter;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;

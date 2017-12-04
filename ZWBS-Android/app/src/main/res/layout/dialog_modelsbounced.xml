@@ -19,8 +19,8 @@
             android:id="@+id/lv_models"
             style="@style/MatchWrap"
             android:background="@color/mainColor"
-            android:divider="@color/transparent"
-            android:dividerHeight="@dimen/dimen0"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="@dimen/dimen1"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_models" />

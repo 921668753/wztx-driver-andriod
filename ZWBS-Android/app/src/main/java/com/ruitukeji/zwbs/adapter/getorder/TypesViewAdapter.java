@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter;
+package com.ruitukeji.zwbs.adapter.getorder;
 
 import android.content.Context;
 
@@ -17,15 +17,15 @@ public class TypesViewAdapter extends BGAAdapterViewAdapter<TypeBean> {
 
 
     public TypesViewAdapter(Context context) {
-        super(context, R.layout.item_conductormodels);
+        super(context, R.layout.item_models);
     }
 
     @Override
     public void fillData(BGAViewHolderHelper helper, int position, TypeBean typeBean) {
         if (typeBean.getStatus() == 1) {
-            helper.setBackgroundRes(R.id.tv_type, R.drawable.shape_conductormodels1);
+            helper.setBackgroundRes(R.id.tv_divider, R.drawable.shape_conductormodels1);
         } else {
-            helper.setBackgroundRes(R.id.tv_type, R.drawable.shape_conductormodels);
+            helper.setBackgroundRes(R.id.tv_divider, R.drawable.shape_conductormodels);
         }
         helper.setText(R.id.tv_type, typeBean.getName());
     }

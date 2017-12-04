@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter;
+package com.ruitukeji.zwbs.adapter.getorder;
 
 import android.content.Context;
 
