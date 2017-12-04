@@ -15,6 +15,7 @@ public class NumericConstants {
     public final static int SUCCESS = 2000;
     public final static int ERRCODE = 0;
     public final static int TOLINGIN = -10001;
+
     /**
      * 刷新起始页码
      */

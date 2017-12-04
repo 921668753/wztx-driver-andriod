@@ -11,6 +11,7 @@
     <ScrollView
         style="@style/MatchWrap"
         android:background="@color/mainColor"
+        android:maxHeight="@dimen/dimen470"
         android:paddingLeft="@dimen/dimen14"
         android:scrollbars="none">
 

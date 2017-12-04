@@ -8,6 +8,7 @@
     <ScrollView
         style="@style/MatchWrap"
         android:background="@color/mainColor"
+        android:maxHeight="@dimen/dimen470"
         android:scrollbars="none">
 
         <LinearLayout

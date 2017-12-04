@@ -1,43 +1,11 @@
 package com.ruitukeji.zwbs.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
-import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.GetOrderViewAdapter;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseFragment;
-import com.ruitukeji.zwbs.common.BindView;
-import com.ruitukeji.zwbs.common.KJActivityStack;
-import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.dialog.RobSingleBouncedDialog;
-import com.ruitukeji.zwbs.entity.GetOrderBean;
-import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
-import com.ruitukeji.zwbs.loginregister.ConductorModelsActivity;
-import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
-import com.ruitukeji.zwbs.supplygoods.SetTheLineActivity;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
-import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.PickerViewUtil;
-import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
-
-
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * 货源
@@ -114,7 +82,7 @@ public class SupplyGoodsFragment extends BaseFragment
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
 //        aty = (MainActivity) getActivity();
-//        return View.inflate(aty, R.layout.fragment_supplygoods, null);
+   //     return View.inflate(aty, R.layout.fragment_supplygoods, null);
         return null;
     }
 

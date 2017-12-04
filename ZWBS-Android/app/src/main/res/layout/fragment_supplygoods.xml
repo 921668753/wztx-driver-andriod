@@ -193,8 +193,6 @@
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-
-    <include layout="@layout/common_error"></include>
-
+    <include layout="@layout/common_error"/>
 
 </LinearLayout>

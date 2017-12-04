@@ -7,7 +7,6 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.client.ProgressListener;
 import com.ruitukeji.zwbs.BuildConfig;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
@@ -50,7 +49,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 12);
+                mView.errorMsg(msg, 12);
             }
         });
     }
@@ -80,13 +79,13 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                     mView.getSuccess(response, 1);
                 } else {
                     Log.d("nearbySearch", gaoDeCreateBean.getStatus() + "");
-                    mView.error("创建轨迹出现异常,云端返回数据错误");
+                    mView.errorMsg("创建轨迹出现异常,云端返回数据错误",0);
                 }
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 0);
+                mView.errorMsg(msg, 0);
             }
         });
     }
@@ -108,29 +107,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 0);
-            }
-        });
-    }
-
-    @Override
-    public void postWorkingState(int online) {
-        //  4  User/changeWork
-        mView.showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("online", online);
-        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.postWorkingState(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", online);
-                mView.getSuccess(response, 4);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg, 0);
+                mView.errorMsg(msg, 0);
             }
         });
     }
@@ -146,7 +123,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 2);
+                mView.errorMsg(msg, 2);
             }
         });
     }
@@ -169,7 +146,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 0);
+                mView.errorMsg(msg, 0);
             }
         });
     }
@@ -184,7 +161,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, flag);
+                mView.errorMsg(msg, flag);
             }
         });
     }
@@ -207,7 +184,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.dismiss();
-                                mView.error("", 9);
+                                mView.errorMsg("", 9);
                             }
                         }).show();
             }
@@ -220,7 +197,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.dismiss();
-                                mView.error("", 9);
+                                mView.errorMsg("", 9);
                             }
                         })
                         .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -239,6 +216,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                     mView.getSuccess("", 10);
                 } else if (GetOrderFragmentOnItemChildClick == 1) {
                     mView.getSuccess("", 11);
+                } else if (GetOrderFragmentOnItemChildClick == 2) {
+                    mView.getSuccess("", 7);
                 }
             }
         }

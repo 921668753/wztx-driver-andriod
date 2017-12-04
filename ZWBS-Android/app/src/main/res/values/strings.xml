@@ -153,6 +153,7 @@
     <!--主界面-->
     <string name="getorder">接单</string>
     <string name="order">订单</string>
+    <string name="mission">任务</string>
     <string name="supplygoods">货源</string>
     <string name="settheline">设定路线</string>
     <string name="addtheline">添加路线</string>

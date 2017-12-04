@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter.selectioncity;
+package com.ruitukeji.zwbs.adapter.getorder.selectioncity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

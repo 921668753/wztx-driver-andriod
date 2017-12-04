@@ -83,7 +83,7 @@ public class NewUserIdentityAuthenticationActivity extends BaseActivity implemen
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
+      //  ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
         real_name = getIntent().getStringExtra("real_name");
         sex = getIntent().getIntExtra("sex", 1);
         identity = getIntent().getStringExtra("identity");

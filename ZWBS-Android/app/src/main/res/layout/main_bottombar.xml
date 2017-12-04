@@ -1,51 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/bottombar_group"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen50"
-    android:layout_gravity="bottom"
+    android:layout_height="@dimen/dimen49"
+    android:layout_alignParentBottom="true"
     android:background="@color/mainColor"
     android:orientation="horizontal">
 
     <LinearLayout
         android:id="@+id/bottombar_getorder"
         style="@style/AutoMatch"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/img_getorder"
-            style="@style/WrapWrap"
-            android:src="@mipmap/grabsinglepre" />
+            android:layout_width="@dimen/dimen21"
+            android:layout_height="@dimen/dimen21"
+            android:layout_marginTop="@dimen/dimen9"
+            android:scaleType="fitXY"
+            android:src="@mipmap/orders_personal_selected" />
 
         <TextView
             android:id="@+id/tv_getorder"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen2"
             android:text="@string/getorder"
-            android:textColor="@color/lonincolors"
+            android:textColor="@color/announcementCloseColors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottombar_order"
+        android:id="@+id/bottombar_mission"
         style="@style/AutoMatch"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/img_order"
-            style="@style/WrapWrap"
-            android:src="@mipmap/orderpre" />
+            android:id="@+id/img_mission"
+            android:layout_width="@dimen/dimen18"
+            android:layout_height="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen9"
+            android:scaleType="fitXY"
+            android:src="@mipmap/task_personal" />
 
         <TextView
-            android:id="@+id/tv_order"
+            android:id="@+id/tv_mission"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
-            android:text="@string/order"
-            android:textColor="@color/lonincolors"
+            android:layout_marginTop="@dimen/dimen3"
+            android:text="@string/mission"
+            android:textColor="@color/hintcolors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/AutoMatch"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" />
+
 
     <LinearLayout
         android:id="@+id/bottombar_supplygoods"
@@ -55,15 +67,17 @@
 
         <ImageView
             android:id="@+id/img_supplygoods"
-            style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen20"
+            android:layout_height="@dimen/dimen19"
+            android:layout_marginTop="@dimen/dimen9"
             android:src="@mipmap/supplygoodspre" />
 
         <TextView
             android:id="@+id/tv_supplygoods"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen2"
             android:text="@string/supplygoods"
-            android:textColor="@color/lonincolors"
+            android:textColor="@color/hintcolors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 
@@ -75,15 +89,17 @@
 
         <ImageView
             android:id="@+id/img_mine"
-            style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen20"
+            android:layout_height="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen9"
             android:src="@mipmap/mypre" />
 
         <TextView
             android:id="@+id/tv_mine"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen2"
             android:text="@string/mine"
-            android:textColor="@color/lonincolors"
+            android:textColor="@color/hintcolors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 </LinearLayout>

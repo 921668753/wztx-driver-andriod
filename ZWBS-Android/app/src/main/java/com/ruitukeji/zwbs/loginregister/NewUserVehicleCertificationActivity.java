@@ -196,7 +196,7 @@ public class NewUserVehicleCertificationActivity extends BaseActivity implements
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
+        //ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
         tv_nextType.setText(getString(R.string.submitAudit));
         auth_status = getIntent().getStringExtra("auth_status");
         if (!(StringUtils.isEmpty(auth_status) || auth_status.equals("init"))) {

@@ -22,14 +22,17 @@
 
 
         <ImageView
-            style="@style/WrapWrap"
-            android:paddingLeft="@dimen/dimen5"
+            android:layout_width="@dimen/dimen33"
+            android:layout_height="@dimen/dimen16"
+            android:layout_marginLeft="@dimen/dimen5"
             android:src="@mipmap/label_shishi" />
 
         <ImageView
-            style="@style/WrapWrap"
-            android:paddingLeft="@dimen/dimen5"
-            android:src="@mipmap/label_shishi" />
+            android:layout_width="@dimen/dimen55"
+            android:layout_height="@dimen/dimen16"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:src="@mipmap/label_zaipao" />
+
     </LinearLayout>
 
 

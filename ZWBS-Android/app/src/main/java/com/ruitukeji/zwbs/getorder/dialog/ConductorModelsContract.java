@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.getorder.dialog;
 
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;

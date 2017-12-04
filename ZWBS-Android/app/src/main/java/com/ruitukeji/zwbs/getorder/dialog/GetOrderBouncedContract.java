@@ -1,21 +1,20 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.getorder.dialog;
 
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;
 
 /**
- * 车长车型
- * Created by Administrator on 2017/2/21.
+ * Created by Admin on 2017/7/12.
  */
 
-public interface ConductorModelsContract {
-
+public class GetOrderBouncedContract {
 
     interface Presenter extends BasePresenter {
+
         /**
-         * 获取车长车型信息
+         * 提交司机报价
          */
-        void getConductorModels();
+        void getQuoteAdd(int goods_id, String dr_price, int is_place_order);
     }
 
     interface View extends BaseView<Presenter> {
@@ -24,12 +23,13 @@ public interface ConductorModelsContract {
          *
          * @param s
          */
-        void getSuccess(String s);
+        void getSuccess(String s, int flag);
 
         /**
          * http请求错误
          */
         void error(String msg);
     }
+
 
 }

@@ -1,27 +1,29 @@
-package com.ruitukeji.zwbs.startpage;
+package com.ruitukeji.zwbs.getorder.dialog;
 
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
-
 /**
- * Created by Administrator on 2016/11/29.
+ *  车长车型
+ * Created by Administrator on 2017/2/21.
  */
 
-public class StartPagePresenter implements StartPageContract.Presenter {
-    private StartPageContract.View mView;
+public class ConductorModelsPresenter implements ConductorModelsContract.Presenter {
 
-    public StartPagePresenter(StartPageContract.View view) {
+
+    private ConductorModelsContract.View mView;
+
+    public ConductorModelsPresenter(ConductorModelsContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
     @Override
-    public void getAppConfig() {
+    public void getConductorModels() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getAppConfig(httpParams, new ResponseListener<String>() {
+        RequestClient.getConductorModels(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response);

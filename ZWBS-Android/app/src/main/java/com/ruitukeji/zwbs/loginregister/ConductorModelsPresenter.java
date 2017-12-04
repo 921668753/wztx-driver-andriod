@@ -6,6 +6,7 @@ import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
 /**
+ *  车长车型
  * Created by Administrator on 2017/2/21.
  */
 

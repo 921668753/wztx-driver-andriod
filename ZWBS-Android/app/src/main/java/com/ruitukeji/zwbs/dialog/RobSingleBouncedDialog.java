@@ -98,8 +98,6 @@ public abstract class RobSingleBouncedDialog extends Dialog implements RobSingle
 //        mPresenter.getQuoteInfo(quote_id);
     }
 
-    ;
-
     public abstract void confirm(String money);
 
     public void showKeyboard() {

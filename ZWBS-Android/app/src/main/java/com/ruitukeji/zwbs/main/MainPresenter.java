@@ -13,8 +13,12 @@ import com.iflytek.cloud.SpeechEvent;
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
 import com.kymjs.common.Log;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.BuildConfig;
+import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.application.MyApplication;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
@@ -26,7 +30,6 @@ import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * Created by Administrator on 2017/2/19.
@@ -51,7 +54,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, flag);
+                mView.errorMsg(msg, flag);
             }
         });
     }
@@ -113,13 +116,13 @@ public class MainPresenter implements MainContract.Presenter {
                     mView.getSuccess(response, 6);
                 } else {
                     Log.d("nearbySearch", gaoDeCreateBean.getStatus() + "");
-                    mView.error("更新当前位置信息出现异常,云端返回数据错误", 1);
+                    mView.errorMsg("更新当前位置信息出现异常,云端返回数据错误", 1);
                 }
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 1);
+                mView.errorMsg(msg, 1);
             }
         });
     }
@@ -199,5 +202,43 @@ public class MainPresenter implements MainContract.Presenter {
         }
     };
 
+
+    @Override
+    public void postWorkingState(int online) {
+        //  4  User/changeWork
+        mView.showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("online", online);
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+        RequestClient.postWorkingState(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", online);
+                mView.getSuccess(response, 2);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
+    public void getWorkingState() {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getWorkingState(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
 
 }

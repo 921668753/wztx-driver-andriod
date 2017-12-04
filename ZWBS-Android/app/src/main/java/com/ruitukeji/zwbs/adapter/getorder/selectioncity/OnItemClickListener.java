@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter.selectioncity;
+package com.ruitukeji.zwbs.adapter.getorder.selectioncity;
 
 import android.view.View;
 import android.view.ViewGroup;

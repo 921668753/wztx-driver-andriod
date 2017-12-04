@@ -118,7 +118,7 @@ public class NewUserInformationActivity extends BaseActivity implements EasyPerm
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
+       // ActivityTitleUtils.initToolbar(aty, getString(R.string.newUserRegister), true, R.id.titlebar);
         auth_status = getIntent().getStringExtra("auth_status");
         if (!(StringUtils.isEmpty(auth_status) || auth_status.equals("init"))) {
             showLoadingDialog(getString(R.string.dataLoad));

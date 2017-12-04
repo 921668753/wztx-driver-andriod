@@ -17,18 +17,18 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 public class MessageActivity extends BaseActivity {
 
-    @BindView(id = R.id.bottombar_getorder, click = true)
-    private LinearLayout bottombar_getorder;
-
-    @BindView(id = R.id.tv_getorder)
-    private TextView tv_getorder;
-
-    @BindView(id = R.id.bottombar_order, click = true)
-    private LinearLayout bottombar_order;
-
-
-    @BindView(id = R.id.tv_order)
-    private TextView tv_order;
+//    @BindView(id = R.id.bottombar_getorder, click = true)
+//    private LinearLayout bottombar_getorder;
+//
+//    @BindView(id = R.id.tv_getorder)
+//    private TextView tv_getorder;
+//
+//    @BindView(id = R.id.bottombar_order, click = true)
+//    private LinearLayout bottombar_order;
+//
+//
+//    @BindView(id = R.id.tv_order)
+//    private TextView tv_order;
 
     @Override
     public void setRootView() {

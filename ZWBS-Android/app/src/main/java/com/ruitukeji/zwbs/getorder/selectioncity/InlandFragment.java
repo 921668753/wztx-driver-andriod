@@ -29,11 +29,11 @@ import java.util.List;
 import static android.app.Activity.RESULT_OK;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.selectioncity.CommonAdapter;
-import com.ruitukeji.zwbs.adapter.selectioncity.HeaderRecyclerAndFooterWrapperAdapter;
-import com.ruitukeji.zwbs.adapter.selectioncity.InlandViewAdapter;
-import com.ruitukeji.zwbs.adapter.selectioncity.OnItemClickListener;
-import com.ruitukeji.zwbs.adapter.selectioncity.ViewHolder;
+import com.ruitukeji.zwbs.adapter.getorder.selectioncity.CommonAdapter;
+import com.ruitukeji.zwbs.adapter.getorder.selectioncity.HeaderRecyclerAndFooterWrapperAdapter;
+import com.ruitukeji.zwbs.adapter.getorder.selectioncity.InlandViewAdapter;
+import com.ruitukeji.zwbs.adapter.getorder.selectioncity.OnItemClickListener;
+import com.ruitukeji.zwbs.adapter.getorder.selectioncity.ViewHolder;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;

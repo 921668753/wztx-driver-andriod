@@ -21,6 +21,7 @@ import com.iflytek.cloud.SpeechSynthesizer;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
@@ -28,7 +29,9 @@ import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
+import com.ruitukeji.zwbs.entity.WorkingStateBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
@@ -48,14 +51,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     @BindView(id = R.id.tv_getorder)
     private TextView tv_getorder;
 
-    @BindView(id = R.id.bottombar_order, click = true)
+    @BindView(id = R.id.bottombar_mission, click = true)
     private LinearLayout bottombar_order;
 
-    @BindView(id = R.id.img_order)
-    private ImageView img_order;
+    @BindView(id = R.id.img_mission)
+    private ImageView img_mission;
 
-    @BindView(id = R.id.tv_order)
-    private TextView tv_order;
+    @BindView(id = R.id.tv_mission)
+    private TextView tv_mission;
+
+    @BindView(id = R.id.img_chuche, click = true)
+    private ImageView img_chuche;
 
     @BindView(id = R.id.bottombar_supplygoods, click = true)
     private LinearLayout bottombar_supplygoods;
@@ -92,6 +98,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     private int chageIcon;
     public static boolean isForeground = true;
 
+    /**
+     * 是否出车 0为收车（下班）   1为出车中(上班)
+     */
+    private int isGoWork = 0;
 
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;
@@ -112,6 +122,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         contentFragment2 = new SupplyGoodsFragment();
         contentFragment3 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);
+        ((MainContract.Presenter) mPresenter).getWorkingState();
         registerMessageReceiver();  //   极光推送 used for receive msg
         //初始化语音合成对象
         mTts = SpeechSynthesizer.createSynthesizer(MainActivity.this, null);
@@ -173,8 +184,15 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
                 changeFragment(contentFragment);
                 chageIcon = 0;
                 break;
-            case R.id.bottombar_order:
+            case R.id.bottombar_mission:
                 ((MainContract.Presenter) mPresenter).isLogin(0);
+                break;
+            case R.id.img_chuche:
+                if (isGoWork == 0) {
+                    ((MainContract.Presenter) mPresenter).isLogin(2);
+                } else {
+                    ((MainContract.Presenter) mPresenter).isLogin(3);
+                }
                 break;
             case R.id.bottombar_supplygoods:
                 cleanColors(2);
@@ -255,10 +273,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         mPresenter = presenter;
     }
 
-    @Override
-    public void error(String msg) {
-
-    }
 
     @Override
     public void getSuccess(String s, int flag) {
@@ -266,15 +280,42 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
             cleanColors(1);
             changeFragment(contentFragment1);
             chageIcon = 1;
+        } else if (flag == 1) {
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
+            WorkingStateBean workingStateBean = (WorkingStateBean) JsonUtil.getInstance().json2Obj(s, WorkingStateBean.class);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", workingStateBean.getResult().getOnline());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", workingStateBean.getResult().getAuth_status());
+            //  boolean isUpdate = PreferenceHelper.readBoolean(MyApplication.getContext(), StringConstants.FILENAME, "isUpdate", false);
+            // getSuccess(String.valueOf(isUpdate), 0);
+            if (workingStateBean.getResult().getOnline() == 0) {
+                img_chuche.setImageResource(R.mipmap.shouche);
+                isGoWork = 0;
+            } else if (workingStateBean.getResult().getOnline() == 1) {
+                img_chuche.setImageResource(R.mipmap.chuche);
+                isGoWork = 1;
+            }
+        } else if (flag == 2 || flag == 3) {
+            ((MainContract.Presenter) mPresenter).postWorkingState(isGoWork);
+        } else if (flag == 4) {
+            isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 1);
+            if (isGoWork == 0) {
+                img_chuche.setImageResource(R.mipmap.shouche);
+            } else {
+                img_chuche.setImageResource(R.mipmap.chuche);
+            }
         }
     }
 
     @Override
-    public void error(String msg, int flag) {
+    public void errorMsg(String msg, int flag) {
         if (flag == 0) {
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
                 showActivity(aty, LoginActivity.class);
             }
+        } else {
+            ViewInject.toast(msg);
         }
     }
 
@@ -305,29 +346,29 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
      * 清除颜色，并添加颜色
      */
     public void cleanColors(int chageIcon) {
-        img_getorder.setImageResource(R.mipmap.grabsingle);
-        tv_getorder.setTextColor(getResources().getColor(R.color.typecolors));
-        img_order.setImageResource(R.mipmap.order);
-        tv_order.setTextColor(getResources().getColor(R.color.typecolors));
-        img_supplygoods.setImageResource(R.mipmap.supplygoods);
-        tv_supplygoods.setTextColor(getResources().getColor(R.color.typecolors));
-        img_mine.setImageResource(R.mipmap.my);
-        tv_mine.setTextColor(getResources().getColor(R.color.typecolors));
+        img_getorder.setImageResource(R.mipmap.orders_personal);
+        tv_getorder.setTextColor(getResources().getColor(R.color.hintcolors));
+        img_mission.setImageResource(R.mipmap.task_personal);
+        tv_mission.setTextColor(getResources().getColor(R.color.hintcolors));
+        img_supplygoods.setImageResource(R.mipmap.goods_personal);
+        tv_supplygoods.setTextColor(getResources().getColor(R.color.hintcolors));
+        img_mine.setImageResource(R.mipmap.tab_personal);
+        tv_mine.setTextColor(getResources().getColor(R.color.hintcolors));
         if (chageIcon == 0) {
-            img_getorder.setImageResource(R.mipmap.grabsinglepre);
-            tv_getorder.setTextColor(getResources().getColor(R.color.lonincolors));
+            img_getorder.setImageResource(R.mipmap.orders_personal_selected);
+            tv_getorder.setTextColor(getResources().getColor(R.color.announcementCloseColors));
         } else if (chageIcon == 1) {
-            img_order.setImageResource(R.mipmap.orderpre);
-            tv_order.setTextColor(getResources().getColor(R.color.lonincolors));
+            img_mission.setImageResource(R.mipmap.task_personal_selected);
+            tv_mission.setTextColor(getResources().getColor(R.color.announcementCloseColors));
         } else if (chageIcon == 2) {
-            img_supplygoods.setImageResource(R.mipmap.supplygoodspre);
-            tv_supplygoods.setTextColor(getResources().getColor(R.color.lonincolors));
+            img_supplygoods.setImageResource(R.mipmap.goods_personal_selected);
+            tv_supplygoods.setTextColor(getResources().getColor(R.color.announcementCloseColors));
         } else if (chageIcon == 3) {
-            img_mine.setImageResource(R.mipmap.mypre);
-            tv_mine.setTextColor(getResources().getColor(R.color.lonincolors));
+            img_mine.setImageResource(R.mipmap.tab_personal_selected);
+            tv_mine.setTextColor(getResources().getColor(R.color.announcementCloseColors));
         } else {
-            img_getorder.setImageResource(R.mipmap.grabsinglepre);
-            tv_getorder.setTextColor(getResources().getColor(R.color.lonincolors));
+            img_getorder.setImageResource(R.mipmap.orders_personal_selected);
+            tv_getorder.setTextColor(getResources().getColor(R.color.announcementCloseColors));
         }
     }
 
@@ -397,11 +438,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
                 isTost = true;
                 android.util.Log.d("latLonPoint", amapLocation.getAddress());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationAddress", amapLocation.getAddress());
-
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationProvince", amapLocation.getProvince());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationCity", amapLocation.getCity());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationArea", amapLocation.getDistrict());
-
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationLatitudeLongitude", amapLocation.getLongitude() + "," + amapLocation.getLatitude());
                 int isGoWork = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isGoWork", 1);
                 if (isGoWork == 0) {

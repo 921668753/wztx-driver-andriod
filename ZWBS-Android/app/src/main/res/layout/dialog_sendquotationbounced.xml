@@ -56,9 +56,11 @@
                 android:background="@android:color/transparent"
                 android:gravity="center"
                 android:hint="@string/pleaseEnterPrice"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
                 android:paddingLeft="@dimen/dimen10"
                 android:paddingRight="@dimen/dimen10"
-                android:textColor="@color/textColor"
+                android:textColor="@color/titletextcolors"
                 android:textColorHint="@color/hintcolors"
                 android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize16" />

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter.selectioncity;
+package com.ruitukeji.zwbs.adapter.getorder.selectioncity;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;

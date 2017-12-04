@@ -129,13 +129,13 @@ dependencies {
     //工具类
     compile 'com.nineoldandroids:library:latest.release'
     // 图片轮番最新版本依赖库
-    compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+    compile 'cn.bingoogolapple:bga-banner:2.1.9@aar'
     //启动引导页 图片轮番最新版本
     compile 'com.android.support:recyclerview-v7:25.3.1'
     //刷新框架
-    compile 'cn.bingoogolapple:bga-refreshlayout:latest.release'
+    compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
     //刷新框架
-    //    compile 'cn.bingoogolapple:bga-swipeitemlayout:latest.release'//侧滑删除
+    compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'//侧滑删除
     //    compile 'cn.bingoogolapple:bga-photopicker:latest.release'//图片列表
     compile 'pub.devrel:easypermissions:latest.release'
     //权限申请工具类

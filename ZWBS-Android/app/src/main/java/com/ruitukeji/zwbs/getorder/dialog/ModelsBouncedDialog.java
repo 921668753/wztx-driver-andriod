@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 
 /**
@@ -14,7 +15,7 @@ import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
  * Created by Administrator on 2017/11/28.
  */
 
-public class ModelsBouncedDialog extends Dialog implements View.OnClickListener {
+public class ModelsBouncedDialog extends BaseDialog implements View.OnClickListener {
 
     private Context context;
     private TextView tv_transparent;
@@ -41,8 +42,6 @@ public class ModelsBouncedDialog extends Dialog implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-
             case R.id.tv_transparent:
                 dismiss();
                 break;

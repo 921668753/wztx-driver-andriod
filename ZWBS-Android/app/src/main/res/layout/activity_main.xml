@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     style="@style/MatchMatch"
@@ -7,12 +7,30 @@
     android:orientation="vertical"
     tools:context="com.ruitukeji.zwbs.main.MainActivity">
 
+
     <FrameLayout
         android:id="@+id/main_content"
-        style="@style/MatchAuto" />
+        style="@style/MatchMatch"
+        android:layout_marginBottom="@dimen/dimen50.5" />
 
-    <TextView style="@style/DividerWidth" />
+    <include
+        android:id="@+id/bottombar_group"
+        layout="@layout/main_bottombar" />
 
-    <include layout="@layout/main_bottombar" />
+    <TextView
+        android:id="@+id/tv_divider"
+        style="@style/DividerWidth"
+        android:layout_alignTop="@+id/bottombar_group" />
 
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_chuche"
+        android:layout_width="@dimen/dimen45"
+        android:layout_height="@dimen/dimen45"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen14"
+        android:scaleType="fitXY"
+        android:src="@mipmap/chuche" />
+
+</RelativeLayout>

@@ -1,7 +1,7 @@
 package com.ruitukeji.zwbs.main;
 
+import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-import com.ruitukeji.zwbs.common.BaseView;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -20,11 +20,6 @@ public interface GetOrderContract {
          * 获取订单报价列表信息
          */
         void getQuoteOrder(int page, String line_id);
-
-        /**
-         * 发送工作状态
-         */
-        void postWorkingState(int status);
 
         /**
          * 获取工作状态
@@ -48,17 +43,17 @@ public interface GetOrderContract {
 
     }
 
-    interface View extends BaseView<Presenter> {
-        /**
-         * http请求正确
-         *
-         * @param s
-         */
-        void getSuccess(String s, int flag);
-
-        /**
-         * http请求错误
-         */
-        void error(String msg, int flag);
+    interface View extends BaseNewView<Presenter, String> {
+//        /**
+//         * http请求正确
+//         *
+//         * @param s
+//         */
+//        void getSuccess(String s, int flag);
+//
+//        /**
+//         * http请求错误
+//         */
+//        void error(String msg, int flag);
     }
 }

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter.selectioncity;
+package com.ruitukeji.zwbs.adapter.getorder.selectioncity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
