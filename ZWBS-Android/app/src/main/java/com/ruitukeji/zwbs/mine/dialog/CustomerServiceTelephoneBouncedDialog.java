@@ -2,6 +2,8 @@ package com.ruitukeji.zwbs.mine.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,12 +20,14 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
     private Context context;
     private TextView tv_cancel;
     private TextView tv_determine;
+    private TextView tv_phone;
+    private String phone;
 
-    public CustomerServiceTelephoneBouncedDialog(Context context) {
+    public CustomerServiceTelephoneBouncedDialog(Context context, String phone) {
         super(context, R.style.MyDialog);
         this.context = context;
+        this.phone = phone;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,11 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
 
     private void initView() {
         tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+        tv_cancel.setOnClickListener(this);
+        tv_phone = (TextView) findViewById(R.id.tv_phone);
+        tv_phone.setText(phone);
         tv_determine = (TextView) findViewById(R.id.tv_determine);
+        tv_determine.setOnClickListener(this);
     }
 
     @Override
@@ -43,10 +51,14 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
             case R.id.tv_cancel:
                 dismiss();
                 break;
-
             case R.id.tv_determine:
+                Uri uri = Uri.parse("tel:" + phone);
+                Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                //     系统打电话界面：
+                context.startActivity(intent);
                 dismiss();
                 break;
         }
     }
+
 }

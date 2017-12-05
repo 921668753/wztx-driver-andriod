@@ -462,7 +462,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 break;
 
             case R.id.ll_models:
-                ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty);
+                ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty, 0) {
+                    @Override
+                    public void confirm() {
+
+                    }
+                };
                 modelsBouncedDialog.show();
                 break;
             case R.id.ll_conductor:

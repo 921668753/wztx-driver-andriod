@@ -23,6 +23,7 @@ import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
  * Created by Administrator on 2017/2/13.
  */
 public class OrderFragment extends BaseFragment {
+
     private MainActivity aty;
 
     @BindView(id = R.id.tv_allOrder, click = true)

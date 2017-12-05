@@ -137,7 +137,7 @@ dependencies {
     //刷新框架
     compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'//侧滑删除
     //    compile 'cn.bingoogolapple:bga-photopicker:latest.release'//图片列表
-    compile 'pub.devrel:easypermissions:latest.release'
+    compile 'pub.devrel:easypermissions:1.0.1'
     //权限申请工具类
     compile 'com.github.bumptech.glide:glide:4.0.0'
     //图片加载框架
@@ -152,9 +152,9 @@ dependencies {
     //bga  adapter
     compile 'cn.bingoogolapple:bga-imageview:latest.release'
     //BGAImageView-Android   imgview框架
-    compile 'cn.bingoogolapple:bga-titlebar:latest.release'
+    compile 'cn.bingoogolapple:bga-titlebar:1.0.8@aar'
     //UINavigationBar 风格的 Titlebar
-    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.google.code.gson:gson:2.8.2'
     //gosn json解析
     compile 'com.umeng.analytics:analytics:latest.integration'
     //友盟统计
@@ -171,7 +171,7 @@ dependencies {
     compile 'com.lzy.widget:imagepicker:0.5.5'
     compile 'com.github.nanchen2251:CompressHelper:1.0.5'
     //    compile 'net.orfjackal.retrolambda:retrolambda:2.1.0'
-    compile 'com.android.support:multidex:latest.release'
+    compile 'com.android.support:multidex:1.0.1'
     //让应用支持多DEX文件
     //高德地图
     compile 'com.amap.api:location:latest.integration'

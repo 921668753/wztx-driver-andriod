@@ -67,7 +67,7 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 0);
+                mView.errorMsg(msg, 0);
             }
         });
     }
@@ -82,7 +82,7 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, flag);
+                mView.errorMsg(msg, flag);
             }
         });
     }
@@ -98,12 +98,12 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
                             sweetAlertDialog.dismiss();
-                            mView.error("", 4);
+                            mView.errorMsg("", 4);
                         }
                     }).show();
             return;
         } else if (auth_status != null && auth_status.equals("check")) {
-            mView.error("", 5);
+            mView.errorMsg("", 5);
             return;
         } else {
             if (flag == 0) {

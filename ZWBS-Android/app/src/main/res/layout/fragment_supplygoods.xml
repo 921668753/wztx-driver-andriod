@@ -42,6 +42,7 @@
 
 
         <TextView
+            android:id="@+id/tv_setLine"
             style="@style/WrapWrap"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -66,12 +67,14 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_startingPoint"
             android:layout_width="@dimen/dimen0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_startingPoint"
                 style="@style/WrapWrap"
                 android:gravity="center"
                 android:singleLine="true"
@@ -93,12 +96,14 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_endPoint"
             android:layout_width="@dimen/dimen0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_endPoint"
                 style="@style/WrapWrap"
                 android:gravity="center"
                 android:singleLine="true"
@@ -118,12 +123,14 @@
             android:layout_marginTop="@dimen/dimen15" />
 
         <LinearLayout
+            android:id="@+id/ll_availableType"
             android:layout_width="@dimen/dimen0"
             android:layout_height="match_parent"
             android:layout_weight="1.3"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_availableType"
                 style="@style/WrapWrap"
                 android:gravity="center"
                 android:singleLine="true"
@@ -132,8 +139,7 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen5"
                 android:src="@mipmap/ic_category_gray_down" />
 
@@ -146,12 +152,14 @@
             android:layout_marginTop="@dimen/dimen15" />
 
         <LinearLayout
+            android:id="@+id/ll_conductorModels"
             android:layout_width="@dimen/dimen0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_conductorModels"
                 style="@style/WrapWrap"
                 android:gravity="center"
                 android:singleLine="true"
@@ -160,8 +168,7 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen5"
                 android:src="@mipmap/ic_category_gray_down" />
 
@@ -193,6 +200,6 @@
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <include layout="@layout/common_error"/>
+    <include layout="@layout/common_error" />
 
 </LinearLayout>

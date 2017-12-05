@@ -90,8 +90,8 @@
     <!--新用户注册-->
     <string name="registeredPhoneNumber">手机号注册</string>
     <string name="basicInformation">基本信息</string>
-    <string name="identityAuthentication">身份认证</string>
-    <string name="vehicleCertification">车辆认证</string>
+
+
     <string name="prompt">请填写您的真实信息，通过后将不能修改</string>
     <string name="realName">真实姓名</string>
     <string name="hintName1">请输入正确的姓名</string>
@@ -152,6 +152,7 @@
 
     <!--主界面-->
     <string name="getorder">接单</string>
+    <string name="reject">拒绝</string>
     <string name="order">订单</string>
     <string name="mission">任务</string>
     <string name="supplygoods">货源</string>
@@ -195,6 +196,9 @@
     <string name="firmQuotation">确认报价</string>
     <string name="isConfirmOrder">是否确认接单？</string>
     <string name="cancel1">取消</string>
+    <string name="estimatePrice">该订单系统预估价格：¥</string>
+    <string name="afterSubmission">报价提交后不可修改</string>
+
 
     <!--城市选择-->
     <string name="china">中国</string>
@@ -226,6 +230,8 @@
     <string name="destination1">到达目的地</string>
     <string name="submitDocuments">提交凭证</string>
     <string name="exceptionReporting">异常上报</string>
+    <string name="remainingTime">装车剩余时间</string>
+
 
     <!--上传收货凭证-->
     <string name="uploadReceiptVoucher">上传收货凭证</string>
@@ -294,6 +300,7 @@
 
 
     <!--身份认证-->
+    <string name="identityAuthentication">身份认证</string>
     <string name="authenticationInformation">认证信息</string>
     <string name="validityIdentityCard">身份证有效期</string>
     <string name="faceIdentityCard">身份证正面</string>
@@ -313,6 +320,7 @@
 
 
     <!--车辆认证-->
+    <string name="vehicleCertification">车辆认证</string>
     <string name="licenseNumber1">车牌号</string>
     <string name="licensePlateNumber">请填写车牌号</string>
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
@@ -585,8 +593,6 @@
 
     <!--个人认证-->
     <string name="bindingMobilePhone">绑定手机号</string>
-
-
     <string name="messagecenter">消息中心</string>
     <string name="deleteMessage">确定删除消息吗？</string>
 

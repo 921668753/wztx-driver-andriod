@@ -188,9 +188,6 @@
             android:name=".mine.mywallet.withdrawal.WithdrawalRecordActivity"
             android:screenOrientation="portrait"></activity>
         <!--在线客服-->
-        <activity
-            android:name=".mine.onlineservice.OnlineServiceActivity"
-            android:screenOrientation="portrait"></activity>
         <!--推荐有礼-->
         <activity
             android:name=".mine.recommendcourteous.RecommendCourteousActivity"

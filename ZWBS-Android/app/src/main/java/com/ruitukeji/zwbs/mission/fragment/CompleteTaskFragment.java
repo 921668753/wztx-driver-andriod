@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.order;
+package com.ruitukeji.zwbs.mission.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,31 +18,35 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
+import com.ruitukeji.zwbs.dialog.NavigationBouncedDialog;
 import com.ruitukeji.zwbs.entity.OrderBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
+import com.ruitukeji.zwbs.order.OrderContract;
+import com.ruitukeji.zwbs.order.OrderPresenter;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
+import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
- * 客户评价
- * Created by Administrator on 2017/2/12.
+ * 完成任务
+ * Created by Administrator on 2017/12/5.
  */
 
-public class CustomerEvaluationOrderFragment extends BaseFragment implements OrderContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class CompleteTaskFragment extends BaseFragment implements OrderContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
+
+    private MainActivity aty;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
     private TaskViewAdapter mAdapter;
 
-    private MainActivity aty;
-
-    @BindView(id = R.id.lv_order)
-    private ListView lv_order;
+    @BindView(id = R.id.lv_mission)
+    private ListView lv_mission;
 
     /**
      * 错误提示页
@@ -51,6 +55,7 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
     private LinearLayout ll_commonError;
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
+
     /**
      * 当前页码
      */
@@ -63,16 +68,16 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
-
     /**
      * 订单状态
      */
-    private String type = "success";
+    private String type = "all";
+
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_allorder, null);
+        return View.inflate(aty, R.layout.fragment_task, null);
     }
 
     @Override
@@ -86,17 +91,19 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_order.setAdapter(mAdapter);
-        lv_order.setOnItemClickListener(this);
+        lv_mission.setAdapter(mAdapter);
+        lv_mission.setOnItemClickListener(this);
+        mAdapter.setOnItemChildClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((OrderContract.Presenter) mPresenter).getOrder(mMorePageNumber, type);
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "CustomerEvaluationOrderFragment");
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
         intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+//        intent.putExtra("designation", "AllOrderFragment");
         aty.showActivity(aty, intent);
     }
 
@@ -143,6 +150,7 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
                     aty.showActivity(aty, intent);
                     break;
                 }
+                //  ViewInject.toast("onBGARefreshLayoutBeginRefreshing");
                 mRefreshLayout.beginRefreshing();
                 break;
         }
@@ -150,6 +158,8 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
 
     @Override
     public void getSuccess(String s) {
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", false);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", false);
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
@@ -202,9 +212,11 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
     @Override
     public void onChange() {
         super.onChange();
-        // ViewInject.toast("AllOrderFragment");
+//        boolean isRefreshAllOrderFragment1 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", false);
+//        if (isRefreshAllOrderFragment1) {
+//            mRefreshLayout.beginRefreshing();
+//        }
     }
-
 
     @Override
     public void onDestroy() {
@@ -212,4 +224,29 @@ public class CustomerEvaluationOrderFragment extends BaseFragment implements Ord
         mAdapter.clear();
         mAdapter = null;
     }
+
+    @Override
+    public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
+        if (!mAdapter.getItem(i).getStatus().equals("distribute")) {
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
+            Intent intent = new Intent(aty, OrderDetailsActivity.class);
+            intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+            aty.showActivity(aty, intent);
+            return;
+        }
+        if (view.getId() == R.id.rl_navigation) {
+            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
+            navigationBouncedDialog.show();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        boolean isRefreshGetGoods = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", false);
+//        if (isRefreshGetGoods) {
+//            mRefreshLayout.beginRefreshing();
+//        }
+    }
+
 }

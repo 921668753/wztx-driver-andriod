@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.OrderViewAdapter;
+import com.ruitukeji.zwbs.adapter.mission.TaskViewAdapter;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
@@ -39,7 +39,7 @@ public class InDistributionOrderFragment extends BaseFragment implements OrderCo
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private OrderViewAdapter mAdapter;
+    private TaskViewAdapter mAdapter;
 
     private MainActivity aty;
 
@@ -82,7 +82,7 @@ public class InDistributionOrderFragment extends BaseFragment implements OrderCo
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
-        mAdapter = new OrderViewAdapter(getActivity());
+        mAdapter = new TaskViewAdapter(getActivity());
     }
 
     @Override

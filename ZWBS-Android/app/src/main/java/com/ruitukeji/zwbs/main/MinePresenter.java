@@ -29,7 +29,7 @@ public class MinePresenter implements MineContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, 0);
+                mView.errorMsg(msg, 0);
             }
         });
     }
@@ -45,7 +45,7 @@ public class MinePresenter implements MineContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg, flag);
+                mView.errorMsg(msg, flag);
             }
         });
     }

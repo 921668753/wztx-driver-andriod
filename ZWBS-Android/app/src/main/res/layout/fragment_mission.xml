@@ -18,16 +18,16 @@
             android:visibility="gone">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:id="@+id/tv_city"
+                style="@style/WrapMatch"
                 android:gravity="center"
-                android:text="苏州"
+                android:maxWidth="@dimen/dimen100"
+                android:singleLine="true"
                 android:textColor="@color/cityColors"
                 android:textSize="@dimen/textsize16" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/WrapWrap"
                 android:layout_marginLeft="@dimen/dimen5"
                 android:src="@mipmap/ic_category_gray" />
 
@@ -41,9 +41,12 @@
             android:layout_centerVertical="true"
             android:orientation="horizontal">
 
-            <RelativeLayout style="@style/AutoMatch">
+            <RelativeLayout
+                android:id="@+id/rl_todayTask"
+                style="@style/AutoMatch">
 
                 <TextView
+                    android:id="@+id/tv_todayTask"
                     style="@style/WrapMatch"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_vertical"
@@ -52,6 +55,7 @@
                     android:textSize="@dimen/textsize16" />
 
                 <TextView
+                    android:id="@+id/tv_dividerTodayTask"
                     android:layout_width="@dimen/dimen40"
                     android:layout_height="@dimen/dimen2"
                     android:layout_alignParentBottom="true"
@@ -61,9 +65,12 @@
             </RelativeLayout>
 
 
-            <RelativeLayout style="@style/AutoMatch">
+            <RelativeLayout
+                android:id="@+id/rl_completeMission"
+                style="@style/AutoMatch">
 
                 <TextView
+                    android:id="@+id/tv_completeMission"
                     style="@style/WrapMatch"
                     android:layout_centerHorizontal="true"
                     android:gravity="center_vertical"
@@ -73,6 +80,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_dividerCompleteMission"
                     android:layout_width="@dimen/dimen40"
                     android:layout_height="@dimen/dimen2"
                     android:layout_alignParentBottom="true"
@@ -115,73 +123,8 @@
 
     <TextView style="@style/DividerWidth" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen43"
-        android:background="@color/mainColor"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/WrapMatch"
-            android:gravity="center"
-            android:paddingLeft="@dimen/dimen10"
-            android:paddingRight="@dimen/dimen33"
-            android:text="@string/today"
-            android:textColor="@color/hintcolors"
-            android:textSize="@dimen/textsize15" />
-
-        <ImageView
-            style="@style/WrapWrap"
-            android:padding="@dimen/dimen15"
-            android:src="@mipmap/ic_arrow_left" />
-
-        <TextView
-            style="@style/WrapMatch"
-            android:gravity="center"
-            android:text="2017-10-21"
-            android:textColor="@color/hintcolors"
-            android:textSize="@dimen/textsize15" />
-
-        <ImageView
-            style="@style/WrapWrap"
-            android:padding="@dimen/dimen15"
-            android:src="@mipmap/ic_arrow_right" />
-
-
-        <ImageView
-            style="@style/WrapWrap"
-            android:paddingBottom="@dimen/dimen5"
-            android:paddingLeft="@dimen/dimen35"
-            android:paddingRight="@dimen/dimen15"
-            android:paddingTop="@dimen/dimen5"
-            android:src="@mipmap/ic_calendar" />
-
-
-    </LinearLayout>
-
-
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
-        android:id="@+id/mRefreshLayout"
-        style="@style/MatchMatch"
-        android:padding="@dimen/dimen10">
-
-        <!--item_getorder.xml-->
-        <ListView
-            android:id="@+id/lv_mission"
-            style="@style/MatchMatch"
-            android:background="@color/background"
-            android:divider="@color/background"
-            android:dividerHeight="@dimen/dimen10"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            tools:listitem="@layout/item_mission" />
-
-    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
-
-    <include
-        layout="@layout/common_error"
-        android:visibility="gone" />
-
+    <FrameLayout
+        android:id="@+id/fragment_contentMission"
+        style="@style/MatchMatch" />
 
 </LinearLayout>

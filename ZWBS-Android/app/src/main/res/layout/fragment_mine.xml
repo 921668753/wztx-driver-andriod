@@ -20,7 +20,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/personalData"
+                    android:id="@+id/ll_personalData"
                     style="@style/MatchWrap"
                     android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"

@@ -15,7 +15,6 @@ import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 
 public class TypesViewAdapter extends BGAAdapterViewAdapter<TypeBean> {
 
-
     public TypesViewAdapter(Context context) {
         super(context, R.layout.item_models);
     }
@@ -23,10 +22,12 @@ public class TypesViewAdapter extends BGAAdapterViewAdapter<TypeBean> {
     @Override
     public void fillData(BGAViewHolderHelper helper, int position, TypeBean typeBean) {
         if (typeBean.getStatus() == 1) {
-            helper.setBackgroundRes(R.id.tv_divider, R.drawable.shape_conductormodels1);
+            helper.setBackgroundRes(R.id.tv_divider, R.color.announcementCloseColors);
+            helper.setTextColor(R.id.tv_modelsName, R.color.announcementCloseColors);
         } else {
-            helper.setBackgroundRes(R.id.tv_divider, R.drawable.shape_conductormodels);
+            helper.setBackgroundRes(R.id.tv_divider, R.color.dividercolors);
+            helper.setTextColor(R.id.tv_modelsName, R.color.titletextcolors);
         }
-        helper.setText(R.id.tv_type, typeBean.getName());
+        helper.setText(R.id.tv_modelsName, typeBean.getName());
     }
 }

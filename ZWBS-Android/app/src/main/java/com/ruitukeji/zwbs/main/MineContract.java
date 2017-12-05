@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.main;
 
+import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;
 
@@ -22,17 +23,17 @@ public interface MineContract {
 
     }
 
-    interface View extends BaseView<Presenter> {
-        /**
-         * http请求正确
-         *
-         * @param s
-         */
-        void getSuccess(String s, int flag);
-
-        /**
-         * http请求错误
-         */
-        void error(String msg, int flag);
+    interface View extends BaseNewView<Presenter, String> {
+//        /**
+//         * http请求正确
+//         *
+//         * @param s
+//         */
+//        void getSuccess(String s, int flag);
+//
+//        /**
+//         * http请求错误
+//         */
+//        void error(String msg, int flag);
     }
 }

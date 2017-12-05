@@ -72,11 +72,28 @@
                 android:textSize="@dimen/textsize16" />
         </LinearLayout>
 
-
         <TextView
             style="@style/DividerWidth"
             android:layout_marginLeft="@dimen/dimen26"
             android:layout_marginRight="@dimen/dimen26" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:layout_marginRight="@dimen/dimen26"
+            android:layout_marginTop="@dimen/dimen15"
+            android:text="@string/estimatePrice"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:layout_marginRight="@dimen/dimen26"
+            android:layout_marginTop="@dimen/dimen12"
+            android:text="@string/afterSubmission"
+            android:textColor="@color/ff9A06Colors"
+            android:textSize="@dimen/textsize12" />
 
 
         <TextView
