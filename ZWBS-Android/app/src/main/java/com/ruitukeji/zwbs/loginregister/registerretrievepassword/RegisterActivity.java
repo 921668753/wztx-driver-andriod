@@ -160,6 +160,8 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     img_biyan.setImageResource(R.mipmap.ic_biyan);
                     et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD);
                 }
+                et_pwd.setSelection(et_pwd.getText().toString().trim().length());
+                et_pwd.requestFocus();
                 break;
             case R.id.tv_registe:
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
@@ -213,14 +215,6 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             time = null;
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
             MobclickAgent.onProfileSignIn(et_phone.getText().toString());//账号统计
-            //       String refreshName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshName");
-//            if (refreshName != null && refreshName.equals("GetOrderFragment")) {
-//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", true);
-//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", true);
-//            } else if (refreshName != null && refreshName.equals("MineFragment")) {
-//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
-//                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
-//            }
             PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
             PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime() + "");
             PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());

@@ -62,6 +62,15 @@
     <string name="thirdpartylogin">第三方账号快捷登录</string>
     <string name="thirdqq">QQ</string>
     <string name="thirdweixin">微信</string>
+    <string name="authorizationLoad">授权中&#8230;</string>
+    <string name="authoriseErr">授权失败，请重试</string>
+    <string name="authoriseErr1">您取消了授权</string>
+    <string name="authoriseErr2">您还没有安装应用,请下载应用</string>
+    <string name="authoriseErr3">没有安装应用</string>
+    <string name="loginErr">登录失败，请重新登录</string>
+    <string name="nan">男</string>
+    <string name="nv">女</string>
+
 
     <!--绑定手机号-->
     <string name="bindPhone">绑定手机号</string>
@@ -90,8 +99,6 @@
     <!--新用户注册-->
     <string name="registeredPhoneNumber">手机号注册</string>
     <string name="basicInformation">基本信息</string>
-
-
     <string name="prompt">请填写您的真实信息，通过后将不能修改</string>
     <string name="realName">真实姓名</string>
     <string name="hintName1">请输入正确的姓名</string>
@@ -122,7 +129,6 @@
     <string name="carrierProduct">可载体积</string>
     <string name="cubicMeters">立方米</string>
     <string name="licenseNumber">车牌号码</string>
-
     <string name="pleaseLicensePlateNumber">请输入车牌号</string>
     <string name="pleasecarLicensePlateNumbe">请上传车头和车牌号码照片</string>
     <string name="startingDatedriverLicense">驾驶证起始日期</string>
@@ -139,7 +145,7 @@
     <string name="uploadDateOperationCertificate">请上传营运证照片</string>
     <string name="greateThanCurrentTime">预约的时间要大于当前时间</string>
     <string name="lessThanCurrent">起始日期应小于当前时间</string>
-    <string name="aboveCurrentTime">截止日期应大于当前时间</string>
+    <string name="aboveCurrentTime">有效日期应大于当前时间</string>
     <string name="noData">没有数据</string>
     <string name="noData1">请拍照后再提交</string>
     <string name="imagePathError">图片路径错误</string>
@@ -277,6 +283,7 @@
 
 
     <!--个人中心-->
+    <string name="loginregister">登录/注册</string>
     <string name="personalCenter">个人中心</string>
     <string name="name">姓名</string>
     <string name="my_wallet">我的钱包</string>

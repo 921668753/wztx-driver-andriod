@@ -163,12 +163,12 @@ dependencies {
     // 此处以JPush 3.0.5 版本为例。
     compile 'cn.jiguang.sdk:jcore:1.1.5'
     // 此处以JCore 1.1.2 版本为例。
-    compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile 'com.contrarywind:Android-PickerView:3.2.6'
     //滚动PickerView选择控件
     compile 'com.github.f0ris.sweetalert:library:latest.release'
     //SweetAlertDialog弹框
     //图片选择器https://github.com/jeasonlzy/ImagePicker
-    compile 'com.lzy.widget:imagepicker:0.5.5'
+    compile 'com.lzy.widget:imagepicker:0.6.1'
     compile 'com.github.nanchen2251:CompressHelper:1.0.5'
     //    compile 'net.orfjackal.retrolambda:retrolambda:2.1.0'
     compile 'com.android.support:multidex:1.0.1'

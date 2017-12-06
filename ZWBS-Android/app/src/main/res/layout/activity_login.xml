@@ -55,13 +55,14 @@
 
         <ImageView
             android:id="@+id/img_quxiao"
-            android:layout_width="@dimen/dimen45"
-            android:layout_height="@dimen/dimen45"
-            android:layout_marginRight="@dimen/dimen15"
-            android:padding="@dimen/dimen15"
+            android:layout_width="@dimen/dimen40"
+            android:layout_height="@dimen/dimen40"
+            android:paddingBottom="@dimen/dimen13"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen13"
             android:src="@mipmap/delete"
             android:visibility="gone" />
-
     </LinearLayout>
 
     <include layout="@layout/commom_dividerwidth1" />
@@ -87,8 +88,8 @@
             android:layout_marginLeft="@dimen/dimen55"
             android:layout_marginRight="@dimen/dimen15"
             android:background="@android:color/transparent"
-            android:hint="@string/hintPasswordText"
             android:digits="@string/alphanumeric"
+            android:hint="@string/hintPasswordText"
             android:inputType="textPassword"
             android:maxLength="20"
             android:singleLine="true"
@@ -219,7 +220,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_loginqq"
+            android:id="@+id/ll_loginQQ"
             style="@style/WrapWrap"
             android:gravity="center"
             android:orientation="vertical"

@@ -62,6 +62,13 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
      */
     private String type = "resetpwd";
 
+    private String openid;
+    private String from;
+    private String nickname;
+    private String head_pic;
+    private int sex = 0;
+
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_bindphone);
@@ -73,6 +80,11 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
     @Override
     public void initData() {
         super.initData();
+        openid = getIntent().getStringExtra("openid");
+        from = getIntent().getStringExtra("from");
+        nickname = getIntent().getStringExtra("nickname");
+        head_pic = getIntent().getStringExtra("head_pic");
+        sex = getIntent().getIntExtra("sex", 0);
         mPresenter = new BindPhonePresenter(this);
         time = new TimeCount(60000, 1000);// 构造CountDownTimer对象
     }
@@ -201,7 +213,9 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
             time.cancel();
             time = null;
             ViewInject.toast(getString(R.string.bindPhoneSuccessfully));
-            finish();
+            ((BindPhoneContract.Presenter) mPresenter).postThirdToLogin(openid, from, nickname, head_pic, sex);
+
+            // finish();
         }
     }
 

@@ -22,7 +22,7 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
-//Uri.fromFile(new File(path))
+        //Uri.fromFile(new File(path))
 
         if (path.startsWith("http")) {
 //            int index = path.indexOf("?");
@@ -31,7 +31,7 @@ public class GlideImageLoader implements ImageLoader {
 //            }
             GlideApp.with(activity)                      //配置上下文
                     .load(path)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .error(R.mipmap.default_image)           //设置错误图片
+                    //    .error(R.mipmap.default_image)           //设置错误图片
                     .placeholder(R.mipmap.load)     //设置占位图片
                     .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
                     .centerInside()
@@ -41,12 +41,37 @@ public class GlideImageLoader implements ImageLoader {
         } else {
             GlideApp.with(activity)                      //配置上下文
                     .load(Uri.fromFile(new File(path)))//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
-                    .error(R.mipmap.default_image)           //设置错误图片
+                 //   .error(R.mipmap.default_image)           //设置错误图片
                     .placeholder(R.mipmap.load)     //设置占位图片
                     .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
                     .centerInside()
-                    //  .transition(withCrossFade().crossFade())//应用在淡入淡出
-                    //  .skipMemoryCache(true)//设置跳过内存缓存
+                    .into(imageView);
+        }
+
+    }
+
+    @Override
+    public void displayImagePreview(Activity activity, String path, ImageView imageView, int width, int height) {
+
+        if (path.startsWith("http")) {
+//            int index = path.indexOf("?");
+//            if (path.contains("?") || index != -1) {
+//                path = path.substring(0, index);
+//            }
+            GlideApp.with(activity)                      //配置上下文
+                    .load(path)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
+                    //    .error(R.mipmap.default_image)           //设置错误图片
+                    .placeholder(R.mipmap.load)     //设置占位图片
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .centerInside()
+                    .into(imageView);
+        } else {
+            GlideApp.with(activity)                      //配置上下文
+                    .load(Uri.fromFile(new File(path)))//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
+              //      .error(R.mipmap.default_image)           //设置错误图片
+                    .placeholder(R.mipmap.load)     //设置占位图片
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                    .centerInside()
                     .into(imageView);
         }
 
@@ -84,7 +109,7 @@ public class GlideImageLoader implements ImageLoader {
             GlideApp.with(context)
                     .load(url)
                     .placeholder(R.mipmap.loading)
-                    .error(R.mipmap.default_image)
+                 //   .error(R.mipmap.default_image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .transform(new GlideRoundTransform(context, 10))
                     //   .skipMemoryCache(true)//设置跳过内存缓存
@@ -102,7 +127,7 @@ public class GlideImageLoader implements ImageLoader {
                 .load(url)
                 //  .skipMemoryCache(true)//设置跳过内存缓存
                 .placeholder(R.mipmap.loading)
-                .error(R.mipmap.default_image)
+            //    .error(R.mipmap.default_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerInside()
                 .dontAnimate()

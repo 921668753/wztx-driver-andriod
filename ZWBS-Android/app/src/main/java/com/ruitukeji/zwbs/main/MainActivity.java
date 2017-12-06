@@ -32,6 +32,7 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.WorkingStateBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
@@ -106,7 +107,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;
     AMapLocationClient mlocationClient = null;
-
 
     @Override
     public void setRootView() {
@@ -469,4 +469,5 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         String map_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "map_code");
         ((MainContract.Presenter) mPresenter).postDriverLocation(map_code, amapLocation.getLongitude() + "," + amapLocation.getLatitude(), amapLocation.getAddress());
     }
+
 }

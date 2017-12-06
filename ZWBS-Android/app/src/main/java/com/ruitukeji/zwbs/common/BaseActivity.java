@@ -8,13 +8,13 @@ import com.kymjs.rxvolley.RxVolley;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
+import com.ruitukeji.zwbs.utils.rx.RxManager;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-
-
-//import com.umeng.analytics.MobclickAgent;
-
-//import org.kymjs.kjframe.KJActivity;
+import rx.Subscription;
+import rx.functions.Action1;
 
 /**
  * 公用的父Activity
@@ -23,7 +23,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 
 public abstract class BaseActivity extends KJActivity implements LoadingDialogView {
-    public Object mPresenter;
+    public Object mPresenter = null;
+    public Subscription subscription = null;
     private SweetAlertDialog mLoadingDialog = null;
 
     /**
@@ -45,6 +46,28 @@ public abstract class BaseActivity extends KJActivity implements LoadingDialogVi
 //        //   MobclickAgent.onResume(this);
 //    }
 
+    /**
+     * 必须此处创建订阅者 Subscription subscription
+     */
+    @Override
+    public void initData() {
+        super.initData();
+        subscription = RxBus.getInstance().register(MsgEvent.class).subscribe(new Action1<MsgEvent>() {
+            @Override
+            public void call(MsgEvent msgEvent) {
+                callMsgEvent(msgEvent);
+            }
+        });
+    }
+
+
+    @Override
+    public void initWidget() {
+        super.initWidget();
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            RxManager.get().add(this.getClass().getName(), subscription);
+        }
+    }
 
     @SuppressWarnings("deprecation")
     @Override
@@ -98,14 +121,24 @@ public abstract class BaseActivity extends KJActivity implements LoadingDialogVi
     @Override
     protected void onPause() {
         super.onPause();
-        RxVolley.getRequestQueue().cancelAll(KJActivityStack.create().getClass().getName());
+        //  RxVolley.getRequestQueue().cancelAll(KJActivityStack.create().getClass().getName());
         dismissLoadingDialog();
         //    MobclickAgent.onPause(this);
     }
 
+    public void callMsgEvent(MsgEvent msgEvent) {
+
+    }
+
+    /**
+     * 页面销毁时取消订阅，防止内存溢出  Subscription subscription
+     */
     @Override
     protected void onDestroy() {
+        RxVolley.getRequestQueue().cancelAll(KJActivityStack.create().getClass().getName());
+        RxManager.get().cancel(this.getClass().getName());
         super.onDestroy();
+        subscription = null;
         mLoadingDialog = null;
         mPresenter = null;
     }

@@ -1,11 +1,14 @@
 package com.ruitukeji.zwbs.loginregister;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
@@ -16,14 +19,19 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.loginregister.bindphone.BindPhoneActivity;
 import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RegisterActivity;
 import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RetrievePasswordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
-
-import cn.bingoogolapple.titlebar.BGATitleBar;
+import java.util.Map;
 
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
@@ -75,9 +83,23 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @BindView(id = R.id.img_biyan, click = true)
     private ImageView img_biyan;
 
-//    private String name = null;
-//    private String refreshName = null;
+    /**
+     * 微信登陆
+     */
+    @BindView(id = R.id.ll_loginweixin, click = true)
+    private LinearLayout ll_loginweixin;
 
+    /**
+     * QQ登陆
+     */
+    @BindView(id = R.id.ll_loginQQ, click = true)
+    private LinearLayout ll_loginQQ;
+
+    private String openid;
+    private String from;
+    private String nickname;
+    private String head_pic;
+    private int sex = 0;
 
     @Override
     public void setRootView() {
@@ -91,8 +113,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void initData() {
         super.initData();
         mPresenter = new LoginPresenter(this);
-//        name = getIntent().getStringExtra("name");
-//        refreshName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshName");
     }
 
     /**
@@ -102,7 +122,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void initWidget() {
         super.initWidget();
         initTitle();
-        //   tv_login.setFocusable(false);
         tv_login.setClickable(false);//不可点击
         changeInputView(et_accountNumber, img_quxiao);
         changeInputView(et_pwd, img_quxiao1);
@@ -143,6 +162,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     img_biyan.setImageResource(R.mipmap.ic_biyan);
                     et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD);
                 }
+                et_pwd.setSelection(et_pwd.getText().toString().trim().length());
+                et_pwd.requestFocus();
                 break;
             case R.id.tv_forgotPassword:
                 Intent intent = new Intent();
@@ -153,42 +174,151 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             case R.id.tv_register:
                 showActivity(aty, RegisterActivity.class);
                 break;
+            case R.id.ll_loginweixin:
+                thirdLogin(SHARE_MEDIA.WEIXIN);
+                break;
+            case R.id.ll_loginQQ:
+                thirdLogin(SHARE_MEDIA.QQ);
+                break;
             default:
                 break;
         }
     }
 
+
+    /**
+     * 微信QQ， 登录
+     * 第三方授权
+     */
+    private void thirdLogin(SHARE_MEDIA platform) {
+        UMShareAPI.get(LoginActivity.this).getPlatformInfo(LoginActivity.this, platform, umAuthListener);
+    }
+
+
+    UMAuthListener umAuthListener = new UMAuthListener() {
+        /**
+         * @desc 授权开始的回调
+         * @param platform 平台名称
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+            showLoadingDialog(getString(R.string.authorizationLoad));
+        }
+
+        /**
+         * @desc 授权成功的回调
+         * @param share_media 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param map 用户资料返回
+         */
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int action, Map<String, String> map) {
+            showLoadingDialog(getString(R.string.loggingLoad));
+            String temp = "";
+            //    Toast.makeText(LoginActivity.this, new Gson().toJson(map), Toast.LENGTH_LONG).show(); ouCjs1GFLA4yOb44uCKwIb9-d6Cw
+            for (String key : map.keySet()) {
+                temp = temp + key + " : " + map.get(key) + "\n";
+            }
+            Log.d("tag111", temp);
+            if (map.get("gender") != null && map.get("gender").contains(getString(R.string.nan))) {
+                sex = 1;
+            } else if (map.get("gender") != null && map.get("gender").contains(getString(R.string.nv))) {
+                sex = 2;
+            } else {
+                sex = 0;
+            }
+            //openid = map.get("uid");
+            openid = map.get("openid");
+            Log.d("tag111", openid);
+            from = share_media.toString();
+            if (from != null && from.equals("WEIXIN")) {
+                from = "wx";
+            } else {
+                from = "qq";
+            }
+            nickname = map.get("name");
+            head_pic = map.get("iconurl");
+            ((LoginContract.Presenter) mPresenter).postThirdToLogin(openid, from, nickname, head_pic, sex);
+        }
+
+        /**
+         * @desc 授权失败的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+            dismissLoadingDialog();
+            if (t.getMessage().contains(getString(R.string.authoriseErr3))) {
+                ViewInject.toast(getString(R.string.authoriseErr2));
+                return;
+            }
+            ViewInject.toast(getString(R.string.authoriseErr));
+            //   Toast.makeText(mContext, "失败：" + t.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        /**
+         * @desc 授权取消的回调
+         * @param platform 平台名称
+         * @param action 行为序号，开发者用不上
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform, int action) {
+            dismissLoadingDialog();
+            ViewInject.toast(getString(R.string.authoriseErr1));
+            //  Toast.makeText(mContext, "取消了", Toast.LENGTH_LONG).show();
+        }
+    };
+
     @Override
-    public void getSuccess(String s) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        UMShareAPI.get(this).onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        UMShareAPI.get(this).release();
+    }
+
+
+    @Override
+    public void getSuccess(String s, int flag) {
         LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
-//        if (refreshName != null && refreshName.equals("GetOrderFragment")) {
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", true);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", true);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", false);
-//        } else if (refreshName != null && refreshName.equals("MineFragment")) {
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
-//        } else if (refreshName != null && refreshName.equals("SupplyGoodsFragment")) {
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods", false);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", true);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", false);
-//        }
         PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
         PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime() + "");
         PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
         PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
+        /**
+         * 发送消息
+         */
+        RxBus.getInstance().post(new MsgEvent("RxBusRefreshMineEvent"));
         MobclickAgent.onProfileSignIn(et_accountNumber.getText().toString());
         dismissLoadingDialog();
         finish();
     }
 
     @Override
-    public void error(String msg) {
+    public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
+        if (flag == 1) {
+            Intent intent = new Intent(aty, BindPhoneActivity.class);
+            intent.putExtra("openid", openid);
+            intent.putExtra("from", from);
+            intent.putExtra("nickname", nickname);
+            intent.putExtra("head_pic", head_pic);
+            intent.putExtra("sex", sex);
+            showActivity(aty, intent);
+            return;
+        }
         ViewInject.toast(msg);
     }
 
@@ -238,5 +368,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
     }
+
 
 }

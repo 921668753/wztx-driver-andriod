@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchWrap"
+    android:background="@color/mainColor"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:background="@color/mainColor"
     android:padding="@dimen/dimen10">
     <!--推荐记录-->
 
-    <cn.bingoogolapple.imageview.BGAImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ImageView
         android:id="@+id/img_user"
         android:layout_width="@dimen/dimen50"
         android:layout_height="@dimen/dimen50"
         android:scaleType="fitXY"
-        android:src="@mipmap/headportrait"
-        app:bga_iv_isCircle="true" />
+        android:src="@mipmap/headportrait" />
 
     <LinearLayout
         style="@style/AutoMatch"

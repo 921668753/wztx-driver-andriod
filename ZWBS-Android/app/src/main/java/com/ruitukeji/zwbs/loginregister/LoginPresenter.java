@@ -31,19 +31,19 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void postToLogin(String phone, String pwd) {
         if (StringUtils.isEmpty(phone)) {
-            mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.hintAccountText), 0);
             return;
         }
         if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.inputPhone), 0);
             return;
         }
         if (StringUtils.isEmpty(pwd)) {
-            mView.error(MyApplication.getContext().getString(R.string.hintPasswordText));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.hintPasswordText), 0);
             return;
         }
         if (pwd.length() < 6 || pwd.length() > 20) {
-            mView.error(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText1));
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText1), 0);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -56,12 +56,12 @@ public class LoginPresenter implements LoginContract.Presenter {
         RequestClient.postLogin(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg);
+                mView.errorMsg(msg, 0);
             }
         });
     }

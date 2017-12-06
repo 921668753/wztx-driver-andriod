@@ -73,8 +73,8 @@ public class MyApplication extends Application {
         JPushInterface.initCrashHandler(this);// JPush开启CrashLog上报
 //        JPushInterface.getRegistrationID(getApplicationContext());//获取设备RegistrationID   注：每个设备只有一个
 //错误日志保存本地，并强制重启程序
-        LocalCrashHandler crashHandler = LocalCrashHandler.getInstance();
-        crashHandler.init(this);
+//        LocalCrashHandler crashHandler = LocalCrashHandler.getInstance();
+//        crashHandler.init(this);
         testMemoryInfo();
         mContext = getApplicationContext();
         UMShareAPI.get(this);//友盟分享

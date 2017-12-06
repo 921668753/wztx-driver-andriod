@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.kymjs.common.StringUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.view.CropImageView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
@@ -32,6 +32,8 @@ import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
+
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
  * 身份认证
@@ -102,7 +104,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
     private LinearLayout ll_validityDrivingLicence;
     @BindView(id = R.id.tv_validityDrivingLicence)
     private TextView tv_validityDrivingLicence;
-
+    Calendar calendar1 = Calendar.getInstance();
 
     /**
      * 驾驶证
@@ -119,7 +121,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
     private TextView tv_roadTransportValidityPeriod;
     @BindView(id = R.id.img_uploadRoadQualification)
     private ImageView img_uploadRoadQualification;
-
+    Calendar calendar2 = Calendar.getInstance();
 
     /**
      * 诚信考核记录
@@ -129,6 +131,9 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
 
     private ImagePicker imagePicker;
 
+    public long validityIdentityCard = 0;
+    public long validityDrivingLicence = 0;
+    public long roadTransportValidityPeriod = 0;
 
     @Override
     public void setRootView() {
@@ -166,25 +171,20 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
         switch (v.getId()) {
             case R.id.ll_validityIdentityCard:
                 pvTime.setDate(calendar);
-                //  pvTime.setDate(Calendar.getInstance());
                 //弹出时间选择器
                 pvTime.show(tv_validityIdentityCard);
                 break;
             case R.id.img_uploadYourIdCard:
-
-
+                choicePhotoWrapper();
                 break;
             case R.id.img_uploadClearYourIdCard:
-
-
+                choicePhotoWrapper();
                 break;
             case R.id.img_uploudHoldingIdPhoto:
-
-
+                choicePhotoWrapper();
                 break;
             case R.id.ll_validityDrivingLicence:
-                pvTime.setDate(calendar);
-                //  pvTime.setDate(Calendar.getInstance());
+                pvTime.setDate(calendar1);
                 //弹出时间选择器
                 pvTime.show(tv_validityDrivingLicence);
                 break;
@@ -192,10 +192,8 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
 
 
                 break;
-
             case R.id.ll_roadTransportValidityPeriod:
-                pvTime.setDate(calendar);
-                //  pvTime.setDate(Calendar.getInstance());
+                pvTime.setDate(calendar2);
                 //弹出时间选择器
                 pvTime.show(tv_roadTransportValidityPeriod);
                 break;
@@ -217,9 +215,12 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
         if (EasyPermissions.hasPermissions(this, perms)) {
             // 拍照后照片的存放目录，改成你自己拍照后要存放照片的目录。如果不传递该参数的话就没有拍照功能
             Intent intent = new Intent(this, ImageGridActivity.class);
-            intent.putExtra(ImageGridActivity.EXTRAS_IMAGES, images);
-            //ImagePicker.getInstance().setSelectedImages(images);
-            startActivityForResult(intent, NumericConstants.REQUEST_CODE_CHOOSE_PHOTO);
+            intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
+//            Intent intent = new Intent(this, ImageGridActivity.class);
+//            intent.putExtra(ImageGridActivity.EXTRAS_IMAGES, images);
+//            //ImagePicker.getInstance().setSelectedImages(images);
+//            startActivityForResult(intent, NumericConstants.REQUEST_CODE_CHOOSE_PHOTO);
         } else {
             EasyPermissions.requestPermissions(this, getString(R.string.needPermission), NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
         }
@@ -249,7 +250,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-            if (data != null && requestCode == NumericConstants.REQUEST_CODE_CHOOSE_PHOTO) {
+            if (data != null && requestCode == REQUEST_CODE_SELECT) {
                 images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 if (images == null || images.size() == 0) {
                     ViewInject.toast(getString(R.string.noData));
@@ -266,7 +267,9 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
     /**
      * 时间选择器----截止日期
      */
+    @SuppressWarnings("deprecation")
     public void asOfTheDatePicker() {
+        boolean[] type = new boolean[]{true, true, true, false, false, false};//显示类型 默认全部显示
         //控制时间范围
         Calendar calendar = Calendar.getInstance();
         Calendar startDate = Calendar.getInstance();
@@ -281,24 +284,23 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                     return;
                 }
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                //  long time = StringUtils.toLong(DataUtil.getStringTime(format.format(date))) / 1000;
-                if (v.getId() == R.id.tv_closingDatedriverLicense) {
-                    //  driving_deadline = date.getTime() / 1000;
-                } else if (v.getId() == R.id.tv_registrationDeadline) {
-                    //   license_deadline = date.getTime() / 1000;
-                } else if (v.getId() == R.id.tv_policydeadline1) {
-                    //   policy_deadline = date.getTime() / 1000;
-                } else if (v.getId() == R.id.tv_closingDateOperationCertificate) {
-                    //   operation_deadline = date.getTime() / 1000;
+                if (v.getId() == R.id.tv_validityIdentityCard) {
+                    validityIdentityCard = date.getTime() / 1000;
+                    calendar.set(date.getYear() + 1900, date.getMonth() + 1, date.getDay());
+                } else if (v.getId() == R.id.tv_validityDrivingLicence) {
+                    validityDrivingLicence = date.getTime() / 1000;
+                    calendar1.set(date.getYear() + 1900, date.getMonth() + 1, date.getDay());
+                } else if (v.getId() == R.id.tv_roadTransportValidityPeriod) {
+                    roadTransportValidityPeriod = date.getTime() / 1000;
+                    calendar1.set(date.getYear() + 1900, date.getMonth() + 1, date.getDay());
                 }
                 ((TextView) v).setText(format.format(date));
             }
-        }).setType(TimePickerView.Type.YEAR_MONTH_DAY)
+        }).setType(type)
                 .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
                 .setContentSize(20)
                 .setRangDate(startDate, endDate)
                 .build();
     }
-
 
 }

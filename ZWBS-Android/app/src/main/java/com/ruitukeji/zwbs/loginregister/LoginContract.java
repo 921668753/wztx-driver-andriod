@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.loginregister;
 
+import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;
 
@@ -12,7 +13,7 @@ public interface LoginContract {
         /**
          * 账号登录
          */
-        void postToLogin( String phone, String pwd);
+        void postToLogin(String phone, String pwd);
 
         /**
          * 第三方账号登录
@@ -21,18 +22,18 @@ public interface LoginContract {
 
     }
 
-    interface View extends BaseView<Presenter> {
-        /**
-         * http请求正确
-         *
-         * @param s
-         */
-        void getSuccess(String s);
-
-        /**
-         * http请求错误
-         */
-        void error(String msg);
+    interface View extends BaseNewView<Presenter, String> {
+//        /**
+//         * http请求正确
+//         *
+//         * @param s
+//         */
+//        void getSuccess(String s);
+//
+//        /**
+//         * http请求错误
+//         */
+//        void error(String msg);
     }
 
 }

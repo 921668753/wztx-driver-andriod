@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -33,6 +35,10 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_customerservicetelephonebounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width= WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 

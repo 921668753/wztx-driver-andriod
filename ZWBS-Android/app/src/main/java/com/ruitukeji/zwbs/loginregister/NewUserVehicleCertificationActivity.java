@@ -601,7 +601,7 @@ public class NewUserVehicleCertificationActivity extends BaseActivity implements
                 }
                 ((TextView) v).setText(format.format(date));
             }
-        }).setType(TimePickerView.Type.YEAR_MONTH_DAY)
+        })
                 .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
                 .setContentSize(20)
                 .setRangDate(startDate, endDate)
@@ -639,7 +639,7 @@ public class NewUserVehicleCertificationActivity extends BaseActivity implements
                 }
                 ((TextView) v).setText(format.format(date));
             }
-        }).setType(TimePickerView.Type.YEAR_MONTH_DAY)
+        })
                 .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
                 .setContentSize(20)
                 .setRangDate(startDate, endDate)

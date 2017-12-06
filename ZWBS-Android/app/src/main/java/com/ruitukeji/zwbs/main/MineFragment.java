@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -36,6 +37,7 @@ import com.ruitukeji.zwbs.mine.settings.SettingsActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 import java.util.List;
 
@@ -144,7 +146,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_mine1, null);
+        return View.inflate(aty, R.layout.fragment_mine, null);
     }
 
     @Override
@@ -282,16 +284,21 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
                 mRefreshLayout.setPullDownRefreshEnable(false);
                 img_avatar.setImageResource(R.mipmap.avatar_default);
-                tv_name.setText("登录/注册");
+                tv_name.setText(getString(R.string.loginregister));
+                tv_licensePlateNumber.setVisibility(View.GONE);
+                tv_alwaysSingular.setText("0");
+                tv_driverLevel.setText("0");
+                tv_serviceLevel.setText("0");
+                tv_complaintsNumber.setText("0");
                 tv_identityAuthentication.setVisibility(View.INVISIBLE);
                 tv_vehicleCertification.setVisibility(View.INVISIBLE);
                 tv_money.setVisibility(View.INVISIBLE);
             } else {
                 mRefreshLayout.setPullDownRefreshEnable(true);
             }
-        } else if (flag == 1 || flag == 2 || flag == 3 || flag == 4 || flag == 5 || flag == 6) {
+        } else if (flag == 1 || flag == 2 || flag == 3 || flag == 4 || flag == 5 || flag == 6 || flag == 7) {
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "MineFragment");
+                //      PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "MineFragment");
                 //   Intent intent = new Intent(aty, LoginActivity.class);
                 //   intent.putExtra("name", "MineFragment");
                 aty.showActivity(aty, LoginActivity.class);
@@ -366,4 +373,15 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         }
     }
 
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusRefreshMineEvent")) {
+            mRefreshLayout.beginRefreshing();
+        }
+    }
 }

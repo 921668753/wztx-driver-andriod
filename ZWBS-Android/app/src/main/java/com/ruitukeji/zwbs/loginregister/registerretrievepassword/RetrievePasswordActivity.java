@@ -136,6 +136,8 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
                     img_biyan.setImageResource(R.mipmap.ic_biyan);
                     et_pwd.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PASSWORD);
                 }
+                et_pwd.setSelection(et_pwd.getText().toString().trim().length());
+                et_pwd.requestFocus();
                 break;
             case R.id.tv_resetPassword:
                 tv_resetPassword.setEnabled(false);

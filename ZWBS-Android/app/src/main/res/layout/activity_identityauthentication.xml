@@ -40,7 +40,8 @@
                 style="@style/MatchWrap"
                 android:background="@color/mainColor"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/WrapWrap"
@@ -67,7 +68,9 @@
                     android:src="@mipmap/ic_arrow" />
             </LinearLayout>
 
-            <include layout="@layout/commom_dividerwidth1" />
+            <include
+                layout="@layout/commom_dividerwidth1"
+                android:visibility="gone" />
 
             <LinearLayout
                 style="@style/Match44"

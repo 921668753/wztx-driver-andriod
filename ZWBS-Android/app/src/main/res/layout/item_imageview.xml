@@ -11,6 +11,6 @@
         android:layout_height="@dimen/dimen180"
         android:background="@color/mainColor"
         android:padding="@dimen/dimen10"
-        android:src="@mipmap/default_image" />
+        android:src="@mipmap/ic_biyan" />
 
 </LinearLayout>

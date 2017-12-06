@@ -1,316 +1,551 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title" />
-
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch">
 
         <ScrollView
-            style="@style/MatchAuto"
+            style="@style/MatchMatch"
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/MatchWrap"
+                style="@style/MatchMatch"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/ll_personalData"
                     style="@style/MatchWrap"
-                    android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen13">
+                    android:paddingBottom="@dimen/dimen23"
+                    android:paddingTop="@dimen/dimen35">
 
-                    <cn.bingoogolapple.imageview.BGAImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/img_user"
-                        android:layout_width="@dimen/dimen65"
-                        android:layout_height="@dimen/dimen65"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/headportrait"
-                        app:bga_iv_isCircle="true" />
-
-                    <!--<declare-styleable name="BGAImageView">-->
-                    <!--&lt;!&ndash; 默认图片资源，默认值为 null &ndash;&gt;-->
-                    <!--<attr name="srcCompat"/>-->
-                    <!--&lt;!&ndash; 是否是圆形，默认值为 false &ndash;&gt;-->
-                    <!--<attr name="bga_iv_circle" format="boolean"/>-->
-                    <!--&lt;!&ndash; 圆角矩形的半径，默认值为 0dp &ndash;&gt;-->
-                    <!--<attr name="bga_iv_cornerRadius" format="reference|dimension"/>-->
-                    <!--&lt;!&ndash; 是否是矩形，默认值为 false &ndash;&gt;-->
-                    <!--<attr name="bga_iv_square" format="boolean"/>-->
-                    <!--&lt;!&ndash; 描边的宽度，默认值为 0dp &ndash;&gt;-->
-                    <!--<attr name="bga_iv_borderWidth" format="reference|dimension"/>-->
-                    <!--&lt;!&ndash; 描边的颜色，默认值为 Color.WHITE &ndash;&gt;-->
-                    <!--<attr name="bga_iv_borderColor" format="reference|color"/>-->
-                    <!--</declare-styleable>-->
                     <LinearLayout
-                        style="@style/AutoMatch"
-                        android:layout_marginLeft="@dimen/dimen20"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
+                        style="@style/AutoWrap"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/dimen25"
+                        android:paddingRight="@dimen/dimen25">
 
                         <TextView
                             android:id="@+id/tv_name"
                             style="@style/WrapWrap"
-                            android:text="--"
-                            android:textColor="@color/textColor"
-                            android:textSize="@dimen/textsize17" />
+                            android:text="戴志浩"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize20" />
 
                         <TextView
-                            android:id="@+id/tv_phone"
+                            android:id="@+id/tv_licensePlateNumber"
                             style="@style/WrapWrap"
-                            android:layout_marginTop="@dimen/dimen12"
-                            android:text="--"
-                            android:textColor="@color/typecolors"
-                            android:textSize="@dimen/textsize13" />
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:singleLine="true"
+                            android:text="车牌号：苏E21HD6"
+                            android:textColor="@color/hintcolors"
+                            android:textSize="@dimen/textsize14" />
 
                     </LinearLayout>
 
                     <ImageView
-                        style="@style/WrapWrap"
+                        android:id="@+id/img_avatar"
+                        android:layout_width="@dimen/dimen65"
+                        android:layout_height="@dimen/dimen65"
+                        android:src="@mipmap/avatar_default" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen7"
+                        android:layout_height="@dimen/dimen13"
+                        android:layout_marginLeft="@dimen/dimen7"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
+                        android:src="@mipmap/ic_arrow" />
+
+                </LinearLayout>
+
+
+                <TextView style="@style/DividerWidth" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen65"
+                    android:background="@color/mainColor"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        style="@style/AutoMatch"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_alwaysSingular"
+                            style="@style/MatchWrap"
+                            android:layout_marginTop="@dimen/dimen14"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            style="@style/MatchWrap"
+                            android:gravity="center"
+                            android:text="@string/alwaysSingular"
+                            android:textColor="@color/hintcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/DividerHeight"
+                        android:layout_marginBottom="@dimen/dimen14"
+                        android:layout_marginTop="@dimen/dimen14"
+                        android:visibility="gone" />
+
+
+                    <LinearLayout
+                        style="@style/AutoMatch"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_driverLevel"
+                            style="@style/MatchWrap"
+                            android:layout_marginTop="@dimen/dimen14"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            style="@style/MatchWrap"
+                            android:gravity="center"
+                            android:text="@string/driverLevel"
+                            android:textColor="@color/hintcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/DividerHeight"
+                        android:layout_marginBottom="@dimen/dimen14"
+                        android:layout_marginTop="@dimen/dimen14"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        style="@style/AutoMatch"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_serviceLevel"
+                            style="@style/MatchWrap"
+                            android:layout_marginTop="@dimen/dimen14"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            style="@style/MatchWrap"
+                            android:gravity="center"
+                            android:text="@string/serviceLevel"
+                            android:textColor="@color/hintcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/DividerHeight"
+                        android:layout_marginBottom="@dimen/dimen14"
+                        android:layout_marginTop="@dimen/dimen14"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        style="@style/AutoMatch"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_complaintsNumber"
+                            style="@style/MatchWrap"
+                            android:layout_marginTop="@dimen/dimen14"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="0"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize15" />
+
+                        <TextView
+                            style="@style/MatchWrap"
+                            android:gravity="center"
+                            android:text="@string/complaintsNumber"
+                            android:textColor="@color/hintcolors"
+                            android:textSize="@dimen/textsize12" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:id="@+id/myWallet"
-                    style="@style/Match44"
+                    android:id="@+id/ll_identityAuthentication"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
                     android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/Image20"
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
                         android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/wallet" />
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/my_wallet"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
+                        android:src="@mipmap/ic_identification" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/identityAuthentication"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                android:id="@+id/tv_identityAuthentication"
+                                style="@style/AutoWrap"
+                                android:gravity="right"
+                                android:paddingRight="@dimen/dimen7"
+                                android:text="@string/unauthorized"
+                                android:textColor="@color/announcementCloseColors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <ImageView
+                                style="@style/WrapWrap"
+                                android:layout_marginRight="@dimen/dimen15"
+                                android:src="@mipmap/arrow" />
+                        </LinearLayout>
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <TextView style="@style/DividerWidth" />
 
                 <LinearLayout
-                    android:id="@+id/myQuote"
-                    style="@style/Match44"
+                    android:id="@+id/ll_vehicleCertification"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/Image20"
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
                         android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/baojia" />
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/my_quote"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
-                </LinearLayout>
+                        android:src="@mipmap/ic_carapprove" />
 
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    android:id="@+id/personalCertificate"
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        style="@style/Image20"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/certification2" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/personalCertificate"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:text="@string/vehicleCertification"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14" />
 
                     <TextView
-                        android:id="@+id/tv_status"
+                        android:id="@+id/tv_vehicleCertification"
                         style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
                         android:gravity="right"
-                        android:paddingRight="@dimen/dimen10"
+                        android:paddingRight="@dimen/dimen7"
                         android:text="@string/unauthorized"
-                        android:textColor="@color/lonincolors"
-                        android:textSize="@dimen/textsize15" />
+                        android:textColor="@color/announcementCloseColors"
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
                         style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
+                        android:src="@mipmap/arrow" />
+
+
                 </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    android:id="@+id/recommendCourteous"
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        style="@style/Image20"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/gift" />
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/recommend_courteous"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
-                        android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
-                </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    android:id="@+id/onlineService"
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        style="@style/Image20"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/customerservice" />
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/online_service"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
-                        android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
-                </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
 
 
                 <LinearLayout
-                    android:id="@+id/aboutUs"
-                    style="@style/Match44"
+                    android:id="@+id/ll_myWallet"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
                     android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/Image20"
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
                         android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/about" />
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_purse" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/my_wallet"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                android:id="@+id/tv_money"
+                                style="@style/AutoWrap"
+                                android:gravity="right"
+                                android:paddingRight="@dimen/dimen7"
+                                android:text="600.00元"
+                                android:textColor="@color/hintcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <ImageView
+                                style="@style/WrapWrap"
+                                android:layout_marginRight="@dimen/dimen15"
+                                android:src="@mipmap/arrow" />
+                        </LinearLayout>
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_abnormalRecords"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_record" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:text="@string/abnormalRecords"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize14" />
+
+                        <TextView
+                            style="@style/AutoWrap"
+                            android:gravity="right"
+                            android:paddingRight="@dimen/dimen7"
+                            android:textColor="@color/announcementCloseColors"
+                            android:textSize="@dimen/textsize13" />
+
+                        <ImageView
+                            style="@style/WrapWrap"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:src="@mipmap/arrow" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_sharePolite"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_share" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/sharePolite"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/AutoWrap"
+                                android:gravity="right"
+                                android:paddingRight="@dimen/dimen7"
+                                android:textColor="@color/hintcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <ImageView
+                                style="@style/WrapWrap"
+                                android:layout_marginRight="@dimen/dimen15"
+                                android:src="@mipmap/arrow" />
+                        </LinearLayout>
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_customerServiceTelephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_phone1" />
+
+                    <LinearLayout
+                        style="@style/MatchMatch"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            style="@style/MatchAuto"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/customerServiceTelephone"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                android:id="@+id/tv_customerServiceTelephone"
+                                style="@style/AutoWrap"
+                                android:gravity="right"
+                                android:paddingRight="@dimen/dimen7"
+                                android:text="4006236660"
+                                android:textColor="@color/hintcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <ImageView
+                                style="@style/WrapWrap"
+                                android:layout_marginRight="@dimen/dimen15"
+                                android:src="@mipmap/arrow" />
+                        </LinearLayout>
+
+                        <TextView style="@style/DividerWidth" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_aboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_about" />
 
                     <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/WrapWrap"
                         android:text="@string/about_us"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/dimen7"
+                        android:textColor="@color/announcementCloseColors"
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
                         style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
+                        android:src="@mipmap/arrow" />
+
                 </LinearLayout>
 
-                <TextView style="@style/DividerWidth" />
 
                 <LinearLayout
-                    android:id="@+id/otherServices"
-                    style="@style/Match44"
+                    android:id="@+id/ll_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen50"
+                    android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/mainColor"
                     android:gravity="center_vertical">
 
                     <ImageView
-                        style="@style/Image20"
+                        android:layout_width="@dimen/dimen23"
+                        android:layout_height="@dimen/dimen19"
                         android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/other" />
-
-                    <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:text="@string/otherServices"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
-
-                    <ImageView
-                        style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
-                </LinearLayout>
-
-                <TextView style="@style/DividerWidth" />
-
-                <LinearLayout
-                    android:id="@+id/settings"
-                    style="@style/Match44"
-                    android:background="@color/mainColor"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        style="@style/Image20"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        app:srcCompat="@mipmap/set" />
+                        android:src="@mipmap/ic_set" />
 
                     <TextView
-                        style="@style/AutoWrap"
-                        android:layout_marginLeft="@dimen/dimen15"
+                        style="@style/WrapWrap"
                         android:text="@string/settings"
-                        android:textColor="@color/textColor"
-                        android:textSize="@dimen/textsize15" />
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:gravity="right"
+                        android:paddingRight="@dimen/dimen7"
+                        android:textColor="@color/announcementCloseColors"
+                        android:textSize="@dimen/textsize13" />
 
                     <ImageView
-                        android:id="@+id/imageView"
                         style="@style/WrapWrap"
                         android:layout_marginRight="@dimen/dimen15"
-                        app:srcCompat="@mipmap/arrow" />
+                        android:src="@mipmap/arrow" />
+
                 </LinearLayout>
 
-                <!--<TextView-->
-                    <!--style="@style/MatchWrap"-->
-                    <!--android:gravity="center"-->
-                    <!--android:padding="@dimen/dimen10"-->
-                    <!--android:text="@string/technicalSupport"-->
-                    <!--android:textColor="@color/hintcolors"-->
-                    <!--android:textSize="@dimen/textsize13" />-->
             </LinearLayout>
+
         </ScrollView>
+
+
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 </LinearLayout>
