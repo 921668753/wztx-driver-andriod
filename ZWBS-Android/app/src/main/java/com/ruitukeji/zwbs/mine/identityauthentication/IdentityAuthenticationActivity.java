@@ -189,8 +189,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 pvTime.show(tv_validityDrivingLicence);
                 break;
             case R.id.img_uploadDrivingLicensePhotos:
-
-
+                choicePhotoWrapper();
                 break;
             case R.id.ll_roadTransportValidityPeriod:
                 pvTime.setDate(calendar2);
@@ -198,10 +197,10 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 pvTime.show(tv_roadTransportValidityPeriod);
                 break;
             case R.id.img_uploadRoadQualification:
-
+                choicePhotoWrapper();
                 break;
             case R.id.img_uploadIntegrityAssessment:
-
+                choicePhotoWrapper();
                 break;
             default:
                 break;
