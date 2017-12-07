@@ -49,16 +49,20 @@ public class NumericConstants {
     public final static int REQUEST_CODE_PHOTO_PREVIEW1 = 3;
     public final static int REQUEST_CODE_PHOTO_PREVIEW2 = 4;
     public final static int REQUEST_CODE_PHOTO_PREVIEW3 = 5;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW4 = 6;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW5 = 7;
 
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
-
-    //SD卡读写权限权限所需参数
-    public final static int READ_AND_WRITE_CODE = 100;
     public static final int REQUEST_CODE_PREVIEW1 = 102;
     public static final int REQUEST_CODE_PREVIEW2 = 103;
     public static final int REQUEST_CODE_PREVIEW3 = 104;
+    public static final int REQUEST_CODE_PREVIEW4 = 105;
+    public static final int REQUEST_CODE_PREVIEW5 = 106;
+    public static final int REQUEST_CODE_PREVIEW6 = 107;
 
+    //SD卡读写权限权限所需参数
+    public final static int READ_AND_WRITE_CODE = 100;
 
 }

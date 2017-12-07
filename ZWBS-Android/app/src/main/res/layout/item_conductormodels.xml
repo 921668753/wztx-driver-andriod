@@ -10,5 +10,5 @@
         android:background="@drawable/shape_conductormodels"
         android:gravity="center"
         android:textColor="@color/titletextcolors"
-        android:textSize="@dimen/textsize13" />
+        android:textSize="@dimen/textsize14" />
 </LinearLayout>

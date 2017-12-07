@@ -3,189 +3,203 @@
     style="@style/MatchMatch"
     android:background="@color/mainColor"
     android:fitsSystemWindows="true"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <include layout="@layout/common_title"></include>
 
-    <RelativeLayout style="@style/MatchWrap">
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
 
-        <ImageView
+        <LinearLayout
             style="@style/MatchWrap"
-            android:src="@mipmap/tuijinajiangli" />
-
-        <TextView
-            android:id="@+id/tv_cash"
-            style="@style/WrapWrap"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dimen130"
-            android:text="@string/cash"
-            android:textColor="@color/cashcolors"
-            android:textSize="@dimen/textsize15" />
-
-        <TextView
-            style="@style/WrapWrap"
-            android:layout_below="@+id/tv_cash"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="@dimen/dimen7"
-            android:text="@string/cash1"
-            android:textColor="@color/hintcolors"
-            android:textSize="@dimen/textsize13" />
-    </RelativeLayout>
-
-    <TextView
-        style="@style/WrapWrap"
-        android:layout_marginTop="@dimen/dimen15"
-        android:text="@string/recommendFriends"
-        android:textColor="@color/typecolors"
-        android:textSize="@dimen/textsize14" />
-
-
-    <ImageView
-        android:id="@+id/img_qrCodeLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="@dimen/dimen15"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/tv_ruleDescription"
-        style="@style/WrapWrap"
-        android:layout_marginTop="@dimen/textsize15"
-        android:text="@string/ruleDescription"
-        android:textColor="@color/typecolors"
-        android:textSize="@dimen/textsize15" />
-
-
-    <TextView
-        style="@style/DividerWidth"
-        android:layout_marginTop="@dimen/dimen15" />
-
-
-    <LinearLayout
-        android:id="@+id/emailAddress"
-        style="@style/Match44"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen15"
-            android:gravity="center"
-            android:text="@string/recommendInviteCode"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize15" />
-
-        <TextView
-            android:id="@+id/tv_recommendInviteCode"
-            style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen10"
-            android:layout_marginRight="@dimen/dimen15"
-            android:text="--"
-            android:textColor="@color/lonincolors"
-            android:textIsSelectable="true"
-            android:textSize="@dimen/textsize15" />
-    </LinearLayout>
-
-    <TextView style="@style/DividerWidth" />
-
-    <TextView
-        style="@style/WrapWrap"
-        android:layout_gravity="left"
-        android:layout_marginLeft="@dimen/dimen15"
-        android:paddingBottom="@dimen/dimen10"
-        android:paddingTop="@dimen/dimen10"
-        android:text="@string/shareTo"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize15" />
-
-
-    <LinearLayout
-        style="@style/WrapWrap"
-        android:layout_marginTop="@dimen/dimen15"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/ll_weChatFriends"
-            style="@style/WrapWrap"
-            android:layout_marginRight="@dimen/dimen32"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="@dimen/dimen55"
-                android:layout_height="@dimen/dimen55"
-                android:scaleType="fitXY"
-                android:src="@mipmap/umeng_socialize_wechat" />
+
+            <RelativeLayout style="@style/MatchWrap">
+
+                <ImageView
+                    style="@style/MatchWrap"
+                    android:layout_height="@dimen/dimen230"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/tuijinajiangli" />
+
+                <TextView
+                    android:id="@+id/tv_cash"
+                    style="@style/WrapWrap"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dimen175"
+                    android:text="@string/cash"
+                    android:textColor="@color/fF721Bcolors"
+                    android:textSize="@dimen/textsize17" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_below="@+id/tv_cash"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="@dimen/dimen13"
+                    android:text="@string/cash1"
+                    android:textColor="@color/hintcolors"
+                    android:textSize="@dimen/textsize17" />
+            </RelativeLayout>
 
             <TextView
                 style="@style/WrapWrap"
-                android:text="@string/weChatFriends"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/dimen35"
+                android:text="@string/recommendFriends"
+                android:textColor="@color/typecolors"
+                android:textSize="@dimen/textsize14" />
 
-        <LinearLayout
-            android:id="@+id/ll_circleFriends"
-            style="@style/WrapWrap"
-            android:layout_marginRight="@dimen/dimen32"
-            android:gravity="center"
-            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/dimen55"
-                android:layout_height="@dimen/dimen55"
+                android:id="@+id/img_qrCodeLogo"
+                android:layout_width="@dimen/dimen100"
+                android:layout_height="@dimen/dimen100"
+                android:layout_marginTop="@dimen/dimen15"
                 android:scaleType="fitXY"
-                android:src="@mipmap/umeng_socialize_wxcircle" />
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_ruleDescription"
+                style="@style/WrapWrap"
+                android:layout_marginTop="@dimen/textsize15"
+                android:text="@string/ruleDescription"
+                android:textColor="@color/typecolors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <TextView
+                style="@style/DividerWidth"
+                android:layout_marginTop="@dimen/dimen15" />
+
+
+            <LinearLayout
+                android:id="@+id/emailAddress"
+                style="@style/Match44"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:gravity="center"
+                    android:text="@string/recommendInviteCode"
+                    android:textColor="@color/titletextcolors"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_recommendInviteCode"
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:layout_marginRight="@dimen/dimen15"
+                    android:text="--"
+                    android:textColor="@color/lonincolors"
+                    android:textIsSelectable="true"
+                    android:textSize="@dimen/textsize15" />
+            </LinearLayout>
+
+            <TextView style="@style/DividerWidth" />
 
             <TextView
                 style="@style/WrapWrap"
-                android:text="@string/circleFriends"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-        </LinearLayout>
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/dimen15"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingTop="@dimen/dimen10"
+                android:text="@string/shareTo"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize14" />
 
-        <LinearLayout
-            android:id="@+id/ll_QQFriends"
-            style="@style/WrapWrap"
-            android:layout_marginRight="@dimen/dimen32"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="@dimen/dimen55"
-                android:layout_height="@dimen/dimen55"
-                android:scaleType="fitXY"
-                android:src="@mipmap/umeng_socialize_qq" />
-
-            <TextView
-                android:id="@+id/textView2"
+            <LinearLayout
                 style="@style/WrapWrap"
-                android:text="@string/QQFriends"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
+                android:layout_marginBottom="@dimen/dimen18"
+                android:layout_marginTop="@dimen/dimen15"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_weChatFriends"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen32"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen55"
+                        android:layout_height="@dimen/dimen55"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/umeng_socialize_wechat" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/weChatFriends"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_circleFriends"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen32"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen55"
+                        android:layout_height="@dimen/dimen55"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/umeng_socialize_wxcircle" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/circleFriends"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_QQFriends"
+                    style="@style/WrapWrap"
+                    android:layout_marginRight="@dimen/dimen32"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen55"
+                        android:layout_height="@dimen/dimen55"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/umeng_socialize_qq" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/WrapWrap"
+                        android:text="@string/QQFriends"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize15" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_Qzone"
+                    style="@style/WrapWrap"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen55"
+                        android:layout_height="@dimen/dimen55"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/umeng_socialize_qzone" />
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:text="@string/Qzone"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize15" />
+
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_Qzone"
-            style="@style/WrapWrap"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/dimen55"
-                android:layout_height="@dimen/dimen55"
-                android:scaleType="fitXY"
-                android:src="@mipmap/umeng_socialize_qzone" />
-
-            <TextView
-                style="@style/WrapWrap"
-                android:text="@string/Qzone"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-        </LinearLayout>
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>

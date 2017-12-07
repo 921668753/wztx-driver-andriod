@@ -86,7 +86,7 @@ public class RecommendCourteousActivity extends BaseActivity {
                 showActivity(aty, RecommendedRecordActivity.class);
             }
         };
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.sharePolite), getString(R.string.rechargeRecord), R.id.titlebar, simpleDelegate);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.sharePolite), getString(R.string.recommendedRecord), R.id.titlebar, simpleDelegate);
     }
 
     @Override

@@ -16,7 +16,6 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.ui.ImagePreviewDelActivity;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
@@ -28,8 +27,7 @@ import com.ruitukeji.zwbs.entity.CodeBean;
 import com.ruitukeji.zwbs.entity.PersonalCertificateBean;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
 import com.ruitukeji.zwbs.main.MainActivity;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
-import com.ruitukeji.zwbs.utils.DataUtil;
+import com.ruitukeji.zwbs.mine.vehiclecertification.ConductorModelsActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 
 import java.text.SimpleDateFormat;

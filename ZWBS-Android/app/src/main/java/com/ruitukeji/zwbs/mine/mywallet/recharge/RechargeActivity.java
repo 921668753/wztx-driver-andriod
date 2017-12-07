@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
-import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendedRecordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
@@ -53,10 +52,10 @@ public class RechargeActivity extends BaseActivity {
             @Override
             public void onClickRightCtv() {
                 super.onClickRightCtv();
-                showActivity(aty, RecommendedRecordActivity.class);
+                showActivity(aty, RechargeRecordActivity.class);
             }
         };
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.recharge), getString(R.string.recommendedRecord), R.id.titlebar, simpleDelegate);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.recharge), getString(R.string.rechargeRecord), R.id.titlebar, simpleDelegate);
         listenTopUpAmount();
     }
 

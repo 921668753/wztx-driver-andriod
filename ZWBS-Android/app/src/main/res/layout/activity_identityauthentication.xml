@@ -211,6 +211,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_idcardFront"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -276,6 +277,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_idcardBack"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -342,6 +344,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_idcardInhand"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -439,6 +442,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_driverLicence"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -535,6 +539,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_roadQualification"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -601,6 +606,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/img_integrityAssessment"
                         android:layout_width="@dimen/dimen161"
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
@@ -622,6 +628,7 @@
 
 
             <TextView
+                android:id="@+id/tv_submit"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen50"
                 android:layout_marginTop="@dimen/dimen23"

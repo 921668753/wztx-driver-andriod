@@ -93,11 +93,15 @@
     <dimen name="dimen160">160dp</dimen>
     <dimen name="dimen161">161dp</dimen>
     <dimen name="dimen169">169dp</dimen>
+    <dimen name="dimen175">175dp</dimen>
     <dimen name="dimen180">180dp</dimen>
     <dimen name="dimen189">189dp</dimen>
     <dimen name="dimen190">190dp</dimen>
     <dimen name="dimen195">195dp</dimen>
     <dimen name="dimen200">200dp</dimen>
+    <dimen name="dimen215">215dp</dimen>
+    <dimen name="dimen225">225dp</dimen>
+    <dimen name="dimen230">230dp</dimen>
     <dimen name="dimen233">233dp</dimen>
     <dimen name="dimen250">250dp</dimen>
     <dimen name="dimen270">270dp</dimen>

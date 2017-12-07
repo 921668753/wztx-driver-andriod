@@ -315,7 +315,7 @@
     <string name="IdCard">身份证反面</string>
     <string name="uploadClearYourIdCard">请上传清晰的身份证反面照片</string>
     <string name="sampleDiagram">示例图</string>
-    <string name="uploudHoldingIdPhoto">请上传清晰的手持照片</string>
+    <string name="uploudHoldingIdPhoto">请上传清的手持照片</string>
     <string name="validityDrivingLicence">驾驶证有效期</string>
     <string name="drivingLicense">驾驶证照</string>
     <string name="uploadDrivingLicensePhotos">请上传清晰的驾驶证照片</string>
@@ -324,7 +324,7 @@
     <string name="uploadRoadQualification">请上传清晰的道路运输从业资格证照片</string>
     <string name="recordIntegrityAssessment">诚信考核记录照</string>
     <string name="uploadIntegrityAssessment">请上传清晰的诚信考核记录照片</string>
-
+    <string name="makeClear">照片要清晰</string>
 
     <!--车辆认证-->
     <string name="vehicleCertification">车辆认证</string>
@@ -351,7 +351,12 @@
     <string name="validityInsurance">交强险有效期</string>
     <string name="handHandPolicyPhoto">交强险保单照</string>
     <string name="licensePlatesClear">车牌要清晰，车头要完整</string>
+    <string name="picCarSide">车身要完整</string>
+    <string name="picCarInside">车尾要完整</string>
+    <string name="picCompulsoryInsurance">保险单要在有效期内，照片要完整</string>
 
+    <!--选择车辆-->
+    <string name="selectVehicle">选择车辆</string>
 
     <!--个人资料-->
     <string name="personalData">个人资料</string>

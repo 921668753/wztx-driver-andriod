@@ -12,7 +12,7 @@ import com.ruitukeji.zwbs.mine.mywallet.billfragment.PaymentBillFragment;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
 /**
- * 账单
+ * 收入明细
  * Created by Administrator on 2017/3/9.
  */
 

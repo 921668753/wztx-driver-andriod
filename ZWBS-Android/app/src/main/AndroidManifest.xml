@@ -95,83 +95,113 @@
         <!--引导页-->
         <activity
             android:name=".startpage.GuideViewActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--广告页-->
         <activity
             android:name=".startpage.AdvertisingPageActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--主界面-->
         <activity
             android:name=".main.MainActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--消息列表-->
         <activity
             android:name=".getorder.message.MessageActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--设定路线-->
         <activity
             android:name=".supplygoods.SetTheLineActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--添加路线-->
         <activity
             android:name=".supplygoods.AddTheLineActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--车长车型-->
         <activity
-            android:name=".loginregister.ConductorModelsActivity"
-            android:screenOrientation="portrait"/>
+            android:name=".mine.vehiclecertification.ConductorModelsActivity"
+            android:screenOrientation="portrait" />
 
         <!--消息中心-->
         <activity
             android:name=".getorder.message.MessageCenterActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--消息详情-->
         <activity
             android:name=".getorder.message.MessageDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--订单详情-->
         <activity
             android:name=".getorder.OrderDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--订单拍照凭证-->
         <activity
             android:name=".order.OrderVoucherActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--评价分享-->
         <activity
             android:name=".order.EvaluationShareActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
+        <!--   车辆认证-->
+        <activity
+            android:name=".mine.vehiclecertification.VehicleCertificationActivity"
+            android:screenOrientation="portrait" />
 
         <!--个人资料-->
         <activity
             android:name=".mine.personaldata.PersonalDataActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
         <!--个人认证-->
         <activity
             android:name=".mine.personalcertificate.PersonalCertificateActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
         <!--查看证件-->
         <activity
             android:name=".mine.personalcertificate.CheckDocumentsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
         <!--我的钱包-->
         <activity
             android:name=".mine.mywallet.MyWalletActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+
         <!--我的钱包   账单-->
         <activity
             android:name=".mine.mywallet.BillActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+        <!--我的钱包   收入明细-->
+        <activity
+            android:name="com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的钱包   充值-->
+        <activity
+            android:name="com.ruitukeji.zwbs.mine.mywallet.recharge.RechargeActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的钱包   充值  充值记录-->
+        <activity
+            android:name="com.ruitukeji.zwbs.mine.mywallet.recharge.RechargeRecordActivity"
+            android:screenOrientation="portrait" />
 
         <!--我的钱包   提现-->
         <activity
             android:name=".mine.mywallet.withdrawal.WithdrawalActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+
+        <!--我的钱包   我的銀行卡-->
+        <activity
+            android:name="com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--我的报价-->
         <activity
@@ -219,35 +249,32 @@
         <!--登录-->
         <activity
             android:name=".loginregister.LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--新用户注册 手机注册-->
         <activity
             android:name=".loginregister.registerretrievepassword.RegisterActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--身份认证-->
         <activity
             android:name=".mine.identityauthentication.IdentityAuthenticationActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--绑定手机号-->
         <activity
             android:name=".loginregister.bindphone.BindPhoneActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--新用户注册   身份认证-->
         <activity
             android:name=".loginregister.NewUserIdentityAuthenticationActivity"
-            android:screenOrientation="portrait"/>
-        <!--新用户注册   车辆认证-->
-        <activity
-            android:name=".loginregister.NewUserVehicleCertificationActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+
         <!--找回密码-->
         <activity
             android:name=".loginregister.registerretrievepassword.RetrievePasswordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--注册协议-->
         <activity
             android:name=".loginregister.RegistrationAgreementActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--支付宝支付-->
         <!--支付宝支付-->

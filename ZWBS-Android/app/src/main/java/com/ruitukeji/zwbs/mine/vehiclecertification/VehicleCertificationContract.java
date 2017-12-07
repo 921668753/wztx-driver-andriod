@@ -1,26 +1,29 @@
-package com.ruitukeji.zwbs.mine.mywallet;
+package com.ruitukeji.zwbs.mine.vehiclecertification;
 
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-import com.ruitukeji.zwbs.common.BaseView;
 
 /**
- * Created by Administrator on 2017/2/15.
+ * Created by Administrator on 2017/2/13.
  */
 
-public interface MyWalletContract {
-
+public interface VehicleCertificationContract {
     interface Presenter extends BasePresenter {
-        /**
-         * 获取我的钱包信息
-         */
-        void getMyWallet();
 
         /**
-         * 是否登录
+         * 获取认证信息
          */
-        void isLogin(int flag);
+        //void postUpLoadImg(String path, int flag);
 
+        /**
+         * 上传照片
+         */
+        void postUpLoadImg(String path, int flag);
+
+        /**
+         * 提交认证信息
+         */
+        void postVehicleCertification(String name, int flag);
     }
 
     interface View extends BaseNewView<Presenter, String> {

@@ -7,12 +7,12 @@
 
 
     <ImageView
-        android:layout_width="@dimen/dimen290"
-        android:layout_height="@dimen/dimen195"
-        android:scaleType="fitXY"
+        android:id="@+id/img_samplePicture"
+        style="@style/WrapWrap"
         android:src="@mipmap/pic_car_front" />
 
     <TextView
+        android:id="@+id/tv_samplePicture"
         style="@style/WrapWrap"
         android:layout_marginTop="@dimen/dimen19"
         android:text="@string/licensePlatesClear"
@@ -20,6 +20,7 @@
         android:textSize="@dimen/textsize15" />
 
     <ImageView
+        android:id="@+id/img_del"
         android:layout_width="@dimen/dimen35"
         android:layout_height="@dimen/dimen35"
         android:layout_marginTop="@dimen/dimen25"

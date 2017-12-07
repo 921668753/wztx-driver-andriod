@@ -1,12 +1,15 @@
-package com.ruitukeji.zwbs.loginregister;
+package com.ruitukeji.zwbs.mine.vehiclecertification;
 
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.getorder.LengthsViewAdapter;
 import com.ruitukeji.zwbs.adapter.getorder.TypesViewAdapter;
+import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.LengthsNewViewAdapter;
+import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.TypesNewViewAdapter;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
@@ -34,7 +37,7 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
      */
     @BindView(id = R.id.gv_vehiclelength)
     private NoScrollGridView gv_vehiclelength;
-    private LengthsViewAdapter lengthsViewAdapter;
+    private LengthsNewViewAdapter lengthsViewAdapter;
     List<LengthBean> lengthBeanlist;
 
     /**
@@ -42,7 +45,7 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
      */
     @BindView(id = R.id.gv_vehiclemodel)
     private NoScrollGridView gv_vehiclemodel;
-    private TypesViewAdapter typesViewAdapter;
+    private TypesNewViewAdapter typesViewAdapter;
     List<TypeBean> typeBeanlist;
     private LengthBean lengthBean;
     private TypeBean typeBean;
@@ -50,6 +53,11 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
     private int vehicleLengthId = 0;
     private int isAll = 0;
 
+    /**
+     * 提交
+     */
+    @BindView(id = R.id.tv_submit, click = true)
+    private TextView tv_submit;
 
     @Override
     public void setRootView() {
@@ -60,8 +68,8 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
     public void initData() {
         super.initData();
         mPresenter = new ConductorModelsPresenter(this);
-        lengthsViewAdapter = new LengthsViewAdapter(this);
-        typesViewAdapter = new TypesViewAdapter(this);
+        lengthsViewAdapter = new LengthsNewViewAdapter(this);
+        typesViewAdapter = new TypesNewViewAdapter(this);
         vehicleModelId = getIntent().getIntExtra("vehicleModelId", 0);
         vehicleLengthId = getIntent().getIntExtra("vehicleLengthId", 0);
         isAll = getIntent().getIntExtra("isAll", 0);
@@ -70,17 +78,20 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
     @Override
     public void initWidget() {
         super.initWidget();
-        SimpleDelegate simpleDelegate = new SimpleDelegate() {
-            @Override
-            public void onClickLeftCtv() {
-                super.onClickLeftCtv();
-                aty.finish();
-            }
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectVehicle), true, R.id.titlebar);
+        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
+        ((ConductorModelsContract.Presenter) mPresenter).getConductorModels();
+        gv_vehiclelength.setAdapter(lengthsViewAdapter);
+        gv_vehiclelength.setOnItemClickListener(this);
+        gv_vehiclemodel.setAdapter(typesViewAdapter);
+        gv_vehiclemodel.setOnItemClickListener(this);
+    }
 
-            @Override
-            public void onClickRightCtv() {
-                super.onClickRightCtv();
-                //   showActivity(aty, RecommendedRecordActivity.class);
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_submit:
                 if (typeBean == null || lengthBean == null) {
                     ViewInject.toast(getString(R.string.pleaseSelect) + getString(R.string.conductorModels));
                     return;
@@ -95,15 +106,8 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
                 setResult(RESULT_OK, intent);
                 // 结束该activity 结束之后，前面的activity才可以处理结果
                 aty.finish();
-            }
-        };
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.conductorModels), getString(R.string.determine), R.id.titlebar, simpleDelegate);
-        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        ((ConductorModelsContract.Presenter) mPresenter).getConductorModels();
-        gv_vehiclelength.setAdapter(lengthsViewAdapter);
-        gv_vehiclelength.setOnItemClickListener(this);
-        gv_vehiclemodel.setAdapter(typesViewAdapter);
-        gv_vehiclemodel.setOnItemClickListener(this);
+                break;
+        }
     }
 
     @Override
@@ -186,5 +190,14 @@ public class ConductorModelsActivity extends BaseActivity implements ConductorMo
         } else if (parent.getId() == R.id.gv_vehiclemodel) {
             selectedType(typesViewAdapter.getItem(position).getId());
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        lengthsViewAdapter.clear();
+        lengthsViewAdapter = null;
+        typesViewAdapter.clear();
+        typesViewAdapter = null;
     }
 }

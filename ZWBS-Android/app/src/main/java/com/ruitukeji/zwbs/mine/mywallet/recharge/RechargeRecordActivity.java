@@ -32,7 +32,6 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-
     private WithdrawalRecordViewAdapter withdrawalRecordViewAdapter;
 
     /**

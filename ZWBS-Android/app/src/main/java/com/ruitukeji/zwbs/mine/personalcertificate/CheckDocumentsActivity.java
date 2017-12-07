@@ -23,9 +23,6 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.entity.PersonalCertificateBean;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
-import com.ruitukeji.zwbs.loginregister.ConductorModelsActivity;
-import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 

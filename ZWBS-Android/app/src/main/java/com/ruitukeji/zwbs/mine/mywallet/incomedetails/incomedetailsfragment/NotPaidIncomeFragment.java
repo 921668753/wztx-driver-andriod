@@ -18,9 +18,9 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.entity.BillBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
-import com.ruitukeji.zwbs.mine.mywallet.BillActivity;
 import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillContract;
 import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillPresenter;
+import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
@@ -37,10 +37,10 @@ public class NotPaidIncomeFragment extends BaseFragment implements BillContract.
 
     private BillViewAdapter mAdapter;
 
-    private BillActivity aty;
+    private IncomeDetailsActivity aty;
 
-    @BindView(id = R.id.lv_order)
-    private ListView lv_order;
+    @BindView(id = R.id.lv_incomedetails)
+    private ListView lv_incomedetails;
 
     /**
      * 错误提示页
@@ -69,7 +69,7 @@ public class NotPaidIncomeFragment extends BaseFragment implements BillContract.
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        aty = (BillActivity) getActivity();
+        aty = (IncomeDetailsActivity) getActivity();
         return View.inflate(aty, R.layout.fragment_paidincome, null);
     }
 
@@ -84,8 +84,8 @@ public class NotPaidIncomeFragment extends BaseFragment implements BillContract.
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_order.setAdapter(mAdapter);
-        lv_order.setOnItemClickListener(this);
+        lv_incomedetails.setAdapter(mAdapter);
+        lv_incomedetails.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
     }

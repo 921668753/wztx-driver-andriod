@@ -26,9 +26,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  * Created by Administrator on 2017/2/17.
  */
 
-public class WithdrawalActivity extends BaseActivity
-        //   implements WithdrawalContract.View
-{
+public class WithdrawalActivity extends BaseActivity implements WithdrawalContract.View {
 
 //    @BindView(id = R.id.et_withdrawalAmount1)
 //    private EditText et_withdrawalAmount1;
@@ -62,14 +60,13 @@ public class WithdrawalActivity extends BaseActivity
     @Override
     public void initData() {
         super.initData();
-        //  mPresenter = new WithdrawalPresenter(this);
+        mPresenter = new WithdrawalPresenter(this);
         // initDialog();
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-
 
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
@@ -81,13 +78,28 @@ public class WithdrawalActivity extends BaseActivity
             @Override
             public void onClickRightCtv() {
                 super.onClickRightCtv();
-                showActivity(aty, RecommendedRecordActivity.class);
+                showActivity(aty, WithdrawalRecordActivity.class);
             }
         };
         ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawal), getString(R.string.withdrawalRecord), R.id.titlebar, simpleDelegate);
         String withdraw_begintime = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdraw_begintime");
         String withdraw_endtime = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdraw_endtime");
         //  tv_hintWithdrawal1.setText("提现日期每月" + withdraw_begintime + "号—" + withdraw_endtime + "号");
+    }
+
+    @Override
+    public void setPresenter(WithdrawalContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void getSuccess(String s) {
+
+    }
+
+    @Override
+    public void error(String msg) {
+
     }
 
 
