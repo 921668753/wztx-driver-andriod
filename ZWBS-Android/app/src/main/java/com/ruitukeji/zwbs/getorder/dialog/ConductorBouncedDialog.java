@@ -3,6 +3,8 @@ package com.ruitukeji.zwbs.getorder.dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -35,7 +37,7 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements View.
 
 
     public ConductorBouncedDialog(Context context, int vehicleLengthId) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.vehicleLengthId = vehicleLengthId;
     }
@@ -44,6 +46,10 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements View.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_modelsbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -63,7 +69,7 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_transparent:
-                confirm();
+                //  confirm();
                 break;
         }
     }
@@ -71,6 +77,7 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements View.
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         selectedLength(lengthsViewAdapter.getItem(position).getId());
+        confirm(lengthsViewAdapter.getItem(position).getName(), lengthsViewAdapter.getItem(position).getId());
     }
 
     @Override
@@ -116,5 +123,5 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements View.
         ViewInject.toast(msg);
     }
 
-    public abstract void confirm();
+    public abstract void confirm(String conductorName, int conductorId);
 }

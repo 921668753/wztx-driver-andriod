@@ -9,14 +9,14 @@
 
 
     <ScrollView
-        style="@style/MatchAuto"
-        android:layout_marginTop="@dimen/dimen145"
+        style="@style/WrapWrap"
+        android:layout_marginTop="@dimen/dimen105"
         android:background="@color/mainColor"
         android:paddingLeft="@dimen/dimen14"
         android:scrollbars="none">
 
         <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-            android:id="@+id/lv_models"
+            android:id="@+id/lv_availableType"
             style="@style/MatchWrap"
             android:background="@color/mainColor"
             android:divider="@android:color/transparent"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/tv_transparent"
-        style="@style/MatchWrap"
+        style="@style/MatchAuto"
         android:background="@color/transparent_1"
         android:minHeight="@dimen/dimen100" />
 

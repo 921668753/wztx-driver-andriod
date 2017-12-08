@@ -30,7 +30,6 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ListBean listBean) {
 
-
         /**
          *  客户名称
          */

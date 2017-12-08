@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <ScrollView
-        style="@style/MatchWrap"
+        style="@style/MatchAuto"
+        android:layout_marginTop="@dimen/dimen95"
         android:background="@color/mainColor"
-        android:maxHeight="@dimen/dimen470"
         android:scrollbars="none">
 
         <LinearLayout
@@ -54,43 +54,43 @@
 
 
             <LinearLayout
-                style="@style/MatchWrap"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen40"
+                android:layout_marginBottom="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen12"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/dimen10"
-                android:paddingRight="@dimen/dimen12"
-                android:paddingTop="@dimen/dimen12">
+                android:paddingLeft="@dimen/dimen12"
+                android:paddingRight="@dimen/dimen12">
 
                 <TextView
-                    style="@style/AutoWrap"
+                    android:id="@+id/tv_emptying"
+                    style="@style/AutoMatch"
                     android:background="@drawable/shape_conductormodels"
                     android:gravity="center"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen13"
                     android:text="@string/emptying"
                     android:textColor="@color/titletextcolors"
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
-                    style="@style/AutoWrap"
+                    android:id="@+id/tv_determine"
+                    style="@style/AutoMatch"
                     android:layout_marginLeft="@dimen/dimen15"
                     android:background="@drawable/shape_sendquotation"
                     android:gravity="center"
-                    android:paddingBottom="@dimen/dimen13"
-                    android:paddingTop="@dimen/dimen13"
                     android:text="@string/determine"
                     android:textColor="@color/mainColor"
                     android:textSize="@dimen/textsize15" />
 
             </LinearLayout>
 
-
         </LinearLayout>
     </ScrollView>
 
     <TextView
         android:id="@+id/tv_transparent"
-        style="@style/MatchAuto"
-        android:background="@color/transparent_1" />
+        style="@style/MatchWrap"
+        android:background="@color/transparent_1"
+        android:minHeight="@dimen/dimen100" />
 
 
 </LinearLayout>

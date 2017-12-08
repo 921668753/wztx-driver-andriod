@@ -34,34 +34,34 @@ public class WithdrawalPresenter implements WithdrawalContract.Presenter {
     @Override
     public void postWithdrawal(SweetAlertDialog sweetAlertDialog, String withdrawalAmount, String bankName, String paymentAccount, String accountName) {
         if (StringUtils.isEmpty(withdrawalAmount)) {
-            mView.error(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1), 0);
             return;
         }
         if (!(MathUtil.judgeTwoDecimal(withdrawalAmount))) {
-            mView.error(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1), 0);
             return;
         }
         if (StringUtils.toDouble(withdrawalAmount) <= 0) {
-            mView.error(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.notHigherWithdrawalLimit1), 0);
             return;
         }
         if (StringUtils.isEmpty(bankName)) {
-            mView.error(MyApplication.getContext().getString(R.string.presentingBank1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.presentingBank1), 0);
             return;
         }
         if (StringUtils.isEmpty(paymentAccount)) {
-            mView.error(MyApplication.getContext().getString(R.string.promptAccount1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.promptAccount1), 0);
             return;
         }
         if (StringUtils.isEmpty(accountName)) {
-            mView.error(MyApplication.getContext().getString(R.string.accountHolderName1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.accountHolderName1), 0);
             return;
         }
         String all = "^[A-Za-z\\u4e00-\\u9fa5]{2,10}";//{2,10}表示字符的长度是2-10
         Pattern pattern = Pattern.compile(all);
         boolean tf = Pattern.matches(all, accountName);
         if (!tf) {
-            mView.error(MyApplication.getContext().getString(R.string.hintName1));
+            mView.errorMsg(MyApplication.getContext().getString(R.string.hintName1), 0);
             return;
         }
         sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -79,15 +79,30 @@ public class WithdrawalPresenter implements WithdrawalContract.Presenter {
                 RequestClient.postWithdrawal(httpParams, new ResponseListener<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.getSuccess(response);
+                        mView.getSuccess(response, 0);
                     }
 
                     @Override
                     public void onFailure(String msg) {
-                        mView.error(msg);
+                        mView.errorMsg(msg, 0);
                     }
                 });
             }
         }).show();
+    }
+
+    @Override
+    public void isLogin(int flag) {
+        RequestClient.isLogin(new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
+            }
+        });
     }
 }

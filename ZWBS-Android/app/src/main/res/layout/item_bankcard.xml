@@ -4,6 +4,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_bankCardName"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen45"
         android:background="@drawable/shape_bankcardtop"
@@ -41,6 +42,7 @@
             android:textSize="@dimen/textsize23" />
 
         <TextView
+            android:id="@+id/tv_tail"
             style="@style/WrapWrap"
             android:text="1687"
             android:textColor="@color/typecolors"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:orientation="vertical">
@@ -9,6 +9,7 @@
         style="@style/MatchMatch">
 
         <ScrollView
+            android:id="@+id/sv_mine"
             style="@style/MatchMatch"
             android:scrollbars="none">
 
@@ -546,6 +547,183 @@
 
         </ScrollView>
 
-
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_personalData1"
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen23"
+        android:paddingTop="@dimen/dimen35">
+
+        <LinearLayout
+            style="@style/AutoWrap"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen25"
+            android:paddingRight="@dimen/dimen25">
+
+            <TextView
+                android:id="@+id/tv_name1"
+                style="@style/WrapWrap"
+                android:text="戴志浩"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize20" />
+
+            <TextView
+                android:id="@+id/tv_licensePlateNumber1"
+                style="@style/WrapWrap"
+                android:layout_marginTop="@dimen/dimen10"
+                android:singleLine="true"
+                android:text="车牌号：苏E21HD6"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize14" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_avatar1"
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="@dimen/dimen65"
+            android:src="@mipmap/avatar_default" />
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen7"
+            android:layout_height="@dimen/dimen13"
+            android:layout_marginLeft="@dimen/dimen7"
+            android:layout_marginRight="@dimen/dimen15"
+            android:src="@mipmap/ic_arrow" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/ll_divider"
+        style="@style/DividerWidth"
+        android:layout_below="@+id/ll_personalData1" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_divider1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen65"
+        android:layout_below="@+id/ll_divider"
+        android:background="@color/mainColor"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_alwaysSingular1"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen14"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:gravity="center"
+                android:text="@string/alwaysSingular"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen14"
+            android:layout_marginTop="@dimen/dimen14"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_driverLevel1"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen14"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:gravity="center"
+                android:text="@string/driverLevel"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen14"
+            android:layout_marginTop="@dimen/dimen14"
+            android:visibility="gone" />
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_serviceLevel1"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen14"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:gravity="center"
+                android:text="@string/serviceLevel"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/DividerHeight"
+            android:layout_marginBottom="@dimen/dimen14"
+            android:layout_marginTop="@dimen/dimen14"
+            android:visibility="gone" />
+
+        <LinearLayout
+            style="@style/AutoMatch"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_complaintsNumber1"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen14"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize15" />
+
+            <TextView
+                style="@style/MatchWrap"
+                android:gravity="center"
+                android:text="@string/complaintsNumber"
+                android:textColor="@color/hintcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

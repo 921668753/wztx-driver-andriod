@@ -30,6 +30,8 @@ import com.ruitukeji.zwbs.entity.GetOrderBean;
 import com.ruitukeji.zwbs.entity.MessageCenterBean;
 import com.ruitukeji.zwbs.entity.WorkingStateBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
+import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedDialog;
+import com.ruitukeji.zwbs.getorder.dialog.ConductorBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.ModelsBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
@@ -79,6 +81,9 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @BindView(id = R.id.tv_models)
     private TextView tv_models;
 
+    @BindView(id = R.id.img_models)
+    private ImageView img_models;
+    private int modelsId = 0;
     /**
      * 车长
      */
@@ -86,6 +91,10 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private LinearLayout ll_conductor;
     @BindView(id = R.id.tv_conductor)
     private TextView tv_conductor;
+    @BindView(id = R.id.img_conductor)
+    private ImageView img_conductor;
+
+    private int vehicleLengthId = 0;
 
     /**
      * 可接单类型
@@ -94,6 +103,10 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private LinearLayout ll_availableType;
     @BindView(id = R.id.tv_availableType)
     private TextView tv_availableType;
+    @BindView(id = R.id.img_availableType)
+    private ImageView img_availableType;
+    private int availableTypeId = 0;
+
 
     private GetOrderContract.Presenter mPresenter;
     private MainActivity aty;
@@ -131,6 +144,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
      * 总页码
      */
     private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
 
     /**
      * 是否加载更多
@@ -462,22 +476,49 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 break;
 
             case R.id.ll_models:
-                ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty, 0) {
+                ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
                     @Override
-                    public void confirm() {
-
+                    public void confirm(String typeName, int typeId) {
+                        this.dismiss();
+                        modelsId = typeId;
+                        tv_models.setText(typeName);
+                        img_models.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
                     }
                 };
+                img_models.setImageResource(R.mipmap.icon_category_orange_up1);
                 modelsBouncedDialog.show();
                 break;
             case R.id.ll_conductor:
-
-
+                ConductorBouncedDialog conductorBouncedDialog = new ConductorBouncedDialog(aty, vehicleLengthId) {
+                    @Override
+                    public void confirm(String conductorName, int conductorId) {
+                        this.dismiss();
+                        vehicleLengthId = conductorId;
+                        tv_conductor.setText(conductorName);
+                        img_conductor.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+                img_conductor.setImageResource(R.mipmap.icon_category_orange_up1);
+                conductorBouncedDialog.show();
                 break;
 
             case R.id.ll_availableType:
+                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeId) {
 
 
+                    @Override
+                    public void confirm(String availableTypeName, int availableTypeId1) {
+                        this.dismiss();
+                        availableTypeId = availableTypeId1;
+                        tv_availableType.setText(availableTypeName);
+                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
+                availableTypeBouncedDialog.show();
                 break;
 
             case R.id.tv_hintText:

@@ -197,31 +197,48 @@
             android:name=".mine.mywallet.withdrawal.WithdrawalActivity"
             android:screenOrientation="portrait" />
 
+        <!--我的钱包   提现记录-->
+        <activity
+            android:name=".mine.mywallet.withdrawal.WithdrawalRecordActivity"
+            android:screenOrientation="portrait" />
+
         <!--我的钱包   我的銀行卡-->
         <activity
             android:name="com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity"
             android:screenOrientation="portrait" />
 
+        <!--我的钱包   添加銀行卡-->
+        <activity
+            android:name="com.ruitukeji.zwbs.mine.mywallet.mybankcard.AddBankCardActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!--异常记录-->
+        <activity
+            android:name=".mine.abnormalrecords.AbnormalRecordsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--异常情况-->
+        <activity
+            android:name=".mine.abnormalrecords.AbnormalSituationActivity"
+            android:screenOrientation="portrait" />
 
         <!--我的报价-->
         <activity
             android:name=".mine.myquote.MyQuoteActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--我的报价-->
         <activity
             android:name=".mine.myquote.QuoteDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
-        <!--我的钱包   提现记录-->
-        <activity
-            android:name=".mine.mywallet.withdrawal.WithdrawalRecordActivity"
-            android:screenOrientation="portrait"></activity>
+
         <!--在线客服-->
         <!--推荐有礼-->
         <activity
             android:name=".mine.recommendcourteous.RecommendCourteousActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!--推荐记录-->
         <activity
             android:name=".mine.recommendcourteous.RecommendedRecordActivity"

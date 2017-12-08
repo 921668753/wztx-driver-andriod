@@ -8,7 +8,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/titlebar"
         style="@style/TitleBar"
-        app:bgatitlebar_isTitleTextBold="false"
+        app:bgatitlebar_isTitleTextBold="true"
         app:bgatitlebar_leftDrawable="@mipmap/back"
         app:bgatitlebar_rightText="ypu">
 

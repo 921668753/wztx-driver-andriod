@@ -16,10 +16,17 @@ public class AbnormalSituationActivity extends BaseActivity {
         setContentView(R.layout.activity_abnormalsituation);
     }
 
+
+    @Override
+    public void initData() {
+        super.initData();
+    }
+
     @Override
     public void initWidget() {
         super.initWidget();
         //  RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.abnormalSituation), true, R.id.titlebar);
     }
+
 }

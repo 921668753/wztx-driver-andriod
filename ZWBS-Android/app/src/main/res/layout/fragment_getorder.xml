@@ -142,9 +142,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/img_models"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
 
         </LinearLayout>
@@ -172,9 +174,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/img_conductor"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
         </LinearLayout>
 
@@ -200,9 +204,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/img_availableType"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
 
         </LinearLayout>

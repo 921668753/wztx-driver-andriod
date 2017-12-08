@@ -23,10 +23,10 @@ public class TypesViewAdapter extends BGAAdapterViewAdapter<TypeBean> {
     public void fillData(BGAViewHolderHelper helper, int position, TypeBean typeBean) {
         if (typeBean.getStatus() == 1) {
             helper.setBackgroundRes(R.id.tv_divider, R.color.announcementCloseColors);
-            helper.setTextColor(R.id.tv_modelsName, R.color.announcementCloseColors);
+            helper.setTextColor(R.id.tv_modelsName, mContext.getResources().getColor(R.color.announcementCloseColors));
         } else {
             helper.setBackgroundRes(R.id.tv_divider, R.color.dividercolors);
-            helper.setTextColor(R.id.tv_modelsName, R.color.titletextcolors);
+            helper.setTextColor(R.id.tv_modelsName, mContext.getResources().getColor(R.color.titletextcolors));
         }
         helper.setText(R.id.tv_modelsName, typeBean.getName());
     }

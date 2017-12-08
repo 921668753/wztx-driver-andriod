@@ -89,6 +89,7 @@
     <dimen name="dimen130">130dp</dimen>
     <dimen name="dimen131">131dp</dimen>
     <dimen name="dimen140">140dp</dimen>
+    <dimen name="dimen145">145dp</dimen>
     <dimen name="dimen150">150dp</dimen>
     <dimen name="dimen160">160dp</dimen>
     <dimen name="dimen161">161dp</dimen>
@@ -110,8 +111,8 @@
     <dimen name="dimen300">300dp</dimen>
     <dimen name="dimen310">310dp</dimen>
     <dimen name="dimen352">352dp</dimen>
+    <dimen name="dimen400">400dp</dimen>
     <dimen name="dimen470">470dp</dimen>
-
     <dimen name="textsize8">8sp</dimen>
     <dimen name="textsize9">9sp</dimen>
     <dimen name="textsize11">11sp</dimen>

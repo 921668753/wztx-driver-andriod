@@ -2,16 +2,19 @@ package com.ruitukeji.zwbs.main;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -24,7 +27,6 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
 import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
@@ -42,6 +44,7 @@ import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import java.util.List;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import cn.bingoogolapple.refreshlayout.util.BGARefreshScrollingUtil;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -78,11 +81,37 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.tv_driverLevel)
     private TextView tv_driverLevel;
 
+
+    @BindView(id = R.id.ll_personalData1, click = true)
+    private LinearLayout ll_personalData1;
+
+    @BindView(id = R.id.tv_name1)
+    private TextView tv_name1;
+
+    @BindView(id = R.id.tv_licensePlateNumber1)
+    private TextView tv_licensePlateNumber1;
+
+    @BindView(id = R.id.img_avatar1)
+    private ImageView img_avatar1;
+
+    @BindView(id = R.id.tv_alwaysSingular1)
+    private TextView tv_alwaysSingular1;
+
+    @BindView(id = R.id.tv_driverLevel1)
+    private TextView tv_driverLevel1;
+
     @BindView(id = R.id.tv_serviceLevel, click = true)
     private TextView tv_serviceLevel;
 
     @BindView(id = R.id.tv_complaintsNumber, click = true)
     private TextView tv_complaintsNumber;
+
+    @BindView(id = R.id.sv_mine)
+    private ScrollView sv_mine;
+
+
+    @BindView(id = R.id.ll_divider1)
+    private LinearLayout ll_divider1;
 
     /**
      * 身份认证
@@ -155,11 +184,27 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         mPresenter = new MinePresenter(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         // ActivityTitleUtils.initToolbar(parentView, getString(R.string.mine), R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, getActivity(), false);
+        sv_mine.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.d("tag", "scrollY" + scrollY);
+                Log.d("tag", "oldScrollY" + oldScrollY);
+                if (scrollY == 0) {
+                    ll_personalData1.setVisibility(View.GONE);
+                    ll_divider1.setVisibility(View.GONE);
+                } else {
+                    ll_personalData1.setVisibility(View.VISIBLE);
+                    ll_divider1.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -169,7 +214,11 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             case R.id.ll_personalData:
                 ((MineContract.Presenter) mPresenter).isLogin(1);
                 break;
+            case R.id.ll_personalData1:
+                ((MineContract.Presenter) mPresenter).isLogin(1);
+                break;
             case R.id.ll_identityAuthentication:
+                // sv_scroll.
                 ((MineContract.Presenter) mPresenter).isLogin(6);
                 break;
             case R.id.ll_vehicleCertification:
@@ -223,13 +272,17 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             MineBean mineBean = (MineBean) JsonUtil.getInstance().json2Obj(s, MineBean.class);
             if (StringUtils.isEmpty(mineBean.getResult().getAvatar())) {
                 GlideImageLoader.glideLoader(aty, R.mipmap.headload, img_avatar, 0);
+                GlideImageLoader.glideLoader(aty, R.mipmap.headload, img_avatar1, 0);
             } else {
                 GlideImageLoader.glideLoader(aty, mineBean.getResult().getAvatar() + "?imageView2/1/w/70/h/70", img_avatar, 0);
+                GlideImageLoader.glideLoader(aty, mineBean.getResult().getAvatar() + "?imageView2/1/w/70/h/70", img_avatar1, 0);
             }
             if (StringUtils.isEmpty(mineBean.getResult().getReal_name())) {
                 tv_name.setText(mineBean.getResult().getPhone());
+                tv_name1.setText(mineBean.getResult().getPhone());
             } else {
                 tv_name.setText(mineBean.getResult().getReal_name());
+                tv_name1.setText(mineBean.getResult().getReal_name());
             }
             //   tv_status.setVisibility(View.VISIBLE);
 //            if (mineBean.getResult().getAuth_status() == null || mineBean.getResult().getAuth_status().equals("init")) {
@@ -327,6 +380,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
 //            mRefreshLayout.beginRefreshing();
 //        }
     }
+
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout bgaRefreshLayout) {

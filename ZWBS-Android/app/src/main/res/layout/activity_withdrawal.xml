@@ -17,17 +17,32 @@
         android:textSize="@dimen/textsize14"
         android:textStyle="bold" />
 
-
-    <TextView
+    <LinearLayout
         style="@style/MatchWrap"
         android:background="@color/mainColor"
+        android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen20"
-        android:paddingLeft="@dimen/dimen15"
-        android:paddingTop="@dimen/dimen19"
-        android:text="￥0.00"
-        android:textColor="@color/titletextcolors"
-        android:textSize="@dimen/textsize35"
-        android:textStyle="bold" />
+        android:paddingTop="@dimen/dimen19">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:text="@string/renminbi"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize35" />
+
+        <EditText
+            android:id="@+id/et_withdrawalAmount1"
+            style="@style/AutoMatch"
+            android:background="@color/mainColor"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:hint="@string/withdrawalRecord1"
+            android:textColorHint="@color/cDCDCDColors"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize35" />
+
+    </LinearLayout>
 
 
     <include layout="@layout/commom_dividerwidth1" />
@@ -48,6 +63,7 @@
             android:textSize="@dimen/textsize14" />
 
         <TextView
+            android:id="@+id/tv_money"
             style="@style/WrapWrap"
             android:singleLine="true"
             android:text="0.00"
@@ -60,15 +76,16 @@
             android:textColor="@color/hintcolors"
             android:textSize="@dimen/textsize14" />
 
+        <TextView style="@style/AutoWrap" />
 
         <TextView
-            style="@style/AutoMatch"
+            android:id="@+id/tv_allWithdrawal"
+            style="@style/WrapMatch"
             android:gravity="right|center_vertical"
             android:paddingRight="@dimen/dimen15"
             android:text="@string/allWithdrawal"
             android:textColor="@color/announcementCloseColors"
             android:textSize="@dimen/textsize14" />
-
 
     </LinearLayout>
 
@@ -90,6 +107,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_withdrawalBank"
             style="@style/WrapWrap"
             android:paddingBottom="@dimen/dimen20"
             android:paddingLeft="@dimen/dimen15"
@@ -99,6 +117,7 @@
             android:textSize="@dimen/textsize14" />
 
         <TextView
+            android:id="@+id/tv_modification"
             style="@style/AutoMatch"
             android:gravity="right|center_vertical"
             android:paddingRight="@dimen/dimen15"
@@ -123,6 +142,7 @@
             android:textSize="@dimen/textsize14" />
 
         <TextView
+            android:id="@+id/tv_driverWithdrawAgreement"
             style="@style/WrapMatch"
             android:gravity="right|center_vertical"
             android:paddingRight="@dimen/dimen15"

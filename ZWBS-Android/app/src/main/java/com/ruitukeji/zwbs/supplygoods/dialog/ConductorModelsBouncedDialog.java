@@ -3,12 +3,14 @@ package com.ruitukeji.zwbs.supplygoods.dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.getorder.LengthsViewAdapter;
-import com.ruitukeji.zwbs.adapter.getorder.TypesViewAdapter;
+import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.LengthsNewViewAdapter;
+import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.TypesNewViewAdapter;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.entity.ConductorModelsBean;
@@ -29,19 +31,18 @@ import java.util.List;
 
 public abstract class ConductorModelsBouncedDialog extends BaseDialog implements View.OnClickListener, ConductorModelsContract.View, AdapterView.OnItemClickListener {
 
-
     /**
      * 车长
      */
     private NoScrollGridView gv_vehiclelength;
-    private LengthsViewAdapter lengthsViewAdapter;
+    private LengthsNewViewAdapter lengthsViewAdapter;
     List<LengthBean> lengthBeanlist;
 
     /**
      * 车型
      */
     private NoScrollGridView gv_vehiclemodel;
-    private TypesViewAdapter typesViewAdapter;
+    private TypesNewViewAdapter typesViewAdapter;
     List<TypeBean> typeBeanlist;
     private LengthBean lengthBean;
     private TypeBean typeBean;
@@ -53,16 +54,24 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     private Context context;
     private TextView tv_transparent;
     private ChildLiistView lv_models;
+    private TextView tv_determine;
+    private TextView tv_emptying;
 
-    public ConductorModelsBouncedDialog(Context context) {
-        super(context, R.style.MyDialog);
+    public ConductorModelsBouncedDialog(Context context, int vehicleLengthId, int vehicleModelId) {
+        super(context, R.style.dialog);
         this.context = context;
+        this.vehicleLengthId = vehicleLengthId;
+        this.vehicleModelId = vehicleModelId;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_conductormodelsbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -71,9 +80,13 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         gv_vehiclemodel = (NoScrollGridView) findViewById(R.id.gv_vehiclemodel);
         tv_transparent = (TextView) findViewById(R.id.tv_transparent);
         tv_transparent.setOnClickListener(this);
+        tv_emptying = (TextView) findViewById(R.id.tv_emptying);
+        tv_emptying.setOnClickListener(this);
+        tv_determine = (TextView) findViewById(R.id.tv_determine);
+        tv_determine.setOnClickListener(this);
         mPresenter = new ConductorModelsPresenter(this);
-        lengthsViewAdapter = new LengthsViewAdapter(context);
-        typesViewAdapter = new TypesViewAdapter(context);
+        lengthsViewAdapter = new LengthsNewViewAdapter(context);
+        typesViewAdapter = new TypesNewViewAdapter(context);
         mPresenter.getConductorModels();
         gv_vehiclelength.setAdapter(lengthsViewAdapter);
         gv_vehiclelength.setOnItemClickListener(this);
@@ -84,8 +97,15 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_transparent:
-                dismiss();
+            case R.id.tv_emptying:
+                confirm(context.getString(R.string.conductor), 0, context.getString(R.string.models), 0);
+                break;
+            case R.id.tv_determine:
+                if (typeBean == null || lengthBean == null) {
+                    ViewInject.toast(context.getString(R.string.pleaseSelect) + context.getString(R.string.conductorModels));
+                    return;
+                }
+                confirm(lengthBean.getName(), lengthBean.getId(), typeBean.getName(), typeBean.getId());
                 break;
         }
     }
@@ -161,5 +181,15 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         typesViewAdapter.addMoreData(typeBeanlist);
     }
 
-    public abstract void confirm();
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.gv_vehiclelength) {
+            selectedLength(lengthsViewAdapter.getItem(position).getId());
+        } else if (parent.getId() == R.id.gv_vehiclemodel) {
+            selectedType(typesViewAdapter.getItem(position).getId());
+        }
+    }
+
+    public abstract void confirm(String conductorName, int conductorId, String models, int modelsId);
 }

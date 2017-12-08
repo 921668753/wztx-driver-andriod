@@ -3,6 +3,8 @@ package com.ruitukeji.zwbs.getorder.dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import com.ruitukeji.zwbs.entity.ConductorModelsBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.TypeBean;
+import com.ruitukeji.zwbs.utils.myview.MaxListView;
 
 import java.util.List;
 
@@ -35,7 +38,7 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
 
 
     public ModelsBouncedDialog(Context context, int modelsId) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.modelsId = modelsId;
     }
@@ -44,6 +47,10 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_modelsbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -63,7 +70,7 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_transparent:
-                confirm();
+              //  confirm();
                 break;
         }
     }
@@ -94,6 +101,7 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectedType(typesViewAdapter.getItem(position).getId());
+        confirm(typesViewAdapter.getItem(position).getName(), typesViewAdapter.getItem(position).getId());
     }
 
     @Override
@@ -116,5 +124,5 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
         ViewInject.toast(msg);
     }
 
-    public abstract void confirm();
+    public abstract void confirm(String typeName, int typeId);
 }

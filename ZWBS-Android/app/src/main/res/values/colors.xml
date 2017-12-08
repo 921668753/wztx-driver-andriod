@@ -7,7 +7,7 @@
 
 
     <color name="transparent">#00000000</color>
-    <color name="transparent_1">#01000000</color>
+    <color name="transparent_1">#50000000</color>
 
     <color name="timertext">#B3B3B3</color>
     <color name="timertext1">#18B777</color>

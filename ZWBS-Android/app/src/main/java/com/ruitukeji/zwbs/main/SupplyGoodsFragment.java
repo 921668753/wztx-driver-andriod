@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,6 +26,7 @@ import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.supplygoods.SetTheLineActivity;
+import com.ruitukeji.zwbs.supplygoods.dialog.ConductorModelsBouncedDialog;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
@@ -36,8 +38,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/2/21.
  */
 
-public class SupplyGoodsFragment extends BaseFragment
-        implements SupplyGoodsContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
+public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
 
 
     private MainActivity aty;
@@ -55,6 +56,8 @@ public class SupplyGoodsFragment extends BaseFragment
     private LinearLayout ll_startingPoint;
     @BindView(id = R.id.tv_startingPoint)
     private TextView tv_startingPoint;
+    @BindView(id = R.id.img_startingPoint)
+    private ImageView img_startingPoint;
 
     /**
      * 目的地
@@ -63,6 +66,8 @@ public class SupplyGoodsFragment extends BaseFragment
     private LinearLayout ll_endPoint;
     @BindView(id = R.id.tv_endPoint)
     private TextView tv_endPoint;
+    @BindView(id = R.id.img_endPoint)
+    private ImageView img_endPoint;
 
     /**
      * 可接单类型
@@ -71,6 +76,8 @@ public class SupplyGoodsFragment extends BaseFragment
     private LinearLayout ll_availableType;
     @BindView(id = R.id.tv_availableType)
     private TextView tv_availableType;
+    @BindView(id = R.id.img_availableType)
+    private ImageView img_availableType;
 
     /**
      * 车长车型
@@ -79,6 +86,8 @@ public class SupplyGoodsFragment extends BaseFragment
     private LinearLayout ll_conductorModels;
     @BindView(id = R.id.tv_conductorModels)
     private TextView tv_conductorModels;
+    @BindView(id = R.id.img_conductorModels)
+    private ImageView img_conductorModels;
 
 
     @BindView(id = R.id.mRefreshLayout)
@@ -91,8 +100,8 @@ public class SupplyGoodsFragment extends BaseFragment
 
     private String startingpoint = "";
     private String endpoint = "";
-    private String vehiclelength;
-    private String vehiclemodel;
+    private String vehiclelength = "";
+    private String vehiclemodel = "";
 
     /**
      * 错误提示页
@@ -195,20 +204,31 @@ public class SupplyGoodsFragment extends BaseFragment
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_setLine:
-
+                aty.showActivity(aty, SetTheLineActivity.class);
                 break;
             case R.id.ll_startingPoint:
 
                 break;
             case R.id.ll_endPoint:
 
-
                 break;
             case R.id.ll_availableType:
 
                 break;
             case R.id.ll_conductorModels:
-
+                ConductorModelsBouncedDialog conductorModelsBouncedDialog = new ConductorModelsBouncedDialog(aty, vehicleLengthId, vehicleModelId) {
+                    @Override
+                    public void confirm(String conductorName, int conductorId, String modelsName, int modelsId) {
+                        this.dismiss();
+                        vehicleLengthId = conductorId;
+                        vehicleModelId = modelsId;
+                        tv_conductorModels.setText(conductorName + "/" + modelsName);
+                        img_conductorModels.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+                img_conductorModels.setImageResource(R.mipmap.icon_category_orange_up1);
+                conductorModelsBouncedDialog.show();
                 break;
             case R.id.tv_hintText:
                 mRefreshLayout.beginRefreshing();

@@ -14,11 +14,10 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
-import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendedRecordActivity;
+import com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -28,29 +27,49 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class WithdrawalActivity extends BaseActivity implements WithdrawalContract.View {
 
-//    @BindView(id = R.id.et_withdrawalAmount1)
-//    private EditText et_withdrawalAmount1;
-//
-//    @BindView(id = R.id.et_bankName)
-//    private EditText et_bankName;
-//
-//    @BindView(id = R.id.et_paymentAccount)
-//    private EditText et_paymentAccount;
-//
-//    @BindView(id = R.id.et_openAccountName)
-//    private EditText et_openAccountName;
-//
-//    @BindView(id = R.id.tv_withdrawalInstructions, click = true)
-//    private TextView tv_withdrawalInstructions;
-//
-//    @BindView(id = R.id.tv_hintWithdrawal1)
-//    private TextView tv_hintWithdrawal1;
-//
-//    @BindView(id = R.id.tv_confirmSubmit, click = true)
-//    private TextView tv_confirmSubmit;
-//
-//
-//    private SweetAlertDialog sweetAlertDialog = null;
+    /**
+     * 提险金额
+     */
+    @BindView(id = R.id.et_withdrawalAmount1)
+    private EditText et_withdrawalAmount1;
+
+    @BindView(id = R.id.tv_money)
+    private TextView tv_money;
+
+    /**
+     * 全部提现
+     */
+    @BindView(id = R.id.tv_allWithdrawal, click = true)
+    private TextView tv_allWithdrawal;
+
+    /**
+     * 中国银行（尾号3215）
+     */
+    @BindView(id = R.id.tv_withdrawalBank)
+    private TextView tv_withdrawalBank;
+
+    /**
+     * 选择银行卡
+     */
+    @BindView(id = R.id.tv_modification, click = true)
+    private TextView tv_modification;
+
+    /**
+     * 协议
+     */
+    @BindView(id = R.id.tv_driverWithdrawAgreement)
+    private TextView tv_driverWithdrawAgreement;
+
+
+    /**
+     * 确定
+     */
+    @BindView(id = R.id.tv_confirmSubmit, click = true)
+    private TextView tv_confirmSubmit;
+    private String bankCardName = "";
+    private String bankCardNun = "";
+    private String bankCardId = "";
+
 
     @Override
     public void setRootView() {
@@ -87,45 +106,47 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
         //  tv_hintWithdrawal1.setText("提现日期每月" + withdraw_begintime + "号—" + withdraw_endtime + "号");
     }
 
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_allWithdrawal:
+                et_withdrawalAmount1.setText(tv_money.getText().toString());
+                et_withdrawalAmount1.setSelection(et_withdrawalAmount1.getText().toString().trim().length());
+                et_withdrawalAmount1.requestFocus();
+                break;
+            case R.id.tv_modification:
+                ((WithdrawalContract.Presenter) mPresenter).isLogin(1);
+                break;
+            case R.id.tv_driverWithdrawAgreement:
+                Intent intentDriver = new Intent(aty, AboutUsActivity.class);
+                intentDriver.putExtra("type", "driver_withdrawa_description");
+                showActivity(aty, intentDriver);
+                break;
+            case R.id.tv_confirmSubmit:
+                //    ((WithdrawalContract.Presenter) mPresenter).postWithdrawal(sweetAlertDialog, et_withdrawalAmount1.getText().toString(), et_bankName.getText().toString(), et_paymentAccount.getText().toString(), et_openAccountName.getText().toString());
+                break;
+        }
+    }
+
+
     @Override
     public void setPresenter(WithdrawalContract.Presenter presenter) {
-
+        mPresenter = presenter;
     }
 
     @Override
-    public void getSuccess(String s) {
-
-    }
-
-    @Override
-    public void error(String msg) {
-
-    }
-
-
-//    @Override
-//    public void widgetClick(View v) {
-//        super.widgetClick(v);
-//        switch (v.getId()) {
-//
-//            case R.id.tv_withdrawalInstructions:
-//                Intent intent = new Intent(aty, AboutUsActivity.class);
-//                intent.putExtra("type", "driver_withdrawa_description");
-//                showActivity(aty, intent);
-//                break;
-//
-//            case R.id.tv_confirmSubmit:
-//                if (sweetAlertDialog == null) {
-//                    initDialog();
-//                }
-//                ((WithdrawalContract.Presenter) mPresenter).postWithdrawal(sweetAlertDialog, et_withdrawalAmount1.getText().toString(), et_bankName.getText().toString(), et_paymentAccount.getText().toString(), et_openAccountName.getText().toString());
-//                break;
-//        }
-//    }
-//
-//    @Override
-//    public void getSuccess(String s) {
-//        dismissLoadingDialog();
+    public void getSuccess(String success, int flag) {
+        if (flag == 1) {
+            Intent intent = new Intent(aty, MyBankCardActivity.class);
+            intent.putExtra("bankCardName", bankCardName);
+            intent.putExtra("bankCardNun", bankCardNun);
+            intent.putExtra("bankCardId", bankCardId);
+            intent.putExtra("type", 1);
+            startActivityForResult(intent, 1);
+        }
+        dismissLoadingDialog();
 //        if (sweetAlertDialog == null) {
 //            initDialog();
 //        }
@@ -142,25 +163,20 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
 //                        aty.finish();
 //                    }
 //                }).show();
-//    }
-//
-//    @Override
-//    public void error(String msg) {
-//        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
-//            dismissLoadingDialog();
-//            showActivity(aty, LoginActivity.class);
-//            return;
-//        }
-//        dismissLoadingDialog();
-//        ViewInject.toast(msg);
-//    }
-//
-//    @Override
-//    public void setPresenter(WithdrawalContract.Presenter presenter) {
-//        mPresenter = presenter;
-//    }
-//
-//    /**
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
+            dismissLoadingDialog();
+            showActivity(aty, LoginActivity.class);
+            return;
+        }
+        dismissLoadingDialog();
+        ViewInject.toast(msg);
+    }
+
+    //    /**
 //     * 弹框设置
 //     */
 //    private void initDialog() {
@@ -179,9 +195,23 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
 //                });
 //    }
 //
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        sweetAlertDialog = null;
-//    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            bankCardName = data.getStringExtra("bankCardName");
+            bankCardNun = data.getStringExtra("bankCardNun");
+            bankCardId = data.getStringExtra("bankCardId");
+            tv_withdrawalBank.setText(bankCardName + "(" + getString(R.string.tail) + bankCardNun + ")");
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // sweetAlertDialog = null;
+    }
 }

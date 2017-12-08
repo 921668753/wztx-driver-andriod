@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/common_title"></include>
+    <include layout="@layout/common_title" />
 
     <ScrollView
         style="@style/MatchAuto"
@@ -30,6 +30,7 @@
                 android:layout_marginLeft="@dimen/dimen10"
                 android:layout_marginRight="@dimen/dimen10"
                 android:horizontalSpacing="@dimen/dimen10"
+                android:listSelector="@android:color/transparent"
                 android:numColumns="3"
                 android:verticalSpacing="@dimen/dimen10"
                 tools:listitem="@layout/item_conductormodels" />
@@ -49,6 +50,7 @@
                 android:layout_marginLeft="@dimen/dimen10"
                 android:layout_marginRight="@dimen/dimen10"
                 android:horizontalSpacing="@dimen/dimen10"
+                android:listSelector="@android:color/transparent"
                 android:numColumns="3"
                 android:verticalSpacing="@dimen/dimen10"
                 tools:listitem="@layout/item_conductormodels" />

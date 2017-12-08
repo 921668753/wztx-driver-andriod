@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         super.initData();
         mPresenter = new MainPresenter(this);
         contentFragment = new GetOrderFragment();
-        contentFragment1 = new OrderFragment();
+        contentFragment1 = new MissionFragment();
         contentFragment2 = new SupplyGoodsFragment();
         contentFragment3 = new MineFragment();
         chageIcon = getIntent().getIntExtra("chageIcon", 0);

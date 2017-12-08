@@ -1,29 +1,31 @@
-package com.ruitukeji.zwbs.mine.mywallet.withdrawal;
+package com.ruitukeji.zwbs.mine.mywallet.mybankcard;
 
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Administrator on 2017/2/17.
  */
 
-public interface WithdrawalContract {
+public interface AddBankCardContract {
 
     interface Presenter extends BasePresenter {
-        /**
-         * 发送提现信息
-         */
-        void postWithdrawal(SweetAlertDialog sweetAlertDialog, String withdrawalAmount, String bankName, String paymentAccount, String accountName);
 
         /**
-         * 是否登录
+         * 获取验证码
+         *
+         * @param phone
          */
-        void isLogin(int flag);
+        void postCode(String phone, String type);
+
+        /**
+         * 添加银行卡
+         */
+        void postAddBankCard(String cardholder, String bankCardNumber, String withdrawalsBank, String openingBank, String phone, String verificationCode);
+
     }
 
-    interface View extends BaseNewView<Presenter,String> {
+    interface View extends BaseNewView<Presenter, String> {
 //        /**
 //         * http请求正确
 //         *

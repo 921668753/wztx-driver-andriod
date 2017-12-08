@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.getorder.dialog;
+package com.ruitukeji.zwbs.supplygoods.dialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
+import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedContract;
+import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedPresenter;
 import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 
 /**
@@ -22,7 +24,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
 
     private Context context;
     private TextView tv_transparent;
-    private ChildLiistView lv_models;
+    private ChildLiistView lv_availableType;
 
     private AvailableTypeBouncedContract.Presenter mPresenter;
 
@@ -35,7 +37,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_modelsbounced);
+        setContentView(R.layout.dialog_availabletype);
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -44,8 +46,8 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
     }
 
     private void initView() {
-        lv_models = (ChildLiistView) findViewById(R.id.lv_models);
-        lv_models.setOnItemClickListener(this);
+        lv_availableType = (ChildLiistView) findViewById(R.id.lv_availableType);
+        lv_availableType.setOnItemClickListener(this);
         mPresenter = new AvailableTypeBouncedPresenter(this);
         tv_transparent = (TextView) findViewById(R.id.tv_transparent);
         tv_transparent.setOnClickListener(this);

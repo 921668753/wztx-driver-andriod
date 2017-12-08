@@ -83,8 +83,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                style="@style/WrapWrap"
+                android:id="@+id/img_startingPoint"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
 
         </LinearLayout>
@@ -112,8 +115,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                style="@style/WrapWrap"
+                android:id="@+id/img_endPoint"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
         </LinearLayout>
 
@@ -139,8 +145,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                style="@style/WrapWrap"
+                android:id="@+id/img_availableType"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
 
         </LinearLayout>
@@ -168,8 +177,11 @@
                 android:textSize="@dimen/textsize14" />
 
             <ImageView
-                style="@style/WrapWrap"
+                android:id="@+id/img_conductorModels"
+                android:layout_width="@dimen/dimen6"
+                android:layout_height="@dimen/dimen4"
                 android:layout_marginLeft="@dimen/dimen5"
+                android:scaleType="fitXY"
                 android:src="@mipmap/ic_category_gray_down" />
 
         </LinearLayout>
