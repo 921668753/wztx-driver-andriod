@@ -506,8 +506,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
 
             case R.id.ll_availableType:
                 AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeId) {
-
-
                     @Override
                     public void confirm(String availableTypeName, int availableTypeId1) {
                         this.dismiss();

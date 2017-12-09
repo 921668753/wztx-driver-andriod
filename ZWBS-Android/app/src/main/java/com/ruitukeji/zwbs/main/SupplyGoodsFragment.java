@@ -26,7 +26,9 @@ import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.supplygoods.SetTheLineActivity;
+import com.ruitukeji.zwbs.supplygoods.dialog.AvailableTypeBouncedDialog;
 import com.ruitukeji.zwbs.supplygoods.dialog.ConductorModelsBouncedDialog;
+import com.ruitukeji.zwbs.supplygoods.dialog.OriginBouncedDialog;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
@@ -78,7 +80,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private TextView tv_availableType;
     @BindView(id = R.id.img_availableType)
     private ImageView img_availableType;
-
+    private int availableTypeId = 0;
     /**
      * 车长车型
      */
@@ -126,6 +128,9 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private int vehicleModelId = 0;
     private int vehicleLengthId = 0;
     private int id = 0;
+    private int provinceId = 0;
+    private int cityId = 0;
+    private int areaId = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -207,13 +212,30 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 aty.showActivity(aty, SetTheLineActivity.class);
                 break;
             case R.id.ll_startingPoint:
+                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, provinceId, cityId, areaId);
 
+
+
+
+                originBouncedDialog.show();
                 break;
             case R.id.ll_endPoint:
-
+                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, provinceId, cityId, areaId);
+                originBouncedDialog1.show();
                 break;
             case R.id.ll_availableType:
-
+                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeId) {
+                    @Override
+                    public void confirm(String availableTypeName, int availableTypeId1) {
+                        this.dismiss();
+                        availableTypeId = availableTypeId1;
+                        tv_availableType.setText(availableTypeName);
+                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
+                availableTypeBouncedDialog.show();
                 break;
             case R.id.ll_conductorModels:
                 ConductorModelsBouncedDialog conductorModelsBouncedDialog = new ConductorModelsBouncedDialog(aty, vehicleLengthId, vehicleModelId) {
@@ -240,8 +262,8 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
+            //   PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods", false);
+            //   PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
