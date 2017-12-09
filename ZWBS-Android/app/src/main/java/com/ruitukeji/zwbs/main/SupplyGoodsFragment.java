@@ -212,15 +212,23 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 aty.showActivity(aty, SetTheLineActivity.class);
                 break;
             case R.id.ll_startingPoint:
-                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, provinceId, cityId, areaId);
+                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, provinceId, cityId, areaId) {
+                    @Override
+                    public void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
 
 
-
-
+                    }
+                };
                 originBouncedDialog.show();
                 break;
             case R.id.ll_endPoint:
-                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, provinceId, cityId, areaId);
+                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, provinceId, cityId, areaId) {
+                    @Override
+                    public void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
+                     //   province1Name = provinceName;
+
+                    }
+                };
                 originBouncedDialog1.show();
                 break;
             case R.id.ll_availableType:
