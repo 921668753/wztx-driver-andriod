@@ -28,10 +28,10 @@ public class GlideImageLoader implements ImageLoader {
             return;
         }
         if (path.startsWith("http")) {
-//            int index = path.indexOf("?");
-//            if (path.contains("?") || index != -1) {
-//                path = path.substring(0, index);
-//            }
+            int index = path.indexOf("?");
+            if (path.contains("?") || index != -1) {
+                path = path.substring(0, index);
+            }
             GlideApp.with(activity)                      //配置上下文
                     .load(path)//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
                     //    .error(R.mipmap.default_image)           //设置错误图片
