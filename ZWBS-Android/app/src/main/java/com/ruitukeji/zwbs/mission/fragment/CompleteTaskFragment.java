@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,12 +24,14 @@ import com.ruitukeji.zwbs.entity.OrderBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
+import com.ruitukeji.zwbs.mission.dialog.CalendarBouncedDialog;
 import com.ruitukeji.zwbs.order.OrderContract;
 import com.ruitukeji.zwbs.order.OrderPresenter;
+import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
@@ -39,6 +42,21 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 public class CompleteTaskFragment extends BaseFragment implements OrderContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
 
     private MainActivity aty;
+
+    @BindView(id = R.id.tv_today, click = true)
+    private TextView tv_today;
+
+    @BindView(id = R.id.img_arrowLeft, click = true)
+    private ImageView img_arrowLeft;
+
+    @BindView(id = R.id.tv_data)
+    private TextView tv_data;
+
+    @BindView(id = R.id.img_arrowRight, click = true)
+    private ImageView img_arrowRight;
+
+    @BindView(id = R.id.img_calendar, click = true)
+    private TextView img_calendar;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -68,11 +86,12 @@ public class CompleteTaskFragment extends BaseFragment implements OrderContract.
      * 是否加载更多
      */
     private boolean isShowLoadingMore = false;
+
     /**
      * 订单状态
      */
     private String type = "all";
-
+    private long dataLong = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -80,11 +99,13 @@ public class CompleteTaskFragment extends BaseFragment implements OrderContract.
         return View.inflate(aty, R.layout.fragment_task, null);
     }
 
+
     @Override
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
         mAdapter = new TaskViewAdapter(getActivity());
+        dataLong = System.currentTimeMillis() / 1000;
     }
 
     @Override
@@ -138,6 +159,32 @@ public class CompleteTaskFragment extends BaseFragment implements OrderContract.
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.tv_today:
+                dataLong = System.currentTimeMillis() / 1000;
+                String todayStr = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+                tv_data.setText(todayStr);
+                break;
+            case R.id.img_arrowLeft:
+                dataLong = dataLong - 24 * 60 * 60;
+                String arrowLeft = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+                tv_data.setText(arrowLeft);
+                break;
+            case R.id.img_arrowRight:
+                dataLong = dataLong + 24 * 60 * 60;
+                String arrowRight = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+                tv_data.setText(arrowRight);
+                break;
+            case R.id.img_calendar:
+                CalendarBouncedDialog calendarBouncedDialog = new CalendarBouncedDialog(aty, dataLong) {
+                    @Override
+                    public void confirm(String dataStr, long data) {
+                        this.dismiss();
+                        tv_data.setText(dataStr);
+                        dataLong = data;
+                    }
+                };
+                calendarBouncedDialog.show();
+                break;
             case R.id.tv_hintText:
                 if (tv_hintText.getText().toString().equals(getString(R.string.login1))) {
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "id", 0);

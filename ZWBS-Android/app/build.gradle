@@ -119,7 +119,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:26.1.0'
-
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
@@ -149,7 +148,7 @@ dependencies {
     //创建二维码图片
     compile 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
     //创建二维码图片
-    compile 'cn.bingoogolapple:bga-adapter:latest.release'
+    compile 'cn.bingoogolapple:bga-baseadapter:1.2.7@aar'
     //bga  adapter
     compile 'cn.bingoogolapple:bga-imageview:latest.release'
     //BGAImageView-Android   imgview框架

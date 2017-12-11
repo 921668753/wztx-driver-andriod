@@ -21,7 +21,7 @@ import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DialogUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
 /**

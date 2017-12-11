@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen48"
         android:background="@color/white">
@@ -121,10 +122,14 @@
 
     </RelativeLayout>
 
-    <TextView style="@style/DividerWidth" />
+    <TextView
+        android:id="@+id/tv_dividerWidth"
+        style="@style/DividerWidth"
+        android:layout_below="@+id/rl_title" />
 
     <FrameLayout
         android:id="@+id/fragment_contentMission"
-        style="@style/MatchMatch" />
+        style="@style/MatchMatch"
+        android:layout_below="@+id/tv_dividerWidth" />
 
-</LinearLayout>
+</RelativeLayout>

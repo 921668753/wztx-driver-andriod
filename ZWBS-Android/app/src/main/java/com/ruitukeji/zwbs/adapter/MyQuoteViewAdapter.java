@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.entity.MyQuoteBean.ResultBean.ListBean;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 /**
  * 订单适配器

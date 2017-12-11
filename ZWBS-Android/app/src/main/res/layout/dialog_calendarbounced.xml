@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:calendarview="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen95"
+        android:background="@color/mainColor"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dimen5"
+        android:paddingTop="@dimen/dimen5"
+        android:text="2017-12-12"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <com.othershe.calendarview.weiget.WeekView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#ffffff" />
+
+    <com.othershe.calendarview.weiget.CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen230"
+        android:background="#ffffff"
+        calendarview:choose_type="single"
+        calendarview:show_holiday="true"
+        calendarview:show_lunar="false"
+        calendarview:show_term="true"
+        calendarview:switch_choose="false" />
+
+
+    <TextView
+        android:id="@+id/tv_transparent"
+        style="@style/MatchAuto"
+        android:background="@color/transparent_1" />
+
+</LinearLayout>
+
+
+

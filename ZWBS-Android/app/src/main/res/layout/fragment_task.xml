@@ -24,11 +24,13 @@
             android:textSize="@dimen/textsize15" />
 
         <ImageView
+            android:id="@+id/img_arrowLeft"
             style="@style/WrapWrap"
             android:padding="@dimen/dimen15"
             android:src="@mipmap/ic_arrow_left" />
 
         <TextView
+            android:id="@+id/tv_data"
             style="@style/WrapMatch"
             android:gravity="center"
             android:text="2017-10-21"
@@ -36,6 +38,7 @@
             android:textSize="@dimen/textsize15" />
 
         <ImageView
+            android:id="@+id/img_arrowRight"
             style="@style/WrapWrap"
             android:padding="@dimen/dimen15"
             android:src="@mipmap/ic_arrow_right" />

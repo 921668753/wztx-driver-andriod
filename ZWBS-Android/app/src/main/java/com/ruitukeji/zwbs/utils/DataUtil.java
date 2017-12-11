@@ -65,6 +65,25 @@ public class DataUtil {
         return res;
     }
 
+    /**
+     * 将字符串转为时间戳
+     *
+     * @param dateString
+     * @param pattern
+     * @return
+     */
+    public static long getStringToDate(String dateString, String pattern) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return date.getTime();
+    }
+
     /*
         * 将时间戳转换为时间
         */
@@ -75,5 +94,25 @@ public class DataUtil {
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
+    }
+
+    /**
+     * unix时间戳转换成年月日周十分（格式：2017-09-30 周一 09:30）
+     * 需要处理之后才可以被转换为日期
+     *
+     * @return
+     */
+    public static String formatData(long timeorigin, String formatstr) {
+        if (timeorigin == 0) {
+            return "";
+        }
+        timeorigin = timeorigin * 1000;
+//        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd E HH:mm");
+        SimpleDateFormat dateformat = new SimpleDateFormat(formatstr);
+        try {
+            return dateformat.format(timeorigin);
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

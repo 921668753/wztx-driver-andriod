@@ -7,8 +7,9 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
 import com.ruitukeji.zwbs.entity.BannerBean.ResultBean.ListBean;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
+
 
 /**
  * 其他服务

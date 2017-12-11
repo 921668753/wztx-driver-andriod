@@ -7,8 +7,8 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 /**
  * 图片列表适配器

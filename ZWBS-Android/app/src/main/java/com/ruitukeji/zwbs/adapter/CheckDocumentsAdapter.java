@@ -5,8 +5,8 @@ import android.content.Context;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.entity.RefreshModel;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 /**
  * 查看证件适配器

@@ -5,8 +5,8 @@ import android.content.Context;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.LengthBean;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 /**
  * 我的银行卡列表适配器
