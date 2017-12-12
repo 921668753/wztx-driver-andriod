@@ -42,13 +42,30 @@ public class SettingsPresenter implements SettingsContract.Presenter {
         RequestClient.downloadApp(updateAppUrl, progressListener, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response);
+                mView.getSuccess(response, 0);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg);
+                mView.errorMsg(msg, 0);
             }
         });
     }
+
+    @Override
+    public void isLogin(int flag) {
+        RequestClient.isLogin(new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
+            }
+        });
+    }
+
+
 }

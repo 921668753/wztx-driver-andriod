@@ -1,6 +1,7 @@
 package com.ruitukeji.zwbs.mine.settings;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DataCleanManager;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
@@ -39,6 +41,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class SettingsActivity extends BaseActivity implements SettingsContract.View, EasyPermissions.PermissionCallbacks {
 
+    @BindView(id = R.id.ll_aboutUs, click = true)
+    private LinearLayout ll_aboutUs;
 
     @BindView(id = R.id.ll_changePassword, click = true)
     private LinearLayout changePassword;
@@ -72,6 +76,7 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
         super.initData();
         sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.CUSTOM_IMAGE_TYPE);
         mPresenter = new SettingsPresenter(this);
+        ((SettingsContract.Presenter) mPresenter).isLogin(1);
     }
 
     @Override
@@ -114,14 +119,19 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_aboutUs:
+                Intent intent = new Intent(aty, AboutUsActivity.class);
+                intent.putExtra("type", "driver_about");
+                showActivity(aty, intent);
+                break;
             case R.id.ll_changePassword:
-                showActivity(aty, ChangePasswordActivity.class);
+                ((SettingsContract.Presenter) mPresenter).isLogin(2);
                 break;
             case R.id.ll_systemVersion:
                 if (isUpdateApp) {
                     updateAppUrl = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "updateAppUrl", null);
                     if (StringUtils.isEmpty(updateAppUrl)) {
-                        error("服务器错误,下载地址为空");
+                        errorMsg("服务器错误,下载地址为空", 0);
                         return;
                     }
                     sweetAlertDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -173,22 +183,40 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
     }
 
     @Override
-    public void getSuccess(String s) {
-        BaseResult baseResult = (BaseResult) JsonUtil.getInstance().json2Obj(s, BaseResult.class);
-        if ((String) baseResult.getResult() == null) {
-            return;
+    public void getSuccess(String success, int flag) {
+        if (flag == 0) {
+            BaseResult baseResult = (BaseResult) JsonUtil.getInstance().json2Obj(success, BaseResult.class);
+            if ((String) baseResult.getResult() == null) {
+                return;
+            }
+            File path = new File((String) baseResult.getResult());
+            FileNewUtil.installApkFile(this, path.getAbsolutePath());
+        } else if (flag == 1) {
+            tv_logOut.setVisibility(View.VISIBLE);
+        } else if (flag == 2) {
+            showActivity(aty, ChangePasswordActivity.class);
         }
-        File path = new File((String) baseResult.getResult());
-        FileNewUtil.installApkFile(this, path.getAbsolutePath());
         dismissLoadingDialog();
     }
 
     @Override
-    public void error(String msg) {
-        isUpdateApp = false;
-        //    toLigon(msg);
-        dismissLoadingDialog();
-        ViewInject.toast(msg);
+    public void errorMsg(String msg, int flag) {
+        if (flag == 0) {
+            isUpdateApp = false;
+            dismissLoadingDialog();
+            ViewInject.toast(msg);
+        } else if (flag == 1) {
+            tv_logOut.setVisibility(View.GONE);
+            dismissLoadingDialog();
+        } else if (flag == 2) {
+            if (msg.equals("" + NumericConstants.TOLINGIN)) {
+                showActivity(aty, LoginActivity.class);
+                return;
+            }
+            dismissLoadingDialog();
+            ViewInject.toast(msg);
+        }
+
     }
 
 

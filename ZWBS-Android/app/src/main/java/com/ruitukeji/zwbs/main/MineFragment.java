@@ -28,7 +28,7 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
-import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.mine.mywallet.MyWalletActivity;
@@ -44,7 +44,6 @@ import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import java.util.List;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import cn.bingoogolapple.refreshlayout.util.BGARefreshScrollingUtil;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -242,7 +241,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 aty.showActivity(aty, intent);
                 break;
             case R.id.ll_settings:
-                ((MineContract.Presenter) mPresenter).isLogin(5);
+                //   ((MineContract.Presenter) mPresenter).isLogin(5);
+                getSuccess("", 5);
                 break;
         }
     }

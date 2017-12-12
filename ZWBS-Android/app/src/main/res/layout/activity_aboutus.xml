@@ -5,7 +5,7 @@
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
-    tools:context=".mine.aboutus.AboutUsActivity">
+    tools:context=".mine.settings.aboutus.AboutUsActivity">
 
 
     <!--<ImageView-->

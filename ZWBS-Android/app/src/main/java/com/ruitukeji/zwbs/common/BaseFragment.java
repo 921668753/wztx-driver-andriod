@@ -19,7 +19,7 @@ import rx.functions.Action1;
 /**
  * 公用的父Fragment
  * 防止除向其他共用时增加
- * Created by ruitu on 2016/9/14.
+ * Created by ruitu on 2017/9/14.
  */
 
 public abstract class BaseFragment extends KJFragment implements LoadingDialogView {

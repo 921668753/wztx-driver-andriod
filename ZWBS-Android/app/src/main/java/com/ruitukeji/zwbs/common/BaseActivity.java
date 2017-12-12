@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.common;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,7 +20,7 @@ import rx.functions.Action1;
 /**
  * 公用的父Activity
  * 防止除向其他共用时增加
- * Created by ruitu on 2016/9/13.
+ * Created by ruitu on 2017/9/13.
  */
 
 public abstract class BaseActivity extends KJActivity implements LoadingDialogView {
@@ -32,6 +33,7 @@ public abstract class BaseActivity extends KJActivity implements LoadingDialogVi
      *
      * @param outState
      */
+    @SuppressLint("MissingSuperCall")
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //  super.onSaveInstanceState(outState);

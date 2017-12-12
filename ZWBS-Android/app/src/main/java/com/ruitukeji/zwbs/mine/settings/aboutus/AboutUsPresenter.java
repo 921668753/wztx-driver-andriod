@@ -1,20 +1,9 @@
-package com.ruitukeji.zwbs.mine.aboutus;
+package com.ruitukeji.zwbs.mine.settings.aboutus;
 
-import com.kymjs.common.CipherUtils;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
-import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
-import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by ruitu on 2016/9/24.

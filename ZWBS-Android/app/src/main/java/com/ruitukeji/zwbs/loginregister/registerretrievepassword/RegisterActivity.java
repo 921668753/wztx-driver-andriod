@@ -19,7 +19,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.LoginBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;

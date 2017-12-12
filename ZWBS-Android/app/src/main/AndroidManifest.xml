@@ -245,7 +245,7 @@
             android:screenOrientation="portrait"></activity>
         <!--关于我们-->
         <activity
-            android:name=".mine.aboutus.AboutUsActivity"
+            android:name=".mine.settings.aboutus.AboutUsActivity"
             android:screenOrientation="portrait"></activity>
         <!--设置-->
         <activity

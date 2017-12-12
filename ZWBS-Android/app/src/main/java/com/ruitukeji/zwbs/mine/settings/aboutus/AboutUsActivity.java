@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.aboutus;
+package com.ruitukeji.zwbs.mine.settings.aboutus;
 
 import android.util.Log;
 

@@ -16,7 +16,7 @@ import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.mine.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
