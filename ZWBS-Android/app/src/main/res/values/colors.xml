@@ -40,7 +40,7 @@
     <color name="solidcolors">#FFE2DC</color>
     <color name="e9E9EColors">#9E9E9E</color>
 
-    <color name="white">#ffffff</color>
+    <color name="white">#FFFFFF</color>
 
     <color name="certificationcolors">#dcdcdc</color>
     <color name="certificationcolors1">#62d405</color>
@@ -67,6 +67,9 @@
     <color name="ff9A06Colors">#FF9A06</color>
     <color name="aFF007Colors">#007AFF</color>
 
+    <!-- 消息-->
+    <color name="fDBD25Colors">#FDBD25</color>
+    <color name="f85353Colors">#F85353</color>
 
     <!--公告通知-->
     <color name="announcementColors">#2c2e35</color>

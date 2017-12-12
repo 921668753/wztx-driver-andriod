@@ -6,10 +6,12 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/ll_systemMessage"
         style="@style/AutoMatch"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_systemMessage"
             style="@style/MatchAuto"
             android:gravity="center"
             android:text="@string/systemMessage"
@@ -17,6 +19,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_systemMessage1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen1"
             android:layout_marginLeft="@dimen/dimen54"
@@ -26,10 +29,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_orderMessage"
         style="@style/AutoMatch"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_orderMessage"
             style="@style/MatchAuto"
             android:gravity="center"
             android:text="@string/orderMessage"
@@ -37,6 +42,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_orderMessage1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen1"
             android:layout_marginLeft="@dimen/dimen54"

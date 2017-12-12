@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".getorder.message.OrderMessageActivity">
+
+    <include layout="@layout/common_title1" />
+
+    <include layout="@layout/message_title_bar" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@color/background">
+
+        <ListView
+            android:id="@+id/lv_message"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_ordermessage" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:background="@color/mainColor"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapMatch"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:gravity="center"
+            android:text="@string/generalElection"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="@string/markedRead"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            style="@style/WrapMatch"
+            android:layout_marginRight="@dimen/dimen15"
+            android:gravity="center"
+            android:text="@string/delete1"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+</LinearLayout>

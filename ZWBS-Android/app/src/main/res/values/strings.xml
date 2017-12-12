@@ -221,6 +221,8 @@
     <string name="generalElection">全选</string>
     <string name="markedRead">标为已读</string>
     <string name="delete1">删除</string>
+    <string name="edit">编辑</string>
+    <string name="complete">完成</string>
 
     <!--订单消息-->
     <string name="orderUser">下单用户：</string>
@@ -291,6 +293,7 @@
     <string name="online_service">在线客服</string>
     <string name="recommend_courteous">推荐有礼</string>
     <string name="about_us">关于我们</string>
+    <string name="helpCenter">帮助中心</string>
     <string name="settings">设置</string>
     <string name="otherServices">其他服务</string>
     <string name="notPass">您认证未通过，请先认证！</string>
@@ -580,6 +583,8 @@
     <string name="recharge">充值</string>
     <string name="cashWithdrawal">提现</string>
     <string name="myBankCard">我的银行卡</string>
+    <string name="paymentPasswordManagement">支付密码管理</string>
+
     <string name="withdrawalInstruction">提现说明：</string>
     <string name="withdrawalInstruction1">每月15日、30日为提现日，提现金额3~5个工作日到账</string>
 

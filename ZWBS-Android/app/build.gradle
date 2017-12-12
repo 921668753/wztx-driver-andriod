@@ -131,8 +131,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26.1.0'
     //刷新框架
     compile 'cn.bingoogolapple:bga-refreshlayout:1.1.7@aar'
-    //刷新框架
-    compile 'cn.bingoogolapple:bga-swipebacklayout:1.1.6@aar'//侧滑删除
+    //侧滑删除
+    compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'
     // 换成己工程里依赖的 support-v4 的版本
     compile 'com.android.support:support-v4:26.1.0'
     //    compile 'cn.bingoogolapple:bga-photopicker:latest.release'//图片列表

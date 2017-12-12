@@ -1,44 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_systemMessage"
     style="@style/MatchWrap"
-    android:background="@color/mainColor"
-    android:orientation="horizontal"
-    android:paddingRight="@dimen/dimen15">
+    app:bga_sil_bottomMode="pullOut"
+    app:bga_sil_springDistance="@dimen/dimen20"
+    app:bga_sil_swipeDirection="left">
 
-    <ImageView
-        style="@style/WrapWrap"
-        android:layout_gravity="center_vertical"
-        android:paddingBottom="@dimen/dimen15"
-        android:paddingLeft="@dimen/dimen15"
-        android:paddingTop="@dimen/dimen15"
-        android:src="@mipmap/ic_checkbox_unselect" />
+    <!-- BGASwipeItemLayout 的 layout_marginLeft 设置成了 2dp，以便触发滑动返回 -->
 
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/WrapWrap"
-        android:layout_gravity="center_vertical"
-        android:paddingBottom="@dimen/dimen20"
-        android:paddingLeft="@dimen/dimen14"
-        android:paddingTop="@dimen/dimen20"
-        android:singleLine="true"
-        android:text="你好"
-        android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize15" />
+    <LinearLayout style="@style/WrapMatch.Horizontal">
 
-    <ImageView
-        android:id="@+id/iv_tag"
-        android:layout_width="@dimen/dimen6"
-        android:layout_height="@dimen/dimen6"
-        android:layout_marginLeft="@dimen/dimen5"
-        android:layout_marginTop="@dimen/dimen25"
-        android:background="@drawable/shape_dot" />
+        <TextView
+            android:id="@+id/tv_markedRead"
+            android:layout_width="@dimen/dimen103"
+            android:layout_height="match_parent"
+            android:background="@color/fDBD25Colors"
+            android:gravity="center"
+            android:text="@string/markedRead"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize17" />
 
-    <TextView
-        android:id="@+id/tv_time"
-        style="@style/AutoMatch"
-        android:gravity="right|center_vertical"
-        android:text="2017-12-12"
-        android:textColor="@color/hintcolors"
-        android:textSize="@dimen/textsize12" />
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="@dimen/dimen68"
+            android:layout_height="match_parent"
+            android:background="@color/f85353Colors"
+            android:gravity="center"
+            android:text="@string/delete1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize17" />
+    </LinearLayout>
 
-</LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:orientation="horizontal"
+        android:paddingRight="@dimen/dimen15">
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15"
+            android:src="@mipmap/ic_checkbox_unselect" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:layout_gravity="center_vertical"
+            android:paddingBottom="@dimen/dimen20"
+            android:paddingLeft="@dimen/dimen14"
+            android:paddingTop="@dimen/dimen20"
+            android:singleLine="true"
+            android:text="你好"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            android:id="@+id/iv_tag"
+            android:layout_width="@dimen/dimen6"
+            android:layout_height="@dimen/dimen6"
+            android:layout_marginLeft="@dimen/dimen5"
+            android:layout_marginTop="@dimen/dimen25"
+            android:background="@drawable/shape_dot" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/AutoMatch"
+            android:gravity="right|center_vertical"
+            android:text="2017-12-12"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize12" />
+
+    </LinearLayout>
+
+</cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>

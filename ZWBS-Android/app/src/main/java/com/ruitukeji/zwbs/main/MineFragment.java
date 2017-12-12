@@ -28,6 +28,7 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
+import com.ruitukeji.zwbs.mine.helpcenter.HelpCenterActivity;
 import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
@@ -159,10 +160,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     private TextView tv_customerServiceTelephone;
 
     /**
-     * 关于我们
+     * 帮助中心
      */
-    @BindView(id = R.id.ll_aboutUs, click = true)
-    private LinearLayout ll_aboutUs;
+    @BindView(id = R.id.ll_helpCenter, click = true)
+    private LinearLayout ll_helpCenter;
 
     /**
      * 设置
@@ -235,10 +236,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             case R.id.ll_customerServiceTelephone:
                 choiceCallWrapper(tv_customerServiceTelephone.getText().toString().trim());
                 break;
-            case R.id.ll_aboutUs:
-                Intent intent = new Intent(aty, AboutUsActivity.class);
-                intent.putExtra("type", "driver_about");
-                aty.showActivity(aty, intent);
+            case R.id.ll_helpCenter:
+//                Intent intent = new Intent(aty, HelpCenterActivity.class);
+//                intent.putExtra("type", "driver_about");
+                aty.showActivity(aty, HelpCenterActivity.class);
                 break;
             case R.id.ll_settings:
                 //   ((MineContract.Presenter) mPresenter).isLogin(5);

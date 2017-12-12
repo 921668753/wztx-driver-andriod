@@ -200,6 +200,38 @@
                 </LinearLayout>
 
 
+                <LinearLayout
+                    android:id="@+id/ll_paymentPassword"
+                    style="@style/Match50"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/mainColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:src="@mipmap/ic_payment_password" />
+
+
+                    <TextView
+                        style="@style/WrapWrap"
+                        android:layout_marginLeft="@dimen/dimen19"
+                        android:text="@string/paymentPasswordManagement"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize16" />
+
+                    <TextView style="@style/AutoWrap" />
+
+                    <ImageView
+                        style="@style/WrapWrap"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/ic_arrow" />
+
+                </LinearLayout>
+
+
                 <TextView
                     style="@style/MatchWrap"
                     android:layout_marginTop="@dimen/dimen25"

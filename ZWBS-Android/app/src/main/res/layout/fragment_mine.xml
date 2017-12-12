@@ -474,7 +474,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/ll_aboutUs"
+                    android:id="@+id/ll_helpCenter"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen50"
                     android:background="@color/mainColor"
@@ -485,11 +485,11 @@
                         android:layout_height="@dimen/dimen19"
                         android:layout_marginLeft="@dimen/dimen15"
                         android:layout_marginRight="@dimen/dimen15"
-                        android:src="@mipmap/ic_about" />
+                        android:src="@mipmap/ic_helping" />
 
                     <TextView
                         style="@style/WrapWrap"
-                        android:text="@string/about_us"
+                        android:text="@string/helpCenter"
                         android:textColor="@color/titletextcolors"
                         android:textSize="@dimen/textsize14" />
 

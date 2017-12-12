@@ -16,6 +16,7 @@ import com.ruitukeji.zwbs.entity.MyWalletBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity;
+import com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.PaymentPasswordManagementActivity;
 import com.ruitukeji.zwbs.mine.mywallet.recharge.RechargeActivity;
 import com.ruitukeji.zwbs.mine.mywallet.withdrawal.WithdrawalActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
@@ -73,6 +74,12 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     @BindView(id = R.id.ll_myBankCard, click = true)
     private LinearLayout ll_myBankCard;
 
+    /**
+     * 支付密码管理
+     */
+    @BindView(id = R.id.ll_paymentPassword, click = true)
+    private LinearLayout ll_paymentPassword;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_mywallet);
@@ -108,6 +115,9 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
                 break;
             case R.id.ll_myBankCard:
                 ((MyWalletContract.Presenter) mPresenter).isLogin(2);
+                break;
+            case R.id.ll_paymentPassword:
+                ((MyWalletContract.Presenter) mPresenter).isLogin(3);
                 break;
         }
     }
@@ -177,6 +187,8 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
             showActivity(aty, IncomeDetailsActivity.class);
         } else if (flag == 2) {
             showActivity(aty, MyBankCardActivity.class);
+        } else if (flag == 3) {
+            showActivity(aty, PaymentPasswordManagementActivity.class);
         }
         dismissLoadingDialog();
     }
