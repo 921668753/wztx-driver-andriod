@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.mine.recommendcourteous;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -125,6 +126,7 @@ public class RecommendCourteousActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void createQRCodeWithLogo() {
         /*
         这里为了偷懒，就没有处理匿名 AsyncTask 内部类导致 Activity 泄漏的问题
@@ -191,7 +193,7 @@ public class RecommendCourteousActivity extends BaseActivity {
         @Override
         public void onCancel(SHARE_MEDIA platform) {
             dismissLoadingDialog();
-          //  ViewInject.toast(getString(R.string.shareError));
+            //  ViewInject.toast(getString(R.string.shareError));
         }
     };
 

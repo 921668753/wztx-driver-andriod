@@ -32,7 +32,6 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.WorkingStateBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;

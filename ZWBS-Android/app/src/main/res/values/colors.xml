@@ -97,6 +97,13 @@
     <!--我的钱包-->
     <color name="b2B2B2Colors">#B2B2B2</color>
 
+    <!--设置支付密码-->
+    <color name="fEFDFDColors">#FEFDFD</color>
+    <color name="bEBEC0Colors">#BEBEC0</color>
+    <color name="e8E8EColors">#8E8E8E</color>
+
+    <!--修改支付密码-->
+    <color name="translucent_gray">#BBBBBB</color>
 
     <!--我的银行卡-->
     <color name="aDF6Colors">#68ADF6</color>

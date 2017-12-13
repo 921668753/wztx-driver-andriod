@@ -36,7 +36,7 @@
         app:isShowIconBack="true"
         app:isUpdateTitle="true" />
 
-    <include layout="@layout/common_title"></include>
+    <include layout="@layout/common_title"/>
 
 </RelativeLayout>
 

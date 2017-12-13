@@ -17,11 +17,7 @@ import com.ruitukeji.zwbs.utils.myview.WebViewLayout;
  */
 
 public class AboutUsActivity extends BaseActivity implements AboutUsContract.View {
-
-//    @BindView(id = R.id.tv_version)
-//    private TextView tv_version;
-
-
+    
     @BindView(id = R.id.web_viewlayout)
     private WebViewLayout webViewLayout;
 

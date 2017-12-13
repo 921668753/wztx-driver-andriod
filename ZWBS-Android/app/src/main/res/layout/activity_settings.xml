@@ -7,36 +7,11 @@
 
     <include layout="@layout/common_title" />
 
-    <LinearLayout
-        android:id="@+id/ll_aboutUs"
-        style="@style/Match44"
-        android:layout_marginTop="@dimen/dimen15"
-        android:background="@color/mainColor"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen15"
-            android:text="@string/about_us"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize15" />
-
-        <TextView style="@style/AutoMatch" />
-
-        <ImageView
-            style="@style/WrapWrap"
-            android:layout_marginRight="@dimen/dimen15"
-            android:gravity="right"
-            android:src="@mipmap/ic_arrow" />
-
-    </LinearLayout>
-
-    <include layout="@layout/commom_dividerwidth1" />
 
     <LinearLayout
         android:id="@+id/ll_systemVersion"
         style="@style/Match44"
+        android:layout_marginTop="@dimen/dimen15"
         android:background="@color/mainColor"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -112,10 +87,32 @@
             android:textSize="@dimen/textsize15" />
     </LinearLayout>
 
-    <TextView
-        style="@style/DividerWidth"
-        android:visibility="gone" />
 
+    <include layout="@layout/commom_dividerwidth1" />
+
+    <LinearLayout
+        android:id="@+id/ll_aboutUs"
+        style="@style/Match44"
+        android:background="@color/mainColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:text="@string/about_us"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/AutoMatch" />
+
+        <ImageView
+            style="@style/WrapWrap"
+            android:layout_marginRight="@dimen/dimen15"
+            android:gravity="right"
+            android:src="@mipmap/ic_arrow" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_logOut"

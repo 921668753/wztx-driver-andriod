@@ -41,8 +41,6 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class SettingsActivity extends BaseActivity implements SettingsContract.View, EasyPermissions.PermissionCallbacks {
 
-    @BindView(id = R.id.ll_aboutUs, click = true)
-    private LinearLayout ll_aboutUs;
 
     @BindView(id = R.id.ll_changePassword, click = true)
     private LinearLayout changePassword;
@@ -58,6 +56,9 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
 
     @BindView(id = R.id.tv_cache)
     private TextView cache;
+
+    @BindView(id = R.id.ll_aboutUs, click = true)
+    private LinearLayout ll_aboutUs;
 
     @BindView(id = R.id.tv_logOut, click = true)
     private TextView tv_logOut;

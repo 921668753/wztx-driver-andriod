@@ -4,19 +4,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.MyWalletBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity;
-import com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.PaymentPasswordManagementActivity;
+import com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPasswordActivity;
+import com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.setpaymentpassword.SetPaymentPasswordActivity;
 import com.ruitukeji.zwbs.mine.mywallet.recharge.RechargeActivity;
 import com.ruitukeji.zwbs.mine.mywallet.withdrawal.WithdrawalActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
@@ -188,7 +187,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
         } else if (flag == 2) {
             showActivity(aty, MyBankCardActivity.class);
         } else if (flag == 3) {
-            showActivity(aty, PaymentPasswordManagementActivity.class);
+            showActivity(aty, ModifyPaymentPasswordActivity.class);
         }
         dismissLoadingDialog();
     }

@@ -768,6 +768,46 @@ public class RequestClient {
     }
 
     /**
+     * 帮助中心
+     */
+    public static void getHelpCenter(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.SHOWMYRECOMMLIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 帮助中心详情
+     */
+    public static void getHelpCenterDetails(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.SHOWMYRECOMMLIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+
+
+    /**
      * 修改密码
      */
     public static void postChangePassword(HttpParams httpParams, final ResponseListener<String> listener) {

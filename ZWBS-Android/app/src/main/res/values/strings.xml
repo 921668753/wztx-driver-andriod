@@ -89,6 +89,7 @@
     <string name="testGetCode">获取验证码</string>
     <string name="revalidation">重新验证</string>
     <string name="toResend">s后重发</string>
+    <string name="toResend1">秒后重发</string>
     <string name="clickFinish">点击完成代表您同意</string>
     <string name="myagreement">我同意</string>
     <string name="myagreement1">点注册，即表示已阅读并同意</string>
@@ -118,7 +119,6 @@
     <string name="holdingIdPhoto">手持身份证照</string>
     <string name="sample">请参照“示例”，保证身份证号码清晰可见。</string>
     <string name="sample1">遮挡，模糊，或传不相关图片的都将导致审核不通过。</string>
-    <string name="nextStep">下一步</string>
     <string name="conductorModels">车长车型</string>
     <string name="conductor">车长</string>
     <string name="models">车型</string>
@@ -584,9 +584,36 @@
     <string name="cashWithdrawal">提现</string>
     <string name="myBankCard">我的银行卡</string>
     <string name="paymentPasswordManagement">支付密码管理</string>
-
     <string name="withdrawalInstruction">提现说明：</string>
     <string name="withdrawalInstruction1">每月15日、30日为提现日，提现金额3~5个工作日到账</string>
+
+    <!--设置支付密码-->
+    <string name="setPaymentPassword">设置支付密码</string>
+    <string name="pleaseEnterPaymentPassword">请输入支付密码</string>
+    <string name="pleaseEnterPaymentPassword1">请输入正确的支付密码</string>
+    <string name="pleaseEnterConfirm">请再次输入以确认</string>
+    <string name="paymentPasswordsNotMatch">两次输入的支付密码不一致</string>
+
+    <!--修改支付密码-->
+    <string name="modifyPaymentPassword">修改支付密码</string>
+    <string name="doRememberAccountNumber">您是否记得账号</string>
+    <string name="currentPaymentPassword">当前使用的支付密码</string>
+    <string name="doNotRemember">不记得</string>
+    <string name="remember">记得</string>
+    <string name="verificationCodeMobilePhone">我们已发送验证码到您的手机</string>
+    <string name="fillIn">填写</string>
+    <string name="idNumber">的身份证号</string>
+    <string name="authenticate">验证身份</string>
+    <string name="pleaseEnterIdNumber">请输入证件号</string>
+    <string name="pleaseEnterOldPaymentPassword">请输入旧的支付密码</string>
+    <string name="nextStep">下一步</string>
+
+    <!--修改支付密码-->
+    <string name="pleaseEnterNewPaymentPassword">请输入新的支付密码</string>
+
+
+    <!--确认支付密码-->
+    <string name="confirmPaymentPassword">确认支付密码</string>
 
 
     <!--充值-->

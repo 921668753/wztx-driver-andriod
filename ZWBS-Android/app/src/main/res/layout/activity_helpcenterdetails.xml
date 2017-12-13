@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
     android:background="@color/background"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".mine.helpcenter.HelpCenterDetailsActivity">
 
     <include layout="@layout/common_title" />
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen10"
+        android:layout_marginRight="@dimen/dimen10"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@drawable/shape_conductormodels"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen22"
+            android:paddingLeft="@dimen/dimen19"
+            android:paddingRight="@dimen/dimen19"
+            android:paddingTop="@dimen/dimen22"
+            android:text="为什么要实名认证？"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize18" />
+
+        <TextView style="@style/DividerWidth" />
+
+        <com.ruitukeji.zwbs.utils.myview.WebViewLayout
+            android:id="@+id/web_viewlayout"
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen27"
+            android:paddingLeft="@dimen/dimen13"
+            android:paddingRight="@dimen/dimen13"
+            android:paddingTop="@dimen/dimen27"
+            app:isJavaScriptEnabled="true"
+            app:isShowIconBack="true"
+            app:isUpdateTitle="true" />
 
     </LinearLayout>
 

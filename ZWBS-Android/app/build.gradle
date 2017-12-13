@@ -187,4 +187,16 @@ dependencies {
      * 日历控件
      */
     compile 'com.github.Othershe:CalendarView:1.1.0'
+
+/**
+ * https://github.com/Othershe/CalendarView
+ * 密码
+ * compile 'com.xw.repo:fillblankview:1.0@aar'
+ */
+/**
+ * https://github.com/liuguangli/VerificationCodeInput
+ * 验证码
+ * compile 'com.github.liuguangli:VerificationCodeInput:1.5'
+ */
+
 }
