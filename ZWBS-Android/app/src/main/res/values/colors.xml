@@ -113,5 +113,7 @@
     <color name="c12121olors">#121212</color>
     <color name="cDCDCDColors">#CDCDCD</color>
 
+    <!--充值记录-->
+    <color name="e5E5E5olors">#E5E5E5</color>
 
 </resources>

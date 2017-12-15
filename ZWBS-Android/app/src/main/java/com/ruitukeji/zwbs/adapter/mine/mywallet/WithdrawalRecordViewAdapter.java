@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.adapter;
+package com.ruitukeji.zwbs.adapter.mine.mywallet;
 
 import android.content.Context;
 

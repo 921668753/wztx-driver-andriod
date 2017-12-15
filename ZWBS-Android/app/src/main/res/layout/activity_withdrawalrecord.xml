@@ -13,12 +13,13 @@
         style="@style/MatchMatch"
         android:background="@color/background">
 
-        <!-- item_order -->
         <ListView
             android:id="@+id/lv_withdrawalrecord"
             style="@style/MatchWrap"
-            android:divider="@color/mainColor"
-            android:dividerHeight="@dimen/dimen1"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/dimen15"
+            android:divider="@color/e5E5E5olors"
+            android:dividerHeight="@dimen/dimen0.5"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_withdrawalrecord" />

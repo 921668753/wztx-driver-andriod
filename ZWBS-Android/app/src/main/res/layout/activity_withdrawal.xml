@@ -14,8 +14,7 @@
         android:paddingTop="@dimen/dimen15"
         android:text="@string/withdrawalAmount1"
         android:textColor="@color/titletextcolors"
-        android:textSize="@dimen/textsize14"
-        android:textStyle="bold" />
+        android:textSize="@dimen/textsize14" />
 
     <LinearLayout
         style="@style/MatchWrap"
@@ -35,11 +34,11 @@
             android:id="@+id/et_withdrawalAmount1"
             style="@style/AutoMatch"
             android:background="@color/mainColor"
+            android:hint="@string/withdrawalRecord1"
             android:inputType="numberDecimal"
             android:singleLine="true"
-            android:hint="@string/withdrawalRecord1"
-            android:textColorHint="@color/cDCDCDColors"
             android:textColor="@color/black"
+            android:textColorHint="@color/cDCDCDColors"
             android:textSize="@dimen/textsize35" />
 
     </LinearLayout>

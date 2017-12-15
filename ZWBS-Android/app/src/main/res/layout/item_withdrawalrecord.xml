@@ -4,10 +4,8 @@
     android:layout_height="@dimen/dimen62"
     android:background="@color/mainColor"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/dimen15">
+    android:orientation="vertical">
 
-    <TextView style="@style/AutoWrap" />
 
     <LinearLayout
         style="@style/MatchWrap"
@@ -57,12 +55,5 @@
             android:textSize="@dimen/textsize12" />
 
     </LinearLayout>
-
-
-    <TextView style="@style/AutoWrap" />
-
-
-    <TextView style="@style/DividerWidth" />
-
 
 </LinearLayout>
