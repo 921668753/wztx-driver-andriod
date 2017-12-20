@@ -44,13 +44,14 @@ public class NumericConstants {
 
     //图片权限所需参数
     public final static int REQUEST_CODE_PERMISSION_PHOTO_PICKER = 1;
-    public final static int REQUEST_CODE_CHOOSE_PHOTO = 1;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW = 2;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW1 = 3;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW2 = 4;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW3 = 5;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW4 = 6;
-    public final static int REQUEST_CODE_PHOTO_PREVIEW5 = 7;
+    public final static int REQUEST_CODE_CHOOSE_PHOTO = 1000;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW = 1001;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW1 = 1003;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW2 = 1004;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW3 = 1005;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW4 = 1006;
+    public final static int REQUEST_CODE_PHOTO_PREVIEW5 = 1007;
+
 
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
