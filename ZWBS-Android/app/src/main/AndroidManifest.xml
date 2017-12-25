@@ -277,26 +277,26 @@
         <!--推荐记录-->
         <activity
             android:name=".mine.recommendcourteous.RecommendedRecordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!--关于我们-->
         <activity
             android:name=".mine.settings.aboutus.AboutUsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!--设置-->
         <activity
             android:name=".mine.settings.SettingsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!--修改密码-->
         <activity
             android:name=".mine.settings.ChangePasswordActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <!--其他服务-->
         <activity
             android:name=".mine.otherservices.OtherServicesActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".mine.otherservices.BannerDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!--登录-->
         <activity
@@ -335,12 +335,12 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind"/>
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind"/>
 
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
