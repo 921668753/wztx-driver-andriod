@@ -10,7 +10,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.GetOrderBean.ResultBean.ListBean;
+import com.ruitukeji.zwbs.entity.getorder.GetOrderBean.ResultBean.ListBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 
 /**

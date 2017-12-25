@@ -1,0 +1,3039 @@
+{
+  "status": 1,
+  "msg": "成功",
+  "result": [
+    {
+      "id": 2,
+      "name": "北京市",
+      "level": 2,
+      "parent_id": 1,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 637,
+      "name": "石家庄市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 936,
+      "name": "唐山市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 1188,
+      "name": "秦皇岛市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 1291,
+      "name": "邯郸市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 1554,
+      "name": "邢台市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 1772,
+      "name": "保定市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 2142,
+      "name": "张家口市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 2400,
+      "name": "承德市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 2629,
+      "name": "沧州市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 2849,
+      "name": "廊坊市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 2968,
+      "name": "衡水市",
+      "level": 2,
+      "parent_id": 636,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3103,
+      "name": "太原市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3224,
+      "name": "大同市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3379,
+      "name": "阳泉市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3431,
+      "name": "长治市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3597,
+      "name": "晋城市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3690,
+      "name": "朔州市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3776,
+      "name": "晋中市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 3925,
+      "name": "运城市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4093,
+      "name": "忻州市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4304,
+      "name": "临汾市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4494,
+      "name": "吕梁市",
+      "level": 2,
+      "parent_id": 3102,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4671,
+      "name": "呼和浩特市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4759,
+      "name": "包头市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4849,
+      "name": "乌海市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 4874,
+      "name": "赤峰市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5029,
+      "name": "通辽市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5162,
+      "name": "鄂尔多斯市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5236,
+      "name": "呼伦贝尔市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5418,
+      "name": "巴彦淖尔市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5505,
+      "name": "乌兰察布市",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5616,
+      "name": "兴安盟",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5702,
+      "name": "锡林郭勒盟",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5799,
+      "name": "阿拉善盟",
+      "level": 2,
+      "parent_id": 4670,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 5828,
+      "name": "沈阳市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6088,
+      "name": "大连市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6266,
+      "name": "鞍山市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6384,
+      "name": "抚顺市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6476,
+      "name": "本溪市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6542,
+      "name": "丹东市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6643,
+      "name": "锦州市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6771,
+      "name": "营口市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6851,
+      "name": "阜新市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 6955,
+      "name": "辽阳市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7024,
+      "name": "盘锦市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7088,
+      "name": "铁岭市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7208,
+      "name": "朝阳市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7391,
+      "name": "葫芦岛市",
+      "level": 2,
+      "parent_id": 5827,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7532,
+      "name": "长春市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7706,
+      "name": "吉林市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7868,
+      "name": "四平市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 7986,
+      "name": "辽源市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8037,
+      "name": "通化市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8144,
+      "name": "白山市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8216,
+      "name": "松原市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8333,
+      "name": "白城市",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8445,
+      "name": "延边朝鲜族自治州",
+      "level": 2,
+      "parent_id": 7531,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8559,
+      "name": "哈尔滨市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 8884,
+      "name": "齐齐哈尔市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9117,
+      "name": "鸡西市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9222,
+      "name": "鹤岗市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9296,
+      "name": "双鸭山市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9419,
+      "name": "大庆市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9553,
+      "name": "伊春市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9785,
+      "name": "佳木斯市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9930,
+      "name": "七台河市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 9981,
+      "name": "牡丹江市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10084,
+      "name": "黑河市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10252,
+      "name": "绥化市",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10483,
+      "name": "大兴安岭地区",
+      "level": 2,
+      "parent_id": 8558,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10809,
+      "name": "南京市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10960,
+      "name": "无锡市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11067,
+      "name": "徐州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11245,
+      "name": "常州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11348,
+      "name": "苏州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11482,
+      "name": "南通市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11663,
+      "name": "连云港市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11786,
+      "name": "淮安市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11947,
+      "name": "盐城市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12135,
+      "name": "扬州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12249,
+      "name": "镇江市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12343,
+      "name": "泰州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12475,
+      "name": "宿迁市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12597,
+      "name": "杭州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12813,
+      "name": "宁波市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12974,
+      "name": "温州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13280,
+      "name": "嘉兴市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13364,
+      "name": "湖州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13437,
+      "name": "绍兴市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13564,
+      "name": "金华市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13726,
+      "name": "衢州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13840,
+      "name": "舟山市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13890,
+      "name": "台州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14033,
+      "name": "丽水市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14235,
+      "name": "合肥市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14351,
+      "name": "芜湖市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14410,
+      "name": "蚌埠市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14500,
+      "name": "淮南市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14575,
+      "name": "马鞍山市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14612,
+      "name": "淮北市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14653,
+      "name": "铜陵市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14687,
+      "name": "安庆市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 14887,
+      "name": "黄山市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15005,
+      "name": "滁州市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15194,
+      "name": "阜阳市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15378,
+      "name": "宿州市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15499,
+      "name": "巢湖市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15586,
+      "name": "六安市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15764,
+      "name": "亳州市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15871,
+      "name": "池州市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 15958,
+      "name": "宣城市",
+      "level": 2,
+      "parent_id": 14234,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16069,
+      "name": "福州市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16278,
+      "name": "厦门市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16348,
+      "name": "莆田市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16412,
+      "name": "三明市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16572,
+      "name": "泉州市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16754,
+      "name": "漳州市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 16924,
+      "name": "南平市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17077,
+      "name": "龙岩市",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17219,
+      "name": "宁德市　",
+      "level": 2,
+      "parent_id": 16068,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17360,
+      "name": "南昌市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17508,
+      "name": "景德镇市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17589,
+      "name": "萍乡市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17651,
+      "name": "九江市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17894,
+      "name": "新余市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17934,
+      "name": "鹰潭市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 17999,
+      "name": "赣州市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 18330,
+      "name": "吉安市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 18598,
+      "name": "宜春市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 18829,
+      "name": "抚州市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19024,
+      "name": "上饶市",
+      "level": 2,
+      "parent_id": 17359,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19281,
+      "name": "济南市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19421,
+      "name": "青岛市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19608,
+      "name": "淄博市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19724,
+      "name": "枣庄市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19796,
+      "name": "东营市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 19846,
+      "name": "烟台市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20012,
+      "name": "潍坊市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20216,
+      "name": "济宁市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20386,
+      "name": "泰安市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20480,
+      "name": "威海市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20558,
+      "name": "日照市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20618,
+      "name": "莱芜市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20642,
+      "name": "临沂市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20836,
+      "name": "德州市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 20981,
+      "name": "聊城市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21123,
+      "name": "滨州市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21218,
+      "name": "菏泽市",
+      "level": 2,
+      "parent_id": 19280,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21388,
+      "name": "郑州市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21575,
+      "name": "开封市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21711,
+      "name": "洛阳市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 21913,
+      "name": "平顶山市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22058,
+      "name": "安阳市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22206,
+      "name": "鹤壁市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22251,
+      "name": "新乡市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22423,
+      "name": "焦作市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22558,
+      "name": "濮阳市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22655,
+      "name": "许昌市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22762,
+      "name": "漯河市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22824,
+      "name": "三门峡市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 22910,
+      "name": "南阳市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 23170,
+      "name": "商丘市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 23372,
+      "name": "信阳市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 23589,
+      "name": "周口市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 23818,
+      "name": "驻马店市",
+      "level": 2,
+      "parent_id": 21387,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24023,
+      "name": "武汉市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24224,
+      "name": "黄石市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24291,
+      "name": "十堰市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24453,
+      "name": "宜昌市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24580,
+      "name": "襄樊市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24706,
+      "name": "鄂州市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24737,
+      "name": "荆门市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24816,
+      "name": "孝感市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 24949,
+      "name": "荆州市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25086,
+      "name": "黄冈市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25249,
+      "name": "咸宁市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25335,
+      "name": "随州市",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25388,
+      "name": "恩施州",
+      "level": 2,
+      "parent_id": 24022,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25580,
+      "name": "长沙市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25758,
+      "name": "株洲市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 25912,
+      "name": "湘潭市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 26001,
+      "name": "衡阳市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 26242,
+      "name": "邵阳市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 26485,
+      "name": "岳阳市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 26683,
+      "name": "常德市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 26925,
+      "name": "张家界市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 27038,
+      "name": "益阳市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 27147,
+      "name": "郴州市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 27418,
+      "name": "永州市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 27650,
+      "name": "怀化市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 27963,
+      "name": "娄底市",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28065,
+      "name": "湘西土家族苗族自治州",
+      "level": 2,
+      "parent_id": 25579,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28241,
+      "name": "广州市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28421,
+      "name": "韶关市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28558,
+      "name": "深圳市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28626,
+      "name": "珠海市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28659,
+      "name": "汕头市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28737,
+      "name": "佛山市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28785,
+      "name": "江门市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 28880,
+      "name": "湛江市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29026,
+      "name": "茂名市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29159,
+      "name": "肇庆市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29282,
+      "name": "惠州市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29371,
+      "name": "梅州市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29498,
+      "name": "汕尾市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29568,
+      "name": "河源市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29679,
+      "name": "阳江市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29755,
+      "name": "清远市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29855,
+      "name": "东莞市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29890,
+      "name": "中山市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29915,
+      "name": "潮州市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 29977,
+      "name": "揭阳市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30086,
+      "name": "云浮市",
+      "level": 2,
+      "parent_id": 28240,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30165,
+      "name": "南宁市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30319,
+      "name": "柳州市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30448,
+      "name": "桂林市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30613,
+      "name": "梧州市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30688,
+      "name": "北海市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30724,
+      "name": "防城港市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30762,
+      "name": "钦州市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30834,
+      "name": "贵港市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 310100,
+      "name": "上海市",
+      "level": 2,
+      "parent_id": 310100,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 30915,
+      "name": "玉林市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31033,
+      "name": "百色市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31184,
+      "name": "贺州市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31249,
+      "name": "河池市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31401,
+      "name": "来宾市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31478,
+      "name": "崇左市",
+      "level": 2,
+      "parent_id": 30164,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31564,
+      "name": "海口市",
+      "level": 2,
+      "parent_id": 31563,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 31618,
+      "name": "三亚市",
+      "level": 2,
+      "parent_id": 31563,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33008,
+      "name": "成都市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33344,
+      "name": "自贡市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33460,
+      "name": "攀枝花市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33528,
+      "name": "泸州市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33681,
+      "name": "德阳市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 33817,
+      "name": "绵阳市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 34120,
+      "name": "广元市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 34376,
+      "name": "遂宁市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 34501,
+      "name": "内江市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 34628,
+      "name": "乐山市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 34859,
+      "name": "南充市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 35288,
+      "name": "眉山市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 35427,
+      "name": "宜宾市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 35625,
+      "name": "广安市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 35813,
+      "name": "达州市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 36136,
+      "name": "雅安市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 36299,
+      "name": "巴中市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 36497,
+      "name": "资阳市",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 36679,
+      "name": "阿坝州",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 36926,
+      "name": "甘孜藏族自治州",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 37270,
+      "name": "凉山州",
+      "level": 2,
+      "parent_id": 33007,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 37907,
+      "name": "贵阳市",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38042,
+      "name": "六盘水市",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38145,
+      "name": "遵义市",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38402,
+      "name": "安顺市",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38497,
+      "name": "铜仁地区",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38677,
+      "name": "黔西南州",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 38816,
+      "name": "毕节地区",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39075,
+      "name": "黔东南苗族侗族自治州",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39302,
+      "name": "黔南布依族苗族自治州",
+      "level": 2,
+      "parent_id": 37906,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39557,
+      "name": "昆明市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39710,
+      "name": "曲靖市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39836,
+      "name": "玉溪市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 39923,
+      "name": "保山市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40004,
+      "name": "昭通市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40160,
+      "name": "丽江市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40230,
+      "name": "思茅市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40348,
+      "name": "临沧市",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40441,
+      "name": "楚雄州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40555,
+      "name": "红河州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40705,
+      "name": "文山州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40816,
+      "name": "西双版纳州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40852,
+      "name": "大理州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 40979,
+      "name": "德宏州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41036,
+      "name": "怒江州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41070,
+      "name": "迪庆州",
+      "level": 2,
+      "parent_id": 39556,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41104,
+      "name": "拉萨市",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41178,
+      "name": "昌都地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41328,
+      "name": "山南地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41423,
+      "name": "日喀则地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41645,
+      "name": "那曲地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41770,
+      "name": "阿里地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41814,
+      "name": "林芝地区",
+      "level": 2,
+      "parent_id": 41103,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 41878,
+      "name": "西安市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42069,
+      "name": "铜川市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42119,
+      "name": "宝鸡市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42287,
+      "name": "咸阳市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42490,
+      "name": "渭南市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42703,
+      "name": "延安市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 42888,
+      "name": "汉中市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43136,
+      "name": "榆林市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43379,
+      "name": "安康市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43592,
+      "name": "商洛市",
+      "level": 2,
+      "parent_id": 41877,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43777,
+      "name": "兰州市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43904,
+      "name": "嘉峪关市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43914,
+      "name": "金昌市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 43936,
+      "name": "白银市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44022,
+      "name": "天水市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44154,
+      "name": "武威市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44265,
+      "name": "张掖市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44352,
+      "name": "平凉市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44477,
+      "name": "酒泉市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44569,
+      "name": "庆阳市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44699,
+      "name": "定西市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 44829,
+      "name": "陇南市",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45035,
+      "name": "临夏州",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45174,
+      "name": "甘南州",
+      "level": 2,
+      "parent_id": 43776,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45287,
+      "name": "西宁市",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45368,
+      "name": "海东地区",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45471,
+      "name": "海北州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45510,
+      "name": "黄南州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45548,
+      "name": "海南州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45597,
+      "name": "果洛州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45648,
+      "name": "玉树州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45701,
+      "name": "海西州",
+      "level": 2,
+      "parent_id": 45286,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45754,
+      "name": "银川市",
+      "level": 2,
+      "parent_id": 45753,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45825,
+      "name": "石嘴山市",
+      "level": 2,
+      "parent_id": 45753,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45871,
+      "name": "吴忠市",
+      "level": 2,
+      "parent_id": 45753,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45926,
+      "name": "固原市",
+      "level": 2,
+      "parent_id": 45753,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 45999,
+      "name": "中卫市",
+      "level": 2,
+      "parent_id": 45753,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46048,
+      "name": "乌鲁木齐市",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46138,
+      "name": "克拉玛依市",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46162,
+      "name": "吐鲁番地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46197,
+      "name": "哈密地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46255,
+      "name": "昌吉州",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46380,
+      "name": "博尔塔拉蒙古自治州",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46422,
+      "name": "巴音郭楞蒙古自治州",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46551,
+      "name": "阿克苏地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46688,
+      "name": "克州",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46747,
+      "name": "喀什地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 46957,
+      "name": "和田地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 47069,
+      "name": "伊犁州",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 47241,
+      "name": "塔城地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 47374,
+      "name": "阿勒泰地区",
+      "level": 2,
+      "parent_id": 46047,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 47504,
+      "name": "台湾",
+      "level": 2,
+      "parent_id": 0,
+      "is_hot": 0,
+      "country_id": 17,
+      "area_code": null
+    },
+    {
+      "id": 47505,
+      "name": "香港",
+      "level": 2,
+      "parent_id": 0,
+      "is_hot": 0,
+      "country_id": 17,
+      "area_code": null
+    }
+  ]
+}

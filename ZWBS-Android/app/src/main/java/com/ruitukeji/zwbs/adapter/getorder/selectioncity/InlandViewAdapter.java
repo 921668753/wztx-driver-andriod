@@ -3,7 +3,7 @@ package com.ruitukeji.zwbs.adapter.getorder.selectioncity;
 import android.content.Context;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.entity.selectioncity.InlandBean.ResultBean;
+import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean.ResultBean;
 
 import java.util.List;
 

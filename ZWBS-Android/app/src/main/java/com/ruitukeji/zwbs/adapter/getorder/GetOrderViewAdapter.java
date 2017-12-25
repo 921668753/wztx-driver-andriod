@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.entity.GetOrderBean.ResultBean.ListBean;
+import com.ruitukeji.zwbs.entity.getorder.GetOrderBean.ResultBean.ListBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;

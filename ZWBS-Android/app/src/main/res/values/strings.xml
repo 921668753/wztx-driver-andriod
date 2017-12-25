@@ -206,7 +206,8 @@
     <string name="afterSubmission">报价提交后不可修改</string>
 
 
-    <!--城市选择-->
+    <!--选择城市-->
+    <string name="selectCity">选择城市</string>
     <string name="china">中国</string>
     <string name="recentVisitCity">最近访问城市</string>
     <string name="recent">最近</string>

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.entity.selectioncity;
+package com.ruitukeji.zwbs.entity.getorder.selectioncity;
 
 import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
 import com.ruitukeji.zwbs.entity.BaseResult;
@@ -6,7 +6,7 @@ import com.ruitukeji.zwbs.entity.BaseResult;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/11/27.
+ * Created by Admin on 2017/9/11.
  */
 
 public class InlandBean extends BaseResult<List<InlandBean.ResultBean>> {

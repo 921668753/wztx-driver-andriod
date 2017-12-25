@@ -1,10 +1,5 @@
 package com.ruitukeji.zwbs.getorder.selectioncity;
 
-/**
- * 国内  id 3426
- * Created by Admin on 2017/9/5.
- */
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,30 +16,30 @@ import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
 import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
-
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.getorder.selectioncity.CommonAdapter;
 import com.ruitukeji.zwbs.adapter.getorder.selectioncity.HeaderRecyclerAndFooterWrapperAdapter;
 import com.ruitukeji.zwbs.adapter.getorder.selectioncity.InlandViewAdapter;
 import com.ruitukeji.zwbs.adapter.getorder.selectioncity.OnItemClickListener;
 import com.ruitukeji.zwbs.adapter.getorder.selectioncity.ViewHolder;
+import com.ruitukeji.zwbs.common.BaseFragment;
+import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
-import com.ruitukeji.zwbs.entity.selectioncity.InlandBean;
-import com.ruitukeji.zwbs.entity.selectioncity.InlandBean.ResultBean;
-import com.ruitukeji.zwbs.entity.selectioncity.InlandHotCityBean;
+import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean;
+import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean.ResultBean;
+import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandHotCityBean;
+import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandTopHeaderBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.decoration.DividerItemDecoration;
-import com.ruitukeji.zwbs.common.BaseFragment;
-import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.utils.myview.IndexNewBar;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * 国内  id 3426
@@ -73,7 +68,6 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
     private List<ResultBean> mBodyDatas;
 
     private DividerItemDecoration dividerItemDecoration;
-
 
     private SelectionCityActivity aty;
 
@@ -121,15 +115,16 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
                         //网格
                         RecyclerView recyclerView = holder.getView(R.id.rvCity);
                         recyclerView.setAdapter(
-                                new CommonAdapter<InlandHotCityBean.ResultBean>(aty, R.layout.inland_item_header_item, meituanHeaderBean.getCityList()) {
+                                new CommonAdapter<InlandHotCityBean.ResultBean>(aty, R.layout.item_selectcountry, meituanHeaderBean.getCityList()) {
                                     @Override
                                     public void convert(ViewHolder holder, final InlandHotCityBean.ResultBean cityName) {
-                                        holder.setText(R.id.tvName, cityName.getName());
+                                        LinearLayout linearLayout = (LinearLayout) holder.getView(R.id.content);
+                                        linearLayout.setPadding(0, 0, 0, 0);
+                                        holder.setText(R.id.tv_country, cityName.getName());
+                                        holder.setText(R.id.tv_areaCode, "");
                                         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                //           PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCity", cityName.getName());
-                                                saveHistory(cityName);
                                                 Intent intent = new Intent();
                                                 // 获取内容
                                                 intent.putExtra("selectCity", cityName.getName());
@@ -144,12 +139,16 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
                                         });
                                     }
                                 });
-                        recyclerView.setLayoutManager(new GridLayoutManager(aty, 3));
+                        recyclerView.setLayoutManager(new GridLayoutManager(aty, 1));
                         break;
                     case R.layout.inland_item_header_top:
                         String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "locationCity", getString(R.string.locateFailure));
                         textView = holder.getView(R.id.tvCurrent);
                         textView.setText(locationCity);
+                        textView.setFocusable(true);
+                        textView.setFocusableInTouchMode(true);
+                        textView.requestFocus();
+                        textView.requestFocusFromTouch();
                         LinearLayout ll_localize = holder.getView(R.id.ll_localize);
                         ll_localize.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -173,15 +172,14 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
                 }
             }
         };
-//        readHistory();
+        readHistory();
         mDecoration = new SuspensionDecoration(aty, mSourceDatas)
-                .setmTitleHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics()))
-                .setColorTitleBg(0xffefefef)
-                .setTitleFontSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16, getResources().getDisplayMetrics()))
-                .setColorTitleFont(aty.getResources().getColor(android.R.color.black))
+                .setmTitleHeight((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 28, getResources().getDisplayMetrics()))
+                .setColorTitleBg(getResources().getColor(R.color.background))
+                .setTitleFontSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getResources().getDisplayMetrics()))
+                .setColorTitleFont(aty.getResources().getColor(R.color.hintcolors))
                 .setHeaderViewCount(mHeaderAdapter.getHeaderViewCount() - mHeaderDatas.size());
         dividerItemDecoration = new DividerItemDecoration(aty, DividerItemDecoration.VERTICAL_LIST);
-        ((InlandContract.Presenter) mPresenter).getAllCity();
     }
 
 
@@ -196,6 +194,7 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager)//设置RecyclerView的LayoutManager
                 .setHeaderViewCount(mHeaderAdapter.getHeaderViewCount() - mHeaderDatas.size());
+        ((InlandContract.Presenter) mPresenter).getAllCity(aty);
     }
 
 
@@ -220,6 +219,26 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
         Collections.reverse(historyCityList);
         baseResult.setResult(historyCityList);
         PreferenceHelper.write(aty, StringConstants.FILENAME, "inlandHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
+    }
+
+    /**
+     * 读取历史
+     */
+    private void readHistory() {
+        String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "locationCity", getString(R.string.locateFailure));
+        mHeaderAdapter.setHeaderView(0, R.layout.inland_item_header_top, new InlandTopHeaderBean(locationCity));
+        if (StringUtils.isEmpty(inlandHistory)) {
+            mHeaderAdapter.setHeaderView(1, R.layout.inland_item_header, mHeaderDatas.get(0));
+            return;
+        }
+        mHeaderAdapter.setHeaderView(1, R.layout.inland_item_header, mHeaderDatas.get(0));
+        mHeaderAdapter.setHeaderView(2, R.layout.inland_item_header, mHeaderDatas.get(1));
+        // Log.d("tag111", inlandHistory);
+        InlandHotCityBean indexCityBean = (InlandHotCityBean) JsonUtil.json2Obj(inlandHistory, InlandHotCityBean.class);
+//        if (indexCityBean != null && indexCityBean.getResult() != null && indexCityBean.getResult().size() > 0) {
+        //   Log.d("tag111", "size=" + indexCityBean.getResult().size());
+        historyCityList = indexCityBean.getResult();
+//        }
     }
 
     @Override
@@ -298,7 +317,6 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
         resultBean1.setLevel(resultBean.getLevel());
         resultBean1.setParent_id(resultBean.getParent_id());
         resultBean1.setCountry_id(resultBean.getCountry_id());
-        saveHistory(resultBean1);
         //PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCity", resultBean.getName());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCountry", getString(R.string.china));
         Intent intent = new Intent();

@@ -26,7 +26,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
-import com.ruitukeji.zwbs.entity.GetOrderBean;
+import com.ruitukeji.zwbs.entity.getorder.GetOrderBean;
 import com.ruitukeji.zwbs.entity.MessageCenterBean;
 import com.ruitukeji.zwbs.entity.WorkingStateBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;

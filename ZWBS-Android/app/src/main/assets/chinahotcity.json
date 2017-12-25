@@ -1,0 +1,87 @@
+{
+  "status": 1,
+  "msg": "成功",
+  "result": [
+    {
+      "id": 11348,
+      "name": "苏州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 310100,
+      "name": "上海市",
+      "level": 2,
+      "parent_id": 310100,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10960,
+      "name": "无锡市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 10809,
+      "name": "南京市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11245,
+      "name": "常州市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11482,
+      "name": "南通市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 12597,
+      "name": "杭州市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 11947,
+      "name": "盐城市",
+      "level": 2,
+      "parent_id": 10808,
+      "is_hot": 0,
+      "country_id": 7,
+      "area_code": null
+    },
+    {
+      "id": 13280,
+      "name": "嘉兴市",
+      "level": 2,
+      "parent_id": 12596,
+      "is_hot": 1,
+      "country_id": 7,
+      "area_code": null
+    }
+  ]
+}

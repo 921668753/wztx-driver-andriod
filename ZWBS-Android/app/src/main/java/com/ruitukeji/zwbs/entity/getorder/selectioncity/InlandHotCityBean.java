@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.entity.selectioncity;
+package com.ruitukeji.zwbs.entity.getorder.selectioncity;
 
 import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;
 
