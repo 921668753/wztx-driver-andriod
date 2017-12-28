@@ -138,18 +138,18 @@ dependencies {
     //    compile 'cn.bingoogolapple:bga-photopicker:latest.release'//图片列表
     compile 'pub.devrel:easypermissions:1.1.0'
     //权限申请工具类
-    compile 'com.github.bumptech.glide:glide:4.0.0'
+    compile 'com.github.bumptech.glide:glide:4.3.1'
     //图片加载框架
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
-    compile 'com.google.zxing:core:latest.release'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    compile 'com.google.zxing:core:3.3.1'
     //创建二维码图片
-    compile 'cn.bingoogolapple:bga-qrcodecore:latest.release'
+    compile 'cn.bingoogolapple:bga-qrcodecore:1.1.9@aar'
     //创建二维码图片
     compile 'cn.bingoogolapple:bga-zxing:1.1.7@aar'
     //创建二维码图片
     compile 'cn.bingoogolapple:bga-baseadapter:1.2.7@aar'
     //bga  adapter
-    compile 'cn.bingoogolapple:bga-imageview:latest.release'
+    compile 'cn.bingoogolapple:bga-imageview:1.0.0@aar'
     //BGAImageView-Android   imgview框架
     compile 'cn.bingoogolapple:bga-titlebar:1.0.8@aar'
     //UINavigationBar 风格的 Titlebar
@@ -164,13 +164,13 @@ dependencies {
     // 此处以JCore 1.1.2 版本为例。
     compile 'com.contrarywind:Android-PickerView:3.2.6'
     //滚动PickerView选择控件
-    compile 'com.github.f0ris.sweetalert:library:latest.release'
+    compile 'com.github.f0ris.sweetalert:library:1.5.2'
     //SweetAlertDialog弹框
     //图片选择器https://github.com/jeasonlzy/ImagePicker
     compile 'com.lzy.widget:imagepicker:0.6.1'
     compile 'com.github.nanchen2251:CompressHelper:1.0.5'
     //    compile 'net.orfjackal.retrolambda:retrolambda:2.1.0'
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
     //让应用支持多DEX文件
     //高德地图
     compile 'com.amap.api:location:latest.integration'
