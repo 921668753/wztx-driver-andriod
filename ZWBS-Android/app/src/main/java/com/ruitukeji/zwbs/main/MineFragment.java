@@ -1,6 +1,7 @@
 package com.ruitukeji.zwbs.main;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -54,7 +55,8 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by Administrator on 2017/2/13.
  */
 
-public class MineFragment extends BaseFragment implements MineContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, EasyPermissions.PermissionCallbacks {
+@SuppressLint("NewApi")
+public class MineFragment extends BaseFragment implements MineContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, View.OnScrollChangeListener, EasyPermissions.PermissionCallbacks {
 
     private MainActivity aty;
 
@@ -184,26 +186,12 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         mPresenter = new MinePresenter(this);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         // ActivityTitleUtils.initToolbar(parentView, getString(R.string.mine), R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, getActivity(), false);
-        sv_mine.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.d("tag", "scrollY" + scrollY);
-                Log.d("tag", "oldScrollY" + oldScrollY);
-                if (scrollY == 0) {
-                    ll_personalData1.setVisibility(View.GONE);
-                    ll_divider1.setVisibility(View.GONE);
-                } else {
-                    ll_personalData1.setVisibility(View.VISIBLE);
-                    ll_divider1.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        sv_mine.setOnScrollChangeListener(this);
 
     }
 
@@ -437,6 +425,19 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusRefreshMineEvent")) {
             mRefreshLayout.beginRefreshing();
+        }
+    }
+
+    @Override
+    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        Log.d("tag", "scrollY" + scrollY);
+        Log.d("tag", "oldScrollY" + oldScrollY);
+        if (scrollY == 0) {
+            ll_personalData1.setVisibility(View.GONE);
+            ll_divider1.setVisibility(View.GONE);
+        } else {
+            ll_personalData1.setVisibility(View.VISIBLE);
+            ll_divider1.setVisibility(View.VISIBLE);
         }
     }
 }
