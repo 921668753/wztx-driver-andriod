@@ -30,7 +30,6 @@ import com.ruitukeji.zwbs.entity.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
 import com.ruitukeji.zwbs.mine.helpcenter.HelpCenterActivity;
-import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.mine.mywallet.MyWalletActivity;
