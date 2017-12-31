@@ -6,9 +6,8 @@ import android.view.View;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.MessageBean.ResultBean.ListBean;
+import com.ruitukeji.zwbs.entity.getorder.message.OrderMessageBean.ResultBean.ListBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,20 +51,35 @@ public class OrderMessageViewAdapter extends BGAAdapterViewAdapter<ListBean> {
                 closeOpenedSwipeItemLayoutWithAnim();
             }
         });
+        viewHolderHelper.setItemChildClickListener(R.id.img_checkbox);
         viewHolderHelper.setItemChildClickListener(R.id.tv_markedRead);
-        viewHolderHelper.setItemChildLongClickListener(R.id.tv_delete);
+        viewHolderHelper.setItemChildClickListener(R.id.tv_delete);
     }
 
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ListBean listBean) {
+        BGASwipeItemLayout swipeItemLayout = viewHolderHelper.getView(R.id.item_orderMessage);
+        if (listBean.getIsEdit() == 0) {
+            viewHolderHelper.setVisibility(R.id.img_checkbox, View.GONE);
+            swipeItemLayout.setSwipeAble(true);
+        } else {
+            if (listBean.getIsSelected() == 0) {
+                viewHolderHelper.setImageResource(R.id.img_checkbox, R.mipmap.ic_checkbox_unselect);
+            } else {
+                viewHolderHelper.setImageResource(R.id.img_checkbox, R.mipmap.ic_checkbox_select);
+            }
+            viewHolderHelper.setVisibility(R.id.img_checkbox, View.VISIBLE);
+            swipeItemLayout.setSwipeAble(false);
+        }
+
         /**
          *姓名
          */
-        viewHolderHelper.setText(R.id.tv_name, listBean.getPushTime());
+        viewHolderHelper.setText(R.id.tv_name, listBean.getDr_name());
         /**
          * 标记
          */
-        String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+        String accessToken = PreferenceHelper.readString(mContext, StringConstants.FILENAME, "accessToken");
         if (StringUtils.isEmpty(accessToken)) {
             viewHolderHelper.setVisibility(R.id.iv_tag, View.GONE);
         } else {
@@ -78,7 +92,7 @@ public class OrderMessageViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          *订单编号
          */
-        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getPushTime());
+        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrder_code());
 
         /**
          *时间
@@ -86,12 +100,12 @@ public class OrderMessageViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         viewHolderHelper.setText(R.id.tv_time, listBean.getPushTime());
 
 
-        BGASwipeItemLayout swipeItemLayout = viewHolderHelper.getView(R.id.item_orderMessage);
-        if (position % 3 == 0) {
-            swipeItemLayout.setSwipeAble(false);
-        } else {
-            swipeItemLayout.setSwipeAble(true);
-        }
+//        BGASwipeItemLayout swipeItemLayout = viewHolderHelper.getView(R.id.item_orderMessage);
+//        if (position % 3 == 0) {
+//            swipeItemLayout.setSwipeAble(false);
+//        } else {
+//            swipeItemLayout.setSwipeAble(true);
+//        }
     }
 
     public void closeOpenedSwipeItemLayoutWithAnim() {

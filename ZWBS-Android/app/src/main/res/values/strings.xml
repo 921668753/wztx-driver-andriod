@@ -224,10 +224,16 @@
     <string name="delete1">删除</string>
     <string name="edit">编辑</string>
     <string name="complete">完成</string>
+    <string name="markedRead1">您还未选择任何信息！无法标记已读！</string>
+    <string name="delete2">您还未选择任何信息！无法删除消息！</string>
 
     <!--订单消息-->
     <string name="orderUser">下单用户：</string>
     <string name="orderNumber2">订单编号：</string>
+
+    <!--消息弹框-->
+    <string name="dentifyLabelRead">确定标为已读？</string>
+    <string name="sureToDelete">确定删除？</string>
 
     <!--任务-->
     <string name="todayMission">今日任务</string>

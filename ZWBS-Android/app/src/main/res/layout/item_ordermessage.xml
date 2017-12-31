@@ -40,6 +40,7 @@
         android:paddingRight="@dimen/dimen15">
 
         <ImageView
+            android:id="@+id/img_checkbox"
             style="@style/WrapWrap"
             android:layout_gravity="center_vertical"
             android:paddingBottom="@dimen/dimen15"
@@ -57,7 +58,7 @@
             <LinearLayout
                 style="@style/MatchAuto"
                 android:orientation="horizontal"
-                android:paddingRight="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen10"
                 android:paddingTop="@dimen/dimen12">
 
                 <TextView
@@ -123,3 +124,25 @@
     </LinearLayout>
 
 </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

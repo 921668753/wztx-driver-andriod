@@ -107,10 +107,29 @@
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|fontScale"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <!--接单  系统消息-->
+        <activity
+            android:name=".getorder.message.SystemMessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!--接单  订单消息-->
+        <activity
+            android:name=".getorder.message.OrderMessageActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!--接单  系统消息 消息详情-->
+        <activity
+            android:name=".getorder.message.SystemMessageDetailsActivity"
+            android:screenOrientation="portrait" />
+
         <!--消息列表-->
         <activity
             android:name=".getorder.message.MessageActivity"
             android:screenOrientation="portrait" />
+
         <!--设定路线-->
         <activity
             android:name=".supplygoods.SetTheLineActivity"
@@ -129,10 +148,6 @@
             android:name=".getorder.message.MessageCenterActivity"
             android:screenOrientation="portrait" />
 
-        <!--消息详情-->
-        <activity
-            android:name=".getorder.message.MessageDetailsActivity"
-            android:screenOrientation="portrait" />
         <!--订单详情-->
         <activity
             android:name=".getorder.OrderDetailsActivity"
@@ -277,26 +292,26 @@
         <!--推荐记录-->
         <activity
             android:name=".mine.recommendcourteous.RecommendedRecordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--关于我们-->
         <activity
             android:name=".mine.settings.aboutus.AboutUsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--设置-->
         <activity
             android:name=".mine.settings.SettingsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--修改密码-->
         <activity
             android:name=".mine.settings.ChangePasswordActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <!--其他服务-->
         <activity
             android:name=".mine.otherservices.OtherServicesActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".mine.otherservices.BannerDetailsActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <!--登录-->
         <activity
@@ -335,12 +350,12 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"/>
+            android:screenOrientation="behind" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"/>
+            android:screenOrientation="behind" />
 
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"

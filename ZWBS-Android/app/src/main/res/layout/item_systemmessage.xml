@@ -37,9 +37,10 @@
         style="@style/MatchWrap"
         android:background="@color/mainColor"
         android:orientation="horizontal"
-        android:paddingRight="@dimen/dimen15">
+        android:paddingRight="@dimen/dimen10">
 
         <ImageView
+            android:id="@+id/img_checkbox"
             style="@style/WrapWrap"
             android:layout_gravity="center_vertical"
             android:paddingBottom="@dimen/dimen15"

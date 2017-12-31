@@ -5,7 +5,7 @@
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".getorder.message.SystemMessageActivity">
+    tools:context="com.ruitukeji.zwbs.getorder.message.SystemMessageActivity">
 
     <include layout="@layout/common_title1" />
 
@@ -16,12 +16,12 @@
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchAuto"
-        android:layout_marginTop="@dimen/dimen10"
         android:background="@color/background">
 
         <ListView
-            android:id="@+id/lv_message"
+            android:id="@+id/lv_systemmessage"
             style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen10"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen1"
             android:scrollbars="none"
@@ -32,12 +32,15 @@
     <include layout="@layout/common_error" />
 
     <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen50"
         android:background="@color/mainColor"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
+            android:id="@+id/tv_generalElection"
             style="@style/WrapMatch"
             android:layout_marginLeft="@dimen/dimen15"
             android:gravity="center"
@@ -46,6 +49,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_markedRead"
             style="@style/AutoMatch"
             android:gravity="center"
             android:text="@string/markedRead"
@@ -53,6 +57,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_delete"
             style="@style/WrapMatch"
             android:layout_marginRight="@dimen/dimen15"
             android:gravity="center"

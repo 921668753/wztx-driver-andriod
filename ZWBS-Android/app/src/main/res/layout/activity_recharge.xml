@@ -99,7 +99,7 @@
             android:layout_height="@dimen/dimen30"
             android:layout_marginRight="@dimen/dimen5"
             android:padding="@dimen/dimen5"
-            android:src="@mipmap/ic_check_unselect" />
+            android:src="@mipmap/ic_checkbox_select" />
 
 
     </LinearLayout>

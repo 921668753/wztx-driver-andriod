@@ -81,12 +81,12 @@ public class RechargeActivity extends BaseActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.img_weChatPay:
-                img_weChatPay.setImageResource(R.mipmap.ic_check_unselect);
+                img_weChatPay.setImageResource(R.mipmap.ic_checkbox_select);
                 img_alipayPay.setImageResource(R.mipmap.ic_checkbox_unselect);
                 break;
             case R.id.img_alipayPay:
                 img_weChatPay.setImageResource(R.mipmap.ic_checkbox_unselect);
-                img_alipayPay.setImageResource(R.mipmap.ic_check_unselect);
+                img_alipayPay.setImageResource(R.mipmap.ic_checkbox_select);
                 break;
             case R.id.tv_prepaidImmediately:
 
