@@ -29,6 +29,7 @@ import com.ruitukeji.zwbs.utils.rx.RxBus;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.Map;
@@ -191,6 +192,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
      * 第三方授权
      */
     private void thirdLogin(SHARE_MEDIA platform) {
+        UMShareConfig config = new UMShareConfig();
+        config.isNeedAuthOnGetUserInfo(true);
+        UMShareAPI.get(LoginActivity.this).setShareConfig(config);
         UMShareAPI.get(LoginActivity.this).getPlatformInfo(LoginActivity.this, platform, umAuthListener);
     }
 
