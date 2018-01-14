@@ -713,6 +713,112 @@ public class RequestClient {
 
 
     /**
+     * 提现记录
+     */
+    public static void showCashRecord(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.SHOWCASHRECORD, httpParams, listener);
+            }
+        }, listener);
+
+    }
+
+
+    /**
+     * 获取个人银行卡信息
+     */
+    public static void getMyBankCard(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.MYBANKCARD, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 添加银行卡
+     */
+    public static void postAddBankCard(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.ADDBANKCARD, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 设置支付密码
+     */
+    public static void postSetPayPassword(HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.SETPAYPASSEORD, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     *修改密码校验
+     */
+    public static void getCheckPayPassword(HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.CHECKPAYPASSEORD, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 获得银行
+     */
+    public static void getBank(HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.GETBANK, httpParams, listener);
+    }
+
+
+
+
+
+
+    /**
      * 我的报价
      */
     public static void getMyQuote(HttpParams httpParams, final ResponseListener<String> listener) {
@@ -768,24 +874,7 @@ public class RequestClient {
 
     }
 
-    /**
-     * 提现记录
-     */
-    public static void showCashRecord(HttpParams httpParams, final ResponseListener<String> listener) {
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestGetHttp(URLConstants.SHOWCASHRECORD, httpParams, listener);
-            }
-        }, listener);
 
-    }
 
     /**
      * 显示我的推荐列表

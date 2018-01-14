@@ -1,22 +1,23 @@
 package com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.modifypaymentpassword;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
-import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.myview.PayPwdEditText;
 
 /**
- * 确认支付密码
+ * 修改支付密码---输入新密码
  * Created by Administrator on 2017/12/13.
  */
 
-public class ConfirmPaymentPasswordActivity extends BaseActivity implements ModifyPaymentPasswordContract.View {
+public class ModifyPaymentPassword4Activity extends BaseActivity {
+
 
     /**
      * 设置支付密码
@@ -35,7 +36,7 @@ public class ConfirmPaymentPasswordActivity extends BaseActivity implements Modi
      */
     @BindView(id = R.id.tv_nextStep, click = true)
     private TextView tv_nextStep;
-    private String oldPaymentPassword = "";
+
     private String paymentPassword = "";
 
     @Override
@@ -43,19 +44,11 @@ public class ConfirmPaymentPasswordActivity extends BaseActivity implements Modi
         setContentView(R.layout.activity_paymentpassword);
     }
 
-
-    @Override
-    public void initData() {
-        super.initData();
-        mPresenter = new ModifyPaymentPasswordPresenter(this);
-        oldPaymentPassword = getIntent().getStringExtra("paymentPassword");
-    }
-
     @Override
     public void initWidget() {
         super.initWidget();
         tv_nextStep.setClickable(false);
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.confirmPaymentPassword), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.modifyPaymentPassword), true, R.id.titlebar);
         et_paymentPassword.initStyle(R.drawable.edit_num_bg, 6, 0.33f, R.color.bEBEC0Colors, R.color.f2222Colors, 20);
         et_paymentPassword.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
             @Override
@@ -70,8 +63,8 @@ public class ConfirmPaymentPasswordActivity extends BaseActivity implements Modi
                 }
             }
         });
-        tv_setPaymentPassword.setText(getString(R.string.pleaseEnterConfirm));
-        tv_nextStep.setText(getString(R.string.determine));
+        tv_setPaymentPassword.setText(getString(R.string.pleaseEnterNewPaymentPassword));
+        tv_nextStep.setText(getString(R.string.nextStep));
     }
 
     @Override
@@ -79,33 +72,14 @@ public class ConfirmPaymentPasswordActivity extends BaseActivity implements Modi
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_nextStep:
-                showLoadingDialog(getString(R.string.submissionLoad));
-                ((ModifyPaymentPasswordContract.Presenter) mPresenter).postModifyPaymentPassword(oldPaymentPassword, paymentPassword);
+                if (paymentPassword.length() != 6) {
+                    ViewInject.toast(getString(R.string.pleaseEnterPaymentPassword1));
+                    break;
+                }
+                Intent intent = new Intent(aty, ConfirmPaymentPasswordActivity.class);
+                intent.putExtra("paymentPassword", paymentPassword);
+                showActivity(aty, intent);
                 break;
         }
-
-    }
-
-    @Override
-    public void setPresenter(ModifyPaymentPasswordContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public void getSuccess(String success, int flag) {
-        KJActivityStack.create().finishActivity(ModifyPaymentPasswordActivity.class);
-        KJActivityStack.create().finishActivity(ModifyPaymentPassword1Activity.class);
-        KJActivityStack.create().finishActivity(ModifyPaymentPassword2Activity.class);
-        KJActivityStack.create().finishActivity(ModifyPaymentPassword3Activity.class);
-        KJActivityStack.create().finishActivity(ModifyPaymentPassword4Activity.class);
-        dismissLoadingDialog();
-        ViewInject.toast(getString(R.string.modifyPaymentPasswordSucceed));
-        finish();
-    }
-
-    @Override
-    public void errorMsg(String msg, int flag) {
-        dismissLoadingDialog();
-        toLigon1(msg);
     }
 }

@@ -3,11 +3,14 @@ package com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.setpaymentpas
 import android.view.View;
 import android.widget.TextView;
 
+import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
+import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.myview.PayPwdEditText;
@@ -55,6 +58,7 @@ public class SetPaymentPassword1Activity extends BaseActivity implements SetPaym
     @Override
     public void initWidget() {
         super.initWidget();
+        tv_nextStep.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.setPaymentPassword), true, R.id.titlebar);
         et_paymentPassword.initStyle(R.drawable.edit_num_bg, 6, 0.33f, R.color.bEBEC0Colors, R.color.f2222Colors, 20);
         et_paymentPassword.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
@@ -79,6 +83,7 @@ public class SetPaymentPassword1Activity extends BaseActivity implements SetPaym
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_nextStep:
+                showLoadingDialog(getString(R.string.submissionLoad));
                 ((SetPaymentPasswordContract.Presenter) mPresenter).postSetPaymentPassword(oldPaymentPassword, paymentPassword);
                 break;
         }
@@ -92,18 +97,19 @@ public class SetPaymentPassword1Activity extends BaseActivity implements SetPaym
 
     @Override
     public void getSuccess(String success, int flag) {
-
-
+        KJActivityStack.create().finishActivity(SetPaymentPasswordActivity.class);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "is_pay_password", 1);
+        finish();
+        dismissLoadingDialog();
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
         if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
-            dismissLoadingDialog();
             showActivity(aty, LoginActivity.class);
             return;
         }
-        dismissLoadingDialog();
         ViewInject.toast(msg);
     }
 }

@@ -24,16 +24,20 @@ public interface ModifyPaymentPasswordContract {
          */
         void postVerificationCode(String phone, String code);
 
-
         /**
          * 验证身份证号
          */
         void postVerifyIdNumber(String idNumber);
 
         /**
+         * 验证旧支付密码
+         */
+        void postOldPayPassword(String oldPaymentPassword);
+
+        /**
          * 设置支付密码
          */
-        void postModifyPaymentPassword(String oldPaymentPassword, String paymentPassword);
+        void postModifyPaymentPassword(String newPaymentPassword, String paymentPassword);
     }
 
     interface View extends BaseNewView<Presenter, String> {

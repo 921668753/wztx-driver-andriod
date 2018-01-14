@@ -46,6 +46,7 @@ public class SetPaymentPasswordActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
+        tv_nextStep.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.setPaymentPassword), true, R.id.titlebar);
         et_paymentPassword.initStyle(R.drawable.edit_num_bg, 6, 0.33f, R.color.bEBEC0Colors, R.color.f2222Colors, 20);
         et_paymentPassword.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {

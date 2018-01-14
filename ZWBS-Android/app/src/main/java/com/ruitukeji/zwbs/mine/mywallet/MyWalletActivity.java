@@ -226,5 +226,4 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
         mRefreshLayout.endLoadingMore();
         return false;
     }
-
 }

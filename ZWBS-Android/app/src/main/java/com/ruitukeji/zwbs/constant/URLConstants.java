@@ -167,11 +167,6 @@ public class URLConstants {
     public static String GETAUTHINFO = APIURL + "user/getAuthInfo";
 
     /**
-     * 回调地址
-     */
-    public static String ZFBHUIDIAO = "http://115.159.227.219:8088/fanfou-api/alinotify";
-
-    /**
      * 创建轨迹请求
      */
     public static String TABLEIDTRACK = "http://yuntuapi.amap.com/datamanage/data/create";
@@ -185,6 +180,31 @@ public class URLConstants {
      * 我的钱包
      */
     public static String PAY = APIURL + "pay";
+
+    /**
+     * 获取个人银行卡信息
+     */
+    public static String MYBANKCARD = APIURL + "Pay/MyBankCard";
+
+    /**
+     * 添加银行卡
+     */
+    public static String ADDBANKCARD = APIURL + "Pay/AddBankCard";
+
+    /**
+     * 设置支付密码
+     */
+    public static String SETPAYPASSEORD = APIURL + "user/PayPassword";
+
+    /**
+     * 修改密码校验
+     */
+    public static String CHECKPAYPASSEORD = APIURL + "user/CheckUpPayPassword";
+
+    /**
+     * 获得银行
+     */
+    public static String GETBANK = APIURL + "Pay/GetBank";
 
     /**
      * 我的报价

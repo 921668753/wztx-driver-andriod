@@ -11,7 +11,7 @@
     <FrameLayout
         android:id="@+id/main_content"
         style="@style/MatchMatch"
-        android:layout_marginBottom="@dimen/dimen50.5" />
+        android:layout_marginBottom="@dimen/dimen49" />
 
     <include
         android:id="@+id/bottombar_group"

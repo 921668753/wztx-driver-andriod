@@ -20,7 +20,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!--讯飞语音-->
 
-
     <!--用于进行网络定位-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--用于访问GPS定位-->
@@ -71,7 +70,6 @@
     <!-- 设置允许拍照的权限 -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
 
     <application
         android:name=".application.MyApplication"
@@ -181,84 +179,87 @@
             android:name=".mine.personalcertificate.CheckDocumentsActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包-->
+        <!--个人中心  我的钱包-->
         <activity
             android:name=".mine.mywallet.MyWalletActivity"
             android:screenOrientation="portrait" />
 
-
-        <!--我的钱包   账单-->
+        <!--个人中心 我的钱包   账单-->
         <activity
             android:name=".mine.mywallet.BillActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   收入明细-->
+        <!--个人中心 我的钱包   收入明细-->
         <activity
             android:name=".mine.mywallet.incomedetails.IncomeDetailsActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   充值-->
+        <!--个人中心 我的钱包   充值-->
         <activity
             android:name=".mine.mywallet.recharge.RechargeActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   充值  充值记录-->
+        <!--个人中心 我的钱包   充值  充值记录-->
         <activity
             android:name=".mine.mywallet.recharge.RechargeRecordActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   提现-->
+        <!--个人中心 我的钱包   提现-->
         <activity
             android:name=".mine.mywallet.withdrawal.WithdrawalActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   提现记录-->
+        <!--个人中心 我的钱包   提现记录-->
         <activity
             android:name=".mine.mywallet.withdrawal.WithdrawalRecordActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包   我的銀行卡-->
+        <!--个人中心 我的钱包   我的銀行卡-->
         <activity
             android:name=".mine.mywallet.mybankcard.MyBankCardActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  我的銀行卡 添加銀行卡-->
+        <!--个人中心 我的钱包  我的銀行卡 添加銀行卡-->
         <activity
             android:name=".mine.mywallet.mybankcard.AddBankCardActivity"
             android:screenOrientation="portrait" />
 
-
-        <!--我的钱包  设置支付密码-->
+        <!--个人中心  我的钱包 设置支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.setpaymentpassword.SetPaymentPasswordActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  设置支付密码-->
+        <!--个人中心  我的钱包 设置支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.setpaymentpassword.SetPaymentPassword1Activity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  修改支付密码-->
+        <!--个人中心  我的钱包 修改支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPasswordActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  设置支付密码-->
+        <!--个人中心  我的钱包 修改支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPassword1Activity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  设置支付密码-->
+        <!--个人中心  我的钱包 修改支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPassword2Activity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  设置支付密码-->
+        <!--个人中心  我的钱包 修改支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPassword3Activity"
             android:screenOrientation="portrait" />
 
-        <!--我的钱包  确认支付密码-->
+        <!--个人中心  我的钱包 修改支付密码-->
+        <activity
+            android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ModifyPaymentPassword4Activity"
+            android:screenOrientation="portrait" />
+
+        <!--个人中心  我的钱包 确认支付密码-->
         <activity
             android:name=".mine.mywallet.paymentpasswordmanagement.modifypaymentpassword.ConfirmPaymentPasswordActivity"
             android:screenOrientation="portrait" />

@@ -9,7 +9,6 @@ import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
-import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.myview.VerifyCodeView;
@@ -49,7 +48,7 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
     /**
      * 验证码类型 reg=注册 restpwd=找回密码 login=登陆 bind=绑定手机号.
      */
-    private String type = "resetpwd";
+    private String type = "reg";
 
     @Override
     public void setRootView() {
@@ -84,7 +83,7 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
             }
         });
 
-        tv_phone.setText(phone.substring(0, 2) + "****" + phone.substring(7));
+        tv_phone.setText(phone.substring(0, 3) + "****" + phone.substring(phone.length() - 4));
     }
 
 
@@ -129,9 +128,6 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            //   tv_timing.setEnabled(false);
-            //    CodeBean bean = (CodeBean) JsonUtil.getInstance().json2Obj(s, CodeBean.class);
-            //   ViewInject.toast(getString(R.string.testget));
             time.start();
         } else if (flag == 1) {
             time.cancel();
@@ -144,6 +140,11 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        ViewInject.toast(msg);
+        if (flag == 0) {
+            tv_timing.setText(getString(R.string.revalidation));
+            tv_timing.setClickable(true);
+            return;
+        }
+        toLigon1(msg);
     }
 }

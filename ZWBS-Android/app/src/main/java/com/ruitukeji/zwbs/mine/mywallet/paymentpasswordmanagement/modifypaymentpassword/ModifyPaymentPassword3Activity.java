@@ -1,22 +1,20 @@
 package com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.modifypaymentpassword;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
-import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.myview.PayPwdEditText;
 
 /**
- * 修改支付密码
+ * 修改支付密码---输入旧密码
  * Created by Administrator on 2017/12/13.
  */
 
-public class ModifyPaymentPassword3Activity extends BaseActivity {
+public class ModifyPaymentPassword3Activity extends BaseActivity implements ModifyPaymentPasswordContract.View {
 
 
     /**
@@ -45,8 +43,15 @@ public class ModifyPaymentPassword3Activity extends BaseActivity {
     }
 
     @Override
+    public void initData() {
+        super.initData();
+        mPresenter = new ModifyPaymentPasswordPresenter(this);
+    }
+
+    @Override
     public void initWidget() {
         super.initWidget();
+        tv_nextStep.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.modifyPaymentPassword), true, R.id.titlebar);
         et_paymentPassword.initStyle(R.drawable.edit_num_bg, 6, 0.33f, R.color.bEBEC0Colors, R.color.f2222Colors, 20);
         et_paymentPassword.setOnTextFinishListener(new PayPwdEditText.OnTextFinishListener() {
@@ -71,14 +76,29 @@ public class ModifyPaymentPassword3Activity extends BaseActivity {
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_nextStep:
-                if (paymentPassword.length() < 6) {
-                    ViewInject.toast(getString(R.string.pleaseEnterPaymentPassword1));
-                    break;
-                }
-                Intent intent = new Intent(aty, ConfirmPaymentPasswordActivity.class);
-                intent.putExtra("paymentPassword", paymentPassword);
-                showActivity(aty, intent);
+                showLoadingDialog(getString(R.string.submissionLoad));
+                ((ModifyPaymentPasswordContract.Presenter) mPresenter).postOldPayPassword(paymentPassword);
                 break;
+        }
+    }
+
+
+    @Override
+    public void setPresenter(ModifyPaymentPasswordContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        dismissLoadingDialog();
+        showActivity(aty, ModifyPaymentPassword4Activity.class);
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
+        if (!toLigon1(msg)) {
+            return;
         }
     }
 }

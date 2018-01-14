@@ -18,6 +18,7 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
  */
 
 public class HttpRequest {
+
     private static RxVolley.Builder builder = null;
 
     public static void requestHttp(String url, int httpMethod, int contentType, HttpParams params, boolean isCache, ResponseListener responseListener) {
@@ -122,7 +123,10 @@ public class HttpRequest {
             return false;
         }
         if (baseResult.getCode() != NumericConstants.SUCCESS) {
-            if (baseResult.getCode() == 4011 || baseResult.getCode() == 4012 || baseResult.getCode() == 4013 || baseResult.getCode() == 4015) {
+            if (baseResult.getCode() == 4001) {
+                listener.onFailure("4001");
+                return false;
+            } else if (baseResult.getCode() == 4011 || baseResult.getCode() == 4012 || baseResult.getCode() == 4013 || baseResult.getCode() == 4015) {
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "id", 0);
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken", "");
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "refreshToken", "");

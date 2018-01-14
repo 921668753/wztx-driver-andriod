@@ -13,7 +13,6 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.setpaymentpassword.SetPaymentPasswordActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 
 /**
@@ -92,7 +91,7 @@ public class ModifyPaymentPassword2Activity extends BaseActivity implements Modi
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        showActivity(aty, SetPaymentPasswordActivity.class);
+        showActivity(aty, ModifyPaymentPassword4Activity.class);
     }
 
     @Override

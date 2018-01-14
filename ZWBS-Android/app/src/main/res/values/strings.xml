@@ -607,6 +607,7 @@
     <string name="currentPaymentPassword">当前使用的支付密码</string>
     <string name="doNotRemember">不记得</string>
     <string name="remember">记得</string>
+    <string name="enterCorrectVerificationCode">请输入正确的验证码</string>
     <string name="verificationCodeMobilePhone">我们已发送验证码到您的手机</string>
     <string name="fillIn">填写</string>
     <string name="idNumber">的身份证号</string>
@@ -621,7 +622,7 @@
 
     <!--确认支付密码-->
     <string name="confirmPaymentPassword">确认支付密码</string>
-
+    <string name="modifyPaymentPasswordSucceed">修改支付密码成功！</string>
 
     <!--充值-->
     <string name="topUpAmount">充值金额</string>
