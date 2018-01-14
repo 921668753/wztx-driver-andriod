@@ -23,7 +23,7 @@ import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.CodeBean;
+import com.ruitukeji.zwbs.entity.loginregister.CodeBean;
 import com.ruitukeji.zwbs.entity.PersonalCertificateBean;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
 import com.ruitukeji.zwbs.main.MainActivity;

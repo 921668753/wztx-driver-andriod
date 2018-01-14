@@ -34,7 +34,7 @@ import com.ruitukeji.zwbs.mine.mywallet.MyWalletActivity;
 import com.ruitukeji.zwbs.mine.personalcertificate.PersonalCertificateActivity;
 import com.ruitukeji.zwbs.mine.personaldata.PersonalDataActivity;
 import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendCourteousActivity;
-import com.ruitukeji.zwbs.mine.settings.SettingsActivity;
+import com.ruitukeji.zwbs.mine.setting.SettingsActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -421,7 +421,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusRefreshMineEvent")) {
+
             mRefreshLayout.beginRefreshing();
+
         }
     }
 

@@ -28,7 +28,6 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
 
 import java.util.List;
 
-import cn.jpush.android.api.InstrumentedActivity;
 import okhttp3.OkHttpClient;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -65,6 +64,7 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
 
     public void initView() {
         ImageView image = new ImageView(aty);
+        image.setBackgroundResource(R.color.white);
         image.setImageResource(R.mipmap.startpage);
         Animation anim = AnimationUtils.loadAnimation(aty, R.anim.splash_start);
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -83,21 +83,23 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
         });
         image.setAnimation(anim);
         setContentView(image);
-        MyApplication.screenH = DensityUtils.getScreenH();
-        MyApplication.screenW = DensityUtils.getScreenW();
     }
 
 
     private void jumpTo() {
-        boolean isFirst = PreferenceHelper.readBoolean(this, StringConstants.FILENAME, "firstOpen", true);
+        boolean isFirst = PreferenceHelper.readBoolean(this, StringConstants.FILENAME, "isFirstOpen", true);
         Intent jumpIntent = new Intent();
-//        if (isFirst) {
-//            PreferenceHelper.write(this, StringConstants.FILENAME, "firstOpen", false);
-//            jumpIntent.setClass(this, GuideViewActivity.class);
-//        } else {
-        jumpIntent.setClass(this, MainActivity.class);
-        //    }
+        jumpIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        jumpIntent.setAction("android.intent.action.MAIN");
+        jumpIntent.addCategory("android.intent.category.LAUNCHER");
+        if (isFirst) {
+            PreferenceHelper.write(this, StringConstants.FILENAME, "isFirstOpen", false);
+            //   jumpIntent.setClass(this, GuideViewActivity.class);
+        } else {
+            jumpIntent.setClass(this, MainActivity.class);
+        }
         skipActivity(aty, jumpIntent);
+        //  overridePendingTransition(0, 0);
     }
 
 
@@ -124,7 +126,7 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
         PreferenceHelper.write(this, StringConstants.FILENAME, "share_driver", appConfigBean.getResult().getShare_driver());
         PreferenceHelper.write(this, StringConstants.FILENAME, "share_driver_description", appConfigBean.getResult().getShare_driver_description());
         PreferenceHelper.write(this, StringConstants.FILENAME, "share_driver_title", appConfigBean.getResult().getShare_driver_title());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
+        // PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
         int lastApkVersionNum = 0;
         if (StringUtils.isEmpty(appConfigBean.getResult().getLastApkVersionNum() + "")) {
             lastApkVersionNum = 0;
@@ -146,21 +148,18 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
     @Override
     public void error(String msg) {
         ((StartPageContract.Presenter) mPresenter).getAppConfig();
-//        dismissLoadingDialog();
-//        ViewInject.toast(msg);
     }
 
     @AfterPermissionGranted(NumericConstants.READ_AND_WRITE_CODE)
     public void readAndWriteTask() {
-        String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.CHANGE_WIFI_STATE};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Have permission, do the thing!
             RxVolley.setRequestQueue(RequestQueue.newRequestQueue(FileUtils.getSaveFolder(StringConstants.CACHEPATH), new OkHttpStack(new OkHttpClient())));
             ((StartPageContract.Presenter) mPresenter).getAppConfig();
         } else {
             // Ask for one permission
-            EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite),
-                    NumericConstants.READ_AND_WRITE_CODE, perms);
+            EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite), NumericConstants.READ_AND_WRITE_CODE, perms);
         }
     }
 

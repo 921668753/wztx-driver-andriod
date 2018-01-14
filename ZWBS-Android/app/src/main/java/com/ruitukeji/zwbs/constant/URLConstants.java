@@ -10,17 +10,12 @@ public class URLConstants {
     /**
      * 服务器地址URL
      */
-    public static String SERVERURL = "http://atwwg.api.antiwearvalve.com/";
+  //  public static String APIURL = "http://atwwg.api.antiwearvalve.com/";
 
     /**
      * 测试服务器地址URL
      */
-    public static String SERVERURL1 = "http://wztx.drv.api.zenmechi.cc/";
-
-    /**
-     * 请求地址URL
-     */
-    public static String APIURL = SERVERURL1;
+    public static String APIURL = "http://wuzaidriver.wuzaitianxia56.com/";
 
     /**
      * 上传头像
@@ -58,6 +53,16 @@ public class URLConstants {
      * 登录
      */
     public static String MEMBERLOGIN = APIURL + "User/login";
+
+    /**
+     * 第三方登录
+     */
+    public static String THIRDLOGIN = APIURL + "User/thirdLogin";
+
+    /**
+     * 第三方登录绑定手机号
+     */
+    public static String THIRDLOGINADD = APIURL + "User/thirdLoginAdd";
 
     /**
      * 获取车辆车长信息以及车型

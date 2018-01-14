@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.settings;
+package com.ruitukeji.zwbs.mine.setting;
 
 import android.view.View;
 import android.widget.EditText;

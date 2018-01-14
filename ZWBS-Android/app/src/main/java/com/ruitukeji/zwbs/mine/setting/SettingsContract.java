@@ -1,8 +1,7 @@
-package com.ruitukeji.zwbs.mine.settings;
+package com.ruitukeji.zwbs.mine.setting;
 
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-import com.ruitukeji.zwbs.common.BaseView;
 
 /**
  * Created by Administrator on 2017/2/11.

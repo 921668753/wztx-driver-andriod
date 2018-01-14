@@ -295,15 +295,15 @@
             android:screenOrientation="portrait" />
         <!--关于我们-->
         <activity
-            android:name=".mine.settings.aboutus.AboutUsActivity"
+            android:name=".mine.setting.aboutus.AboutUsActivity"
             android:screenOrientation="portrait" />
         <!--设置-->
         <activity
-            android:name=".mine.settings.SettingsActivity"
+            android:name=".mine.setting.SettingsActivity"
             android:screenOrientation="portrait" />
         <!--修改密码-->
         <activity
-            android:name=".mine.settings.ChangePasswordActivity"
+            android:name=".mine.setting.ChangePasswordActivity"
             android:screenOrientation="portrait" />
         <!--其他服务-->
         <activity

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.settings;
+package com.ruitukeji.zwbs.mine.setting;
 
 import com.kymjs.rxvolley.client.ProgressListener;
 import com.ruitukeji.zwbs.R;

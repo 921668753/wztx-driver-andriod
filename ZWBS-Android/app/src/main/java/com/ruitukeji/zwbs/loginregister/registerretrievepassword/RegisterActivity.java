@@ -17,12 +17,13 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.entity.loginregister.LoginBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
-import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
+import com.ruitukeji.zwbs.mine.setting.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 import com.umeng.analytics.MobclickAgent;
 
 import static android.text.InputType.TYPE_CLASS_TEXT;
@@ -132,6 +133,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
      * 设置标题
      */
     public void initTitle() {
+        tv_registe.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.register), true, R.id.titlebar);
     }
 
@@ -165,13 +167,13 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 break;
             case R.id.tv_registe:
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                tv_registe.setEnabled(false);
+                tv_registe.setClickable(false);
                 ((RegisterContract.Presenter) mPresenter).postRegister(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString(), et_referralCode.getText().toString());
                 break;
             case R.id.tv_agreement:
                 // 注册协议
                 Intent intent = new Intent(aty, AboutUsActivity.class);
-                intent.putExtra("type", "driver_registration_protocol");
+                intent.putExtra("type", "shipper_registration_protocol");
                 showActivity(aty, intent);
                 break;
             default:
@@ -206,7 +208,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     public void getSuccess(String s, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-            tv_registe.setEnabled(true);
+            //    tv_registe.setClickable(true);
             //    CodeBean bean = (CodeBean) JsonUtil.getInstance().json2Obj(s, CodeBean.class);
             ViewInject.toast(getString(R.string.testget));
             time.start();
@@ -216,12 +218,23 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
             MobclickAgent.onProfileSignIn(et_phone.getText().toString());//账号统计
             PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
-            PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime() + "");
+            PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime());
             PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
             PreferenceHelper.write(this, StringConstants.FILENAME, "userId", bean.getResult().getUserId());
             PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
             KJActivityStack.create().finishActivity(LoginActivity.class);
-            skipActivity(aty, IdentityAuthenticationActivity.class);
+            /**
+             * 发送消息
+             */
+            if (type != null && type.equals("personalCenter")) {
+                PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", false);
+            } else {
+                PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", true);
+            }
+            MobclickAgent.onProfileSignIn(et_phone.getText().toString().trim());
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
+            finish();
+            //  skipActivity(aty, IdentityAuthenticationActivity.class);
         }
     }
 
@@ -245,7 +258,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     if (editText.getId() == R.id.et_phone) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
                     }
-                    if (et_phone.getText().length() > 0 && et_code.getText().length() > 0 && et_pwd.getText().length() > 0) {
+                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
                         tv_registe.setClickable(true);
                         tv_registe.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -275,7 +288,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     public void error(String msg) {
         dismissLoadingDialog();
         ViewInject.toast(msg);
-        tv_registe.setEnabled(true);
+        tv_registe.setClickable(true);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.settings.aboutus;
+package com.ruitukeji.zwbs.mine.setting.aboutus;
 
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.retrofit.RequestClient;

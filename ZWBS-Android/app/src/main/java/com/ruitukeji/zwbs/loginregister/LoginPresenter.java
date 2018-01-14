@@ -7,6 +7,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
+import com.ruitukeji.zwbs.utils.AccountValidatorUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
@@ -34,8 +35,8 @@ public class LoginPresenter implements LoginContract.Presenter {
             mView.errorMsg(MyApplication.getContext().getString(R.string.hintAccountText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(MyApplication.getContext().getString(R.string.inputPhone), 0);
+        if (phone.length() != 11 || !AccountValidatorUtil.isMobile(phone)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.inputPhone), 0);
             return;
         }
         if (StringUtils.isEmpty(pwd)) {
@@ -49,7 +50,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("account", phone);
-        map.put("password", CipherUtils.md5("RUITU" + pwd + "KEJI"));
+        map.put("password", CipherUtils.md5("WUZAI" + pwd + "TIANXIA"));
         map.put("wxOpenid", "");
         map.put("pushToken", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
@@ -67,27 +68,31 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex) {
+    public void postThirdToLogin(String qq_openid, String wx_openid, String nickname, String avatar, int sex) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        //   Map<String, Object> map = new HashMap<String, Object>();
-        httpParams.put("openid", openid);
-        httpParams.put("from", from);
-        httpParams.put("nickname", nickname);
-        httpParams.put("head_pic", head_pic);
-        httpParams.put("sex", sex);
-        httpParams.put("push_id", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
-        // httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-//        RequestClient.postThirdLogin(httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 2);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 1);
-//            }
-//        });
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (!StringUtils.isEmpty(qq_openid)) {
+            map.put("qq_openid", qq_openid);
+        }
+        if (!StringUtils.isEmpty(wx_openid)) {
+            map.put("wx_openid", wx_openid);
+        }
+        map.put("nickname", nickname);
+        map.put("avatar", avatar);
+        map.put("sex", sex);
+        map.put("pushToken", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+        RequestClient.postThirdLogin(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
     }
 
 }

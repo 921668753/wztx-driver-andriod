@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.settings;
+package com.ruitukeji.zwbs.mine.setting;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,7 +19,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.mine.settings.aboutus.AboutUsActivity;
+import com.ruitukeji.zwbs.mine.setting.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DataCleanManager;
 import com.ruitukeji.zwbs.utils.FileNewUtil;

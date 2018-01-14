@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.mine.settings;
+package com.ruitukeji.zwbs.mine.setting;
 
 import com.kymjs.common.CipherUtils;
 import com.kymjs.common.StringUtils;

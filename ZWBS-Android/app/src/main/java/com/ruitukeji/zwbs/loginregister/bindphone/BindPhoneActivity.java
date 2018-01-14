@@ -3,17 +3,27 @@ package com.ruitukeji.zwbs.loginregister.bindphone;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
+import com.ruitukeji.zwbs.constant.StringConstants;
+import com.ruitukeji.zwbs.entity.loginregister.LoginBean;
+import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 绑定手机号
@@ -60,7 +70,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
     /**
      * 验证码类型 reg=注册 restpwd=找回密码 login=登陆 bind=绑定手机号.
      */
-    private String type = "resetpwd";
+    private String type = "bind";
 
     private String openid;
     private String from;
@@ -104,6 +114,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
      * 设置标题
      */
     public void initTitle() {
+        tv_determine.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.bindPhone), true, R.id.titlebar);
     }
 
@@ -122,9 +133,9 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
                 et_code.setText("");
                 break;
             case R.id.tv_determine:
-                tv_determine.setEnabled(false);
+                tv_determine.setClickable(false);
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                ((BindPhoneContract.Presenter) mPresenter).postBindPhone(et_phone.getText().toString(), et_code.getText().toString());
+                ((BindPhoneContract.Presenter) mPresenter).postThirdLoginAdd(openid, from, nickname, head_pic, sex, et_code.getText().toString(), et_phone.getText().toString(), "");
                 break;
             default:
                 break;
@@ -174,7 +185,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
                     if (editText.getId() == R.id.et_phone) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
                     }
-                    if (et_phone.getText().length() > 0 && et_code.getText().length() > 0) {
+                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4) {
                         tv_determine.setClickable(true);
                         tv_determine.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -203,19 +214,35 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
 
     @Override
     public void getSuccess(String s, int flag) {
-        dismissLoadingDialog();
         if (flag == 0) {
-            tv_determine.setEnabled(false);
+            dismissLoadingDialog();
             //    CodeBean bean = (CodeBean) JsonUtil.getInstance().json2Obj(s, CodeBean.class);
             ViewInject.toast(getString(R.string.testget));
             time.start();
-        } else if (flag == 2) {
+        } else if (flag == 1) {
             time.cancel();
             time = null;
             ViewInject.toast(getString(R.string.bindPhoneSuccessfully));
-            ((BindPhoneContract.Presenter) mPresenter).postThirdToLogin(openid, from, nickname, head_pic, sex);
-
-            // finish();
+            Log.d("tag", s);
+            LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
+            PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
+            PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime());
+            PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
+            PreferenceHelper.write(this, StringConstants.FILENAME, "userId", bean.getResult().getUserId());
+            PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
+            /**
+             * 发送消息
+             */
+            if (type != null && type.equals("personalCenter")) {
+                PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", false);
+            } else {
+                PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", true);
+            }
+            MobclickAgent.onProfileSignIn(openid);
+            KJActivityStack.create().finishActivity(LoginActivity.class);
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
+            dismissLoadingDialog();
+            finish();
         }
     }
 
@@ -223,7 +250,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
     public void error(String msg) {
         dismissLoadingDialog();
         ViewInject.toast(msg);
-        tv_determine.setEnabled(false);
+        tv_determine.setClickable(true);
     }
 
     @Override

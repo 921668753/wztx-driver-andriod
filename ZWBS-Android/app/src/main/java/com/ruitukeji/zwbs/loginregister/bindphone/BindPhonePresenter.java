@@ -7,6 +7,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
+import com.ruitukeji.zwbs.utils.AccountValidatorUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
@@ -34,8 +35,8 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
         }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+        if (phone.length() != 11 || !AccountValidatorUtil.isMobile(phone)) {
+            mView.error(KJActivityStack.create().topActivity().getString(R.string.inputPhone));
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -62,29 +63,71 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
         });
     }
 
+//    @Override
+//    public void postBindPhone(String phone, String code) {
+//        if (StringUtils.isEmpty(phone)) {
+//            mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
+//            return;
+//        }
+//        if (phone.length() != 11) {
+//            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+//            return;
+//        }
+//        if (StringUtils.isEmpty(code)) {
+//            mView.error(MyApplication.getContext().getString(R.string.errorCode));
+//            return;
+//        }
+//        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        map.put("account", phone);
+//        map.put("captcha", code);
+//        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+//        RequestClient.postResetpwd(httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response, 1);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.error(msg);
+//            }
+//        });
+//    }
+
     @Override
-    public void postBindPhone(String phone, String code) {
-        if (StringUtils.isEmpty(phone)) {
+    public void postThirdLoginAdd(String openid, String from, String nickname, String avatar, int sex, String captcha, String tel, String recomm_code) {
+        if (StringUtils.isEmpty(tel)) {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
         }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+        if (tel.length() != 11 || !AccountValidatorUtil.isMobile(tel)) {
+            mView.error(KJActivityStack.create().topActivity().getString(R.string.inputPhone));
             return;
         }
-        if (StringUtils.isEmpty(code)) {
+        if (StringUtils.isEmpty(captcha)) {
             mView.error(MyApplication.getContext().getString(R.string.errorCode));
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("account", phone);
-        map.put("captcha", code);
+        if (from != null && from.equals("WEIXIN")) {
+            map.put("wx_openid", openid);
+        } else {
+            map.put("qq_openid", openid);
+        }
+        map.put("nickname", nickname);
+        map.put("avatar", avatar);
+        map.put("sex", sex);
+        map.put("captcha", captcha);
+        map.put("tel", tel);
+        map.put("recomm_code", recomm_code);
+        map.put("pushToken", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.postResetpwd(httpParams, new ResponseListener<String>() {
+        RequestClient.postThirdLoginAdd(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 2);
+                mView.getSuccess(response, 1);
             }
 
             @Override
@@ -92,30 +135,6 @@ public class BindPhonePresenter implements BindPhoneContract.Presenter {
                 mView.error(msg);
             }
         });
-    }
-
-    @Override
-    public void postThirdToLogin(String openid, String from, String nickname, String head_pic, int sex) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        //   Map<String, Object> map = new HashMap<String, Object>();
-        httpParams.put("openid", openid);
-        httpParams.put("from", from);
-        httpParams.put("nickname", nickname);
-        httpParams.put("head_pic", head_pic);
-        httpParams.put("sex", sex);
-        httpParams.put("push_id", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
-        // httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-//        RequestClient.postThirdLogin(httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 2);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 1);
-//            }
-//        });
     }
 
 

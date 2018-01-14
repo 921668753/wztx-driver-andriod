@@ -18,7 +18,7 @@ import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.entity.loginregister.LoginBean;
 import com.ruitukeji.zwbs.loginregister.bindphone.BindPhoneActivity;
 import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RegisterActivity;
 import com.ruitukeji.zwbs.loginregister.registerretrievepassword.RetrievePasswordActivity;
@@ -101,6 +101,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private String nickname;
     private String head_pic;
     private int sex = 0;
+    private String type;
 
     @Override
     public void setRootView() {
@@ -114,6 +115,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void initData() {
         super.initData();
         mPresenter = new LoginPresenter(this);
+        type = getIntent().getStringExtra("type");
     }
 
     /**
@@ -231,18 +233,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             } else {
                 sex = 0;
             }
-            //openid = map.get("uid");
-            openid = map.get("openid");
+            openid = map.get("uid");
+            // openid = map.get("openid");
             Log.d("tag111", openid);
-            from = share_media.toString();
-            if (from != null && from.equals("WEIXIN")) {
-                from = "wx";
-            } else {
-                from = "qq";
-            }
             nickname = map.get("name");
             head_pic = map.get("iconurl");
-            ((LoginContract.Presenter) mPresenter).postThirdToLogin(openid, from, nickname, head_pic, sex);
+            from = share_media.toString();
+            if (from != null && from.equals("WEIXIN")) {
+                ((LoginContract.Presenter) mPresenter).postThirdToLogin("", openid, nickname, head_pic, sex);
+            } else {
+                ((LoginContract.Presenter) mPresenter).postThirdToLogin(openid, "", nickname, head_pic, sex);
+            }
         }
 
         /**
@@ -296,16 +297,23 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void getSuccess(String s, int flag) {
+        Log.d("tag", s);
         LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
         PreferenceHelper.write(this, StringConstants.FILENAME, "accessToken", bean.getResult().getAccessToken());
-        PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime() + "");
+        PreferenceHelper.write(this, StringConstants.FILENAME, "expireTime", bean.getResult().getExpireTime());
         PreferenceHelper.write(this, StringConstants.FILENAME, "refreshToken", bean.getResult().getRefreshToken());
+        PreferenceHelper.write(this, StringConstants.FILENAME, "userId", bean.getResult().getUserId());
         PreferenceHelper.write(this, StringConstants.FILENAME, "timeBefore", System.currentTimeMillis() + "");
         /**
          * 发送消息
          */
-        RxBus.getInstance().post(new MsgEvent("RxBusRefreshMineEvent"));
+        RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
         MobclickAgent.onProfileSignIn(et_accountNumber.getText().toString());
+        if (type != null && type.equals("personalCenter")) {
+            PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", false);
+        } else {
+            PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", true);
+        }
         dismissLoadingDialog();
         finish();
     }
@@ -313,7 +321,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        if (flag == 1) {
+        if (flag == 1 && msg.equals("4001")) {
             Intent intent = new Intent(aty, BindPhoneActivity.class);
             intent.putExtra("openid", openid);
             intent.putExtra("from", from);
@@ -347,7 +355,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     if (view != null) {
                         view.setVisibility(View.VISIBLE);
                     }
-                    if (et_accountNumber.getText().length() > 0 && et_pwd.getText().length() > 0) {
+                    if (et_accountNumber.getText().length() == 11 && et_pwd.getText().length() >= 6) {
                         tv_login.setClickable(true);
                         tv_login.setBackgroundResource(R.drawable.shape_login);
                         tv_login.setTextColor(getResources().getColor(R.color.mainColor));

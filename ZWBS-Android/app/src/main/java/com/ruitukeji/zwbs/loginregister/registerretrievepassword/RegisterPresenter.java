@@ -7,6 +7,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
+import com.ruitukeji.zwbs.utils.AccountValidatorUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
@@ -34,8 +35,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
         }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+        if (phone.length() != 11 || !AccountValidatorUtil.isMobile(phone)) {
+            mView.error(KJActivityStack.create().topActivity().getString(R.string.inputPhone));
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -68,8 +69,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
         }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+        if (phone.length() != 11 || !AccountValidatorUtil.isMobile(phone)) {
+            mView.error(KJActivityStack.create().topActivity().getString(R.string.inputPhone));
             return;
         }
         if (StringUtils.isEmpty(code)) {
@@ -88,7 +89,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("account", phone);
         map.put("captcha", code);
-        map.put("new_password", CipherUtils.md5("RUITU" + pwd + "KEJI"));
+        map.put("new_password", CipherUtils.md5("WUZAI" + pwd + "TIANXIA"));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
         RequestClient.postResetpwd(httpParams, new ResponseListener<String>() {
             @Override
@@ -109,8 +110,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.error(MyApplication.getContext().getString(R.string.hintAccountText));
             return;
         }
-        if (phone.length() != 11) {
-            mView.error(MyApplication.getContext().getString(R.string.inputPhone));
+        if (phone.length() != 11 || !AccountValidatorUtil.isMobile(phone)) {
+            mView.error(KJActivityStack.create().topActivity().getString(R.string.inputPhone));
             return;
         }
         if (StringUtils.isEmpty(code)) {
@@ -129,7 +130,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("user_name", phone);
         map.put("captcha", code);
-        map.put("password", CipherUtils.md5("RUITU" + pwd + "KEJI"));
+        map.put("password", CipherUtils.md5("WUZAI" + pwd + "TIANXIA"));
         map.put("recomm_code", recommendcode);
         map.put("pushToken", JPushInterface.getRegistrationID(KJActivityStack.create().topActivity()));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());

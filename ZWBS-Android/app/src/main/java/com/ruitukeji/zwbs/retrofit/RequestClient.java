@@ -18,7 +18,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.constant.URLConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
-import com.ruitukeji.zwbs.entity.LoginBean;
+import com.ruitukeji.zwbs.entity.loginregister.LoginBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpRequest;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
@@ -137,6 +137,20 @@ public class RequestClient {
      */
     public static void postLogin(HttpParams httpParams, final ResponseListener<String> listener) {
         HttpRequest.requestPostHttp(URLConstants.MEMBERLOGIN, httpParams, listener);
+    }
+
+    /**
+     * 第三方登录
+     */
+    public static void postThirdLogin(HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestPostHttp(URLConstants.THIRDLOGIN, httpParams, listener);
+    }
+
+    /**
+     * 第三方登录绑定手机号
+     */
+    public static void postThirdLoginAdd(HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestPostHttp(URLConstants.THIRDLOGINADD, httpParams, listener);
     }
 
     /**

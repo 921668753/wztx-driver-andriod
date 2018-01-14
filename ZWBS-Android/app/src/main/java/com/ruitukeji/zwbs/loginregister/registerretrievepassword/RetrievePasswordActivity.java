@@ -108,6 +108,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
      * 设置标题
      */
     public void initTitle() {
+        tv_resetPassword.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.retrievePassword), true, R.id.titlebar);
     }
 
@@ -140,7 +141,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
                 et_pwd.requestFocus();
                 break;
             case R.id.tv_resetPassword:
-                tv_resetPassword.setEnabled(false);
+                tv_resetPassword.setClickable(false);
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
                 ((RegisterContract.Presenter) mPresenter).postResetpwd(et_phone.getText().toString(), et_code.getText().toString(), et_pwd.getText().toString());
                 break;
@@ -190,7 +191,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
                     if (editText.getId() == R.id.et_phone) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
                     }
-                    if (et_phone.getText().length() > 0 && et_code.getText().length() > 0 && et_pwd.getText().length() > 0) {
+                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
                         tv_resetPassword.setClickable(true);
                         tv_resetPassword.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -220,7 +221,6 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     public void getSuccess(String s, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-            tv_resetPassword.setEnabled(true);
             //    CodeBean bean = (CodeBean) JsonUtil.getInstance().json2Obj(s, CodeBean.class);
             ViewInject.toast(getString(R.string.testget));
             time.start();
@@ -236,7 +236,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     public void error(String msg) {
         dismissLoadingDialog();
         ViewInject.toast(msg);
-        tv_resetPassword.setEnabled(true);
+        tv_resetPassword.setClickable(true);
     }
 
     @Override
