@@ -169,7 +169,6 @@ public abstract class PickerViewUtil {
 
     public abstract void getAddress(String address);
 
-
     public ArrayList<NationalCity> parseData(String result) {//Gson 解析
         ArrayList<NationalCity> detail = new ArrayList<>();
         try {

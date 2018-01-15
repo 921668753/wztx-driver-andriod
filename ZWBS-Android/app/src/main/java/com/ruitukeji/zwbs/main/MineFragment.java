@@ -2,8 +2,8 @@ package com.ruitukeji.zwbs.main;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,14 +24,13 @@ import com.ruitukeji.zwbs.common.GlideImageLoader;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.MineBean;
+import com.ruitukeji.zwbs.entity.main.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
 import com.ruitukeji.zwbs.mine.helpcenter.HelpCenterActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.mine.mywallet.MyWalletActivity;
-import com.ruitukeji.zwbs.mine.personalcertificate.PersonalCertificateActivity;
 import com.ruitukeji.zwbs.mine.personaldata.PersonalDataActivity;
 import com.ruitukeji.zwbs.mine.recommendcourteous.RecommendCourteousActivity;
 import com.ruitukeji.zwbs.mine.setting.SettingsActivity;
@@ -99,11 +98,18 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.tv_driverLevel1)
     private TextView tv_driverLevel1;
 
-    @BindView(id = R.id.tv_serviceLevel, click = true)
+    @BindView(id = R.id.tv_serviceLevel)
     private TextView tv_serviceLevel;
 
-    @BindView(id = R.id.tv_complaintsNumber, click = true)
+    @BindView(id = R.id.tv_serviceLevel1)
+    private TextView tv_serviceLevel1;
+
+
+    @BindView(id = R.id.tv_complaintsNumber)
     private TextView tv_complaintsNumber;
+
+    @BindView(id = R.id.tv_complaintsNumber1)
+    private TextView tv_complaintsNumber1;
 
     @BindView(id = R.id.sv_mine)
     private ScrollView sv_mine;
@@ -170,6 +176,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.ll_settings, click = true)
     private LinearLayout ll_settings;
     private CustomerServiceTelephoneBouncedDialog customerServiceTelephoneBouncedDialog = null;
+    private Handler handler = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -180,6 +187,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     protected void initData() {
         super.initData();
+        handler = new Handler();
         mPresenter = new MinePresenter(this);
     }
 
@@ -189,7 +197,13 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         // ActivityTitleUtils.initToolbar(parentView, getString(R.string.mine), R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, getActivity(), false);
         sv_mine.setOnScrollChangeListener(this);
-
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sv_mine.scrollTo(0, 2);
+                mRefreshLayout.beginRefreshing();
+            }
+        }, 400);
     }
 
     @Override
@@ -203,7 +217,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 ((MineContract.Presenter) mPresenter).isLogin(1);
                 break;
             case R.id.ll_identityAuthentication:
-                // sv_scroll.
                 ((MineContract.Presenter) mPresenter).isLogin(6);
                 break;
             case R.id.ll_vehicleCertification:
@@ -222,30 +235,12 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 choiceCallWrapper(tv_customerServiceTelephone.getText().toString().trim());
                 break;
             case R.id.ll_helpCenter:
-//                Intent intent = new Intent(aty, HelpCenterActivity.class);
-//                intent.putExtra("type", "driver_about");
                 aty.showActivity(aty, HelpCenterActivity.class);
                 break;
             case R.id.ll_settings:
-                //   ((MineContract.Presenter) mPresenter).isLogin(5);
                 getSuccess("", 5);
                 break;
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        boolean isRefreshAvatar = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshAvatar", false);
-//        if (isRefreshAvatar) {
-//            String avatar = PreferenceHelper.readString(aty, StringConstants.FILENAME, "avatar");
-//            GlideImageLoader.glideLoader(aty, avatar, img_user, 0);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAvatar", false);
-//        }
-//        boolean isRefreshInfo = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshInfo", false);
-//        if (isRefreshInfo) {
-//            mRefreshLayout.beginRefreshing();
-//        }
     }
 
 
@@ -270,47 +265,101 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 tv_name.setText(mineBean.getResult().getReal_name());
                 tv_name1.setText(mineBean.getResult().getReal_name());
             }
-            //   tv_status.setVisibility(View.VISIBLE);
-//            if (mineBean.getResult().getAuth_status() == null || mineBean.getResult().getAuth_status().equals("init")) {
-//                tv_status.setText(getString(R.string.unauthorized));
-//            } else if (mineBean.getResult().getAuth_status() != null && mineBean.getResult().getAuth_status().equals("check")) {
-//                tv_status.setText(getString(R.string.inAuthentication));
-//            } else if (mineBean.getResult().getAuth_status() != null && mineBean.getResult().getAuth_status().equals("pass")) {
-//                tv_status.setText(getString(R.string.pass));
-//            } else if (mineBean.getResult().getAuth_status() != null && mineBean.getResult().getAuth_status().equals("refuse")) {
-//                tv_status.setText(getString(R.string.authenticationFailure));
-//            } else if (mineBean.getResult().getAuth_status() != null && mineBean.getResult().getAuth_status().equals("delete")) {
-//                tv_status.setText(getString(R.string.delete));
-//            }
+            if (StringUtils.isEmpty(mineBean.getResult().getCard_number())) {
+                tv_licensePlateNumber.setVisibility(View.GONE);
+                tv_licensePlateNumber1.setVisibility(View.GONE);
+            } else {
+                tv_licensePlateNumber.setText(getString(R.string.licenseNumber2) + mineBean.getResult().getCard_number());
+                tv_licensePlateNumber1.setText(getString(R.string.licenseNumber2) + mineBean.getResult().getCard_number());
+            }
+            tv_alwaysSingular.setText(mineBean.getResult().getAll_total_order());
+            tv_alwaysSingular1.setText(mineBean.getResult().getAll_total_order());
+            tv_driverLevel.setText(mineBean.getResult().getDr_level());
+            tv_driverLevel1.setText(mineBean.getResult().getDr_level());
+            tv_serviceLevel.setText(mineBean.getResult().getServer_level());
+            tv_serviceLevel1.setText(mineBean.getResult().getServer_level());
+            tv_complaintsNumber.setText(mineBean.getResult().getAll_complaints_num());
+            tv_complaintsNumber1.setText(mineBean.getResult().getAll_complaints_num());
+
+            tv_identityAuthentication.setVisibility(View.VISIBLE);
+            String auth_status = mineBean.getResult().getAuth_status();
+            if (auth_status == null || auth_status.equals("init")) {
+                tv_identityAuthentication.setText(getString(R.string.unauthorized));
+            } else if (auth_status != null && auth_status.equals("check")) {
+                tv_identityAuthentication.setText(getString(R.string.inAuthentication));
+            } else if (auth_status != null && auth_status.equals("pass")) {
+                tv_identityAuthentication.setText(getString(R.string.pass));
+            } else if (auth_status != null && auth_status.equals("refuse")) {
+                tv_identityAuthentication.setText(getString(R.string.authenticationFailure));
+            } else {
+//                tv_identityAuthentication.setText(getString(R.string.delete));
+                tv_identityAuthentication.setText(getString(R.string.unauthorized));
+            }
+            tv_vehicleCertification.setVisibility(View.VISIBLE);
+            String car_auth_status = mineBean.getResult().getCar_auth_status();
+            if (car_auth_status == null || car_auth_status.equals("init")) {
+                tv_vehicleCertification.setText(getString(R.string.unauthorized));
+            } else if (car_auth_status != null && car_auth_status.equals("check")) {
+                tv_vehicleCertification.setText(getString(R.string.inAuthentication));
+            } else if (car_auth_status != null && car_auth_status.equals("pass")) {
+                tv_vehicleCertification.setText(getString(R.string.pass));
+            } else if (car_auth_status != null && car_auth_status.equals("refuse")) {
+                tv_vehicleCertification.setText(getString(R.string.authenticationFailure));
+            } else {
+//                tv_identityAuthentication.setText(getString(R.string.delete));
+                tv_vehicleCertification.setText(getString(R.string.unauthorized));
+            }
+            if (StringUtils.isEmpty(mineBean.getResult().getBalance()) || mineBean.getResult().getBalance().equals("0.00")) {
+                tv_money.setVisibility(View.INVISIBLE);
+            } else {
+                tv_money.setVisibility(View.VISIBLE);
+                tv_money.setText(mineBean.getResult().getBalance());
+            }
             PreferenceHelper.write(aty, StringConstants.FILENAME, "id", mineBean.getResult().getId());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "phone", mineBean.getResult().getPhone());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "sex", mineBean.getResult().getSex());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "avatar", mineBean.getResult().getAvatar());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "real_name", mineBean.getResult().getReal_name());
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", mineBean.getResult().getAuth_status());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", auth_status);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "car_auth_status", mineBean.getResult().getCar_auth_status());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "recomm_code", mineBean.getResult().getRecomm_code());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "bond_status", mineBean.getResult().getBond_status());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "card_id", mineBean.getResult().getCar_id());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "card_number", mineBean.getResult().getCard_number());
+            if (!StringUtils.isEmpty(mineBean.getResult().getCard_number())) {
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "province_short", mineBean.getResult().getCard_number().substring(0, 1));
+            } else {
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "province_short", "");
+            }
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "online", mineBean.getResult().getOnline());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", mineBean.getResult().getMap_code());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "is_pay_password", mineBean.getResult().getIs_pay_password());
         } else if (flag == 1) {
             aty.showActivity(aty, PersonalDataActivity.class);
         } else if (flag == 2) {
             aty.showActivity(aty, MyWalletActivity.class);
         } else if (flag == 3) {
-            String auth_status = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "auth_status");
-            if (auth_status != null && auth_status.equals("pass")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "MineFragment");
-                aty.showActivity(aty, PersonalCertificateActivity.class);
-            } else if (auth_status != null && auth_status.equals("check")) {
+            String car_auth_status = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "car_auth_status");
+            if (car_auth_status != null && car_auth_status.equals("pass")) {
+                aty.showActivity(aty, VehicleCertificationActivity.class);
+            } else if (car_auth_status != null && car_auth_status.equals("check")) {
                 ViewInject.toast(getString(R.string.inAuthentication) + "," + getString(R.string.pleaseWait));
             } else {
-                Intent newUserInformation = new Intent(aty, VehicleCertificationActivity.class);
-                newUserInformation.putExtra("auth_status", auth_status);
-                aty.showActivity(aty, newUserInformation);
+                aty.showActivity(aty, VehicleCertificationActivity.class);
             }
         } else if (flag == 4) {
             aty.showActivity(aty, RecommendCourteousActivity.class);
         } else if (flag == 5) {
             aty.showActivity(aty, SettingsActivity.class);
         } else if (flag == 6) {
-            aty.showActivity(aty, IdentityAuthenticationActivity.class);
+            String auth_status = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "auth_status");
+            if (auth_status != null && auth_status.equals("pass")) {
+                aty.showActivity(aty, IdentityAuthenticationActivity.class);
+            } else if (auth_status != null && auth_status.equals("check")) {
+                ViewInject.toast(getString(R.string.inAuthentication) + "," + getString(R.string.pleaseWait));
+            } else {
+                aty.showActivity(aty, IdentityAuthenticationActivity.class);
+            }
         } else if (flag == 7) {
             aty.showActivity(aty, AbnormalRecordsActivity.class);
         }
@@ -319,34 +368,32 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
 
     @Override
     public void errorMsg(String msg, int flag) {
-        if (flag == 0) {
-            if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                mRefreshLayout.setPullDownRefreshEnable(false);
-                img_avatar.setImageResource(R.mipmap.avatar_default);
-                tv_name.setText(getString(R.string.loginregister));
-                tv_licensePlateNumber.setVisibility(View.GONE);
-                tv_alwaysSingular.setText("0");
-                tv_driverLevel.setText("0");
-                tv_serviceLevel.setText("0");
-                tv_complaintsNumber.setText("0");
-                tv_identityAuthentication.setVisibility(View.INVISIBLE);
-                tv_vehicleCertification.setVisibility(View.INVISIBLE);
-                tv_money.setVisibility(View.INVISIBLE);
-            } else {
-                mRefreshLayout.setPullDownRefreshEnable(true);
-            }
-        } else if (flag == 1 || flag == 2 || flag == 3 || flag == 4 || flag == 5 || flag == 6 || flag == 7) {
-            if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                //      PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "MineFragment");
-                //   Intent intent = new Intent(aty, LoginActivity.class);
-                //   intent.putExtra("name", "MineFragment");
+        if (msg.equals("" + NumericConstants.TOLINGIN)) {
+            mRefreshLayout.setPullDownRefreshEnable(false);
+            img_avatar.setImageResource(R.mipmap.avatar_default);
+            tv_name.setText(getString(R.string.loginregister));
+            tv_name1.setText(getString(R.string.loginregister));
+            tv_licensePlateNumber.setVisibility(View.GONE);
+            tv_licensePlateNumber1.setVisibility(View.GONE);
+            tv_alwaysSingular.setText("0");
+            tv_alwaysSingular1.setText("0");
+            tv_driverLevel.setText("0");
+            tv_driverLevel1.setText("0");
+            tv_serviceLevel.setText("0");
+            tv_serviceLevel1.setText("0");
+            tv_complaintsNumber.setText("0");
+            tv_complaintsNumber1.setText("0");
+            tv_identityAuthentication.setVisibility(View.INVISIBLE);
+            tv_vehicleCertification.setVisibility(View.INVISIBLE);
+            tv_money.setVisibility(View.INVISIBLE);
+            if (flag != 0) {
                 aty.showActivity(aty, LoginActivity.class);
-            } else {
-                mRefreshLayout.setPullDownRefreshEnable(true);
             }
+            return;
         }
+        mRefreshLayout.setPullDownRefreshEnable(true);
         dismissLoadingDialog();
-
+        ViewInject.toast(msg);
     }
 
     @Override
@@ -391,7 +438,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             }
             customerServiceTelephoneBouncedDialog.show();
         } else {
-            EasyPermissions.requestPermissions(this, "拨打电话选择需要以下权限:\n\n访问设备上的电话拨打权限", REQUEST_CODE_PERMISSION_CALL, perms);
+            EasyPermissions.requestPermissions(this, getString(R.string.phoneCallPermissions), REQUEST_CODE_PERMISSION_CALL, perms);
         }
     }
 
@@ -409,7 +456,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (requestCode == REQUEST_CODE_PERMISSION_CALL) {
-            ViewInject.toast("您拒绝了「拨打电话」所需要的相关权限!");
+            ViewInject.toast(getString(R.string.phoneCallPermissions1));
         }
     }
 
@@ -420,10 +467,26 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusRefreshMineEvent")) {
-
-            mRefreshLayout.beginRefreshing();
-
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent")) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    sv_mine.scrollTo(0, 2);
+                    mRefreshLayout.beginRefreshing();
+                }
+            }, 600);
+        } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
+            //  img_headPortrait.setImageURI(Uri.parse(msgEvent.getMsg() + "?imageView2/1/w/70/h/70"));
+            //   GlideImageLoader.glideLoader(KJActivityStack.create().topActivity(), msgEvent.getMsg() + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
+        } else if (((String) msgEvent.getData()).equals("RxBusIdentityAuthenticationEvent")) {
+//            tv_incompleteCertification.setText(getString(R.string.inAuthentication));
+//            tv_incompleteCertification1.setText(getString(R.string.inAuthentication));
+            tv_identityAuthentication.setText(getString(R.string.inAuthentication));
+            String real_name = PreferenceHelper.readString(aty, StringConstants.FILENAME, "real_name", "");
+            if (!StringUtils.isEmpty(real_name)) {
+                tv_name.setText(real_name);
+                tv_name1.setText(real_name);
+            }
         }
     }
 
@@ -437,6 +500,15 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         } else {
             ll_personalData1.setVisibility(View.VISIBLE);
             ll_divider1.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
         }
     }
 }

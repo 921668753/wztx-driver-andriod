@@ -380,7 +380,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
 //            startActivityForResult(BGAPhotoPickerActivity.newIntent(this, true ? takePhotoDir : null, 1, null, false), NumericConstants.REQUEST_CODE_CHOOSE_PHOTO);
             locationOption();
         } else {
-            EasyPermissions.requestPermissions(this, "定位选择需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限", NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
+            EasyPermissions.requestPermissions(this, getString(R.string.locationPermissions), NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
         }
     }
 
@@ -397,7 +397,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (requestCode == NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER) {
-            ViewInject.toast("您拒绝了「定位」所需要的相关权限!");
+            ViewInject.toast(getString(R.string.locationPermissions1));
         }
     }
 
@@ -435,7 +435,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         if (amapLocation != null) {
             if (amapLocation.getErrorCode() == 0) {
                 isTost = true;
-                android.util.Log.d("latLonPoint", amapLocation.getAddress());
+                Log.d("latLonPoint", amapLocation.getAddress());
+                Log.d("latLonPoint1", amapLocation.getProvider());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationAddress", amapLocation.getAddress());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationProvince", amapLocation.getProvince());
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "currentLocationCity", amapLocation.getCity());

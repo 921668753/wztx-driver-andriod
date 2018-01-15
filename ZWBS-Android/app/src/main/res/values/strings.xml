@@ -157,6 +157,8 @@
 
 
     <!--主界面-->
+    <string name="locationPermissions">定位选择需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限</string>
+    <string name="locationPermissions1">您拒绝了「定位」所需要的相关权限!</string>
     <string name="getorder">接单</string>
     <string name="reject">拒绝</string>
     <string name="order">订单</string>
@@ -292,6 +294,8 @@
 
 
     <!--个人中心-->
+    <string name="phoneCallPermissions">拨打电话选择需要以下权限:\n\n访问设备上的电话拨打权限</string>
+    <string name="phoneCallPermissions1">您拒绝了「拨打电话」所需要的相关权限!</string>
     <string name="loginregister">登录/注册</string>
     <string name="personalCenter">个人中心</string>
     <string name="name">姓名</string>
@@ -320,6 +324,7 @@
     <string name="identityAuthentication">身份认证</string>
     <string name="authenticationInformation">认证信息</string>
     <string name="validityIdentityCard">身份证有效期</string>
+    <string name="validityIdentityCard1">身份证有效日期应大于当前时间</string>
     <string name="faceIdentityCard">身份证正面</string>
     <string name="uploadYourIdCard">请上传清晰的身份证正面照片</string>
     <string name="IdCard">身份证反面</string>
@@ -327,14 +332,17 @@
     <string name="sampleDiagram">示例图</string>
     <string name="uploudHoldingIdPhoto">请上传清的手持照片</string>
     <string name="validityDrivingLicence">驾驶证有效期</string>
+    <string name="validityDrivingLicence1">驾驶证有效日期应大于当前时间</string>
     <string name="drivingLicense">驾驶证照</string>
     <string name="uploadDrivingLicensePhotos">请上传清晰的驾驶证照片</string>
     <string name="roadTransportValidityPeriod">道路运输从业资格证有效期</string>
+    <string name="roadTransportValidityPeriod1">道路运输从业资格证有效日期应大于当前时间</string>
     <string name="certificateRoadQualification">道路运输从业资格证照</string>
     <string name="uploadRoadQualification">请上传清晰的道路运输从业资格证照片</string>
     <string name="recordIntegrityAssessment">诚信考核记录照</string>
     <string name="uploadIntegrityAssessment">请上传清晰的诚信考核记录照片</string>
     <string name="makeClear">照片要清晰</string>
+    <string name="confirmationInformation">确定提交认证信息？</string>
 
     <!--车辆认证-->
     <string name="vehicleCertification">车辆认证</string>
@@ -378,16 +386,19 @@
     <string name="checkDocuments">查看证件</string>
     <string name="ownerInformation1">证件信息</string>
     <string name="personalCertificate">个人认证</string>
+    <string name="licenseNumber2">车牌号：</string>
     <string name="unauthorized">未认证</string>
     <string name="inAuthentication">认证中</string>
     <string name="certified">已认证</string>
     <string name="authenticationFailure">认证失败</string>
     <string name="certificationOverdue">认证过期</string>
+
     <!--查看证件-->
     <string name="startDate">起始日期</string>
     <string name="asOfTheDate">截止日期</string>
     <string name="notOrder">您现在是下班状态不能接单</string>
     <string name="notOrder1">您现在是下班状态不能进行任何操作</string>
+
     <!--充值余额支付-->
     <string name="operation_error">操作失败,请稍后再试</string>
     <string name="alipay_system_exception">支付系统异常</string>
@@ -407,7 +418,6 @@
     <string name="shareSuccess">分享成功啦</string>
     <string name="shareError">分享失败啦</string>
     <string name="shareCancel">分享取消了</string>
-
     <string name="tts_toast_format" formatted="false">缓冲进度为%d%%，播放进度为%d%%</string>
 
     <!--设置-->
@@ -598,6 +608,7 @@
     <string name="setPaymentPassword">设置支付密码</string>
     <string name="pleaseEnterPaymentPassword">请输入支付密码</string>
     <string name="pleaseEnterPaymentPassword1">请输入正确的支付密码</string>
+    <string name="oldPpaymentPasswordsNotMatch">新支付密码和旧支付密码不能一致</string>
     <string name="pleaseEnterConfirm">请再次输入以确认</string>
     <string name="paymentPasswordsNotMatch">两次输入的支付密码不一致</string>
 
@@ -606,6 +617,7 @@
     <string name="doRememberAccountNumber">您是否记得账号</string>
     <string name="currentPaymentPassword">当前使用的支付密码</string>
     <string name="doNotRemember">不记得</string>
+    <string name="doNotRemember1">认证通过后，才能修改密码</string>
     <string name="remember">记得</string>
     <string name="enterCorrectVerificationCode">请输入正确的验证码</string>
     <string name="verificationCodeMobilePhone">我们已发送验证码到您的手机</string>
@@ -650,7 +662,7 @@
     <string name="notPaymentBill">未支付账单</string>
     <string name="paymentBill">已支付账单</string>
 
-    <!--个人认证-->
+    <!--消息-->
     <string name="bindingMobilePhone">绑定手机号</string>
     <string name="messagecenter">消息中心</string>
     <string name="deleteMessage">确定删除消息吗？</string>

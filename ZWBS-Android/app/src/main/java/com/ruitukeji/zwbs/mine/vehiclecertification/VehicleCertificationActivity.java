@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -22,13 +23,17 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
+import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ProvinceShortBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationContract;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationPresenter;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.GetJsonDataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.SoftKeyboardUtils;
 import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
 
 import java.text.SimpleDateFormat;
@@ -194,6 +199,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
 
     private TimePickerView pvTime;
     private SamplePictureBouncedDialog samplePictureBouncedDialog = null;
+    private List<ProvinceShortBean.ResultBean> provinceShortList = null;
 
     @Override
     public void setRootView() {
@@ -207,6 +213,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         images = new ArrayList<>();
         samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
         initImagePicker();
+
         asOfTheDatePicker();
         addressAbbreviation();
     }
@@ -268,6 +275,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 .build();
     }
 
+
     @Override
     public void initWidget() {
         super.initWidget();
@@ -277,10 +285,10 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
-
         switch (v.getId()) {
             case R.id.ll_addressAbbreviation:
-
+                SoftKeyboardUtils.packUpKeyboard(this);
+                pvOptions.show(tv_addressAbbreviation);
                 break;
             case R.id.ll_conductorModels:
                 Intent intent = new Intent();
@@ -436,9 +444,27 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             public void onOptionsSelect(int options1, int option2, int options3, View v) {
                 //返回的分别是三个级别的选中位置
                 //  car_type_id = carInfoBean.getResult().get(options1).getId();
-                //  ((TextView) v).setText(restaurant_chooseList.get(options1).getDescription());
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "province_short", provinceShortList.get(options1).getName());
+                ((TextView) v).setText(provinceShortList.get(options1).getName());
             }
         }).build();
+        String jsonData = new GetJsonDataUtil().getJson(this, "provinceshort.json");
+        ProvinceShortBean provinceShortBean = (ProvinceShortBean) JsonUtil.getInstance().json2Obj(jsonData, ProvinceShortBean.class);
+        provinceShortList = provinceShortBean.getResult();
+        String currentLocationProvince = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationProvince", "");
+        String provinceShort = PreferenceHelper.readString(aty, StringConstants.FILENAME, "province_short", "");
+        if (provinceShortList != null && provinceShortList.size() > 0) {
+            pvOptions.setPicker(provinceShortBean.getResult());
+            for (int i = 0; i < provinceShortList.size(); i++) {
+                if (!StringUtils.isEmpty(provinceShort) && provinceShortList.get(i).getName().equals(provinceShort)) {
+                    pvOptions.setSelectOptions(i);
+                    return;
+                } else if (!StringUtils.isEmpty(currentLocationProvince) && StringUtils.isEmpty(provinceShort) && provinceShortList.get(i).getName().equals(provinceShort)) {
+                    pvOptions.setSelectOptions(i);
+                    return;
+                }
+            }
+        }
     }
 
 

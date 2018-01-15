@@ -301,8 +301,6 @@ public class RequestClient {
     }
 
 
-
-
     /**
      * 改变工作状态
      */
@@ -366,7 +364,7 @@ public class RequestClient {
      * 得到国内全部城市
      */
     public static void getAllCityInHttp(HttpParams httpParams, final ResponseListener<String> listener) {
-      //  HttpRequest.requestGetHttp(URLConstants.ALLCITY, httpParams, true, listener);
+        //  HttpRequest.requestGetHttp(URLConstants.ALLCITY, httpParams, true, listener);
     }
 
     /**
@@ -374,9 +372,9 @@ public class RequestClient {
      */
     public static void getAllCityByCountryId(HttpParams httpParams, int countryId, final ResponseListener<String> listener) {
         if (countryId == 0) {
-          //  HttpRequest.requestGetHttp(URLConstants.GETALLCOUNTRYCITY, httpParams, true, listener);
+            //  HttpRequest.requestGetHttp(URLConstants.GETALLCOUNTRYCITY, httpParams, true, listener);
         } else {
-          //  HttpRequest.requestGetHttp(URLConstants.GETALLCITYBYCOUNTRY + "&countryId=" + countryId, httpParams, true, listener);
+            //  HttpRequest.requestGetHttp(URLConstants.GETALLCITYBYCOUNTRY + "&countryId=" + countryId, httpParams, true, listener);
         }
     }
 
@@ -385,9 +383,9 @@ public class RequestClient {
      */
     public static void getHotCityByCountryId(HttpParams httpParams, int countryId, final ResponseListener<String> listener) {
         if (countryId == 0) {
-         //   HttpRequest.requestGetHttp(URLConstants.GETHOTCITYBYCOUNTRY, httpParams, true, listener);
+            //   HttpRequest.requestGetHttp(URLConstants.GETHOTCITYBYCOUNTRY, httpParams, true, listener);
         } else {
-          //  HttpRequest.requestGetHttp(URLConstants.GETHOTCITYBYCOUNTRY + "&countryId=" + countryId, httpParams, true, listener);
+            //  HttpRequest.requestGetHttp(URLConstants.GETHOTCITYBYCOUNTRY + "&countryId=" + countryId, httpParams, true, listener);
         }
     }
 
@@ -672,11 +670,30 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 个人中心----提交信息信息
+     */
+    public static void postDriverAuth(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postDriverAuth");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.DRIVERAUTH, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
      * 获取认证信息
      */
-    public static void getAuthInfo(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getAuthInfo(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getAuthInfo");
         doServer(new TokenCallback() {
             @Override
@@ -788,7 +805,7 @@ public class RequestClient {
     }
 
     /**
-     *修改密码校验
+     * 修改密码校验
      */
     public static void getCheckPayPassword(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
@@ -812,10 +829,6 @@ public class RequestClient {
     public static void getBank(HttpParams httpParams, final ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.GETBANK, httpParams, listener);
     }
-
-
-
-
 
 
     /**
@@ -875,7 +888,6 @@ public class RequestClient {
     }
 
 
-
     /**
      * 显示我的推荐列表
      */
@@ -930,8 +942,6 @@ public class RequestClient {
             }
         }, listener);
     }
-
-
 
 
     /**

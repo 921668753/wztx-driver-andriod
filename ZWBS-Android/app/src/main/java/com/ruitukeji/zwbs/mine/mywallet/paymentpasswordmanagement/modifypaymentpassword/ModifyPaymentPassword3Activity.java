@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.mine.mywallet.paymentpasswordmanagement.modifypaymentpassword;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -91,7 +92,9 @@ public class ModifyPaymentPassword3Activity extends BaseActivity implements Modi
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        showActivity(aty, ModifyPaymentPassword4Activity.class);
+        Intent intent = new Intent(aty, ModifyPaymentPassword4Activity.class);
+        intent.putExtra("oldPaymentPassword", paymentPassword);
+        showActivity(aty, intent);
     }
 
     @Override

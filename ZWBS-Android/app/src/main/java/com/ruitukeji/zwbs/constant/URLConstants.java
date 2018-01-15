@@ -84,7 +84,6 @@ public class URLConstants {
      */
     public static String GETARTICLE = APIURL + "index/getArticle";
 
-
     /**
      * 司机认证
      */
@@ -94,7 +93,6 @@ public class URLConstants {
      * 车辆认证
      */
     public static String CARAUTH = APIURL + "User/carAuth";
-
 
     /**
      * 重置密码

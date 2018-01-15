@@ -3,8 +3,6 @@ package com.ruitukeji.zwbs.mine.identityauthentication;
 import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +28,8 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,7 +46,6 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PR
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PREVIEW2;
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PREVIEW3;
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PREVIEW4;
-import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
  * 身份认证
@@ -192,12 +191,28 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
         samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
         initImagePicker();
         asOfTheDatePicker();
+        String auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "auth_status", "init");
+        if (auth_status != null && auth_status.equals("init")) {
+            return;
+        }
+        showLoadingDialog(getString(R.string.dataLoad));
+
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.identityAuthentication), true, R.id.titlebar);
+        String auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "auth_status", "init");
+        if (auth_status != null && auth_status.equals("pass")) {
+            tv_certificationStatus.setText(getString(R.string.certified));
+        } else if (auth_status != null && auth_status.equals("check")) {
+            tv_certificationStatus.setText(getString(R.string.inAuthentication));
+        } else if (auth_status != null && auth_status.equals("refuse")) {
+            tv_certificationStatus.setText(getString(R.string.authenticationFailure));
+        } else {
+            tv_certificationStatus.setText(getString(R.string.unauthorized));
+        }
     }
 
     /**
@@ -323,7 +338,9 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 show(R.mipmap.pic_driver_licence, getString(R.string.makeClear));
                 break;
             case R.id.tv_submit:
-
+                ((IdentityAuthenticationContract.Presenter) mPresenter).postIdentityAuthentication(et_name.getText().toString().trim(), et_IdNumber.getText().toString().trim(), validityIdentityCard,
+                        uploadYourIdCardUrl, uploadClearYourIdCardUrl, uploudHoldingIdPhotoUrl, validityDrivingLicence, uploadDrivingLicensePhotosUrl, roadTransportValidityPeriod,
+                        uploadRoadQualificationUrl, uploadIntegrityAssessmentUrl);
                 break;
             default:
                 break;
@@ -492,50 +509,59 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
 
     @Override
     public void getSuccess(String success, int flag) {
-        if (flag == REQUEST_CODE_CHOOSE_PHOTO) {
+        if (flag == 0) {
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", "check");
+            ViewInject.toast(getString(R.string.submittedSuccessfully));
+            tv_certificationStatus.setText(getString(R.string.inAuthentication));
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusIdentityAuthenticationEvent"));
+            dismissLoadingDialog();
+            aty.finish();
+            return;
+        } else if (flag == REQUEST_CODE_CHOOSE_PHOTO) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadYourIdCard);
-                uploadYourIdCardUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadYourIdCardUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadYourIdCardUrl + "?imageView2/1/w/161/h/103", img_uploadYourIdCard);
                 isUploadYourIdCard = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadClearYourIdCard);
-                uploadClearYourIdCardUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadClearYourIdCardUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadClearYourIdCardUrl + "?imageView2/1/w/161/h/103", img_uploadClearYourIdCard);
                 isUploadClearYourIdCard = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW1) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploudHoldingIdPhoto);
-                uploudHoldingIdPhotoUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploudHoldingIdPhotoUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploudHoldingIdPhotoUrl + "?imageView2/1/w/161/h/103", img_uploudHoldingIdPhoto);
                 isUploudHoldingIdPhoto = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW2) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
-                uploadDrivingLicensePhotosUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadDrivingLicensePhotosUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadDrivingLicensePhotosUrl + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
                 isUploadDrivingLicensePhotos = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW3) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadRoadQualification);
-                uploadRoadQualificationUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadRoadQualificationUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadRoadQualificationUrl + "?imageView2/1/w/161/h/103", img_uploadRoadQualification);
                 isUploadRoadQualification = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW4) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadIntegrityAssessment);
-                uploadIntegrityAssessmentUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadIntegrityAssessmentUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadIntegrityAssessmentUrl + "?imageView2/1/w/161/h/103", img_uploadIntegrityAssessment);
                 isUploadIntegrityAssessment = false;
             }
-        } else if (flag == 0) {
-
         }
         dismissLoadingDialog();
     }

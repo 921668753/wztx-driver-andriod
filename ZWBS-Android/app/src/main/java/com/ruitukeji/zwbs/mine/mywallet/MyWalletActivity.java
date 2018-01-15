@@ -4,12 +4,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
+import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.MyWalletBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
@@ -187,7 +189,12 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
         } else if (flag == 2) {
             showActivity(aty, MyBankCardActivity.class);
         } else if (flag == 3) {
-            showActivity(aty, ModifyPaymentPasswordActivity.class);
+            int is_pay_password = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "is_pay_password", 0);
+            if (is_pay_password == 1) {
+                showActivity(aty, ModifyPaymentPasswordActivity.class);
+            } else if (is_pay_password == 0) {
+                showActivity(aty, SetPaymentPasswordActivity.class);
+            }
         }
         dismissLoadingDialog();
     }

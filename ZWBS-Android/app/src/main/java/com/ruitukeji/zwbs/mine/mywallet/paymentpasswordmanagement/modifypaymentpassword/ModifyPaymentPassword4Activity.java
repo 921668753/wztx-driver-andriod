@@ -38,10 +38,17 @@ public class ModifyPaymentPassword4Activity extends BaseActivity {
     private TextView tv_nextStep;
 
     private String paymentPassword = "";
+    private String oldPaymentPassword = "";
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_paymentpassword);
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        oldPaymentPassword = getIntent().getStringExtra("oldPaymentPassword");
     }
 
     @Override
@@ -74,6 +81,10 @@ public class ModifyPaymentPassword4Activity extends BaseActivity {
             case R.id.tv_nextStep:
                 if (paymentPassword.length() != 6) {
                     ViewInject.toast(getString(R.string.pleaseEnterPaymentPassword1));
+                    break;
+                }
+                if (oldPaymentPassword != null && oldPaymentPassword.equals(paymentPassword)) {
+                    ViewInject.toast(getString(R.string.oldPpaymentPasswordsNotMatch));
                     break;
                 }
                 Intent intent = new Intent(aty, ConfirmPaymentPasswordActivity.class);

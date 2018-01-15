@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
@@ -62,6 +63,10 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
         mPresenter = new ModifyPaymentPasswordPresenter(this);
         time = new TimeCount(60000, 1000);// 构造CountDownTimer对象
         phone = PreferenceHelper.readString(aty, StringConstants.FILENAME, "phone", "");
+        if (StringUtils.isEmpty(phone)) {
+            finish();
+            return;
+        }
         ((ModifyPaymentPasswordContract.Presenter) mPresenter).postCode(phone, type);
     }
 
@@ -82,7 +87,6 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
 
             }
         });
-
         tv_phone.setText(phone.substring(0, 3) + "****" + phone.substring(phone.length() - 4));
     }
 

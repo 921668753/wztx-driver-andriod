@@ -59,7 +59,7 @@ public class SamplePictureBouncedDialog extends Dialog implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.img_del:
-                dismiss();
+                cancel();
                 break;
         }
     }

@@ -24,7 +24,8 @@ public interface IdentityAuthenticationContract {
         /**
          * 提交认证信息
          */
-        void postIdentityAuthentication(String name, int flag);
+        void postIdentityAuthentication(String real_name, String identity, long identity_pic_time, String front_pic, String back_pic, String hold_pic, long license_pic_time,
+                                        String license_pic, long transport_pic_time, String transport_pic, String faith_pic);
     }
 
     interface View extends BaseNewView<Presenter, String> {
