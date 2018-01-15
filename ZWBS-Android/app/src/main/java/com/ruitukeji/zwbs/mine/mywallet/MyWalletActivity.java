@@ -1,5 +1,7 @@
 package com.ruitukeji.zwbs.mine.mywallet;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.ruitukeji.zwbs.mine.mywallet.withdrawal.WithdrawalActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
@@ -81,6 +84,11 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     @BindView(id = R.id.ll_paymentPassword, click = true)
     private LinearLayout ll_paymentPassword;
 
+    private Handler handler = null;
+
+    private String bankName = "";
+    private String bankCard = "";
+    private int id = 0;
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_mywallet);
@@ -90,8 +98,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     public void initData() {
         super.initData();
         mPresenter = new MyWalletPresenter(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((MyWalletContract.Presenter) mPresenter).getMyWallet();
+        handler = new Handler();
     }
 
     @Override
@@ -99,6 +106,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
         super.initWidget();
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.myWallet), true, R.id.titlebar);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -112,7 +120,11 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
                 showActivity(aty, RechargeActivity.class);
                 break;
             case R.id.ll_cashWithdrawal:
-                showActivity(aty, WithdrawalActivity.class);
+                Intent intent = new Intent(aty, WithdrawalActivity.class);
+                intent.putExtra("bankCardName", bankName);
+                intent.putExtra("bankCardNun", bankCard);
+                intent.putExtra("bankCardId", id);
+                showActivity(aty, intent);
                 break;
             case R.id.ll_myBankCard:
                 ((MyWalletContract.Presenter) mPresenter).isLogin(2);
@@ -201,13 +213,14 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
 
     @Override
     public void errorMsg(String msg, int flag) {
-        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
-            dismissLoadingDialog();
-            showActivity(aty, LoginActivity.class);
+        dismissLoadingDialog();
+        if (toLigon1(msg)) {
             return;
         }
-        dismissLoadingDialog();
-        ViewInject.toast(msg);
+        if (flag == 0) {
+            finish();
+            return;
+        }
     }
 
 
@@ -232,5 +245,28 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout bgaRefreshLayout) {
         mRefreshLayout.endLoadingMore();
         return false;
+    }
+
+
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusWithdrawalEvent")) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mRefreshLayout.beginRefreshing();
+                }
+            }, 600);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
     }
 }
