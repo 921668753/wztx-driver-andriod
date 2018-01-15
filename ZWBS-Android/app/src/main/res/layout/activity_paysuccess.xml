@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title"/>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/mainColor"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dimen39">
+
+        <ImageView
+            android:layout_width="@dimen/dimen65"
+            android:layout_height="@dimen/dimen65"
+            android:layout_marginTop="@dimen/dimen25"
+            android:src="@mipmap/certification" />
+
+        <TextView
+            android:id="@+id/tv_topUpSuccess"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen10"
+            android:text="@string/topUpSuccess"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/topUpAmount"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen10"
+            android:text="@string/topUpAmount"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_complete"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:layout_marginRight="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen32"
+        android:background="@drawable/shape_login"
+        android:gravity="center"
+        android:text="@string/complete"
+        android:textColor="@color/mainColor"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

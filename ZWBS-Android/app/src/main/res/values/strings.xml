@@ -406,6 +406,7 @@
     <string name="alipay_has_unbound">该用户已解除绑定</string>
     <string name="alipay_order_error">订单支付失败</string>
     <string name="alipay_order_cancel">您取消了支付</string>
+    <string name="pay_network">网络连接异常</string>
     <string name="pay_error">支付失败</string>
     <string name="pay_result_confirmed">支付结果确认中</string>
     <string name="alipay_order_canceled">支付已取消</string>
@@ -543,6 +544,13 @@
     <string name="driverWithdrawAgreement">《司机提现协议》</string>
     <string name="withdrawalRecord">提现记录</string>
 
+    <!--提现记录-->
+    <string name="withdrawalSuccess">提现成功</string>
+    <string name="withdrawalFailure">提现失败</string>
+    <!--<string name="withdrawalFailure">提现未处理</string>-->
+    <string name="withdrawalProcessing">提现申请处理中</string>
+    <string name="withdrawalRejected">提现申请被拒绝</string>
+
 
     <!--我的银行卡-->
     <string name="addBankCard">添加银行卡</string>
@@ -644,6 +652,21 @@
     <string name="prepaidImmediately">立即充值</string>
     <string name="rechargeRecord">充值记录</string>
     <string name="renminbi">￥</string>
+    <string name="inputAmountFull">输入充值金额</string>
+    <string name="inputAmountFull1">请输入正确的充值金额</string>
+
+    <!--充值记录-->
+    <string name="rechargeSuccess">充值成功</string>
+    <string name="rechargeFailure">充值失败</string>
+
+    <!--充值结果-->
+    <string name="topUpResults">充值结果</string>
+    <string name="payResult">支付结果</string>
+    <string name="paySuccess">支付成功！</string>
+    <string name="topUpSuccess">充值成功！</string>
+
+
+
 
     <!--异常记录-->
     <string name="thePlace1">起运地：</string>

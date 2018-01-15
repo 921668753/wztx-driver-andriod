@@ -7,20 +7,18 @@
 
     <include layout="@layout/common_title" />
 
-    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/mRefreshLayout"
-        style="@style/MatchMatch"
-        android:background="@color/background">
+        style="@style/MatchMatch">
 
         <ListView
             android:id="@+id/lv_withdrawalrecord"
             style="@style/MatchWrap"
             android:background="@color/white"
-            android:paddingLeft="@dimen/dimen15"
             android:divider="@color/e5E5E5olors"
             android:dividerHeight="@dimen/dimen0.5"
             android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen15"
             android:scrollbars="none"
             tools:listitem="@layout/item_withdrawalrecord" />
 

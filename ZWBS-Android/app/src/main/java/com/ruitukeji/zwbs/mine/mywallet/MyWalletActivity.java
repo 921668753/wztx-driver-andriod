@@ -12,7 +12,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.MyWalletBean;
+import com.ruitukeji.zwbs.entity.mine.mywallet.MyWalletBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity;

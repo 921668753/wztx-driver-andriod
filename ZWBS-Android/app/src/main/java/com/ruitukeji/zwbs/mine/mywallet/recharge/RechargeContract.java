@@ -4,15 +4,17 @@ import com.ruitukeji.zwbs.common.BasePresenter;
 import com.ruitukeji.zwbs.common.BaseView;
 
 /**
- * Created by Administrator on 2017/2/13.
+ * Created by Administrator on 2017/2/17.
  */
 
-public interface RechargeRecordContract {
+public interface RechargeContract {
+
+
     interface Presenter extends BasePresenter {
         /**
-         * 获取充值记录列表
+         * 获取充值信息
          */
-        void getRechargeRecord(int page);
+        void postRecharge(String money, int type);
     }
 
     interface View extends BaseView<Presenter> {
@@ -21,12 +23,13 @@ public interface RechargeRecordContract {
          *
          * @param s
          */
-        void getSuccess(String s);
+        void getSuccess(String s, int flag);
 
         /**
          * http请求错误
          */
         void error(String msg);
     }
+
 
 }

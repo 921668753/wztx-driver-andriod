@@ -27,6 +27,7 @@
             android:id="@+id/tv_money"
             style="@style/WrapWrap"
             android:text="-3000.00"
+            android:textStyle="bold"
             android:textColor="@color/f2222Colors"
             android:textSize="@dimen/textsize17" />
 

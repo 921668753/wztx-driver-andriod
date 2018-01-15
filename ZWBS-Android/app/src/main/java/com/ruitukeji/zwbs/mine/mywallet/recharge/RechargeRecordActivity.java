@@ -7,13 +7,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.mine.mywallet.WithdrawalRecordViewAdapter;
-import com.ruitukeji.zwbs.application.MyApplication;
+import com.ruitukeji.zwbs.adapter.mine.mywallet.RechargeRecordViewAdapter;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.WithdrawalRecordBean;
+import com.ruitukeji.zwbs.entity.mine.mywallet.recharge.RechargeRecordBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -27,28 +26,34 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 public class RechargeRecordActivity extends BaseActivity implements RechargeRecordContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
+
     @BindView(id = R.id.lv_withdrawalrecord)
     private ListView lv_withdrawalrecord;
+
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private WithdrawalRecordViewAdapter withdrawalRecordViewAdapter;
+    private RechargeRecordViewAdapter rechargeRecordViewAdapter;
 
     /**
      * 错误提示页
      */
     @BindView(id = R.id.ll_commonError)
     private LinearLayout ll_commonError;
+
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
+
     /**
      * 当前页码
      */
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 总页码
      */
     private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 是否加载更多
      */
@@ -64,18 +69,17 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
     public void initData() {
         super.initData();
         mPresenter = new RechargeRecordPresenter(this);
-        withdrawalRecordViewAdapter = new WithdrawalRecordViewAdapter(this);
+        rechargeRecordViewAdapter = new RechargeRecordViewAdapter(this);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-         ActivityTitleUtils.initToolbar(aty, getString(R.string.rechargeRecord), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.rechargeRecord), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        lv_withdrawalrecord.setAdapter(withdrawalRecordViewAdapter);
-        lv_withdrawalrecord.setOnItemClickListener(this);
-        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        ((RechargeRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        lv_withdrawalrecord.setAdapter(rechargeRecordViewAdapter);
+//        lv_withdrawalrecord.setOnItemClickListener(this);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -88,7 +92,7 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((RechargeRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        ((RechargeRecordContract.Presenter) mPresenter).getRechargeRecord(mMorePageNumber);
     }
 
     @Override
@@ -103,7 +107,7 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((RechargeRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        ((RechargeRecordContract.Presenter) mPresenter).getRechargeRecord(mMorePageNumber);
         return true;
     }
 
@@ -122,23 +126,22 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
 
     @Override
     public void getSuccess(String s) {
+
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        WithdrawalRecordBean withdrawalRecordBean = (WithdrawalRecordBean) JsonUtil.getInstance().json2Obj(s, WithdrawalRecordBean.class);
-        mMorePageNumber = withdrawalRecordBean.getResult().getPage();
-        totalPageNumber = withdrawalRecordBean.getResult().getPageTotal();
-        if (withdrawalRecordBean.getResult().getList() == null || withdrawalRecordBean.getResult().getList().size() == 0) {
+        RechargeRecordBean prepaidPhoneRecordsBean = (RechargeRecordBean) JsonUtil.getInstance().json2Obj(s, RechargeRecordBean.class);
+        if (prepaidPhoneRecordsBean.getResult().getList() == null || prepaidPhoneRecordsBean.getResult().getList().size() == 0) {
             error(getString(R.string.serverReturnsDataNull));
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mRefreshLayout.endRefreshing();
-            withdrawalRecordViewAdapter.clear();
-            withdrawalRecordViewAdapter.addNewData(withdrawalRecordBean.getResult().getList());
+            rechargeRecordViewAdapter.clear();
+            rechargeRecordViewAdapter.addNewData(prepaidPhoneRecordsBean.getResult().getList());
         } else {
             mRefreshLayout.endLoadingMore();
-            withdrawalRecordViewAdapter.addMoreData(withdrawalRecordBean.getResult().getList());
+            rechargeRecordViewAdapter.addMoreData(prepaidPhoneRecordsBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
@@ -166,7 +169,7 @@ public class RechargeRecordActivity extends BaseActivity implements RechargeReco
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        withdrawalRecordViewAdapter.clear();
-        withdrawalRecordViewAdapter = null;
+        rechargeRecordViewAdapter.clear();
+        rechargeRecordViewAdapter = null;
     }
 }

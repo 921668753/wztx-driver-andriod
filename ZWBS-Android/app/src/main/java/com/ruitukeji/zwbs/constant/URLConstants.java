@@ -179,6 +179,23 @@ public class URLConstants {
      */
     public static String PAY = APIURL + "pay";
 
+
+
+    /**
+     * 充值 支付宝支付
+     */
+    public static String RECHARGEBYALIPAY = APIURL + "pay/rechargeByAlipay";
+
+    /**
+     * 充值 微信支付
+     */
+    public static String RECHARGEBYWEXIN = APIURL + "pay/rechargeByWexin";
+
+    /**
+     * 充值记录
+     */
+    public static String RECHARGERECORD = APIURL + "pay/rechargeRecord";
+
     /**
      * 获取个人银行卡信息
      */

@@ -6,24 +6,20 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.getorder.LengthsViewAdapter;
-import com.ruitukeji.zwbs.adapter.getorder.TypesViewAdapter;
 import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.LengthsNewViewAdapter;
 import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.TypesNewViewAdapter;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.LengthBean;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.TypeBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.LengthBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.TypeBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
 
 import java.util.List;
-
-import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
 /**
  * 车长车型选择

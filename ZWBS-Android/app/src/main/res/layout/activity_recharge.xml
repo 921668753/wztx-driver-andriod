@@ -5,7 +5,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-
     <include layout="@layout/common_title" />
 
     <LinearLayout
@@ -49,6 +48,7 @@
                 android:singleLine="true"
                 android:textColor="@color/f2222Colors"
                 android:textColorHint="@color/cDCDCDColors"
+                android:textCursorDrawable="@drawable/shape_cursor"
                 android:textSize="@dimen/textsize26" />
 
         </LinearLayout>

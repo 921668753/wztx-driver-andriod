@@ -19,11 +19,11 @@ public class RechargeRecordPresenter implements RechargeRecordContract.Presenter
     }
 
     @Override
-    public void getWithdrawalRecord(int page) {
+    public void getRechargeRecord(int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
         httpParams.put("pageSize", 10);
-        RequestClient.showCashRecord(httpParams, new ResponseListener<String>() {
+        RequestClient.getRechargeRecord(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response);

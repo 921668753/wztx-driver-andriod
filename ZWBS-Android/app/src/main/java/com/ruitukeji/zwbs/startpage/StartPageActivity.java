@@ -7,7 +7,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
-import com.kymjs.common.DensityUtils;
 import com.kymjs.common.FileUtils;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
@@ -17,12 +16,11 @@ import com.kymjs.okhttp3.OkHttpStack;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.http.RequestQueue;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseInstrumentedActivity;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.AppConfigBean;
+import com.ruitukeji.zwbs.entity.startpage.AppConfigBean;
 import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 

@@ -3,8 +3,6 @@ package com.ruitukeji.zwbs.mine.mywallet.withdrawal;
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
  * Created by Administrator on 2017/2/17.
  */
@@ -15,7 +13,7 @@ public interface WithdrawalContract {
         /**
          * 发送提现信息
          */
-        void postWithdrawal(SweetAlertDialog sweetAlertDialog, String withdrawalAmount, String bankName, String paymentAccount, String accountName);
+        void postWithdrawal(String withdrawalAmount, int bankId);
 
         /**
          * 是否登录
@@ -23,7 +21,7 @@ public interface WithdrawalContract {
         void isLogin(int flag);
     }
 
-    interface View extends BaseNewView<Presenter,String> {
+    interface View extends BaseNewView<Presenter, String> {
 //        /**
 //         * http请求正确
 //         *

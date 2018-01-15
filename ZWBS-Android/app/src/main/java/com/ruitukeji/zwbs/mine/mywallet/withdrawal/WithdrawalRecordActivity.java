@@ -8,12 +8,11 @@ import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.mine.mywallet.WithdrawalRecordViewAdapter;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.WithdrawalRecordBean;
+import com.ruitukeji.zwbs.entity.mine.mywallet.withdrawal.WithdrawalRecordBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -75,8 +74,7 @@ public class WithdrawalRecordActivity extends BaseActivity implements Withdrawal
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_withdrawalrecord.setAdapter(withdrawalRecordViewAdapter);
         lv_withdrawalrecord.setOnItemClickListener(this);
-        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        ((WithdrawalRecordContract.Presenter) mPresenter).getWithdrawalRecord(mMorePageNumber);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override

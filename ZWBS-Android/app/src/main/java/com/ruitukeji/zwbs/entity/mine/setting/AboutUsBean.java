@@ -1,4 +1,6 @@
-package com.ruitukeji.zwbs.entity;
+package com.ruitukeji.zwbs.entity.mine.setting;
+
+import com.ruitukeji.zwbs.entity.BaseResult;
 
 /**
  * Created by Admin on 2017/8/4.

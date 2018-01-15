@@ -12,11 +12,10 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.getorder.TypesViewAdapter;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.TypeBean;
-import com.ruitukeji.zwbs.utils.myview.MaxListView;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.TypeBean;
 
 import java.util.List;
 

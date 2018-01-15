@@ -3,8 +3,6 @@ package com.ruitukeji.zwbs.mine.mywallet.mybankcard;
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
  * Created by Administrator on 2017/2/17.
  */

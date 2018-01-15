@@ -3,7 +3,7 @@ package com.ruitukeji.zwbs.adapter.getorder;
 import android.content.Context;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.TypeBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.TypeBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;

@@ -13,9 +13,9 @@ import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.LengthsNewViewAdapte
 import com.ruitukeji.zwbs.adapter.mine.vehiclecertification.TypesNewViewAdapter;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.LengthBean;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.TypeBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.LengthBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.TypeBean;
 import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsContract;
 import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsPresenter;
 import com.ruitukeji.zwbs.utils.JsonUtil;

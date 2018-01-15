@@ -14,9 +14,9 @@
 
         <LinearLayout
             style="@style/MatchWrap"
-            android:layout_marginTop="@dimen/dimen10"
             android:layout_marginLeft="@dimen/dimen15"
             android:layout_marginRight="@dimen/dimen15"
+            android:layout_marginTop="@dimen/dimen10"
             android:orientation="vertical">
 
             <com.ruitukeji.zwbs.utils.myview.ChildLiistView
@@ -26,6 +26,7 @@
                 android:divider="@color/background"
                 android:dividerHeight="@dimen/dimen10"
                 android:overScrollMode="never"
+                android:paddingBottom="@dimen/dimen10"
                 android:scrollbars="none"
                 tools:listitem="@layout/item_bankcard" />
 
@@ -34,6 +35,7 @@
                 android:id="@+id/ll_addBankCard"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen70"
+                android:layout_marginBottom="@dimen/dimen10"
                 android:background="@color/mainColor"
                 android:gravity="center"
                 android:orientation="horizontal">

@@ -10,7 +10,7 @@
         android:background="@drawable/shape_bankcardtop"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/dimen35"
-        android:text="招商银行"
+        android:text="--"
         android:textColor="@color/mainColor"
         android:textSize="@dimen/textsize16" />
 

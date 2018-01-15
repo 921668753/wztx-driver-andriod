@@ -728,6 +728,47 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 充值
+     */
+    public static void postRecharge(HttpParams httpParams, int type, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    //       PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoneBanner", false);
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                if (type == 1) {
+                    HttpRequest.requestPostHttp(URLConstants.RECHARGEBYALIPAY, httpParams, listener);
+                } else if (type == 2) {
+                    HttpRequest.requestPostHttp(URLConstants.RECHARGEBYWEXIN, httpParams, listener);
+                }
+            }
+        }, listener);
+    }
+
+    /**
+     * 充值记录
+     */
+    public static void getRechargeRecord(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    //        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoneBanner", false);
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.RECHARGERECORD, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 提现记录

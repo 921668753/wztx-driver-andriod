@@ -3,7 +3,7 @@ package com.ruitukeji.zwbs.adapter.mine;
 import android.content.Context;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.entity.ConductorModelsBean.ResultBean.LengthBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.ResultBean.LengthBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
