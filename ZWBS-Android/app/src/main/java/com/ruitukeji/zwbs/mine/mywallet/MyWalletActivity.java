@@ -86,6 +86,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     private String bankName = "";
     private String bankCard = "";
     private int id = 0;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_mywallet);
@@ -153,46 +154,9 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
             } else {
                 tv_withdrawalAmount.setText(myWalletBean.getResult().getWithdrawal_money());
             }
-//        if (StringUtils.isEmpty(myWalletBean.getResult().getBonus())) {
-//            tv_myReferralBonuses.setText("0.00");
-//        } else {
-//            tv_myReferralBonuses.setText(myWalletBean.getResult().getBonus());
-//        }
-////        if (StringUtils.isEmpty(myWalletBean.getResult().getUninvoicing_singular_total_money())) {
-////            tv_outstandingSingular.setText("0");
-////        } else {
-//        tv_outstandingSingular.setText(String.valueOf(myWalletBean.getResult().getUninvoicing_singular_total_order()));
-//        //     }
-//        if (StringUtils.isEmpty(myWalletBean.getResult().getUninvoicing_singular_total_money())) {
-//            tv_outstandingAmount.setText("0.00");
-//        } else {
-//            tv_outstandingAmount.setText(myWalletBean.getResult().getUninvoicing_singular_total_money());
-//        }
-//
-////        if (StringUtils.isEmpty(myWalletBean.getResult().getPre_month_total_money())) {
-////            tv_thisMonthAccumulativeSingular.setText("0");
-////        } else {
-//        tv_thisMonthAccumulativeSingular.setText(String.valueOf(myWalletBean.getResult().getCur_month_total_order()));
-//        //       }
-//
-////        if (StringUtils.isEmpty(myWalletBean.getResult().get())) {
-////            tv_cumulativeAmountThisMonth.setText("0.00");
-////        } else {
-//        tv_cumulativeAmountThisMonth.setText(myWalletBean.getResult().getMonth_total_money());
-//        //       }
-//
-//        tv_lastMonthCumulativeSingular.setText(String.valueOf(myWalletBean.getResult().getPre_month_total_order()));
-//
-//        if (StringUtils.isEmpty(myWalletBean.getResult().getPre_month_total_money())) {
-//            tv_aggregateAmountOfLastMonth.setText("0.00");
-//        } else {
-//            tv_aggregateAmountOfLastMonth.setText(myWalletBean.getResult().getPre_month_total_money());
-//        }
-//        if (StringUtils.isEmpty(myWalletBean.getResult().getYear_total_money())) {
-//            tv_inAggregateAmount.setText("0.00");
-//        } else {
-//            tv_inAggregateAmount.setText(myWalletBean.getResult().getYear_total_money());
-//        }
+            bankName = myWalletBean.getResult().getBankName();
+            bankCard = myWalletBean.getResult().getBankCard();
+            id = myWalletBean.getResult().getId();
         } else if (flag == 1) {
             showActivity(aty, IncomeDetailsActivity.class);
         } else if (flag == 2) {

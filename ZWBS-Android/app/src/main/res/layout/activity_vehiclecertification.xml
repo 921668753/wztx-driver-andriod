@@ -8,6 +8,7 @@
     <include layout="@layout/common_title" />
 
     <TextView
+        android:id="@+id/tv_certificationStatus"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen35"
         android:background="@color/fDF0C8Colors"

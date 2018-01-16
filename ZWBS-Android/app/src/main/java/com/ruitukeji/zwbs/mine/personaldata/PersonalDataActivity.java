@@ -185,7 +185,6 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
         }
     }
 
-
     @Override
     public void setPresenter(PersonalDataContract.Presenter presenter) {
         mPresenter = presenter;
@@ -198,6 +197,12 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
             GlideImageLoader.glideLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/70/h/70", img_user, 0);
             PreferenceHelper.write(this, StringConstants.FILENAME, "avatar", uploadImageBean.getResult().getFile().getUrl());
             PreferenceHelper.write(this, StringConstants.FILENAME, "isRefreshAvatar", true);
+//                /**
+//                 * 发送消息
+//                 */
+//                MsgEvent msgEvent = new MsgEvent<String>("RxBusAvatarEvent");
+//                msgEvent.setMsg(uploadImageBean.getResult().getFile().getUrl());
+//                RxBus.getInstance().post(msgEvent);
         }
         dismissLoadingDialog();
     }

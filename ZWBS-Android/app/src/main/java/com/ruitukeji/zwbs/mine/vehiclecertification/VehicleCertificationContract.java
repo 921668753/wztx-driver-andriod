@@ -11,9 +11,9 @@ public interface VehicleCertificationContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取认证信息
+         * 获取车辆认证信息
          */
-        //void postUpLoadImg(String path, int flag);
+        void getCarAuthInfo();
 
         /**
          * 上传照片
@@ -23,7 +23,9 @@ public interface VehicleCertificationContract {
         /**
          * 提交认证信息
          */
-        void postVehicleCertification(String name, int flag);
+        void postVehicleCertification(String card_number, String car_type, int car_style_type_id, String car_length, int car_style_length_id,long car_registered_time,String car_front_pic,String car_bank_pic,
+                                      String car_tail_pic, long license_time,String license_pic,long transport_pic_time,String transport_pic,long policy_time,String policy_pic,long insurance_time,
+                                      String insurance_pic);
     }
 
     interface View extends BaseNewView<Presenter, String> {

@@ -12,9 +12,9 @@ public interface IdentityAuthenticationContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取认证信息
+         * 获取司机认证信息
          */
-        //void postUpLoadImg(String path, int flag);
+        void getDriverAuthInfo();
 
         /**
          * 上传头像

@@ -17,7 +17,6 @@
             android:id="@+id/tv_name"
             style="@style/WrapWrap"
             android:maxWidth="@dimen/dimen250"
-            android:singleLine="true"
             android:text="唯物速运（上海）有限公司"
             android:textColor="@color/announceColors"
             android:textSize="@dimen/textsize16" />
@@ -310,6 +309,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_button"
         style="@style/MatchWrap"
         android:orientation="horizontal"
         android:paddingLeft="@dimen/dimen10"

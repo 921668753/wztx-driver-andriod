@@ -126,7 +126,7 @@ public class AddBankCardActivity extends BaseActivity implements AddBankCardCont
             case R.id.tv_prepaidImmediately:
                 showLoadingDialog(getString(R.string.submissionLoad));
                 ((AddBankCardContract.Presenter) mPresenter).postAddBankCard(et_cardholder.getText().toString().trim(), et_bankCardNumber.getText().toString().trim(),
-                        bank_id , et_openingBank.getText().toString().trim(), et_phone.getText().toString().trim(),
+                        bank_id, et_openingBank.getText().toString().trim(), et_phone.getText().toString().trim(),
                         et_verificationCode.getText().toString().trim());
                 break;
         }

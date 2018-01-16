@@ -351,6 +351,7 @@
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
     <string name="conductorModels1">车长/车型</string>
     <string name="vehicleRegistrationDate">车辆注册日期</string>
+    <string name="vehicleRegistrationDate1">车辆注册日期应小于当前日期</string>
     <string name="faceLight">车辆正面照</string>
     <string name="uploadFaceLight">请上传车牌清晰，车头完整的正面照片</string>
     <string name="siding">车辆侧身照</string>
@@ -358,16 +359,23 @@
     <string name="rearLight">车辆尾部照</string>
     <string name="uploadRearLight">请上传清晰，完整的车辆尾部照片</string>
     <string name="validityLicense">行驶证有效期</string>
+    <string name="validityLicense1">行驶证有效期应大于当前日期</string>
     <string name="drivingLicense1">行驶证照</string>
     <string name="uploadDrivingLicensePhotos1">请上传清晰，完整的行驶证照片</string>
     <string name="roadTransportValidityPeriodDate">道路运输证有效期</string>
+    <string name="roadTransportValidityPeriodDate1">道路运输证有效期应大于当前日期</string>
     <string name="roadQualification">道路运输证照</string>
     <string name="uploadRoadQualification1">请上传清晰，完整的道路运输证照片</string>
     <string name="durationInsurance">保险有效期</string>
+    <string name="businessInsurancePolicy">商业保险有效期</string>
     <string name="businessInsurancePolicyPhoto">商业险保单照</string>
+    <string name="businessInsurancePolicy1">商业保险有效期应大于当前日期</string>
     <string name="uploadBusinessInsurancePolicyPhoto">请上传清晰，完整的保险单照片</string>
+    <string name="uploadBusinessInsurancePolicyPhoto1">请上传清晰，完整的商业保险单照片</string>
     <string name="validityInsurance">交强险有效期</string>
+    <string name="validityInsurance1">交强险有效期应大于当前日期</string>
     <string name="handHandPolicyPhoto">交强险保单照</string>
+    <string name="handHandPolicyPhoto1">请上传清晰，完整的交强险保单照片</string>
     <string name="licensePlatesClear">车牌要清晰，车头要完整</string>
     <string name="picCarSide">车身要完整</string>
     <string name="picCarInside">车尾要完整</string>
@@ -539,6 +547,8 @@
     <string name="allWithdrawal">全部提现</string>
     <string name="toBank">到账银行</string>
     <string name="modification">修改</string>
+    <string name="noCard">暂无</string>
+    <string name="addCard">添加</string>
     <string name="tail">尾号</string>
     <string name="consent">同意</string>
     <string name="driverWithdrawAgreement">《司机提现协议》</string>
@@ -664,8 +674,6 @@
     <string name="payResult">支付结果</string>
     <string name="paySuccess">支付成功！</string>
     <string name="topUpSuccess">充值成功！</string>
-
-
 
 
     <!--异常记录-->

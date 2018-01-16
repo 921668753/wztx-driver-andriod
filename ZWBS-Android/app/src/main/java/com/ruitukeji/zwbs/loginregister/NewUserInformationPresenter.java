@@ -101,17 +101,17 @@ public class NewUserInformationPresenter implements NewUserInformationContract.P
     @Override
     public void getPersonalCertificate() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getAuthInfo(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 2);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg);
-            }
-        });
+//        RequestClient.getAuthInfo(httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response, 2);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.error(msg);
+//            }
+//        });
     }
 
 

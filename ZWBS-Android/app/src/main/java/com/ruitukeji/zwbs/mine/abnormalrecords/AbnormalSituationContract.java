@@ -14,7 +14,7 @@ public interface AbnormalSituationContract {
         /**
          * 获取异常情况信息
          */
-        void getAbnormalSituation(int page);
+        void getAbnormalSituation(int id);
     }
 
     interface View extends BaseView<Presenter> {

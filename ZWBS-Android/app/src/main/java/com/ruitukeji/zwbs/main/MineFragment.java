@@ -26,6 +26,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.main.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.main.dialog.InAuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
 import com.ruitukeji.zwbs.mine.helpcenter.HelpCenterActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
@@ -177,6 +178,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     private LinearLayout ll_settings;
     private CustomerServiceTelephoneBouncedDialog customerServiceTelephoneBouncedDialog = null;
     private Handler handler = null;
+    private InAuthenticationBouncedDialog inAuthenticationBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -343,7 +345,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             if (car_auth_status != null && car_auth_status.equals("pass")) {
                 aty.showActivity(aty, VehicleCertificationActivity.class);
             } else if (car_auth_status != null && car_auth_status.equals("check")) {
-                ViewInject.toast(getString(R.string.inAuthentication) + "," + getString(R.string.pleaseWait));
+                inAuthenticationBouncedDialog();
             } else {
                 aty.showActivity(aty, VehicleCertificationActivity.class);
             }
@@ -356,7 +358,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             if (auth_status != null && auth_status.equals("pass")) {
                 aty.showActivity(aty, IdentityAuthenticationActivity.class);
             } else if (auth_status != null && auth_status.equals("check")) {
-                ViewInject.toast(getString(R.string.inAuthentication) + "," + getString(R.string.pleaseWait));
+                inAuthenticationBouncedDialog();
             } else {
                 aty.showActivity(aty, IdentityAuthenticationActivity.class);
             }
@@ -366,8 +368,24 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         dismissLoadingDialog();
     }
 
+    /**
+     * 认证中弹框
+     */
+    private void inAuthenticationBouncedDialog() {
+        inAuthenticationBouncedDialog = null;
+        inAuthenticationBouncedDialog = new InAuthenticationBouncedDialog(aty) {
+            @Override
+            public void confirm() {
+                this.cancel();
+            }
+        };
+        inAuthenticationBouncedDialog.show();
+    }
+
+
     @Override
     public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
         if (msg.equals("" + NumericConstants.TOLINGIN)) {
             mRefreshLayout.setPullDownRefreshEnable(false);
             img_avatar.setImageResource(R.mipmap.avatar_default);
@@ -392,7 +410,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             return;
         }
         mRefreshLayout.setPullDownRefreshEnable(true);
-        dismissLoadingDialog();
         ViewInject.toast(msg);
     }
 
@@ -487,6 +504,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 tv_name.setText(real_name);
                 tv_name1.setText(real_name);
             }
+        } else if (((String) msgEvent.getData()).equals("RxBusVehicleCertificationEvent")) {
+            tv_vehicleCertification.setText(getString(R.string.inAuthentication));
         }
     }
 
@@ -510,5 +529,10 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             handler.removeCallbacksAndMessages(null);
             handler = null;
         }
+        if (inAuthenticationBouncedDialog != null) {
+            inAuthenticationBouncedDialog.cancel();
+            inAuthenticationBouncedDialog = null;
+        }
+
     }
 }

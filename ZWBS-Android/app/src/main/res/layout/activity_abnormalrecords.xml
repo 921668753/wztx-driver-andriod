@@ -10,20 +10,21 @@
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
-        style="@style/MatchMatch"
-        android:paddingLeft="@dimen/dimen10"
-        android:paddingRight="@dimen/dimen10"
-        android:paddingTop="@dimen/dimen10">
+        style="@style/MatchMatch">
 
         <!--item_getorder.xml-->
 
         <ListView
             android:id="@+id/lv_abnormalRecords"
             style="@style/MatchMatch"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:layout_marginTop="@dimen/dimen10"
             android:background="@color/background"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen10"
             android:overScrollMode="never"
+            android:paddingBottom="@dimen/dimen10"
             android:scrollbars="none"
             tools:listitem="@layout/item_abnormalrecords" />
 
@@ -32,6 +33,5 @@
     <include
         layout="@layout/common_error"
         android:visibility="gone" />
-
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
@@ -13,6 +14,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.mine.mywallet.mybankcard.AddBankCardActivity;
 import com.ruitukeji.zwbs.mine.mywallet.mybankcard.MyBankCardActivity;
 import com.ruitukeji.zwbs.mine.setting.aboutus.AboutUsActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
@@ -88,6 +90,7 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
         bankCardName = getIntent().getStringExtra("bankCardName");
         bankCardNun = getIntent().getStringExtra("bankCardName");
         bankCardId = getIntent().getIntExtra("bankCardId", 0);
+
     }
 
     @Override
@@ -109,6 +112,11 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
         ActivityTitleUtils.initToolbar(aty, getString(R.string.withdrawal), getString(R.string.withdrawalRecord), R.id.titlebar, simpleDelegate);
         String withdrawalAmount = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdrawalAmount");
         tv_money.setText(withdrawalAmount);
+        if (StringUtils.isEmpty(bankCardName) || StringUtils.isEmpty(bankCardNun)) {
+            tv_withdrawalBank.setText(getString(R.string.noCard));
+            tv_modification.setText(getString(R.string.addCard));
+            return;
+        }
         tv_withdrawalBank.setText(bankCardName + "  (" + getString(R.string.tail) + bankCardNun + ")");
     }
 
@@ -150,6 +158,11 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
             RxBus.getInstance().post(new MsgEvent<String>("RxBusWithdrawalEvent"));
             finish();
         } else if (flag == 1) {
+            if (StringUtils.isEmpty(bankCardName) || StringUtils.isEmpty(bankCardNun)) {
+                Intent intent = new Intent(aty, AddBankCardActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_CHOOSE_PHOTO);
+                return;
+            }
             Intent intent = new Intent(aty, MyBankCardActivity.class);
             intent.putExtra("type", 1);
             startActivityForResult(intent, REQUEST_CODE_CHOOSE_PHOTO);

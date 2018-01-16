@@ -25,16 +25,21 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
+import com.ruitukeji.zwbs.entity.loginregister.CodeBean;
 import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ProvinceShortBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.VehicleCertificationBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationContract;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationPresenter;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.GetJsonDataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.SoftKeyboardUtils;
 import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,6 +64,13 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PR
  */
 
 public class VehicleCertificationActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks, VehicleCertificationContract.View {
+
+    /**
+     * 认证状态
+     */
+    @BindView(id = R.id.tv_certificationStatus)
+    private TextView tv_certificationStatus;
+
 
     /**
      * 地址简称
@@ -198,6 +210,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     private ImagePicker imagePicker;
 
     private TimePickerView pvTime;
+    private TimePickerView pvTime1;
     private SamplePictureBouncedDialog samplePictureBouncedDialog = null;
     private List<ProvinceShortBean.ResultBean> provinceShortList = null;
 
@@ -213,9 +226,16 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         images = new ArrayList<>();
         samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
         initImagePicker();
-
         asOfTheDatePicker();
+        asOfTheDatePicker1();
         addressAbbreviation();
+
+        String car_auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "car_auth_status", "init");
+        if (car_auth_status != null && car_auth_status.equals("init")) {
+            return;
+        }
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((VehicleCertificationContract.Presenter) mPresenter).getCarAuthInfo();
     }
 
     /**
@@ -275,11 +295,51 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 .build();
     }
 
+    @SuppressWarnings("deprecation")
+    public void asOfTheDatePicker1() {
+        boolean[] type = new boolean[]{true, true, true, false, false, false};//显示类型 默认全部显示
+        //控制时间范围
+        Calendar calendarSet = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(calendarSet.get(Calendar.YEAR) - 99, calendarSet.get(Calendar.MONTH), calendarSet.get(Calendar.DAY_OF_MONTH));
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(calendarSet.get(Calendar.YEAR), calendarSet.get(Calendar.MONTH), calendarSet.get(Calendar.DAY_OF_MONTH));
+        pvTime1 = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                if (date.getTime() >= System.currentTimeMillis()) {
+                    ViewInject.toast(getString(R.string.vehicleRegistrationDate1));
+                    return;
+                }
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                if (v.getId() == R.id.tv_vehicleRegistrationDate) {
+                    vehicleRegistrationDate = date.getTime() / 1000;
+                    calendar.setTime(date);
+                }
+                ((TextView) v).setText(format.format(date));
+            }
+        }).setType(type)
+                .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
+                .setContentSize(20)
+                .setRangDate(startDate, endDate)
+                .build();
+    }
+
 
     @Override
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.vehicleCertification), true, R.id.titlebar);
+        String car_auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "car_auth_status", "init");
+        if (car_auth_status != null && car_auth_status.equals("pass")) {
+            tv_certificationStatus.setText(getString(R.string.certified));
+        } else if (car_auth_status != null && car_auth_status.equals("check")) {
+            tv_certificationStatus.setText(getString(R.string.inAuthentication));
+        } else if (car_auth_status != null && car_auth_status.equals("refuse")) {
+            tv_certificationStatus.setText(getString(R.string.authenticationFailure));
+        } else {
+            tv_certificationStatus.setText(getString(R.string.unauthorized));
+        }
     }
 
     @Override
@@ -291,16 +351,15 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 pvOptions.show(tv_addressAbbreviation);
                 break;
             case R.id.ll_conductorModels:
-                Intent intent = new Intent();
+                Intent intent = new Intent(aty, ConductorModelsActivity.class);
                 intent.putExtra("vehicleModelId", vehicleModelId);
                 intent.putExtra("vehicleLengthId", vehicleLengthId);
-                intent.setClass(aty, ConductorModelsActivity.class);
                 startActivityForResult(intent, 3);
                 break;
             case R.id.ll_vehicleRegistrationDate:
-                pvTime.setDate(calendar);
+                pvTime1.setDate(calendar);
                 //弹出时间选择器
-                pvTime.show(tv_vehicleRegistrationDate);
+                pvTime1.show(tv_vehicleRegistrationDate);
                 break;
             case R.id.img_uploadFaceLight:
                 if (isUploadFaceLight) {
@@ -428,6 +487,10 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 show(R.mipmap.pic_compulsory_insurance, getString(R.string.picCompulsoryInsurance));
                 break;
             case R.id.tv_submit:
+                ((VehicleCertificationContract.Presenter) mPresenter).postVehicleCertification((tv_addressAbbreviation.getText().toString() + et_licenseNumber.getText().toString().trim()),
+                        vehicleModel, vehicleModelId, vehicleLength, vehicleLengthId, vehicleRegistrationDate, uploadFaceLightUrl, uploadSidingUrl, uploadRearLightUrl,
+                        validityLicense, uploadDrivingLicensePhotosUrl, roadTransportValidityPeriodDate, uploadRoadQualification1Url, durationInsurance,
+                        uploadBusinessInsurancePolicyPhotoUrl, durationInsurance1, uploadhandHandPolicyPhotoUrl);
                 break;
             default:
                 break;
@@ -457,9 +520,11 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             pvOptions.setPicker(provinceShortBean.getResult());
             for (int i = 0; i < provinceShortList.size(); i++) {
                 if (!StringUtils.isEmpty(provinceShort) && provinceShortList.get(i).getName().equals(provinceShort)) {
+                    tv_addressAbbreviation.setText(provinceShort);
                     pvOptions.setSelectOptions(i);
                     return;
-                } else if (!StringUtils.isEmpty(currentLocationProvince) && StringUtils.isEmpty(provinceShort) && provinceShortList.get(i).getName().equals(provinceShort)) {
+                } else if (!StringUtils.isEmpty(currentLocationProvince) && StringUtils.isEmpty(provinceShort) && provinceShortList.get(i).getProvinceName().equals(currentLocationProvince)) {
+                    tv_addressAbbreviation.setText(provinceShortList.get(i).getName());
                     pvOptions.setSelectOptions(i);
                     return;
                 }
@@ -606,54 +671,132 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         if (flag == REQUEST_CODE_CHOOSE_PHOTO) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadFaceLight);
-                uploadFaceLightUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadFaceLightUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadFaceLightUrl + "?imageView2/1/w/161/h/103", img_uploadFaceLight);
                 isUploadFaceLight = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadSiding);
-                uploadSidingUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadSidingUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadSidingUrl + "?imageView2/1/w/161/h/103", img_uploadSiding);
                 isUploadSiding = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW1) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadRearLight);
-                uploadRearLightUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadRearLightUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadRearLightUrl + "?imageView2/1/w/161/h/103", img_uploadRearLight);
                 isUploadRearLight = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW2) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
-                uploadDrivingLicensePhotosUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadDrivingLicensePhotosUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadDrivingLicensePhotosUrl + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
                 isUploadDrivingLicensePhotos = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW3) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadRoadQualification1);
-                uploadRoadQualification1Url = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadRoadQualification1Url = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadRoadQualification1Url + "?imageView2/1/w/161/h/103", img_uploadRoadQualification1);
                 isUploadRoadQualification1 = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW4) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadBusinessInsurancePolicyPhoto);
-                uploadBusinessInsurancePolicyPhotoUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadBusinessInsurancePolicyPhotoUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadBusinessInsurancePolicyPhotoUrl + "?imageView2/1/w/161/h/103", img_uploadBusinessInsurancePolicyPhoto);
                 isUploadBusinessInsurancePolicyPhoto = false;
             }
         } else if (flag == REQUEST_CODE_PHOTO_PREVIEW5) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
-                GlideImageLoader.glideOrdinaryLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103", img_uploadhandHandPolicyPhoto);
-                uploadhandHandPolicyPhotoUrl = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/161/h/103";
+                uploadhandHandPolicyPhotoUrl = uploadImageBean.getResult().getFile().getUrl();
+                GlideImageLoader.glideOrdinaryLoader(this, uploadhandHandPolicyPhotoUrl + "?imageView2/1/w/161/h/103", img_uploadhandHandPolicyPhoto);
                 isUploadhandHandPolicyPhoto = false;
             }
         } else if (flag == 0) {
+            VehicleCertificationBean vehicleCertificationBean = (VehicleCertificationBean) JsonUtil.getInstance().json2Obj(success, VehicleCertificationBean.class);
+            String card_number = vehicleCertificationBean.getResult().getCard_number();
+            tv_addressAbbreviation.setText(card_number.substring(0, 1));
+            et_licenseNumber.setText(card_number.substring(1));
+            vehicleModel = vehicleCertificationBean.getResult().getCar_type();
+            vehicleLength = vehicleCertificationBean.getResult().getCar_length();
+            tv_conductorModels.setText(getString(R.string.conductor) + vehicleLength + "  " + getString(R.string.models) + vehicleModel);
+            vehicleModelId = vehicleCertificationBean.getResult().getCar_style_type_id();
+            vehicleLengthId = vehicleCertificationBean.getResult().getCar_style_length_id();
 
+            vehicleRegistrationDate = StringUtils.toLong(vehicleCertificationBean.getResult().getCar_registered_time());
+            String d = DataUtil.formatData(vehicleRegistrationDate, "yyyy-MM-dd");
+            tv_vehicleRegistrationDate.setText(d);
+            Date date = new Date(vehicleRegistrationDate * 1000);
+            calendar.setTime(date);
+
+            uploadFaceLightUrl = vehicleCertificationBean.getResult().getCar_front_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadFaceLightUrl + "?imageView2/1/w/161/h/103", img_uploadFaceLight);
+            isUploadFaceLight = false;
+            uploadSidingUrl = vehicleCertificationBean.getResult().getCar_bank_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadSidingUrl + "?imageView2/1/w/161/h/103", img_uploadSiding);
+            isUploadSiding = false;
+            uploadRearLightUrl = vehicleCertificationBean.getResult().getCar_tail_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadRearLightUrl + "?imageView2/1/w/161/h/103", img_uploadRearLight);
+            isUploadRearLight = false;
+
+
+            validityLicense = StringUtils.toLong(vehicleCertificationBean.getResult().getLicense_time());
+            String d1 = DataUtil.formatData(validityLicense, "yyyy-MM-dd");
+            tv_validityLicense.setText(d1);
+            Date date1 = new Date(validityLicense * 1000);
+            calendar1.setTime(date1);
+
+            uploadDrivingLicensePhotosUrl = vehicleCertificationBean.getResult().getLicense_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadDrivingLicensePhotosUrl + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
+            isUploadDrivingLicensePhotos = false;
+
+
+            roadTransportValidityPeriodDate = StringUtils.toLong(vehicleCertificationBean.getResult().getTransport_pic_time());
+            String d2 = DataUtil.formatData(roadTransportValidityPeriodDate, "yyyy-MM-dd");
+            tv_roadTransportValidityPeriodDate.setText(d2);
+            Date date2 = new Date(roadTransportValidityPeriodDate * 1000);
+            calendar2.setTime(date2);
+            uploadRoadQualification1Url = vehicleCertificationBean.getResult().getTransport_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadRoadQualification1Url + "?imageView2/1/w/161/h/103", img_uploadRoadQualification1);
+            isUploadRoadQualification1 = false;
+
+
+            durationInsurance = StringUtils.toLong(vehicleCertificationBean.getResult().getPolicy_time());
+            String d3 = DataUtil.formatData(durationInsurance, "yyyy-MM-dd");
+            tv_durationInsurance.setText(d3);
+            Date date3 = new Date(durationInsurance * 1000);
+            calendar3.setTime(date3);
+
+            uploadBusinessInsurancePolicyPhotoUrl = vehicleCertificationBean.getResult().getLicense_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadBusinessInsurancePolicyPhotoUrl + "?imageView2/1/w/161/h/103", img_uploadBusinessInsurancePolicyPhoto);
+            isUploadBusinessInsurancePolicyPhoto = false;
+
+            durationInsurance1 = StringUtils.toLong(vehicleCertificationBean.getResult().getInsurance_time());
+            String d4 = DataUtil.formatData(durationInsurance1, "yyyy-MM-dd");
+            tv_durationInsurance1.setText(d4);
+            Date date4 = new Date(durationInsurance1 * 1000);
+            calendar4.setTime(date4);
+            uploadhandHandPolicyPhotoUrl = vehicleCertificationBean.getResult().getInsurance_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadhandHandPolicyPhotoUrl + "?imageView2/1/w/161/h/103", img_uploadhandHandPolicyPhoto);
+            isUploadhandHandPolicyPhoto = false;
+        } else if (flag == 1) {
+            CodeBean codeBean = (CodeBean) JsonUtil.json2Obj(success, CodeBean.class);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", codeBean.getResult());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "car_auth_status", "check");
+            ViewInject.toast(getString(R.string.submittedSuccessfully));
+            tv_certificationStatus.setText(getString(R.string.inAuthentication));
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusVehicleCertificationEvent"));
+            dismissLoadingDialog();
+            aty.finish();
+            return;
         }
         dismissLoadingDialog();
     }
@@ -677,5 +820,6 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         samplePictureBouncedDialog = null;
         images = null;
         pvTime = null;
+        pvTime1 = null;
     }
 }

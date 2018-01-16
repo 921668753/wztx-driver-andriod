@@ -19,11 +19,10 @@ public class AbnormalSituationPresenter implements AbnormalSituationContract.Pre
     }
 
     @Override
-    public void getAbnormalSituation(int page) {
+    public void getAbnormalSituation(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("page", page);
-        httpParams.put("pageSize", 10);
-        RequestClient.showMyRecommList(httpParams, new ResponseListener<String>() {
+        httpParams.put("id", id);
+        RequestClient.getAbnormalSituation(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response);

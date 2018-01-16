@@ -34,10 +34,11 @@ public class IncomeDetailsActivity extends BaseActivity {
      */
     @BindView(id = R.id.ll_notPaidIncome, click = true)
     private LinearLayout ll_notPaidIncome;
-    @BindView(id = R.id.tv_notPaidIncome, click = true)
+    @BindView(id = R.id.tv_notPaidIncome)
     private TextView tv_notPaidIncome;
     @BindView(id = R.id.tv_notPaidIncome1)
     private TextView tv_notPaidIncome1;
+
 
     private BaseFragment contentFragment;
     private BaseFragment contentFragment1;

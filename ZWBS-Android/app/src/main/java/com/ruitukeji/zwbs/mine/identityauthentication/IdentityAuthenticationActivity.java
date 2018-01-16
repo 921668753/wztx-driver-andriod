@@ -24,9 +24,11 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
+import com.ruitukeji.zwbs.entity.mine.identityauthentication.IdentityAuthenticationBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.ruitukeji.zwbs.utils.rx.RxBus;
@@ -196,7 +198,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
             return;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-
+        ((IdentityAuthenticationContract.Presenter) mPresenter).getDriverAuthInfo();
     }
 
     @Override
@@ -510,6 +512,43 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
+            IdentityAuthenticationBean identityAuthenticationBean = (IdentityAuthenticationBean) JsonUtil.getInstance().json2Obj(success, IdentityAuthenticationBean.class);
+            et_name.setText(identityAuthenticationBean.getResult().getReal_name());
+            et_IdNumber.setText(identityAuthenticationBean.getResult().getIdentity());
+            uploadYourIdCardUrl = identityAuthenticationBean.getResult().getFront_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadYourIdCardUrl + "?imageView2/1/w/161/h/103", img_uploadYourIdCard);
+            isUploadYourIdCard = false;
+            validityIdentityCard = StringUtils.toLong(identityAuthenticationBean.getResult().getIdentity_pic_time());
+            String d = DataUtil.formatData(validityIdentityCard, "yyyy-MM-dd");
+            tv_validityIdentityCard.setText(d);
+            Date date = new Date(validityIdentityCard * 1000);
+            calendar.setTime(date);
+            uploadClearYourIdCardUrl = identityAuthenticationBean.getResult().getBack_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadClearYourIdCardUrl + "?imageView2/1/w/161/h/103", img_uploadClearYourIdCard);
+            isUploadClearYourIdCard = false;
+            uploudHoldingIdPhotoUrl = identityAuthenticationBean.getResult().getHold_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploudHoldingIdPhotoUrl + "?imageView2/1/w/161/h/103", img_uploudHoldingIdPhoto);
+            isUploudHoldingIdPhoto = false;
+            validityDrivingLicence = StringUtils.toLong(identityAuthenticationBean.getResult().getLicense_pic_time());
+            String d1 = DataUtil.formatData(validityDrivingLicence, "yyyy-MM-dd");
+            tv_validityDrivingLicence.setText(d1);
+            Date date1 = new Date(validityDrivingLicence * 1000);
+            calendar1.setTime(date1);
+            uploadDrivingLicensePhotosUrl = identityAuthenticationBean.getResult().getLicense_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadDrivingLicensePhotosUrl + "?imageView2/1/w/161/h/103", img_uploadDrivingLicensePhotos);
+            isUploadDrivingLicensePhotos = false;
+            roadTransportValidityPeriod = StringUtils.toLong(identityAuthenticationBean.getResult().getTransport_pic_time());
+            String d2 = DataUtil.formatData(roadTransportValidityPeriod, "yyyy-MM-dd");
+            tv_roadTransportValidityPeriod.setText(d2);
+            Date date2 = new Date(roadTransportValidityPeriod * 1000);
+            calendar2.setTime(date2);
+            uploadRoadQualificationUrl = identityAuthenticationBean.getResult().getTransport_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadRoadQualificationUrl + "?imageView2/1/w/161/h/103", img_uploadRoadQualification);
+            isUploadRoadQualification = false;
+            uploadIntegrityAssessmentUrl = identityAuthenticationBean.getResult().getFaith_pic();
+            GlideImageLoader.glideOrdinaryLoader(this, uploadIntegrityAssessmentUrl + "?imageView2/1/w/161/h/103", img_uploadIntegrityAssessment);
+            isUploadIntegrityAssessment = false;
+        } else if (flag == 1) {
             PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", "check");
             ViewInject.toast(getString(R.string.submittedSuccessfully));
             tv_certificationStatus.setText(getString(R.string.inAuthentication));

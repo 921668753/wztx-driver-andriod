@@ -195,7 +195,7 @@ public class RequestClient {
     }
 
     /**
-     * 新用户注册----车辆认证
+     * 个人中心----车辆认证
      */
     public static void postVehicleCertification(HttpParams httpParams, final ResponseListener<String> listener) {
         Log.d("tag", "postVehicleCertification");
@@ -209,6 +209,25 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("authorization-token", accessToken);
                 HttpRequest.requestPostHttp(URLConstants.CARAUTH, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 个人中心----车辆认证----获取车辆认证信息
+     */
+    public static void getCarAuthInfo(HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getCarAuthInfo");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.GETCARAUTHINFO, httpParams, listener);
             }
         }, listener);
     }
@@ -671,7 +690,47 @@ public class RequestClient {
     }
 
     /**
-     * 个人中心----提交信息信息
+     * 个人中心----获取异常信息
+     */
+    public static void getAbnormal(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postDriverAuth");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.GRTABNORMAL, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 个人中心----获取异常信息详情
+     */
+    public static void getAbnormalSituation(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postDriverAuth");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.GRTABNORMALSITUATION, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+
+    /**
+     * 个人中心----提交身份认证信息
      */
     public static void postDriverAuth(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "postDriverAuth");
@@ -691,10 +750,10 @@ public class RequestClient {
 
 
     /**
-     * 获取认证信息
+     * 获取司机认证信息
      */
-    public static void getAuthInfo(HttpParams httpParams, ResponseListener<String> listener) {
-        Log.d("tag", "getAuthInfo");
+    public static void getDriverAuthInfo(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getDriverAuthInfo");
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -704,7 +763,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestGetHttp(URLConstants.GETAUTHINFO, httpParams, listener);
+                HttpRequest.requestGetHttp(URLConstants.GETDRIVERAUTHINFO, httpParams, listener);
             }
         }, listener);
     }
@@ -724,6 +783,26 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("authorization-token", accessToken);
                 HttpRequest.requestGetHttp(URLConstants.PAY, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+
+    /**
+     * 收入明细
+     */
+    public static void getIncomeDetails(HttpParams httpParams, final ResponseListener<String> listener) {
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.INCOMEDETAILS, httpParams, listener);
             }
         }, listener);
     }

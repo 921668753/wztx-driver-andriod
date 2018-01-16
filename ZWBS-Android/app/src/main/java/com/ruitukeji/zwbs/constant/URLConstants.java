@@ -90,9 +90,20 @@ public class URLConstants {
     public static String DRIVERAUTH = APIURL + "User/driverAuth";
 
     /**
+     * 获取司机认证信息
+     */
+    public static String GETDRIVERAUTHINFO = APIURL + "user/getDriverAuthInfo";
+
+    /**
      * 车辆认证
      */
     public static String CARAUTH = APIURL + "User/carAuth";
+
+    /**
+     * 获取车辆认证信息
+     */
+    public static String GETCARAUTHINFO = APIURL + "user/getCarAuthInfo";
+
 
     /**
      * 重置密码
@@ -160,6 +171,16 @@ public class URLConstants {
     public static String MEMBERINFO = APIURL + "user/info";
 
     /**
+     * 获取异常信息
+     */
+    public static String GRTABNORMAL = APIURL + "Abnormal/GetAbnormal";
+
+    /**
+     * 获取单条异常信息
+     */
+    public static String GRTABNORMALSITUATION = APIURL + "Abnormal/GetOneAbnormal";
+
+    /**
      * 获取认证信息
      */
     public static String GETAUTHINFO = APIURL + "user/getAuthInfo";
@@ -179,7 +200,10 @@ public class URLConstants {
      */
     public static String PAY = APIURL + "pay";
 
-
+    /**
+     * 收入明细
+     */
+    public static String INCOMEDETAILS = APIURL + "pay/IncomeDetails";
 
     /**
      * 充值 支付宝支付

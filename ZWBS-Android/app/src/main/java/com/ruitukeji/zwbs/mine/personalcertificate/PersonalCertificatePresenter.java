@@ -23,16 +23,16 @@ public class PersonalCertificatePresenter implements PersonalCertificateContract
     @Override
     public void getPersonalCertificate() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getAuthInfo(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg);
-            }
-        });
+//        RequestClient.getAuthInfo(httpParams, new ResponseListener<String>() {
+//            @Override
+//            public void onSuccess(String response) {
+//                mView.getSuccess(response);
+//            }
+//
+//            @Override
+//            public void onFailure(String msg) {
+//                mView.error(msg);
+//            }
+//        });
     }
 }

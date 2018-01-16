@@ -11,16 +11,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.BillViewAdapter;
+import com.ruitukeji.zwbs.adapter.mine.mywallet.incomedetails.IncomeDetailsViewAdapter;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.entity.BillBean;
+import com.ruitukeji.zwbs.entity.mine.mywallet.incomedetails.IncomeDetailsBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
-import com.ruitukeji.zwbs.mine.mywallet.BillActivity;
-import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillContract;
-import com.ruitukeji.zwbs.mine.mywallet.billfragment.BillPresenter;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -32,12 +30,12 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/3/9.
  */
 
-public class PaidIncomeFragment extends BaseFragment implements BillContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class PaidIncomeFragment extends BaseFragment implements IncomeDetailsContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    private BillViewAdapter mAdapter;
+    private IncomeDetailsViewAdapter mAdapter;
 
     private IncomeDetailsActivity aty;
 
@@ -79,8 +77,8 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
     @Override
     protected void initData() {
         super.initData();
-        mPresenter = new BillPresenter(this);
-        mAdapter = new BillViewAdapter(getActivity());
+        mPresenter = new IncomeDetailsPresenter(this);
+        mAdapter = new IncomeDetailsViewAdapter(getActivity());
     }
 
     @Override
@@ -89,15 +87,14 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_incomedetails.setAdapter(mAdapter);
         lv_incomedetails.setOnItemClickListener(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
+        mRefreshLayout.beginRefreshing();
     }
 
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+        // intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
         aty.showActivity(aty, intent);
     }
 
@@ -106,7 +103,7 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
+        ((IncomeDetailsContract.Presenter) mPresenter).getIncomeDetails(mMorePageNumber, is_pay);
     }
 
     @Override
@@ -121,7 +118,7 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((BillContract.Presenter) mPresenter).getBill(mMorePageNumber, is_pay);
+        ((IncomeDetailsContract.Presenter) mPresenter).getIncomeDetails(mMorePageNumber, is_pay);
         return true;
     }
 
@@ -138,31 +135,44 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
         }
     }
 
+
     @Override
-    public void getSuccess(String s) {
+    public void onDestroy() {
+        super.onDestroy();
+        mAdapter.clear();
+        mAdapter = null;
+    }
+
+    @Override
+    public void setPresenter(IncomeDetailsContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        BillBean billBean = (BillBean) JsonUtil.getInstance().json2Obj(s, BillBean.class);
-        mMorePageNumber = billBean.getResult().getPage();
-        totalPageNumber = billBean.getResult().getPageTotal();
-        if (billBean.getResult().getList() == null || billBean.getResult().getList().size() == 0) {
-            error(getString(R.string.serverReturnsDataNull));
+        IncomeDetailsBean incomeDetailsBean = (IncomeDetailsBean) JsonUtil.getInstance().json2Obj(success, IncomeDetailsBean.class);
+        mMorePageNumber = incomeDetailsBean.getResult().getPage();
+        totalPageNumber = incomeDetailsBean.getResult().getPageTotal();
+        if (incomeDetailsBean.getResult().getList() == null || incomeDetailsBean.getResult().getList().size() == 0) {
+            errorMsg(getString(R.string.serverReturnsDataNull), 0);
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            mAdapter.addNewData(billBean.getResult().getList());
+            mAdapter.addNewData(incomeDetailsBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(billBean.getResult().getList());
+            mAdapter.addMoreData(incomeDetailsBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
 
     @Override
-    public void error(String msg) {
+    public void errorMsg(String msg, int flag) {
         toLigon(msg);
         isShowLoadingMore = false;
         mRefreshLayout.setVisibility(View.GONE);
@@ -174,25 +184,5 @@ public class PaidIncomeFragment extends BaseFragment implements BillContract.Vie
             mRefreshLayout.endLoadingMore();
         }
         dismissLoadingDialog();
-    }
-
-    @Override
-    public void setPresenter(BillContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    /**
-     * 当通过changeFragment()显示时会被调用(类似于onResume)
-     */
-    @Override
-    public void onChange() {
-        super.onChange();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mAdapter.clear();
-        mAdapter = null;
     }
 }
