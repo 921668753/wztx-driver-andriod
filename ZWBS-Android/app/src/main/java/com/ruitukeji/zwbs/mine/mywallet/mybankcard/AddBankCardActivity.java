@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.mine.mywallet.mybankcard;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
+import com.ruitukeji.zwbs.entity.mine.mywallet.mybankcard.AddBankCardBean;
 import com.ruitukeji.zwbs.entity.mine.mywallet.mybankcard.BankBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
@@ -188,6 +190,14 @@ public class AddBankCardActivity extends BaseActivity implements AddBankCardCont
                 pvOptions.setPicker(bankList);
             }
         } else if (flag == 2) {
+            AddBankCardBean addBankCardBean = (AddBankCardBean) JsonUtil.json2Obj(success, AddBankCardBean.class);
+            Intent intent = new Intent();
+            // 获取内容
+            intent.putExtra("bankCardName", tv_withdrawalsBank.getText().toString());
+            intent.putExtra("bankCardNun", et_bankCardNumber.getText().toString().trim().substring(et_bankCardNumber.getText().toString().trim().length() - 5));
+            intent.putExtra("bankCardId", addBankCardBean.getResult().getBank_id());
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
             RxBus.getInstance().post(new MsgEvent<String>("RxBusAddBankCardEvent"));
             finish();
             return;

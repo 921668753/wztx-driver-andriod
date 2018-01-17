@@ -389,6 +389,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         if (msg.equals("" + NumericConstants.TOLINGIN)) {
             mRefreshLayout.setPullDownRefreshEnable(false);
             img_avatar.setImageResource(R.mipmap.avatar_default);
+            img_avatar1.setImageResource(R.mipmap.avatar_default);
             tv_name.setText(getString(R.string.loginregister));
             tv_name1.setText(getString(R.string.loginregister));
             tv_licensePlateNumber.setVisibility(View.GONE);

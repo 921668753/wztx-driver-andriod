@@ -88,9 +88,8 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
         super.initData();
         mPresenter = new WithdrawalPresenter(this);
         bankCardName = getIntent().getStringExtra("bankCardName");
-        bankCardNun = getIntent().getStringExtra("bankCardName");
+        bankCardNun = getIntent().getStringExtra("bankCardNun");
         bankCardId = getIntent().getIntExtra("bankCardId", 0);
-
     }
 
     @Override

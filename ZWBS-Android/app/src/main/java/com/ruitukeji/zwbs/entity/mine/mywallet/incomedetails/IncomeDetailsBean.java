@@ -13,7 +13,7 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
 
     public class ResultBean {
         /**
-         * list : [{"id":257,"type":"often","create_at":1504315667,"goods_name":"2","order_code":"2017123098545215","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"5.83","effective_time":0,"is_driver_dock":1},{"id":260,"type":"often","create_at":1504497313,"goods_name":"测试","order_code":"2017123098545215","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"2.953","effective_time":20,"is_driver_dock":0},{"id":261,"type":"often","create_at":1504575871,"goods_name":"测试","order_code":"2017123098539634","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"22.853","effective_time":0,"is_driver_dock":0},{"id":264,"type":"often","create_at":1504749966,"goods_name":"测试","order_code":null,"car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"24.261","effective_time":0,"is_driver_dock":null}]
+         * list : [{"id":257,"name":"丁坤","type":"often","create_at":"2017-09-02 09:27:47","goods_name":"2","order_code":"2017123098545215","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"5.83","effective_time":0,"is_driver_dock":1,"fact_pay":757},{"id":260,"name":"丁坤","type":"often","create_at":"2017-09-04 11:55:13","goods_name":"测试","order_code":"2017123098545215","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"2.953","effective_time":20,"is_driver_dock":0,"fact_pay":60},{"id":261,"name":"丁坤","type":"often","create_at":"2017-09-05 09:44:31","goods_name":"测试","order_code":"2017123098539634","car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"22.853","effective_time":0,"is_driver_dock":0,"fact_pay":250},{"id":264,"name":"丁坤","type":"often","create_at":"2017-09-07 10:06:06","goods_name":"测试","order_code":null,"car_style_length":"4.2米","car_style_type":"厢式","weight":2,"volume":15,"org_address_detail":"","dest_address_detail":"","kilometres":"24.261","effective_time":0,"is_driver_dock":null,"fact_pay":null}]
          * page : 1
          * pageSize : 10
          * dataTotal : 4
@@ -69,8 +69,9 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
         public class ListBean {
             /**
              * id : 257
+             * name : 丁坤
              * type : often
-             * create_at : 1504315667
+             * create_at : 2017-09-02 09:27:47
              * goods_name : 2
              * order_code : 2017123098545215
              * car_style_length : 4.2米
@@ -82,22 +83,25 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
              * kilometres : 5.83
              * effective_time : 0
              * is_driver_dock : 1
+             * fact_pay : 757
              */
 
             private int id;
+            private String name;
             private String type;
-            private int create_at;
+            private String create_at;
             private String goods_name;
             private String order_code;
             private String car_style_length;
             private String car_style_type;
-            private int weight;
-            private int volume;
+            private String weight;
+            private String volume;
             private String org_address_detail;
             private String dest_address_detail;
             private String kilometres;
-            private int effective_time;
+            private String effective_time;
             private int is_driver_dock;
+            private String fact_pay;
 
             public int getId() {
                 return id;
@@ -105,6 +109,14 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
 
             public void setId(int id) {
                 this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
             }
 
             public String getType() {
@@ -115,11 +127,11 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
                 this.type = type;
             }
 
-            public int getCreate_at() {
+            public String getCreate_at() {
                 return create_at;
             }
 
-            public void setCreate_at(int create_at) {
+            public void setCreate_at(String create_at) {
                 this.create_at = create_at;
             }
 
@@ -155,19 +167,19 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
                 this.car_style_type = car_style_type;
             }
 
-            public int getWeight() {
+            public String getWeight() {
                 return weight;
             }
 
-            public void setWeight(int weight) {
+            public void setWeight(String weight) {
                 this.weight = weight;
             }
 
-            public int getVolume() {
+            public String getVolume() {
                 return volume;
             }
 
-            public void setVolume(int volume) {
+            public void setVolume(String volume) {
                 this.volume = volume;
             }
 
@@ -195,11 +207,11 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
                 this.kilometres = kilometres;
             }
 
-            public int getEffective_time() {
+            public String getEffective_time() {
                 return effective_time;
             }
 
-            public void setEffective_time(int effective_time) {
+            public void setEffective_time(String effective_time) {
                 this.effective_time = effective_time;
             }
 
@@ -209,6 +221,14 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
 
             public void setIs_driver_dock(int is_driver_dock) {
                 this.is_driver_dock = is_driver_dock;
+            }
+
+            public String getFact_pay() {
+                return fact_pay;
+            }
+
+            public void setFact_pay(String fact_pay) {
+                this.fact_pay = fact_pay;
             }
         }
     }

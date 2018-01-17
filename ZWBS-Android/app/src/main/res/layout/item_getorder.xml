@@ -299,6 +299,7 @@
 
 
     <TextView
+        android:id="@+id/tv_orderNeeds"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen12"
         android:paddingLeft="@dimen/dimen10"

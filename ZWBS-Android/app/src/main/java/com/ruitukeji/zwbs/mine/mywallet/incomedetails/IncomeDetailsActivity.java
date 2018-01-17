@@ -96,7 +96,6 @@ public class IncomeDetailsActivity extends BaseActivity {
                 cleanColors(1);
                 changeFragment(contentFragment1);
                 break;
-
             default:
                 break;
         }

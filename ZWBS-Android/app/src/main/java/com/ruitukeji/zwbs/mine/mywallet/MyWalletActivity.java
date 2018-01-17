@@ -144,6 +144,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
 
             //  PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshMyWalletActivity", false);
             MyWalletBean myWalletBean = (MyWalletBean) JsonUtil.getInstance().json2Obj(success, MyWalletBean.class);
+            PreferenceHelper.write(this, StringConstants.FILENAME, "withdrawalAmount", myWalletBean.getResult().getWithdrawal_money());
             if (StringUtils.isEmpty(myWalletBean.getResult().getBalance())) {
                 tv_accountBalance.setText("0.00");
             } else {

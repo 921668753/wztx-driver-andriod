@@ -198,6 +198,7 @@
     <string name="estimatedTime">预计耗时</string>
     <string name="actualPrice">实际价格</string>
     <string name="orderNeeds">本订单需要签收单，签收单快递费到付</string>
+    <string name="orderNotNeeds">本订单不需要签收单</string>
     <string name="sendQuotation">发送报价</string>
     <string name="amount">金额</string>
     <string name="pleaseEnterPrice">请输入价格</string>
@@ -621,6 +622,14 @@
     <string name="paymentPasswordManagement">支付密码管理</string>
     <string name="withdrawalInstruction">提现说明：</string>
     <string name="withdrawalInstruction1">每月15日、30日为提现日，提现金额3~5个工作日到账</string>
+
+    <!--收入明细-->
+    <string name="hours">小时</string>
+    <string name="minutes">分钟</string>
+    <string name="rmb">RMB</string>
+    <string name="km">千米</string>
+    <string name="tons">吨</string>
+    <string name="cubic">立方</string>
 
     <!--设置支付密码-->
     <string name="setPaymentPassword">设置支付密码</string>

@@ -16,7 +16,7 @@ import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.BillBean;
+import com.ruitukeji.zwbs.entity.mine.mywallet.incomedetails.IncomeDetailsBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.mine.mywallet.incomedetails.IncomeDetailsActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -149,20 +149,20 @@ public class NotPaidIncomeFragment extends BaseFragment implements IncomeDetails
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        BillBean billBean = (BillBean) JsonUtil.getInstance().json2Obj(success, BillBean.class);
-        mMorePageNumber = billBean.getResult().getPage();
-        totalPageNumber = billBean.getResult().getPageTotal();
-        if (billBean.getResult().getList() == null || billBean.getResult().getList().size() == 0) {
+        IncomeDetailsBean incomeDetailsBean = (IncomeDetailsBean) JsonUtil.getInstance().json2Obj(success, IncomeDetailsBean.class);
+        mMorePageNumber = incomeDetailsBean.getResult().getPage();
+        totalPageNumber = incomeDetailsBean.getResult().getPageTotal();
+        if (incomeDetailsBean.getResult().getList() == null || incomeDetailsBean.getResult().getList().size() == 0) {
             errorMsg(getString(R.string.serverReturnsDataNull), 0);
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            //  mAdapter.addNewData(billBean.getResult().getList());
+            mAdapter.addNewData(incomeDetailsBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            //  mAdapter.addMoreData(billBean.getResult().getList());
+            mAdapter.addMoreData(incomeDetailsBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
