@@ -2,35 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:layout_marginTop="@dimen/dimen145"
+    android:background="@color/transparent_1"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen100">
 
     <!--item_models.xml-->
-
-
-    <ScrollView
-        style="@style/MatchAuto"
-        android:layout_marginTop="@dimen/dimen145"
-        android:background="@color/mainColor"
-        android:paddingLeft="@dimen/dimen14"
-        android:scrollbars="none">
-
-        <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-            android:id="@+id/lv_models"
-            style="@style/MatchWrap"
-            android:background="@color/mainColor"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/dimen1"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            tools:listitem="@layout/item_models" />
-
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/tv_transparent"
+    <ListView
+        android:id="@+id/lv_models"
         style="@style/MatchWrap"
-        android:background="@color/transparent_1"
-        android:minHeight="@dimen/dimen100" />
+        android:background="@color/mainColor"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/dimen1"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dimen14"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_models" />
 
 </LinearLayout>

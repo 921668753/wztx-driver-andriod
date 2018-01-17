@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:background="@color/background">
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
@@ -604,13 +603,13 @@
         style="@style/DividerWidth"
         android:layout_below="@+id/ll_personalData1" />
 
-
     <LinearLayout
         android:id="@+id/ll_divider1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen65"
         android:layout_below="@+id/ll_divider"
         android:background="@color/mainColor"
+        android:clickable="true"
         android:orientation="horizontal">
 
         <LinearLayout

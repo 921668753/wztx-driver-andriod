@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -18,18 +19,19 @@ import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class AvailableTypeBouncedDialog extends BaseDialog implements View.OnClickListener, AdapterView.OnItemClickListener, AvailableTypeBouncedContract.View {
+public abstract class AvailableTypeBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, AvailableTypeBouncedContract.View {
 
+    private int availableTypeId = 0;
     private Context context;
     private TextView tv_transparent;
-    private ChildLiistView lv_models;
+    private ListView lv_models;
 
     private AvailableTypeBouncedContract.Presenter mPresenter;
 
     public AvailableTypeBouncedDialog(Context context, int availableTypeId) {
         super(context, R.style.dialog);
         this.context = context;
-
+        this.availableTypeId = availableTypeId;
     }
 
     @Override
@@ -39,25 +41,15 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
         initView();
     }
 
     private void initView() {
-        lv_models = (ChildLiistView) findViewById(R.id.lv_models);
+        lv_models = (ListView) findViewById(R.id.lv_models);
         lv_models.setOnItemClickListener(this);
         mPresenter = new AvailableTypeBouncedPresenter(this);
-        tv_transparent = (TextView) findViewById(R.id.tv_transparent);
-        tv_transparent.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_transparent:
-                //  dismiss();
-                break;
-        }
     }
 
     @Override

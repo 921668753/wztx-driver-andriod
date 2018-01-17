@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -24,11 +25,10 @@ import java.util.List;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnClickListener, AdapterView.OnItemClickListener, ConductorModelsContract.View {
+public abstract class ModelsBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, ConductorModelsContract.View {
 
     private Context context;
-    private TextView tv_transparent;
-    private ChildLiistView lv_models;
+    private ListView lv_models;
     private ConductorModelsContract.Presenter mPresenter;
     private int modelsId = 0;
     private List<TypeBean> typeBeanlist;
@@ -49,30 +49,21 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements View.OnC
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
         initView();
     }
 
     private void initView() {
-        lv_models = (ChildLiistView) findViewById(R.id.lv_models);
+        lv_models = (ListView) findViewById(R.id.lv_models);
         typesViewAdapter = new TypesViewAdapter(context);
         lv_models.setOnItemClickListener(this);
         lv_models.setAdapter(typesViewAdapter);
-        tv_transparent = (TextView) findViewById(R.id.tv_transparent);
-        tv_transparent.setOnClickListener(this);
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter = new ConductorModelsPresenter(this);
         mPresenter.getConductorModels();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_transparent:
-              //  confirm();
-                break;
-        }
-    }
 
     @Override
     public void setPresenter(ConductorModelsContract.Presenter presenter) {
