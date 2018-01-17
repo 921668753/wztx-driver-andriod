@@ -1,5 +1,7 @@
 package com.ruitukeji.zwbs.mine.helpcenter;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -7,13 +9,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.adapter.RecommendedRecordViewAdapter;
 import com.ruitukeji.zwbs.adapter.mine.helpcenter.HelpCenterViewAdapter;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.RecommendedRecordBean;
+import com.ruitukeji.zwbs.entity.mine.helpcenter.HelpCenterBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -43,14 +44,17 @@ public class HelpCenterActivity extends BaseActivity implements HelpCenterContra
     private LinearLayout ll_commonError;
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
+
     /**
      * 当前页码
      */
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 总页码
      */
     private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 是否加载更多
      */
@@ -75,12 +79,11 @@ public class HelpCenterActivity extends BaseActivity implements HelpCenterContra
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_helpCenter.setAdapter(mAdapter);
         lv_helpCenter.setOnItemClickListener(this);
-        ((HelpCenterContract.Presenter) mPresenter).getHelpCenter(mMorePageNumber);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
-        mMorePageNumber = 0;
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
@@ -105,7 +108,9 @@ public class HelpCenterActivity extends BaseActivity implements HelpCenterContra
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        //  ViewInject.toast("1");
+        Intent intent = new Intent(aty, HelpCenterDetailsActivity.class);
+        intent.putExtra("id", mAdapter.getItem(i).getId());
+        showActivity(aty, intent);
     }
 
     /**
@@ -126,27 +131,27 @@ public class HelpCenterActivity extends BaseActivity implements HelpCenterContra
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        RecommendedRecordBean recommendedRecordBean = (RecommendedRecordBean) JsonUtil.getInstance().json2Obj(s, RecommendedRecordBean.class);
-        mMorePageNumber = recommendedRecordBean.getResult().getPage();
-        totalPageNumber = recommendedRecordBean.getResult().getPageTotal();
-        if (recommendedRecordBean.getResult().getList() == null || recommendedRecordBean.getResult().getList().size() == 0) {
+        HelpCenterBean helpCenterBean = (HelpCenterBean) JsonUtil.getInstance().json2Obj(s, HelpCenterBean.class);
+        mMorePageNumber = helpCenterBean.getResult().getPage();
+        totalPageNumber = helpCenterBean.getResult().getPageTotal();
+        if (helpCenterBean.getResult().getList() == null || helpCenterBean.getResult().getList().size() == 0) {
             error(getString(R.string.serverReturnsDataNull));
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mRefreshLayout.endRefreshing();
             mAdapter.clear();
-            mAdapter.addNewData(recommendedRecordBean.getResult().getList());
+            mAdapter.addNewData(helpCenterBean.getResult().getList());
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(recommendedRecordBean.getResult().getList());
+            mAdapter.addMoreData(helpCenterBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void error(String msg) {
-        toLigon(msg);
         isShowLoadingMore = false;
         mRefreshLayout.setVisibility(View.GONE);
         ll_commonError.setVisibility(View.VISIBLE);

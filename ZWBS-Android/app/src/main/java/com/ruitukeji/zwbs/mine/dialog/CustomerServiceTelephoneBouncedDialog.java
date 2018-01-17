@@ -26,7 +26,7 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
     private String phone;
 
     public CustomerServiceTelephoneBouncedDialog(Context context, String phone) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.phone = phone;
     }
@@ -37,7 +37,8 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
         setContentView(R.layout.dialog_customerservicetelephonebounced);
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width= WindowManager.LayoutParams.MATCH_PARENT;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
         initView();
     }
@@ -48,6 +49,7 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
         tv_phone = (TextView) findViewById(R.id.tv_phone);
         tv_phone.setText(phone);
         tv_determine = (TextView) findViewById(R.id.tv_determine);
+        tv_determine.setText(context.getString(R.string.call));
         tv_determine.setOnClickListener(this);
     }
 

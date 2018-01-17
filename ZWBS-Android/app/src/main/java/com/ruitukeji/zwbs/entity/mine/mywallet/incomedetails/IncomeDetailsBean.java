@@ -95,6 +95,7 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
             private String car_style_length;
             private String car_style_type;
             private String weight;
+            private int is_assigned;
             private String volume;
             private String org_address_detail;
             private String dest_address_detail;
@@ -173,6 +174,14 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
 
             public void setWeight(String weight) {
                 this.weight = weight;
+            }
+
+            public int getIs_assigned() {
+                return is_assigned;
+            }
+
+            public void setIs_assigned(int is_assigned) {
+                this.is_assigned = is_assigned;
             }
 
             public String getVolume() {

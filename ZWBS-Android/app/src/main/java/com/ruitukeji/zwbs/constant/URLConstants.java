@@ -322,6 +322,16 @@ public class URLConstants {
     public static String UPLOADCERPIC = APIURL + "order/uploadCerPic";
 
     /**
+     * 帮助中心
+     */
+    public static String HELPCENTER = APIURL + "Help/HelpMain";
+
+    /**
+     * 帮助中心详情
+     */
+    public static String HELPCENTERDETAIL = APIURL + "Help/getOneHelp";
+
+    /**
      * 修改密码
      */
     public static String UPDATEPWD = APIURL + "User/updatePwd";

@@ -26,7 +26,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.main.MineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.main.dialog.InAuthenticationBouncedDialog;
+import com.ruitukeji.zwbs.mine.dialog.InAuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.mine.abnormalrecords.AbnormalRecordsActivity;
 import com.ruitukeji.zwbs.mine.helpcenter.HelpCenterActivity;
 import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;

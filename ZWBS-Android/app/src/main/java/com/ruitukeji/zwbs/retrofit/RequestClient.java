@@ -728,7 +728,6 @@ public class RequestClient {
     }
 
 
-
     /**
      * 个人中心----提交身份认证信息
      */
@@ -786,7 +785,6 @@ public class RequestClient {
             }
         }, listener);
     }
-
 
 
     /**
@@ -942,19 +940,17 @@ public class RequestClient {
         }, listener);
     }
 
-
     /**
      * 获得银行
      */
-    public static void getBank(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getBank(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.GETBANK, httpParams, listener);
     }
-
 
     /**
      * 我的报价
      */
-    public static void getMyQuote(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getMyQuote(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -973,7 +969,7 @@ public class RequestClient {
     /**
      * 查看账单
      */
-    public static void getPayRecord(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getPayRecord(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -991,7 +987,7 @@ public class RequestClient {
     /**
      * 余额提现
      */
-    public static void postWithdrawal(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postWithdrawal(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -1011,7 +1007,7 @@ public class RequestClient {
     /**
      * 显示我的推荐列表
      */
-    public static void showMyRecommList(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void showMyRecommList(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -1030,18 +1026,7 @@ public class RequestClient {
      * 帮助中心
      */
     public static void getHelpCenter(HttpParams httpParams, final ResponseListener<String> listener) {
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestGetHttp(URLConstants.SHOWMYRECOMMLIST, httpParams, listener);
-            }
-        }, listener);
+        HttpRequest.requestGetHttp(URLConstants.HELPCENTER, httpParams, listener);
     }
 
 
@@ -1049,20 +1034,8 @@ public class RequestClient {
      * 帮助中心详情
      */
     public static void getHelpCenterDetails(HttpParams httpParams, final ResponseListener<String> listener) {
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestGetHttp(URLConstants.SHOWMYRECOMMLIST, httpParams, listener);
-            }
-        }, listener);
+        HttpRequest.requestGetHttp(URLConstants.HELPCENTERDETAIL, httpParams, listener);
     }
-
 
     /**
      * 修改密码

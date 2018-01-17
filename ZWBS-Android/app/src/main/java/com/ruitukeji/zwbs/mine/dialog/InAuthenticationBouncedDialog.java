@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.main.dialog;
+package com.ruitukeji.zwbs.mine.dialog;
 
 import android.content.Context;
 import android.os.Bundle;

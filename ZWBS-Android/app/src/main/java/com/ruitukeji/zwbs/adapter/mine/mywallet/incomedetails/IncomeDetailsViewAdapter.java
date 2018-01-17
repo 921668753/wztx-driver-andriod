@@ -43,11 +43,11 @@ public class IncomeDetailsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             helper.setImageResource(R.id.img_state, R.mipmap.label_yuyue);
         }
 
-//        if () {
-//            helper.setImageResource(R.id.img_z, R.mipmap.label_zhipai);
-//        } else {
-//            helper.setImageDrawable(R.id.img_z, null);
-//        }
+        if (listBean.getIs_assigned() == 1) {
+            helper.setImageResource(R.id.img_z, R.mipmap.label_zhipai);
+        } else {
+            helper.setImageDrawable(R.id.img_z, null);
+        }
 
         /**
          *时间
@@ -127,7 +127,6 @@ public class IncomeDetailsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         } else {
             helper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds));
         }
-
 
     }
 }
