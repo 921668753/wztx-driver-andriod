@@ -69,6 +69,7 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
 
     private DividerItemDecoration dividerItemDecoration;
 
+
     private SelectionCityActivity aty;
 
     private List<InlandHotCityBean.ResultBean> historyCityList;

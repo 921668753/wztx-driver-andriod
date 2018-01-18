@@ -168,6 +168,20 @@ public class RequestClient {
     }
 
     /**
+     * 得到全部城市
+     */
+    public static void getAllCity(HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.ALLCITY, httpParams, listener);
+    }
+
+    /**
+     * 得到热门城市
+     */
+    public static void getHotCity(HttpParams httpParams, final ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.ALLHOTCITY, httpParams, listener);
+    }
+
+    /**
      * 获取文章内容
      */
     public static void getArticle(HttpParams httpParams, final ResponseListener<String> listener) {

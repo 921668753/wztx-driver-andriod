@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_commonError"
-    style="@style/MatchWrap"
+    style="@style/MatchAuto"
     android:layout_marginBottom="@dimen/dimen10"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="gone"
+    tools:ignore="TextViewEdits">
 
     <ImageView
         android:id="@+id/img_err"
@@ -25,7 +27,7 @@
         android:paddingRight="@dimen/dimen20"
         android:paddingTop="@dimen/dimen10"
         android:text="--"
-        android:textColor="@color/mainColor"
+        android:textColor="@color/textColor"
         android:textSize="@dimen/textsize15" />
 
 </LinearLayout>

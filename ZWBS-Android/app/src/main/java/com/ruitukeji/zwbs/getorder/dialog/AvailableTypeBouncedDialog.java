@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 
 /**
  * 接单---可接单类型弹框

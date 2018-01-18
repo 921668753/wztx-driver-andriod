@@ -78,7 +78,7 @@ public class InlandPresenter implements InlandContract.Presenter {
     @Override
     public void getAllCity() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getAllCityByCountryId(httpParams, 7, new ResponseListener<String>() {
+        RequestClient.getAllCity(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -95,7 +95,7 @@ public class InlandPresenter implements InlandContract.Presenter {
     @Override
     public void getChildHotCity() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getHotCityByCountryId(httpParams, 0, new ResponseListener<String>() {
+        RequestClient.getHotCity(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);

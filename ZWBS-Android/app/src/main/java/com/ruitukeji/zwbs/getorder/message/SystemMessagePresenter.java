@@ -39,9 +39,9 @@ public class SystemMessagePresenter implements SystemMessageContract.Presenter {
     public void getMessage(String type, int page) {
         mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.dataLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        httpParams.put("push_type", type);
-//        httpParams.put("page", page);
-//        httpParams.put("pageSize", 20);
+        httpParams.put("push_type", type);
+        httpParams.put("page", page);
+        httpParams.put("pageSize", 20);
         RequestClient.getMessage(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

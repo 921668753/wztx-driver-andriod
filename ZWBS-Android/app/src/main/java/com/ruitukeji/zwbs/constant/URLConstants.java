@@ -10,7 +10,7 @@ public class URLConstants {
     /**
      * 服务器地址URL
      */
-  //  public static String APIURL = "http://atwwg.api.antiwearvalve.com/";
+    //  public static String APIURL = "http://atwwg.api.antiwearvalve.com/";
 
     /**
      * 测试服务器地址URL
@@ -80,6 +80,16 @@ public class URLConstants {
     public static String MEMBERREGISTER = APIURL + "User/reg";
 
     /**
+     * 得到全部城市
+     */
+    public static String ALLCITY = APIURL + "Address/getAllCity";
+
+    /**
+     * 得到热门城市
+     */
+    public static String ALLHOTCITY = APIURL + "Address/getAllHotCity";
+
+    /**
      * 获取文章内容
      */
     public static String GETARTICLE = APIURL + "index/getArticle";
@@ -121,6 +131,11 @@ public class URLConstants {
     public static String MESSAGE = APIURL + "message";
 
     /**
+     * 我的消息-详情
+     */
+    public static String MESSAGEDETAIL = APIURL + "message/detail";
+
+    /**
      * 删除消息
      */
     public static String DELMESSAGE = APIURL + "message/delMessage";
@@ -128,12 +143,7 @@ public class URLConstants {
     /**
      * 标记已读消息
      */
-    public static String READMESSAGE = APIURL + "message/delMessage1";
-
-    /**
-     * 我的消息详情
-     */
-    public static String MESSAGEDETAIL = APIURL + "message/detail";
+    public static String READMESSAGE = APIURL + "message/UpdateRead";
 
     /**
      * 司机接单（可以报价）列表

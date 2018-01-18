@@ -194,11 +194,11 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_markedRead:
-              //  showLoadingDialog(getString(R.string.dataLoad));
+                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((OrderMessageContract.Presenter) mPresenter).postReadMessage(mAdapter.getData());
                 break;
             case R.id.tv_delete:
-              //  showLoadingDialog(getString(R.string.dataLoad));
+                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((OrderMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
                 break;
             case R.id.tv_hintText:
@@ -222,6 +222,7 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             OrderMessageBean messageBean = (OrderMessageBean) JsonUtil.getInstance().json2Obj(s, OrderMessageBean.class);
             mMorePageNumber = messageBean.getResult().getPage();
             totalPageNumber = messageBean.getResult().getPageTotal();
+            mAdapter.closeOpenedSwipeItemLayoutWithAnim();
             if (messageBean.getResult().getList() == null || messageBean.getResult().getList().size() == 0) {
                 errorMsg(getString(R.string.serverReturnsDataNull), 0);
                 return;
@@ -296,11 +297,11 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             img_checkbox.setImageResource(R.mipmap.ic_checkbox_unselect);
             mAdapter.getItem(position).setIsSelected(0);
         } else if (childView.getId() == R.id.tv_markedRead) {
-         //   showLoadingDialog(getString(R.string.dataLoad));
+            //   showLoadingDialog(getString(R.string.dataLoad));
             mAdapter.getItem(position).setIsSelected(1);
             ((OrderMessageContract.Presenter) mPresenter).postReadMessage(mAdapter.getData());
         } else if (childView.getId() == R.id.tv_delete) {
-         //   showLoadingDialog(getString(R.string.dataLoad));
+            //   showLoadingDialog(getString(R.string.dataLoad));
             mAdapter.getItem(position).setIsSelected(1);
             ((OrderMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
         }
@@ -368,6 +369,7 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
 
     /**
      * 关闭页面
+     *
      * @param keyCode
      * @param event
      * @return

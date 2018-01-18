@@ -35,7 +35,7 @@ import com.ruitukeji.zwbs.getorder.dialog.ConductorBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.ModelsBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
-import com.ruitukeji.zwbs.getorder.message.MessageCenterActivity;
+import com.ruitukeji.zwbs.getorder.message.SystemMessageActivity;
 import com.ruitukeji.zwbs.getorder.selectioncity.SelectionCityActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
@@ -536,7 +536,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 mRefreshLayout.beginRefreshing();
                 break;
             case R.id.rl_message:
-                aty.showActivity(aty, MessageCenterActivity.class);
+                aty.showActivity(aty, SystemMessageActivity.class);
                 tv_message.setVisibility(View.GONE);
                 break;
         }

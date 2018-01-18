@@ -29,7 +29,7 @@ public interface OrderMessageContract {
         void postReadMessage(List<ListBean> masageList);
     }
 
-    interface View extends BaseNewView<Presenter, String> {
+    interface View extends BaseNewView<Presenter,String> {
 
     }
 

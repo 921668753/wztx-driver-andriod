@@ -176,7 +176,7 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
         lv_systemmessage.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
         lv_systemmessage.setOnScrollListener(this);
-        //   mRefreshLayout.beginRefreshing();
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
@@ -193,11 +193,11 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_markedRead:
-              //  showLoadingDialog(getString(R.string.dataLoad));
+                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((SystemMessageContract.Presenter) mPresenter).postReadMessage(mAdapter.getData());
                 break;
             case R.id.tv_delete:
-              //  showLoadingDialog(getString(R.string.dataLoad));
+                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((SystemMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
                 break;
             case R.id.tv_hintText:
@@ -218,6 +218,7 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
+            mAdapter.closeOpenedSwipeItemLayoutWithAnim();
             SystemMessageBean messageBean = (SystemMessageBean) JsonUtil.getInstance().json2Obj(s, SystemMessageBean.class);
             mMorePageNumber = messageBean.getResult().getPage();
             totalPageNumber = messageBean.getResult().getPageTotal();
@@ -266,9 +267,8 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(aty, SystemMessageDetailsActivity.class);
         intent.putExtra("messageId", mAdapter.getItem(position).getId());
-        intent.setClass(getApplicationContext(), SystemMessageDetailsActivity.class);
         showActivity(aty, intent);
     }
 
@@ -295,11 +295,11 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
             img_checkbox.setImageResource(R.mipmap.ic_checkbox_unselect);
             mAdapter.getItem(position).setIsSelected(0);
         } else if (childView.getId() == R.id.tv_markedRead) {
-        //    showLoadingDialog(getString(R.string.dataLoad));
+            //    showLoadingDialog(getString(R.string.dataLoad));
             mAdapter.getItem(position).setIsSelected(1);
             ((SystemMessageContract.Presenter) mPresenter).postReadMessage(mAdapter.getData());
         } else if (childView.getId() == R.id.tv_delete) {
-         //   showLoadingDialog(getString(R.string.dataLoad));
+            //   showLoadingDialog(getString(R.string.dataLoad));
             mAdapter.getItem(position).setIsSelected(1);
             ((SystemMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
         }
