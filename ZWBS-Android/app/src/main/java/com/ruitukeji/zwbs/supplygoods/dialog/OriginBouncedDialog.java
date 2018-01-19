@@ -81,14 +81,22 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
         if (flag == 0) {
 
 
+
+
+
+
         } else if (flag == 1) {
+
+
+
 
 
         } else if (flag == 2) {
 
 
-        }
 
+
+        }
     }
 
     @Override
