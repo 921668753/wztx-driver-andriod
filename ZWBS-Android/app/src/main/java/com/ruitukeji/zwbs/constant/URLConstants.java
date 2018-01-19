@@ -90,9 +90,24 @@ public class URLConstants {
     public static String ALLHOTCITY = APIURL + "Address/getAllHotCity";
 
     /**
+     * 接单--公告
+     */
+    public static String HOME = APIURL + "index/home";
+
+    /**
+     * 公告详情
+     */
+    public static String ANNOUNCEMENT = APIURL + "index/getAdverDetail";
+
+    /**
      * 获取文章内容
      */
     public static String GETARTICLE = APIURL + "index/getArticle";
+
+    /**
+     * 可接单类型
+     */
+    public static String ORDERTYPE = APIURL + "Help/orderType";
 
     /**
      * 司机认证

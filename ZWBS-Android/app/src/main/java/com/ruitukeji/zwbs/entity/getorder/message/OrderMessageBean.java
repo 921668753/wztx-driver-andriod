@@ -99,7 +99,7 @@ public class OrderMessageBean extends BaseResult<OrderMessageBean.ResultBean> {
             private int isEdit;
             private String pushTime;
             private String order_code;
-            private String dr_name;
+            private String real_name;
             private int order_id;
 
             public int getId() {
@@ -182,12 +182,12 @@ public class OrderMessageBean extends BaseResult<OrderMessageBean.ResultBean> {
                 this.order_code = order_code;
             }
 
-            public String getDr_name() {
-                return dr_name;
+            public String getReal_name() {
+                return real_name;
             }
 
-            public void setDr_name(String dr_name) {
-                this.dr_name = dr_name;
+            public void setReal_name(String real_name) {
+                this.real_name = real_name;
             }
 
             public int getOrder_id() {

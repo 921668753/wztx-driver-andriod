@@ -29,7 +29,9 @@ import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.entity.getorder.GetOrderBean;
 import com.ruitukeji.zwbs.entity.MessageCenterBean;
 import com.ruitukeji.zwbs.entity.WorkingStateBean;
+import com.ruitukeji.zwbs.entity.getorder.HomeBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
+import com.ruitukeji.zwbs.getorder.announcement.AnnouncementActivity;
 import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.ConductorBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
@@ -42,8 +44,10 @@ import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
+import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -72,6 +76,15 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
 
     @BindView(id = R.id.tv_city)
     private TextView tv_city;
+
+    /**
+     * 通知
+     */
+    @BindView(id = R.id.ll_ad)
+    private LinearLayout ll_ad;
+    @BindView(id = R.id.marqueeView)
+    private MarqueeView marqueeView;
+
 
     /**
      * 车型
@@ -106,7 +119,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private TextView tv_availableType;
     @BindView(id = R.id.img_availableType)
     private ImageView img_availableType;
-    private int availableTypeId = 0;
+    private String availableTypeName = "all";
 
 
     private GetOrderContract.Presenter mPresenter;
@@ -171,7 +184,9 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         super.initData();
         mPresenter = new GetOrderPresenter(this);
         mAdapter = new GetOrderViewAdapter(getActivity());
-        initDialog();
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((GetOrderContract.Presenter) mPresenter).getHome();
+        //  initDialog();
     }
 
     @Override
@@ -181,8 +196,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         lv_getorder.setAdapter(mAdapter);
         lv_getorder.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((GetOrderContract.Presenter) mPresenter).getWorkingState();
     }
 
     @Override
@@ -191,7 +204,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         if (sweetAlertDialog == null) {
             initDialog();
         }
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "GetOrderFragmentOnItemChildClick", 0);
         ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 1);
     }
 
@@ -201,7 +213,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
         String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-        ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+        //   ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
     }
 
     @Override
@@ -217,7 +229,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         }
         showLoadingDialog(getString(R.string.dataLoad));
         String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-        ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+        // ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
         return true;
     }
 
@@ -282,11 +294,21 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                         }
                     }).show();
         } else if (flag == 1) {
-            //创建轨迹返回数据
+            //获取首页公告
+            HomeBean homeBean = (HomeBean) JsonUtil.getInstance().json2Obj(s, HomeBean.class);
+            processLogic(homeBean.getResult().getList());
+            if (homeBean.getResult().getUnreadMsg() == null || homeBean.getResult().getUnreadMsg().getMsgX() == 0) {
+                tv_message.setVisibility(View.GONE);
+            } else {
+                tv_message.setVisibility(View.VISIBLE);
+                String accessToken = PreferenceHelper.readString(aty, StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    tv_message.setVisibility(View.GONE);
+                }
+                tv_message.setText(String.valueOf(homeBean.getResult().getUnreadMsg().getMsgX()));
+            }
             dismissLoadingDialog();
         } else if (flag == 2) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
             getQuoteOrder = 0;
             GetOrderBean getOrderBean = (GetOrderBean) JsonUtil.getInstance().json2Obj(s, GetOrderBean.class);
             mMorePageNumber = getOrderBean.getResult().getPage();
@@ -332,7 +354,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             getQuoteOrder++;
             if (getQuoteOrder == 1) {
                 String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-                ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+                // ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
             }
         } else if (flag == 6) {
             dismissLoadingDialog();
@@ -391,6 +413,35 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         }
     }
 
+    /**
+     * 公告
+     */
+    List<String> tips = new ArrayList<>();
+
+    @SuppressWarnings("unchecked")
+    public void processLogic(List<HomeBean.ResultBean.ListBean> list) {
+        if (list == null || list.size() == 0) {
+            ll_ad.setVisibility(View.GONE);
+            return;
+        }
+        tips.clear();
+        for (int i = 0; i < list.size(); i++) {
+            tips.add(list.get(i).getAd_content());
+        }
+        marqueeView.startWithList(tips);
+// 在代码里设置自己的动画
+        ll_ad.setVisibility(View.VISIBLE);
+        marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                Intent intent = new Intent(aty, AnnouncementActivity.class);
+                intent.putExtra("id", list.get(position).getId());
+                aty.showActivity(aty, intent);
+            }
+        });
+    }
+
+
     @Override
     public void errorMsg(String msg, int flag) {
         if (flag == 0) {
@@ -402,20 +453,8 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             ll_commonError.setVisibility(View.VISIBLE);
             //  tv_tag.setVisibility(View.VISIBLE);
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", 1);
-//                tv_goToWork.setTextColor(getResources().getColor(R.color.lonincolors));
-//                tv_goToWork.setBackgroundResource(R.drawable.shape_gotowork);
-//                tv_afterWork.setTextColor(getResources().getColor(R.color.mainColor));
-//                tv_afterWork.setBackgroundResource(R.drawable.shape_afterwork1);
                 tv_hintText.setText(getString(R.string.login1));
             } else {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
                 tv_hintText.setText(msg + getString(R.string.clickRefresh));
             }
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
@@ -429,23 +468,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", 1);
-//                tv_goToWork.setTextColor(getResources().getColor(R.color.lonincolors));
-//                tv_goToWork.setBackgroundResource(R.drawable.shape_gotowork);
-//                tv_afterWork.setTextColor(getResources().getColor(R.color.mainColor));
-//                tv_afterWork.setBackgroundResource(R.drawable.shape_afterwork1);
                 tv_hintText.setText(getString(R.string.login1));
             }
             ((GetOrderContract.Presenter) mPresenter).getUnRead();
             //  dismissLoadingDialog();
         } else if (flag == 7 || flag == 8) {
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "id", 0);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "accessToken", "");
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
@@ -506,12 +534,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 break;
 
             case R.id.ll_availableType:
-                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeId) {
+                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
                     @Override
-                    public void confirm(String availableTypeName, int availableTypeId1) {
+                    public void confirm(String availableTypeName1, String availableTypeValue) {
                         this.dismiss();
-                        availableTypeId = availableTypeId1;
-                        tv_availableType.setText(availableTypeName);
+                        availableTypeName = availableTypeName1;
+                        tv_availableType.setText(availableTypeValue);
                         img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
@@ -579,40 +607,14 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        boolean isRefreshGetGoods = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGetGoods", false);
-        if (isRefreshGetGoods) {
-            mRefreshLayout.beginRefreshing();
-        }
-        boolean isRefreshGetGoods1 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-        if (isRefreshGetGoods1) {
-            showLoadingDialog(getString(R.string.dataLoad));
-            ((GetOrderContract.Presenter) mPresenter).getWorkingState();
-        }
-    }
-
-    @Override
-    public void onChange() {
-        super.onChange();
-        boolean isRefreshGetGoods2 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-        if (isRefreshGetGoods2) {
-            showLoadingDialog(getString(R.string.dataLoad));
-            ((GetOrderContract.Presenter) mPresenter).getWorkingState();
-        }
-        boolean isRefreshGetGoods4 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGetGoods4", false);
-        if (isRefreshGetGoods4) {
-            mRefreshLayout.beginRefreshing();
-        }
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         if (sweetAlertDialog != null && sweetAlertDialog.isShowing()) {
             sweetAlertDialog.dismiss();
         }
         sweetAlertDialog = null;
+        tips.clear();
+        tips = null;
         mAdapter.clear();
         mAdapter = null;
     }

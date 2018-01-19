@@ -11,6 +11,12 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public interface GetOrderContract {
     interface Presenter extends BasePresenter {
+
+        /**
+         * 获取首页轮播图信息
+         */
+        void getHome();
+
         /**
          * 未读消息数量
          */
@@ -19,12 +25,7 @@ public interface GetOrderContract {
         /**
          * 获取订单报价列表信息
          */
-        void getQuoteOrder(int page, String line_id);
-
-        /**
-         * 获取工作状态
-         */
-        void getWorkingState();
+        void getQuoteOrder(int page, String city, int car_type_id, int car_length_id, String order_type);
 
         /**
          * 下载app

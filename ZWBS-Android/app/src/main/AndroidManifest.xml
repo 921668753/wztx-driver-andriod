@@ -133,15 +133,21 @@
             android:name=".getorder.message.MessageActivity"
             android:screenOrientation="portrait" />
 
+        <!--接单  公告通知-->
+        <activity
+            android:name=".getorder.announcement.AnnouncementActivity"
+            android:screenOrientation="portrait" />
 
         <!--设定路线-->
         <activity
             android:name=".supplygoods.SetTheLineActivity"
             android:screenOrientation="portrait" />
+
         <!--添加路线-->
         <activity
             android:name=".supplygoods.AddTheLineActivity"
             android:screenOrientation="portrait" />
+
         <!--车长车型-->
         <activity
             android:name=".mine.vehiclecertification.ConductorModelsActivity"
@@ -156,6 +162,7 @@
         <activity
             android:name=".getorder.OrderDetailsActivity"
             android:screenOrientation="portrait" />
+
         <!--订单拍照凭证-->
         <activity
             android:name=".order.OrderVoucherActivity"

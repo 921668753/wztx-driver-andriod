@@ -39,6 +39,22 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
 
     @Override
+    public void getHome() {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getHome(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
     public void getUnRead() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         RequestClient.getUnRead(httpParams, new ResponseListener<String>() {
@@ -79,7 +95,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                     mView.getSuccess(response, 1);
                 } else {
                     Log.d("nearbySearch", gaoDeCreateBean.getStatus() + "");
-                    mView.errorMsg("创建轨迹出现异常,云端返回数据错误",0);
+                    mView.errorMsg("创建轨迹出现异常,云端返回数据错误", 0);
                 }
             }
 
@@ -91,14 +107,15 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
     }
 
     @Override
-    public void getQuoteOrder(int page, String line_id) {
+    public void getQuoteOrder(int page, String city, int car_type_id, int car_length_id, String order_type) {
         //  mView.showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
         httpParams.put("pageSize", 10);
-        if (!StringUtils.isEmpty(line_id)) {
-            httpParams.put("line_id", line_id);
-        }
+        httpParams.put("city", city);
+        httpParams.put("car_type_id", car_type_id);
+        httpParams.put("car_length_id", car_length_id);
+        httpParams.put("order_type", order_type);
         RequestClient.getQuoteList(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -108,22 +125,6 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             @Override
             public void onFailure(String msg) {
                 mView.errorMsg(msg, 0);
-            }
-        });
-    }
-
-    @Override
-    public void getWorkingState() {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getWorkingState(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 5);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.errorMsg(msg, 2);
             }
         });
     }

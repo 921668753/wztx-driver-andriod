@@ -172,6 +172,8 @@
     <string name="conductormodels">车长车型</string>
 
     <!--公告通知-->
+    <!--公告通知-->
+    <string name="announcement">公告通知</string>
     <string name="close">关闭</string>
 
     <!--接单-->

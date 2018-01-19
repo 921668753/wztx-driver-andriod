@@ -21,7 +21,6 @@ import com.iflytek.cloud.SpeechSynthesizer;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
@@ -280,8 +279,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
             changeFragment(contentFragment1);
             chageIcon = 1;
         } else if (flag == 1) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
             WorkingStateBean workingStateBean = (WorkingStateBean) JsonUtil.getInstance().json2Obj(s, WorkingStateBean.class);
             PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", workingStateBean.getResult().getOnline());

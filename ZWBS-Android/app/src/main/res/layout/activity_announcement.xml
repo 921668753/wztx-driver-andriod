@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".getorder.announcement.AnnouncementActivity">
 
 
     <TextView
+        android:id="@+id/tv_title"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen50"
         android:gravity="center"
@@ -21,19 +26,26 @@
         android:layout_marginRight="@dimen/dimen35"
         android:layout_marginTop="@dimen/dimen20" />
 
+    <!--<TextView-->
+    <!--style="@style/MatchAuto"-->
+    <!--android:textColor="@color/announcementColors"-->
+    <!--android:textSize="@dimen/textsize16" />-->
 
-    <TextView
+    <com.ruitukeji.zwbs.utils.myview.WebViewLayout
+        android:id="@+id/web_viewlayout"
         style="@style/MatchAuto"
-        android:textColor="@color/announcementColors"
-        android:textSize="@dimen/textsize16" />
+        android:visibility="gone"
+        app:isJavaScriptEnabled="true"
+        app:isShowIconBack="true"
+        app:isUpdateTitle="true" />
 
+    <include layout="@layout/common_error" />
 
     <TextView style="@style/DividerWidth" />
 
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen50"
+        android:id="@+id/tv_close"
+        style="@style/Match50"
         android:gravity="center"
         android:text="@string/close"
         android:textColor="@color/announcementCloseColors"

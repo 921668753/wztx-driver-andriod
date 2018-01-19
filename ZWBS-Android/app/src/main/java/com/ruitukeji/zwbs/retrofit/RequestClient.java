@@ -163,36 +163,62 @@ public class RequestClient {
     /**
      * 注册
      */
-    public static void postRegister(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postRegister(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestPostHttp(URLConstants.MEMBERREGISTER, httpParams, listener);
     }
 
     /**
      * 得到全部城市
      */
-    public static void getAllCity(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getAllCity(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.ALLCITY, httpParams, listener);
     }
 
     /**
      * 得到热门城市
      */
-    public static void getHotCity(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getHotCity(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.ALLHOTCITY, httpParams, listener);
     }
 
     /**
      * 获取文章内容
      */
-    public static void getArticle(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getArticle(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.GETARTICLE, httpParams, listener);
     }
 
+    /**
+     * 可接单类型
+     */
+    public static void getAvailableType(HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.ORDERTYPE, httpParams, listener);
+    }
+
+    /**
+     * 接单--公告
+     */
+    public static void getHome(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getHome");
+        String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
+        if (!StringUtils.isEmpty(accessToken)) {
+            httpParams.putHeaders("authorization-token", accessToken);
+        }
+        HttpRequest.requestGetHttp(URLConstants.HOME, httpParams, listener);
+    }
+
+    /**
+     * 公告详情
+     */
+    public static void getAnnouncement(HttpParams httpParams, int id, ResponseListener<String> listener) {
+        Log.d("tag", "getAnnouncement");
+        HttpRequest.requestGetHttp(URLConstants.ANNOUNCEMENT + "/" + id, httpParams, listener);
+    }
 
     /**
      * 新用户注册----基本信息
      */
-    public static void postInformation(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postInformation(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "postInformation");
         doServer(new TokenCallback() {
             @Override
@@ -211,7 +237,7 @@ public class RequestClient {
     /**
      * 个人中心----车辆认证
      */
-    public static void postVehicleCertification(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postVehicleCertification(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "postVehicleCertification");
         doServer(new TokenCallback() {
             @Override
@@ -230,7 +256,7 @@ public class RequestClient {
     /**
      * 个人中心----车辆认证----获取车辆认证信息
      */
-    public static void getCarAuthInfo(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getCarAuthInfo(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "getCarAuthInfo");
         doServer(new TokenCallback() {
             @Override
@@ -249,14 +275,14 @@ public class RequestClient {
     /**
      * 获取车长车型
      */
-    public static void getConductorModels(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getConductorModels(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestGetHttp(URLConstants.GETALLCARSTYLE, httpParams, listener);
     }
 
     /**
      * 重置密码
      */
-    public static void postResetpwd(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postResetpwd(HttpParams httpParams, ResponseListener<String> listener) {
         HttpRequest.requestPostHttp(URLConstants.MEMBERRESETPWD, httpParams, listener);
     }
 
@@ -264,7 +290,7 @@ public class RequestClient {
     /**
      * 获取未读消息数量
      */
-    public static void getUnRead(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getUnRead(HttpParams httpParams, ResponseListener<String> listener) {
         String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
         if (!StringUtils.isEmpty(accessToken)) {
             httpParams.putHeaders("authorization-token", accessToken);

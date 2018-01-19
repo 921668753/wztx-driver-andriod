@@ -80,6 +80,7 @@
     <TextView style="@style/DividerWidth" />
 
     <LinearLayout
+        android:id="@+id/ll_ad"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen43"
         android:background="@color/white"
@@ -87,34 +88,29 @@
         android:orientation="horizontal">
 
         <ImageView
-            style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen15"
+            android:layout_height="@dimen/dimen13"
             android:layout_marginLeft="@dimen/dimen20"
             android:src="@mipmap/ic_notice" />
 
-        <!--<TextView-->
-        <!--style="@style/AutoWrap"-->
-        <!--android:layout_marginLeft="@dimen/dimen16"-->
-        <!--android:singleLine="true"-->
-        <!--android:text="双十一司机优惠，每单补贴20%"-->
-        <!--android:textColor="@color/announceColors"-->
-        <!--android:textSize="@dimen/dimen14" />-->
 
-        <cn.bingoogolapple.bgabanner.BGABanner
-            android:id="@+id/banner_ad"
-            style="@style/AutoWrap"
-            app:banner_pageChangeDuration="2000"
-            app:banner_pointAutoPlayAble="false"
-            app:banner_pointContainerBackground="@android:color/transparent"
-            app:banner_pointDrawable="@android:color/transparent"
-            app:banner_pointTopBottomMargin="2dp"
-            app:banner_transitionEffect="alpha" />
-
+        <com.sunfusheng.marqueeview.MarqueeView
+            android:id="@+id/marqueeView"
+            style="@style/AutoMatch"
+            android:layout_marginLeft="@dimen/dimen16"
+            android:layout_marginRight="@dimen/dimen15"
+            app:mvAnimDuration="1000"
+            app:mvDirection="bottom_to_top"
+            app:mvInterval="2000"
+            app:mvSingleLine="true"
+            app:mvTextColor="@color/announcementColors"
+            app:mvTextSize="@dimen/textsize14" />
 
         <ImageView
-            style="@style/WrapWrap"
+            android:layout_width="@dimen/dimen6"
+            android:layout_height="@dimen/dimen11"
             android:layout_marginRight="@dimen/dimen20"
             android:src="@mipmap/ic_arrow" />
-
 
     </LinearLayout>
 

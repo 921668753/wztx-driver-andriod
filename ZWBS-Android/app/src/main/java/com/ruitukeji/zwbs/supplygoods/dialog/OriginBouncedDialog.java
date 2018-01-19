@@ -30,7 +30,6 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
 
     private OriginBouncedContract.Presenter mPresenter;
 
-
     public OriginBouncedDialog(Context context, int provinceId, int cityId, int areaId) {
         super(context, R.style.dialog);
         this.context = context;
@@ -81,19 +80,10 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
         if (flag == 0) {
 
 
-
-
-
-
         } else if (flag == 1) {
 
 
-
-
-
         } else if (flag == 2) {
-
-
 
 
         }

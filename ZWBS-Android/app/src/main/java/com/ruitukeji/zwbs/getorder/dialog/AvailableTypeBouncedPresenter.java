@@ -12,7 +12,6 @@ import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
 public class AvailableTypeBouncedPresenter implements AvailableTypeBouncedContract.Presenter {
 
-
     private AvailableTypeBouncedContract.View mView;
 
     public AvailableTypeBouncedPresenter(AvailableTypeBouncedContract.View view) {
@@ -23,7 +22,7 @@ public class AvailableTypeBouncedPresenter implements AvailableTypeBouncedContra
     @Override
     public void getAvailableType() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getConductorModels(httpParams, new ResponseListener<String>() {
+        RequestClient.getAvailableType(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response);
