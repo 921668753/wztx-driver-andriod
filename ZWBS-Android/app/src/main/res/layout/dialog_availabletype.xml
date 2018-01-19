@@ -2,35 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@android:color/transparent"
+    android:layout_marginTop="@dimen/dimen105"
+    android:background="@color/transparent_1"
     android:orientation="vertical">
 
     <!--item_models.xml-->
-
-
-    <ScrollView
-        style="@style/WrapWrap"
-        android:layout_marginTop="@dimen/dimen105"
+    <com.ruitukeji.zwbs.utils.myview.ChildLiistView
+        android:id="@+id/lv_availableType"
+        style="@style/MatchWrap"
         android:background="@color/mainColor"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/dimen1"
+        android:overScrollMode="never"
         android:paddingLeft="@dimen/dimen14"
-        android:scrollbars="none">
-
-        <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-            android:id="@+id/lv_availableType"
-            style="@style/MatchWrap"
-            android:background="@color/mainColor"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="@dimen/dimen1"
-            android:overScrollMode="never"
-            android:scrollbars="none"
-            tools:listitem="@layout/item_models" />
-
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/tv_transparent"
-        style="@style/MatchAuto"
-        android:background="@color/transparent_1"
-        android:minHeight="@dimen/dimen100" />
+        android:scrollbars="none"
+        tools:listitem="@layout/item_models" />
 
 </LinearLayout>

@@ -58,7 +58,6 @@ public class SelectionCityActivity extends BaseActivity {
         setIntent(intent);
         int newChageIcon = intent.getIntExtra("newChageIcon", 0);
         Log.d("newChageIcon", newChageIcon + "");
-
     }
 
     @Override

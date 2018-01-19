@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@android:color/transparent"
+    android:layout_marginTop="@dimen/dimen95"
+    android:background="@color/transparent_1"
     android:orientation="vertical">
 
     <ScrollView
         style="@style/MatchAuto"
-        android:layout_marginTop="@dimen/dimen95"
+        android:layout_marginBottom="@dimen/dimen100"
         android:background="@color/mainColor"
         android:scrollbars="none">
 
@@ -87,12 +88,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/tv_transparent"
-        style="@style/MatchWrap"
-        android:background="@color/transparent_1"
-        android:minHeight="@dimen/dimen100" />
-
 
 </LinearLayout>

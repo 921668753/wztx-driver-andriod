@@ -22,6 +22,7 @@ import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 
 public abstract class AvailableTypeBouncedDialog extends BaseDialog implements View.OnClickListener, AdapterView.OnItemClickListener, AvailableTypeBouncedContract.View {
 
+    private int availableTypeId = 0;
     private Context context;
     private TextView tv_transparent;
     private ChildLiistView lv_availableType;
@@ -31,7 +32,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
     public AvailableTypeBouncedDialog(Context context, int availableTypeId) {
         super(context, R.style.dialog);
         this.context = context;
-
+        this.availableTypeId = availableTypeId;
     }
 
     @Override
@@ -41,6 +42,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
         initView();
     }

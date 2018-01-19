@@ -19,7 +19,6 @@ import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ConductorModelsBean.R
 import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsContract;
 import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsPresenter;
 import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
 
 import java.util.List;
@@ -52,8 +51,7 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     private ConductorModelsContract.Presenter mPresenter;
 
     private Context context;
-    private TextView tv_transparent;
-    private ChildLiistView lv_models;
+
     private TextView tv_determine;
     private TextView tv_emptying;
 
@@ -71,6 +69,7 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
         initView();
     }
@@ -78,8 +77,6 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     private void initView() {
         gv_vehiclelength = (NoScrollGridView) findViewById(R.id.gv_vehiclelength);
         gv_vehiclemodel = (NoScrollGridView) findViewById(R.id.gv_vehiclemodel);
-        tv_transparent = (TextView) findViewById(R.id.tv_transparent);
-        tv_transparent.setOnClickListener(this);
         tv_emptying = (TextView) findViewById(R.id.tv_emptying);
         tv_emptying.setOnClickListener(this);
         tv_determine = (TextView) findViewById(R.id.tv_determine);
