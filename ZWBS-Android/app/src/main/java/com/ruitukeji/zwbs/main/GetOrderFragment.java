@@ -170,7 +170,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     /**
      * 订单状态
      */
-    private int getQuoteOrder = 0;
     private int position = 0;
 
     @Override
@@ -186,7 +185,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         mAdapter = new GetOrderViewAdapter(getActivity());
         showLoadingDialog(getString(R.string.dataLoad));
         ((GetOrderContract.Presenter) mPresenter).getHome();
-        //  initDialog();
     }
 
     @Override
@@ -212,8 +210,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-        //   ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+        ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
     }
 
     @Override
@@ -228,8 +225,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-        // ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+        ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
         return true;
     }
 
@@ -307,9 +303,8 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 }
                 tv_message.setText(String.valueOf(homeBean.getResult().getUnreadMsg().getMsgX()));
             }
-            dismissLoadingDialog();
+            ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
         } else if (flag == 2) {
-            getQuoteOrder = 0;
             GetOrderBean getOrderBean = (GetOrderBean) JsonUtil.getInstance().json2Obj(s, GetOrderBean.class);
             mMorePageNumber = getOrderBean.getResult().getPage();
             totalPageNumber = getOrderBean.getResult().getPageTotal();
@@ -351,11 +346,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", workingStateBean.getResult().getAuth_status());
             boolean isUpdate = PreferenceHelper.readBoolean(MyApplication.getContext(), StringConstants.FILENAME, "isUpdate", false);
             getSuccess(String.valueOf(isUpdate), 0);
-            getQuoteOrder++;
-            if (getQuoteOrder == 1) {
-                String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-                // ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
-            }
         } else if (flag == 6) {
             dismissLoadingDialog();
         } else if (flag == 7) {
@@ -445,13 +435,11 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void errorMsg(String msg, int flag) {
         if (flag == 0) {
-            getQuoteOrder = 0;
             isShowLoadingMore = false;
             mAdapter.clear();
             mAdapter.addNewData(null);
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
-            //  tv_tag.setVisibility(View.VISIBLE);
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
                 tv_hintText.setText(getString(R.string.login1));
             } else {
@@ -463,22 +451,25 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 mRefreshLayout.endLoadingMore();
             }
             dismissLoadingDialog();
-        } else if (flag == 2) {
-            getQuoteOrder = 0;
+        } else if (flag == 1 || flag == 2) {
+            isShowLoadingMore = false;
+            mAdapter.clear();
+            mAdapter.addNewData(null);
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
                 tv_hintText.setText(getString(R.string.login1));
+            } else {
+                tv_hintText.setText(msg + getString(R.string.clickRefresh));
             }
-            ((GetOrderContract.Presenter) mPresenter).getUnRead();
-            //  dismissLoadingDialog();
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+            }
+            dismissLoadingDialog();
         } else if (flag == 7 || flag == 8) {
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "id", 0);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "accessToken", "");
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "expireTime", "0");
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "timeBefore", "0");
                 Intent intent = new Intent(aty, LoginActivity.class);
                 // intent.putExtra("name", "GetOrderFragment");
                 aty.showActivity(aty, intent);

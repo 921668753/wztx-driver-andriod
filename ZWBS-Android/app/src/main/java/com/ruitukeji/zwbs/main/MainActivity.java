@@ -21,6 +21,7 @@ import com.iflytek.cloud.SpeechSynthesizer;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
@@ -178,29 +179,31 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.bottombar_getorder:
-                cleanColors(0);
-                changeFragment(contentFragment);
                 chageIcon = 0;
+                cleanColors(chageIcon);
+                changeFragment(contentFragment);
                 break;
             case R.id.bottombar_mission:
                 ((MainContract.Presenter) mPresenter).isLogin(0);
                 break;
             case R.id.img_chuche:
                 if (isGoWork == 0) {
+                    isGoWork = 1;
                     ((MainContract.Presenter) mPresenter).isLogin(2);
                 } else {
+                    isGoWork = 0;
                     ((MainContract.Presenter) mPresenter).isLogin(3);
                 }
                 break;
             case R.id.bottombar_supplygoods:
-                cleanColors(2);
-                changeFragment(contentFragment2);
                 chageIcon = 2;
+                cleanColors(chageIcon);
+                changeFragment(contentFragment2);
                 break;
             case R.id.bottombar_mine:
-                cleanColors(3);
-                changeFragment(contentFragment3);
                 chageIcon = 3;
+                cleanColors(chageIcon);
+                changeFragment(contentFragment3);
                 break;
             default:
                 break;
@@ -275,16 +278,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     @Override
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
-            cleanColors(1);
-            changeFragment(contentFragment1);
             chageIcon = 1;
+            cleanColors(chageIcon);
+            changeFragment(contentFragment1);
         } else if (flag == 1) {
             WorkingStateBean workingStateBean = (WorkingStateBean) JsonUtil.getInstance().json2Obj(s, WorkingStateBean.class);
             PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", workingStateBean.getResult().getOnline());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", workingStateBean.getResult().getAuth_status());
-            //  boolean isUpdate = PreferenceHelper.readBoolean(MyApplication.getContext(), StringConstants.FILENAME, "isUpdate", false);
-            // getSuccess(String.valueOf(isUpdate), 0);
             if (workingStateBean.getResult().getOnline() == 0) {
                 img_chuche.setImageResource(R.mipmap.shouche);
                 isGoWork = 0;
@@ -293,6 +294,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
                 isGoWork = 1;
             }
         } else if (flag == 2 || flag == 3) {
+            showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
             ((MainContract.Presenter) mPresenter).postWorkingState(isGoWork);
         } else if (flag == 4) {
             isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 1);
@@ -301,16 +303,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
             } else {
                 img_chuche.setImageResource(R.mipmap.chuche);
             }
+            dismissLoadingDialog();
         }
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
-        if (flag == 0) {
-            if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                showActivity(aty, LoginActivity.class);
-            }
-        } else {
+        dismissLoadingDialog();
+        if (toLigon1(msg) && flag == 0) {
+            return;
+        } else if (flag != 0) {
             ViewInject.toast(msg);
         }
     }

@@ -37,7 +37,6 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
         mView.setPresenter(this);
     }
 
-
     @Override
     public void getHome() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -49,7 +48,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 1);
             }
         });
     }
@@ -124,7 +123,7 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 2);
             }
         });
     }

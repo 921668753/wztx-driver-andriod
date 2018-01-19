@@ -286,7 +286,6 @@ public class RequestClient {
         HttpRequest.requestPostHttp(URLConstants.MEMBERRESETPWD, httpParams, listener);
     }
 
-
     /**
      * 获取未读消息数量
      */
@@ -301,7 +300,7 @@ public class RequestClient {
     /**
      * 获取消息列表
      */
-    public static void getMessage(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getMessage(HttpParams httpParams, ResponseListener<String> listener) {
         String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
         if (!StringUtils.isEmpty(accessToken)) {
             httpParams.putHeaders("authorization-token", accessToken);
@@ -312,7 +311,7 @@ public class RequestClient {
     /**
      * 删除消息
      */
-    public static void postDeleteMessage(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postDeleteMessage(HttpParams httpParams, ResponseListener<String> listener) {
         doServer(new TokenCallback() {
             @Override
             public void execute() {
@@ -327,18 +326,16 @@ public class RequestClient {
         }, listener);
     }
 
-
     /**
      * 获取消息详情
      */
-    public static void getMessageDetails(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void getMessageDetails(HttpParams httpParams, ResponseListener<String> listener) {
         String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
         if (!StringUtils.isEmpty(accessToken)) {
             httpParams.putHeaders("authorization-token", accessToken);
         }
         HttpRequest.requestGetHttp(URLConstants.MESSAGEDETAIL, httpParams, listener);
     }
-
 
     /**
      * 标记已读消息

@@ -16,8 +16,6 @@ import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.BuildConfig;
-import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
@@ -206,7 +204,6 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void postWorkingState(int online) {
         //  4  User/changeWork
-        mView.showLoadingDialog(MyApplication.getContext().getString(R.string.sendingLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("online", online);
@@ -215,7 +212,7 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onSuccess(String response) {
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", online);
-                mView.getSuccess(response, 2);
+                mView.getSuccess(response, 4);
             }
 
             @Override
@@ -236,7 +233,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, 1);
             }
         });
     }
