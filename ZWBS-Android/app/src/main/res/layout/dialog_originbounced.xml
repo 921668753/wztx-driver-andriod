@@ -2,65 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@android:color/transparent"
-    android:orientation="vertical">
+    android:layout_marginTop="@dimen/dimen95"
+    android:background="@color/transparent_1"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dimen100">
 
-    <ScrollView
-        style="@style/MatchAuto"
+    <ListView
+        android:id="@+id/lv_province"
+        style="@style/AutoMatch"
+        android:layout_weight="0.7"
+        android:background="@color/f5F5F5colors"
+        android:divider="@color/transparent"
+        android:dividerHeight="@dimen/dimen0"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_province" />
+
+    <ListView
+        android:id="@+id/lv_city"
+        style="@style/AutoMatch"
         android:background="@color/mainColor"
-        android:scrollbars="none">
+        android:divider="@color/transparent"
+        android:dividerHeight="@dimen/dimen0"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_city" />
 
-        <LinearLayout
-            style="@style/MatchWrap"
-            android:orientation="horizontal">
-
-            <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-                android:id="@+id/lv_province"
-                android:layout_width="@dimen/dimen0"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:background="@color/background"
-                android:divider="@color/transparent"
-                android:dividerHeight="@dimen/dimen0"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_province" />
-
-
-            <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-                android:id="@+id/lv_city"
-                android:layout_width="@dimen/dimen0"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/mainColor"
-                android:divider="@color/transparent"
-                android:dividerHeight="@dimen/dimen0"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_city" />
-
-
-            <com.ruitukeji.zwbs.utils.myview.ChildLiistView
-                android:id="@+id/lv_area"
-                android:layout_width="@dimen/dimen0"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/mainColor"
-                android:divider="@color/transparent"
-                android:dividerHeight="@dimen/dimen0"
-                android:overScrollMode="never"
-                android:paddingRight="@dimen/dimen20"
-                android:scrollbars="none"
-                tools:listitem="@layout/item_city" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/tv_transparent"
-        style="@style/MatchWrap"
-        android:background="@color/transparent_1"
-        android:minHeight="@dimen/dimen100" />
+    <ListView
+        android:id="@+id/lv_area"
+        style="@style/AutoMatch"
+        android:background="@color/mainColor"
+        android:divider="@color/transparent"
+        android:dividerHeight="@dimen/dimen0"
+        android:overScrollMode="never"
+        android:paddingRight="@dimen/dimen20"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_city" />
 
 </LinearLayout>

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <!--item_models.xml-->
-    <com.ruitukeji.zwbs.utils.myview.ChildLiistView
+    <com.ruitukeji.zwbs.utils.myview.ChildListView
         android:id="@+id/lv_availableType"
         style="@style/MatchWrap"
         android:background="@color/mainColor"

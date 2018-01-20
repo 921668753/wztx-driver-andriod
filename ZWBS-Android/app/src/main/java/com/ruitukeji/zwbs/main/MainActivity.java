@@ -29,8 +29,7 @@ import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.WorkingStateBean;
-import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.umeng.analytics.MobclickAgent;
 

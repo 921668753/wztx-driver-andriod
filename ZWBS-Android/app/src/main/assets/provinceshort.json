@@ -158,6 +158,11 @@
       "provinceName": "新疆维吾尔自治区"
     },
     {
+      "id": 710000,
+      "name": "台",
+      "provinceName": "台湾省"
+    },
+    {
       "id": 810000,
       "name": "港",
       "provinceName": "香港特别行政区"
@@ -166,11 +171,6 @@
       "id": 820000,
       "name": "澳",
       "provinceName": "澳门特别行政区"
-    },
-    {
-      "id": 710000,
-      "name": "台",
-      "provinceName": "台湾省"
     }
   ]
 }

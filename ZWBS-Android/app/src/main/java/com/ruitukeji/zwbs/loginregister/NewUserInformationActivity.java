@@ -21,9 +21,8 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.PersonalCertificateBean;
+import com.ruitukeji.zwbs.entity.mine.personaldata.PersonalCertificateBean;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.PickerViewUtil;
 

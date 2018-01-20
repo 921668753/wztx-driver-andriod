@@ -19,52 +19,22 @@ public class OriginBouncedPresenter implements OriginBouncedContract.Presenter {
     }
 
     @Override
-    public void getProvince() {
+    public void getAddress(int id, int type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getGoodsList(httpParams, new ResponseListener<String>() {
+        if (id != 0) {
+            httpParams.put("id", id);
+        }
+        RequestClient.getAddress(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
+                mView.getSuccess(response, type);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                mView.errorMsg(msg, type);
             }
         });
     }
 
-    @Override
-    public void getCity(int provinceId) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("provinceId", provinceId);
-        RequestClient.getGoodsList(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 1);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.errorMsg(msg, 1);
-            }
-        });
-    }
-
-    @Override
-    public void getArea(int cityId) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("cityId", cityId);
-        RequestClient.getGoodsList(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 2);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.errorMsg(msg, 2);
-            }
-        });
-    }
 }

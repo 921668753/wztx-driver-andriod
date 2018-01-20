@@ -5,7 +5,7 @@ import android.content.Context;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
-import com.ruitukeji.zwbs.entity.RecommendedRecordBean.ResultBean.ListBean;
+import com.ruitukeji.zwbs.entity.mine.recommendcourteous.RecommendedRecordBean.ResultBean.ListBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;

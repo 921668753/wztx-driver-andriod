@@ -28,7 +28,7 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.entity.getorder.GetOrderBean;
 import com.ruitukeji.zwbs.entity.MessageCenterBean;
-import com.ruitukeji.zwbs.entity.WorkingStateBean;
+import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
 import com.ruitukeji.zwbs.entity.getorder.HomeBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.getorder.announcement.AnnouncementActivity;
@@ -50,7 +50,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -66,7 +65,6 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.STATUS;
  */
 
 public class GetOrderFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, GetOrderContract.View, AdapterView.OnItemClickListener, BGAOnItemChildClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
-
 
     /**
      * 选择城市
@@ -85,7 +83,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @BindView(id = R.id.marqueeView)
     private MarqueeView marqueeView;
 
-
     /**
      * 车型
      */
@@ -98,13 +95,16 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @BindView(id = R.id.img_models)
     private ImageView img_models;
     private int modelsId = 0;
+
     /**
      * 车长
      */
     @BindView(id = R.id.ll_conductor, click = true)
     private LinearLayout ll_conductor;
+
     @BindView(id = R.id.tv_conductor)
     private TextView tv_conductor;
+
     @BindView(id = R.id.img_conductor)
     private ImageView img_conductor;
 
@@ -115,12 +115,14 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
      */
     @BindView(id = R.id.ll_availableType, click = true)
     private LinearLayout ll_availableType;
+
     @BindView(id = R.id.tv_availableType)
     private TextView tv_availableType;
+
     @BindView(id = R.id.img_availableType)
     private ImageView img_availableType;
-    private String availableTypeName = "all";
 
+    private String availableTypeName = "all";
 
     private GetOrderContract.Presenter mPresenter;
     private MainActivity aty;
@@ -138,15 +140,16 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
      */
     @BindView(id = R.id.rl_message, click = true)
     private RelativeLayout rl_message;
+
     @BindView(id = R.id.tv_message)
     public TextView tv_message;
-
 
     /**
      * 错误提示页
      */
     @BindView(id = R.id.ll_commonError)
     private LinearLayout ll_commonError;
+
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
 
@@ -154,11 +157,11 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
      * 当前页码
      */
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 总页码
      */
     private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
-
 
     /**
      * 是否加载更多
@@ -491,10 +494,8 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         switch (v.getId()) {
             case R.id.ll_city:
                 Intent selectionIntent = new Intent(aty, SelectionCityActivity.class);
-                // intent.putExtra("name", "GetOrderFragment");
                 startActivityForResult(selectionIntent, STATUS);
                 break;
-
             case R.id.ll_models:
                 ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
                     @Override
@@ -592,8 +593,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             ((GetOrderContract.Presenter) mPresenter).downloadApp(updateAppUrl);
         } else {
             // Ask for one permission
-            EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite),
-                    NumericConstants.READ_AND_WRITE_CODE, perms);
+            EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite), NumericConstants.READ_AND_WRITE_CODE, perms);
         }
     }
 

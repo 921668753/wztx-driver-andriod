@@ -13,7 +13,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.entity.mine.mywallet.mybankcard.MyBankCardBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
+import com.ruitukeji.zwbs.utils.myview.ChildListView;
 import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 /**
@@ -27,7 +27,7 @@ public class MyBankCardActivity extends BaseActivity implements MyBankCardContra
      * 银行卡列表
      */
     @BindView(id = R.id.lv_bankCard)
-    private ChildLiistView lv_bankCard;
+    private ChildListView lv_bankCard;
 
     private MyBankCardViewAdapter myBankCardViewAdapter;
 

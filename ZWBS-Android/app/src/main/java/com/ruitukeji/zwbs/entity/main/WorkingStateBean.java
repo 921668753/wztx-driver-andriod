@@ -1,5 +1,7 @@
-package com.ruitukeji.zwbs.entity;
+package com.ruitukeji.zwbs.entity.main;
 
+
+import com.ruitukeji.zwbs.entity.BaseResult;
 
 /**
  * Created by Admin on 2017/7/25.

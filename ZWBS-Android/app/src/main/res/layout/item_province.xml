@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_provinceName"
         style="@style/MatchMatch"
         android:background="@color/mainColor"
         android:gravity="center_vertical"

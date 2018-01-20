@@ -73,7 +73,7 @@
 
         <TextView
             style="@style/WrapWrap"
-            android:layout_marginLeft="@dimen/dimen42"
+            android:layout_marginLeft="@dimen/dimen36"
             android:text="@string/orderNumber1"
             android:textColor="@color/descriptionGoodsColors"
             android:textSize="@dimen/textsize13" />
@@ -81,7 +81,7 @@
         <TextView
             android:id="@+id/tv_orderNumber"
             style="@style/WrapWrap"
-            android:text="2017103140026"
+            android:text="2017103140026666"
             android:textColor="@color/descriptionGoodsColors"
             android:textSize="@dimen/textsize13" />
 
@@ -250,6 +250,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_estimatedTime"
         style="@style/MatchWrap"
         android:layout_marginTop="@dimen/dimen10"
         android:orientation="horizontal"

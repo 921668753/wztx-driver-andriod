@@ -6,6 +6,7 @@
     android:paddingRight="@dimen/dimen10">
 
     <TextView
+        android:id="@+id/tv_CityName"
         style="@style/MatchWrap"
         android:gravity="center"
         android:paddingBottom="@dimen/dimen10"
@@ -15,10 +16,10 @@
         android:textColor="@color/announcementCloseColors"
         android:textSize="@dimen/textsize16" />
 
-
     <TextView
+        android:id="@+id/tv_divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen2"
+        android:layout_height="@dimen/dimen1"
         android:background="@color/announcementCloseColors" />
 
 </LinearLayout>

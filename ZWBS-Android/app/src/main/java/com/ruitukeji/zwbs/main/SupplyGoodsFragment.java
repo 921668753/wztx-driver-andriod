@@ -21,7 +21,7 @@ import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.entity.getorder.GetOrderBean;
+import com.ruitukeji.zwbs.entity.supplygoods.SupplyGoodsBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
@@ -110,8 +110,10 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
      */
     @BindView(id = R.id.ll_commonError)
     private LinearLayout ll_commonError;
+
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
+
     /**
      * 当前页码
      */
@@ -131,6 +133,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private int provinceId = 0;
     private int cityId = 0;
     private int areaId = 0;
+    private String type = "all";
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -145,7 +148,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         mAdapter = new SupplyGoodsViewAdapter(getActivity());
     }
 
-
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
@@ -153,10 +155,8 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, mMorePageNumber);
+        mRefreshLayout.beginRefreshing();
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -185,7 +185,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, mMorePageNumber);
+        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, type, mMorePageNumber);
     }
 
     @Override
@@ -200,7 +200,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, mMorePageNumber);
+        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, type, mMorePageNumber);
         return true;
     }
 
@@ -225,7 +225,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, provinceId, cityId, areaId) {
                     @Override
                     public void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
-                     //   province1Name = provinceName;
+                        //   province1Name = provinceName;
 
                     }
                 };
@@ -270,26 +270,24 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
-            //   PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods", false);
-            //   PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
             isShowLoadingMore = true;
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-            GetOrderBean getOrderBean = (GetOrderBean) JsonUtil.getInstance().json2Obj(s, GetOrderBean.class);
-            mMorePageNumber = getOrderBean.getResult().getPage();
-            totalPageNumber = getOrderBean.getResult().getPageTotal();
-            if (getOrderBean.getResult().getList() == null || getOrderBean.getResult().getList().size() == 0) {
+            SupplyGoodsBean supplyGoodsBean = (SupplyGoodsBean) JsonUtil.getInstance().json2Obj(s, SupplyGoodsBean.class);
+            mMorePageNumber = supplyGoodsBean.getResult().getPage();
+            totalPageNumber = supplyGoodsBean.getResult().getPageTotal();
+            if (supplyGoodsBean.getResult().getList() == null || supplyGoodsBean.getResult().getList().size() == 0) {
                 errorMsg(getString(R.string.serverReturnsDataNull), 0);
                 return;
             }
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mAdapter.clear();
-//                mAdapter.addNewData(getOrderBean.getResult().getList());
-//                mRefreshLayout.endRefreshing();
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(getOrderBean.getResult().getList());
-//            }
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mAdapter.clear();
+                mAdapter.addNewData(supplyGoodsBean.getResult().getList());
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(supplyGoodsBean.getResult().getList());
+            }
         } else if (flag == 1) {
 //            if (supplyGoodsSweetAlertDialog == null) {
 //                initDialog();
@@ -328,8 +326,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     public void errorMsg(String msg, int flag) {
         if (flag == 0) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
             isShowLoadingMore = false;
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
@@ -341,14 +337,12 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             }
         } else if (flag == 1 || flag == 2 || flag == 3) {
             if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "SupplyGoodsFragment");
                 dismissLoadingDialog();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
             }
         } else if (flag == 4) {
             String auth_status = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "auth_status");
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "SupplyGoodsFragment");
             Intent newUserInformation = new Intent(aty, NewUserInformationActivity.class);
             newUserInformation.putExtra("auth_status", auth_status);
             aty.showActivity(aty, newUserInformation);
@@ -361,25 +355,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     public void setPresenter(SupplyGoodsContract.Presenter presenter) {
         mPresenter = presenter;
-    }
-
-
-    @Override
-    public void onChange() {
-        super.onChange();
-//        boolean isRefreshGoods1 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGoods1", false);
-//        if (isRefreshGoods1) {
-//            mRefreshLayout.beginRefreshing();
-//        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        boolean isRefreshGoods = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshGoods", false);
-//        if (isRefreshGoods) {
-//            mRefreshLayout.beginRefreshing();
-//        }
     }
 
 

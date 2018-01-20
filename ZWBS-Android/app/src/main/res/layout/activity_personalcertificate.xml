@@ -258,13 +258,13 @@
             </LinearLayout>
 
 
-            <com.ruitukeji.zwbs.utils.myview.ChildLiistView
+            <com.ruitukeji.zwbs.utils.myview.ChildListView
                 android:id="@+id/lv_img"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen15"
                 android:background="@color/mainColor">
 
-            </com.ruitukeji.zwbs.utils.myview.ChildLiistView>
+            </com.ruitukeji.zwbs.utils.myview.ChildListView>
 
         </LinearLayout>
     </ScrollView>

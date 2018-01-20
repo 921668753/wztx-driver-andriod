@@ -208,6 +208,13 @@ public class RequestClient {
     }
 
     /**
+     * 货源--地址列表
+     */
+    public static void getAddress(HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.ADDRESS, httpParams, listener);
+    }
+
+    /**
      * 公告详情
      */
     public static void getAnnouncement(HttpParams httpParams, int id, ResponseListener<String> listener) {

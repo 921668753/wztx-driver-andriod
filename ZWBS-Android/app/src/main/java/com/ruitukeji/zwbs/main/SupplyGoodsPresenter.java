@@ -43,10 +43,10 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
     }
 
     @Override
-    public void getSupplyGoods(String startPoint, String endPoint, int vehicleLength, int vehicleModel, int page) {
+    public void getSupplyGoods(String startPoint, String endPoint, int vehicleLength, int vehicleModel, String type, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
-        httpParams.put("pageSize", 10);
+        httpParams.put("pageSize", 5);
         if (!StringUtils.isEmpty(startPoint)) {
             httpParams.put("org_city", startPoint);
         }
@@ -58,6 +58,9 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
         }
         if (vehicleModel != 0) {
             httpParams.put("car_style_type_id", vehicleModel);
+        }
+        if (!StringUtils.isEmpty(type)) {
+            httpParams.put("type", type);
         }
         RequestClient.getGoodsList(httpParams, new ResponseListener<String>() {
             @Override

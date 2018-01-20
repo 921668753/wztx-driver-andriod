@@ -19,10 +19,15 @@ public interface SupplyGoodsContract {
 
     interface Presenter extends BasePresenter {
 
+//        /**
+//         * 地址列表
+//         */
+//        void getAddress(int id);
+
         /**
          * 获取订单列表信息
          */
-        void getSupplyGoods(String startPoint, String endPoint, int vehicleLength, int vehicleModel, int page);
+        void getSupplyGoods(String startPoint, String endPoint, int vehicleLength, int vehicleModel, String type, int page);
 
         /**
          * 是否登录

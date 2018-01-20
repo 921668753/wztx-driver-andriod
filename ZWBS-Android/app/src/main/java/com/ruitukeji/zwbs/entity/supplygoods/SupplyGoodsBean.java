@@ -1,19 +1,19 @@
-package com.ruitukeji.zwbs.entity.getorder;
+package com.ruitukeji.zwbs.entity.supplygoods;
 
 import com.ruitukeji.zwbs.entity.BaseResult;
 
 import java.util.List;
 
 /**
- * Created by Admin on 2017/7/12.
+ * Created by Admin on 2017/7/26.
  */
 
-public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
+public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
 
 
     public class ResultBean {
         /**
-         * list : [{"id":379,"org_city":"江苏省苏州市昆山市","volume":"10立方","kilometres":"103.435千米","is_driver_dock":1,"mind_price":"0.00","system_price":"532.64","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"高栏","car_style_type_id":1002,"usecar_time":""},{"id":378,"org_city":"江苏省苏州市昆山市","volume":"10立方","kilometres":"40.642千米","is_driver_dock":1,"mind_price":"0.00","system_price":"237.52","dest_city":"江苏省苏州市姑苏区","weight":"10吨","goods_name":"阿胶","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"高栏","car_style_type_id":1002,"usecar_time":""},{"id":377,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":376,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":375,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":374,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":373,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":372,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":371,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":370,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""}]
+         * list : [{"id":379,"org_city":"江苏省苏州市昆山市","volume":"10立方","kilometres":"103.435千米","is_driver_dock":1,"mind_price":"0.00","system_price":"532.64","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"often","appoint_at":"2018-01-19 09:32:12","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"高栏","car_style_type_id":1002,"usecar_time":"25272092小时12分钟"},{"id":378,"org_city":"江苏省苏州市昆山市","volume":"10立方","kilometres":"40.642千米","is_driver_dock":1,"mind_price":"0.00","system_price":"237.52","dest_city":"江苏省苏州市姑苏区","weight":"10吨","type":"often","appoint_at":"2018-01-18 17:09:36","goods_name":"阿胶","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"高栏","car_style_type_id":1002,"usecar_time":""},{"id":377,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:30","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":376,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:10","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":375,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:09","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":374,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:08","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":373,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:06","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":372,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:05","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":371,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:04","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""},{"id":370,"org_city":"江苏省苏州市姑苏区","volume":"10立方","kilometres":"73.32千米","is_driver_dock":1,"mind_price":"0.00","system_price":"391.10","dest_city":"江苏省苏州市张家港市","weight":"10吨","type":"urgent","appoint_at":"2018-01-18 15:53:02","goods_name":"五金","status":"quote","car_style_length":"4.2米","car_style_length_id":1009,"car_style_type":"保温车","car_style_type_id":1020,"usecar_time":""}]
          * page : 1
          * pageSize : 10
          * dataTotal : 117
@@ -77,13 +77,15 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
              * system_price : 532.64
              * dest_city : 江苏省苏州市张家港市
              * weight : 10吨
+             * type : often
+             * appoint_at : 2018-01-19 09:32:12
              * goods_name : 五金
              * status : quote
              * car_style_length : 4.2米
              * car_style_length_id : 1009
              * car_style_type : 高栏
              * car_style_type_id : 1002
-             * usecar_time :
+             * usecar_time : 25272092小时12分钟
              */
 
             private int id;
@@ -95,6 +97,9 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
             private String system_price;
             private String dest_city;
             private String weight;
+            private String type;
+            private String order_code;
+            private String appoint_at;
             private String goods_name;
             private String status;
             private String car_style_length;
@@ -175,6 +180,22 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
                 this.weight = weight;
             }
 
+            public String getType() {
+                return type;
+            }
+
+            public void setType(String type) {
+                this.type = type;
+            }
+
+            public String getAppoint_at() {
+                return appoint_at;
+            }
+
+            public void setAppoint_at(String appoint_at) {
+                this.appoint_at = appoint_at;
+            }
+
             public String getGoods_name() {
                 return goods_name;
             }
@@ -221,6 +242,14 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
 
             public void setCar_style_type_id(int car_style_type_id) {
                 this.car_style_type_id = car_style_type_id;
+            }
+
+            public String getOrder_code() {
+                return order_code;
+            }
+
+            public void setOrder_code(String order_code) {
+                this.order_code = order_code;
             }
 
             public String getUsecar_time() {

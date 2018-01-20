@@ -28,7 +28,7 @@
     <color name="titlebackground">#fafafa</color>
     <color name="background">#ededed</color>
     <color name="titledivider">#bbbbbb</color>
-
+    <color name="f5F5F5colors">#F5F5F5</color>
     <color name="dividercolors">#dcdcdc</color>
 
     <!--SelectRegisterTypeActivity-->

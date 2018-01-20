@@ -1,4 +1,6 @@
-package com.ruitukeji.zwbs.entity;
+package com.ruitukeji.zwbs.entity.mine.recommendcourteous;
+
+import com.ruitukeji.zwbs.entity.BaseResult;
 
 import java.util.List;
 

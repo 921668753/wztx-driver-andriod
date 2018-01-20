@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
 
 /**
  * 车辆认证---示例图片弹框

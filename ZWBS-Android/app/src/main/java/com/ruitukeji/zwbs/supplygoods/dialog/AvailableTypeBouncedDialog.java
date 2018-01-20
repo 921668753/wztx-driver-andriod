@@ -13,7 +13,7 @@ import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedContract;
 import com.ruitukeji.zwbs.getorder.dialog.AvailableTypeBouncedPresenter;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
+import com.ruitukeji.zwbs.utils.myview.ChildListView;
 
 /**
  * 接单---可接单类型弹框
@@ -25,7 +25,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
     private int availableTypeId = 0;
     private Context context;
     private TextView tv_transparent;
-    private ChildLiistView lv_availableType;
+    private ChildListView lv_availableType;
 
     private AvailableTypeBouncedContract.Presenter mPresenter;
 
@@ -48,7 +48,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements V
     }
 
     private void initView() {
-        lv_availableType = (ChildLiistView) findViewById(R.id.lv_availableType);
+        lv_availableType = (ChildListView) findViewById(R.id.lv_availableType);
         lv_availableType.setOnItemClickListener(this);
         mPresenter = new AvailableTypeBouncedPresenter(this);
         tv_transparent = (TextView) findViewById(R.id.tv_transparent);

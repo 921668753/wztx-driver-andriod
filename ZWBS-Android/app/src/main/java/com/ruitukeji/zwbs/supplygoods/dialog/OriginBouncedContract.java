@@ -12,19 +12,9 @@ public interface OriginBouncedContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取省份信息
+         * 获取省份列表信息
          */
-        void getProvince();
-
-        /**
-         * 获取城市列表信息
-         */
-        void getCity(int provinceId);
-
-        /**
-         * 获取地区列表信息
-         */
-        void getArea(int cityId);
+        void getAddress(int id, int type);
 
     }
 

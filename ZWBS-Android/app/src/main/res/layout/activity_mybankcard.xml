@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/dimen10"
             android:orientation="vertical">
 
-            <com.ruitukeji.zwbs.utils.myview.ChildLiistView
+            <com.ruitukeji.zwbs.utils.myview.ChildListView
                 android:id="@+id/lv_bankCard"
                 style="@style/MatchWrap"
                 android:background="@color/background"
