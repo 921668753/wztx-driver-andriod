@@ -40,6 +40,7 @@ public class SelectionCityActivity extends BaseActivity {
         changeFragment(contentFragment);
     }
 
+
     public void changeFragment(BaseFragment targetFragment) {
         super.changeFragment(R.id.main_content, targetFragment);
     }

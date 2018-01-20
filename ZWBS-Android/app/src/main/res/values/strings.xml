@@ -155,7 +155,6 @@
     <string name="submittedInformation">提交后如要修改请联系客服！</string>
     <string name="submitAudit">提交审核</string>
 
-
     <!--主界面-->
     <string name="locationPermissions">定位选择需要以下权限:\n\n1.访问设备上的gps\n\n2.读写权限</string>
     <string name="locationPermissions1">您拒绝了「定位」所需要的相关权限!</string>
@@ -211,9 +210,10 @@
     <string name="afterSubmission">报价提交后不可修改</string>
 
 
-    <!--选择城市-->
+    <!--城市选择-->
     <string name="selectCity">选择城市</string>
     <string name="china">中国</string>
+    <string name="currentPositioningCity">当前定位城市</string>
     <string name="recentVisitCity">最近访问城市</string>
     <string name="recent">最近</string>
     <string name="hotCity">热门城市</string>

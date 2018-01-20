@@ -339,7 +339,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         }
     }
 
-
     /**
      * 清除颜色，并添加颜色
      */
@@ -453,9 +452,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
                     }
                 }
                 //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
-                android.util.Log.e("AmapError", "location Error, ErrCode:"
-                        + amapLocation.getErrorCode() + ", errInfo:"
-                        + amapLocation.getErrorInfo());
+                android.util.Log.e("AmapError", "location Error, ErrCode:" + amapLocation.getErrorCode() + ", errInfo:" + amapLocation.getErrorInfo());
             }
         }
     }
