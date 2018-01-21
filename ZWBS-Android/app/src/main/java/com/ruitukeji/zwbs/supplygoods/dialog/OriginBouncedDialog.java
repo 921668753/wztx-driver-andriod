@@ -45,12 +45,15 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
     private AreaViewAdapter areaViewAdapter = null;
 
     ResultBean provinceBean;
+    private String provinceName = "";
     private int provinceId = 0;
 
     ResultBean cityBean;
+    private String cityName = "";
     private int cityId = 0;
 
     ResultBean areaBean;
+    private String areaName = "";
     private int areaId = 0;
 
     private OriginBouncedContract.Presenter mPresenter;
@@ -59,11 +62,14 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
     private List<ResultBean> areaBeanlist = null;
 
 
-    public OriginBouncedDialog(Context context, int provinceId, int cityId, int areaId) {
+    public OriginBouncedDialog(Context context, String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
         super(context, R.style.dialog);
         this.context = context;
+        this.provinceName = provinceName;
         this.provinceId = provinceId;
+        this.cityName = cityName;
         this.cityId = cityId;
+        this.areaName = areaName;
         this.areaId = areaId;
     }
 
@@ -165,10 +171,9 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择省
      */
     private void selectProvince(int provinceId) {
-        String currentLocationProvince = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationProvince", "");
         for (int i = 0; i < provinceBeanlist.size(); i++) {
-            if (provinceId == provinceBeanlist.get(i).getId() || provinceId == i && provinceId == 0 && StringUtils.isEmpty(currentLocationProvince)
-                    || provinceId == 0 && !StringUtils.isEmpty(currentLocationProvince) && currentLocationProvince.contains(provinceBeanlist.get(i).getName())) {
+            if (provinceId == provinceBeanlist.get(i).getId() || provinceId == i && provinceId == 0 && StringUtils.isEmpty(provinceName)
+                    || provinceId == 0 && !StringUtils.isEmpty(provinceName) && provinceName.contains(provinceBeanlist.get(i).getName())) {
                 provinceBean = provinceBeanlist.get(i);
                 provinceBean.setStatus(1);
                 lv_province.setSelection(i);
@@ -192,10 +197,9 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择城市
      */
     private void selectCity(int cityId) {
-        String currentLocationCity = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationCity", "");
         for (int i = 0; i < cityBeanlist.size(); i++) {
-            if (cityId == cityBeanlist.get(i).getId() || cityId == i && cityId == 0 && StringUtils.isEmpty(currentLocationCity)
-                    || cityId == 0 && !StringUtils.isEmpty(currentLocationCity) && currentLocationCity.contains(cityBeanlist.get(i).getName())) {
+            if (cityId == cityBeanlist.get(i).getId() || cityId == i && cityId == 0 && StringUtils.isEmpty(cityName)
+                    || cityId == 0 && !StringUtils.isEmpty(cityName) && cityName.contains(cityBeanlist.get(i).getName())) {
                 cityBean = cityBeanlist.get(i);
                 cityBean.setStatus(1);
                 lv_city.setSelection(i);
@@ -218,10 +222,9 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择地区
      */
     private void selectArea(int areaId) {
-        String currentLocationArea = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationArea", "");
         for (int i = 0; i < areaBeanlist.size(); i++) {
-            if (areaId == areaBeanlist.get(i).getId() || areaId == i && areaId == 0 && StringUtils.isEmpty(currentLocationArea)
-                    || areaId == 0 && !StringUtils.isEmpty(currentLocationArea) && areaId == 0 && currentLocationArea.contains(areaBeanlist.get(i).getName())) {
+            if (areaId == areaBeanlist.get(i).getId() || areaId == i && areaId == 0 && StringUtils.isEmpty(areaName)
+                    || areaId == 0 && !StringUtils.isEmpty(areaName) && areaId == 0 && areaName.contains(areaBeanlist.get(i).getName())) {
                 areaBean = areaBeanlist.get(i);
                 areaBean.setStatus(1);
                 lv_area.setSelection(i);

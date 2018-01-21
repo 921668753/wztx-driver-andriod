@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseActivity;
@@ -18,7 +17,6 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.AddTheLineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.PickerViewUtil;
@@ -126,15 +124,22 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
 
     @Override
     public void getSuccess(String s) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods", true);
         AddTheLineBean addTheLineBean = (AddTheLineBean) JsonUtil.getInstance().json2Obj(s, AddTheLineBean.class);
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", addTheLineBean.getResult().getDrline_id() + "");
         KJActivityStack.create().finishActivity(SetTheLineActivity.class);
         dismissLoadingDialog();
         Intent intent = new Intent();
-        intent.putExtra("newChageIcon", 0);
-        intent.setClass(getApplicationContext(), MainActivity.class);
-        skipActivity(aty, intent);
+        // 获取内容
+//        intent.putExtra("startProvinceName", startProvinceName);
+//        intent.putExtra("startCityName", startCityName);
+//        intent.putExtra("startAreaName", startAreaName);
+//        intent.putExtra("endProvinceName", endProvinceName);
+//        intent.putExtra("endCityName", endCityName);
+//        intent.putExtra("endAreaName", endAreaName);
+        // 设置结果 结果码，一个数据
+        setResult(RESULT_OK, intent);
+        // 结束该activity 结束之后，前面的activity才可以处理结果
+        aty.finish();
     }
 
     @Override

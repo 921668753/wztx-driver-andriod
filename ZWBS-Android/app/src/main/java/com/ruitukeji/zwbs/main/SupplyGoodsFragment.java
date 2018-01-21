@@ -39,6 +39,9 @@ import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
+import static android.app.Activity.RESULT_OK;
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
+
 /**
  * 货源
  * Created by Administrator on 2017/2/21.
@@ -67,6 +70,9 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private int startProvinceId = 0;
     private int startCityId = 0;
     private int startAreaId = 0;
+    private String startProvinceName = "";
+    private String startCityName = "";
+    private String startAreaName = "";
     private String startingpoint = "";
     /**
      * 目的地
@@ -80,6 +86,9 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private int endProvinceId = 0;
     private int endCityId = 0;
     private int endAreaId = 0;
+    private String endProvinceName = "";
+    private String endCityName = "";
+    private String endAreaName = "";
     private String endpoint = "";
     /**
      * 可接单类型
@@ -147,6 +156,12 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     protected void initData() {
         super.initData();
+        startProvinceName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationProvince", "");
+        startCityName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationCity", "");
+        startAreaName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationArea", "");
+        endProvinceName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationProvince", "");
+        endCityName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationCity", "");
+        endAreaName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationArea", "");
         mPresenter = new SupplyGoodsPresenter(this);
         mAdapter = new SupplyGoodsViewAdapter(getActivity());
     }
@@ -226,10 +241,11 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_setLine:
-                aty.showActivity(aty, SetTheLineActivity.class);
+                Intent intent = new Intent(aty, SetTheLineActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_SELECT);
                 break;
             case R.id.ll_startingPoint:
-                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, startProvinceId, startCityId, startAreaId) {
+                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, startProvinceName, startProvinceId, startCityName, startCityId, startAreaName, startAreaId) {
                     @Override
                     public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
                         startProvinceId = provinceId;
@@ -246,7 +262,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 originBouncedDialog.show();
                 break;
             case R.id.ll_endPoint:
-                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, endProvinceId, endCityId, endAreaId) {
+                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, endProvinceName, endProvinceId, endCityName, endCityId, endAreaName, endAreaId) {
                     @Override
                     public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
                         //   province1Name = provinceName;
@@ -385,6 +401,18 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         mPresenter = presenter;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {
+            startProvinceName = "";
+            startCityName = "";
+            startAreaName = "";
+            endProvinceName = "";
+            endCityName = "";
+            endAreaName = "";
+        }
+    }
 
     @Override
     public void onDestroy() {

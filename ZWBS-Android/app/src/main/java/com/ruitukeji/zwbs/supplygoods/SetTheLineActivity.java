@@ -25,6 +25,8 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
+
 /**
  * 设定路线
  * Created by Administrator on 2017/2/21.
@@ -73,7 +75,8 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
             @Override
             public void onClickRightCtv() {
                 super.onClickRightCtv();
-                showActivity(aty, AddTheLineActivity.class);
+                Intent intent = new Intent(aty, AddTheLineActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_SELECT);
             }
         };
         ActivityTitleUtils.initToolbar(aty, getString(R.string.settheline), getString(R.string.addtheline), R.id.titlebar, simpleDelegate);
@@ -134,6 +137,32 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
         mPresenter = presenter;
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {
+            String startProvinceName = data.getStringExtra("startProvinceName");
+            String startCityName = data.getStringExtra("startCityName");
+            String startAreaName = data.getStringExtra("startAreaName");
+            String endProvinceName = data.getStringExtra("endProvinceName");
+            String endCityName = data.getStringExtra("endCityName");
+            String endAreaName = data.getStringExtra("endAreaName");
+            Intent intent = new Intent();
+            // 获取内容
+            intent.putExtra("startProvinceName", startProvinceName);
+            intent.putExtra("startCityName", startCityName);
+            intent.putExtra("startAreaName", startAreaName);
+            intent.putExtra("endProvinceName", endProvinceName);
+            intent.putExtra("endCityName", endCityName);
+            intent.putExtra("endAreaName", endAreaName);
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
+            // 结束该activity 结束之后，前面的activity才可以处理结果
+            aty.finish();
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -160,8 +189,16 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", setTheLineViewAdapter.getItem(position).getDrline_id() + "");
         Intent intent = new Intent();
-        intent.putExtra("newChageIcon", 0);
-        intent.setClass(getApplicationContext(), MainActivity.class);
-        skipActivity(aty, intent);
+        // 获取内容
+//        intent.putExtra("startProvinceName", startProvinceName);
+//        intent.putExtra("startCityName", startCityName);
+//        intent.putExtra("startAreaName", startAreaName);
+//        intent.putExtra("endProvinceName", endProvinceName);
+//        intent.putExtra("endCityName", endCityName);
+//        intent.putExtra("endAreaName", endAreaName);
+        // 设置结果 结果码，一个数据
+        setResult(RESULT_OK, intent);
+        // 结束该activity 结束之后，前面的activity才可以处理结果
+        aty.finish();
     }
 }
