@@ -8,12 +8,15 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.supplygoods.dialog.AreaViewAdapter;
 import com.ruitukeji.zwbs.adapter.supplygoods.dialog.CityViewAdapter;
 import com.ruitukeji.zwbs.adapter.supplygoods.dialog.ProvinceViewAdapter;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
+import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean.ResultBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -162,8 +165,10 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择省
      */
     private void selectProvince(int provinceId) {
+        String currentLocationProvince = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationProvince", "");
         for (int i = 0; i < provinceBeanlist.size(); i++) {
-            if (provinceId == provinceBeanlist.get(i).getId() || provinceId == i && provinceId == 0) {
+            if (provinceId == provinceBeanlist.get(i).getId() || provinceId == i && provinceId == 0 && StringUtils.isEmpty(currentLocationProvince)
+                    || provinceId == 0 && !StringUtils.isEmpty(currentLocationProvince) && currentLocationProvince.contains(provinceBeanlist.get(i).getName())) {
                 provinceBean = provinceBeanlist.get(i);
                 provinceBean.setStatus(1);
                 lv_province.setSelection(i);
@@ -187,8 +192,10 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择城市
      */
     private void selectCity(int cityId) {
+        String currentLocationCity = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationCity", "");
         for (int i = 0; i < cityBeanlist.size(); i++) {
-            if (cityId == cityBeanlist.get(i).getId() || cityId == i && cityId == 0) {
+            if (cityId == cityBeanlist.get(i).getId() || cityId == i && cityId == 0 && StringUtils.isEmpty(currentLocationCity)
+                    || cityId == 0 && !StringUtils.isEmpty(currentLocationCity) && currentLocationCity.contains(cityBeanlist.get(i).getName())) {
                 cityBean = cityBeanlist.get(i);
                 cityBean.setStatus(1);
                 lv_city.setSelection(i);
@@ -211,8 +218,10 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
      * 选择地区
      */
     private void selectArea(int areaId) {
+        String currentLocationArea = PreferenceHelper.readString(context, StringConstants.FILENAME, "currentLocationArea", "");
         for (int i = 0; i < areaBeanlist.size(); i++) {
-            if (areaId == areaBeanlist.get(i).getId() || areaId == i && areaId == 0) {
+            if (areaId == areaBeanlist.get(i).getId() || areaId == i && areaId == 0 && StringUtils.isEmpty(currentLocationArea)
+                    || areaId == 0 && !StringUtils.isEmpty(currentLocationArea) && areaId == 0 && currentLocationArea.contains(areaBeanlist.get(i).getName())) {
                 areaBean = areaBeanlist.get(i);
                 areaBean.setStatus(1);
                 lv_area.setSelection(i);

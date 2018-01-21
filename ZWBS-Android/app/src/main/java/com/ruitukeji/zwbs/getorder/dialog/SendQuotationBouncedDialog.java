@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +14,6 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.getorder.GetOrderBean.ResultBean.ListBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 
 import static com.ruitukeji.zwbs.utils.MathUtil.judgeTwoDecimal;
@@ -35,7 +36,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     private GetOrderBouncedContract.Presenter mPresenter;
 
     public SendQuotationBouncedDialog(Context context, int orderId, String money) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.orderId = orderId;
         this.money = money;
@@ -46,6 +47,11 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_sendquotationbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -53,7 +59,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
         tv_firmQuotation = (TextView) findViewById(R.id.tv_firmQuotation);
         tv_firmQuotation.setOnClickListener(this);
         TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
-        tv_estimatePrice.setText(money);
+        tv_estimatePrice.setText(context.getString(R.string.estimatePrice) + money);
         et_pleaseEnterPrice = (EditText) findViewById(R.id.et_pleaseEnterPrice);
         iv_cancel = (ImageView) findViewById(R.id.iv_cancel);
         iv_cancel.setOnClickListener(this);

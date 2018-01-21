@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
-import com.ruitukeji.zwbs.entity.getorder.GetOrderBean.ResultBean.ListBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 
 /**
@@ -28,7 +29,7 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
     private GetOrderBouncedContract.Presenter mPresenter;
 
     public GetOrderBouncedDialog(Context context, int orderId, String money) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.orderId = orderId;
         this.money = money;
@@ -38,6 +39,11 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_getorderbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -56,10 +62,6 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
                 cancel();
                 break;
             case R.id.tv_determine:
-//                if (listBean.getMind_price() == null || listBean.getMind_price().equals("0.00")) {
-//                    mPresenter.getQuoteAdd(listBean.getId(), listBean.getSystem_price(), 1);
-//                    break;
-//                }
                 mPresenter.getQuoteAdd(orderId, money, 1);
                 break;
         }

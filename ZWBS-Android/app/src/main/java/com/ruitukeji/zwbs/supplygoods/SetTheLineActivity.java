@@ -17,6 +17,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.SetTheLineBean;
 import com.ruitukeji.zwbs.main.MainActivity;
+import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DialogUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -143,19 +144,20 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (view.getId() == R.id.iv_delete) {
-            DialogUtil.showAlertDialog(this, R.string.deleteRoute, new DialogUtil.OnDialogSelectListener() {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(aty, getString(R.string.deleteRoute)) {
                 @Override
-                public void onDialogSelect() {
+                public void confirm() {
+                    this.cancel();
                     showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
                     ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(setTheLineViewAdapter.getItem(i).getDrline_id());
                 }
-            });
+            };
+            authenticationBouncedDialog.show();
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods", true);
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", setTheLineViewAdapter.getItem(position).getDrline_id() + "");
         Intent intent = new Intent();
         intent.putExtra("newChageIcon", 0);
