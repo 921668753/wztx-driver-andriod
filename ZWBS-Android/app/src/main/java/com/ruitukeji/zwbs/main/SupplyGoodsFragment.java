@@ -24,8 +24,11 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.supplygoods.SupplyGoodsBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
+import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
+import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
+import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
+import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
 import com.ruitukeji.zwbs.supplygoods.SetTheLineActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AvailableTypeBouncedDialog;
 import com.ruitukeji.zwbs.supplygoods.dialog.ConductorModelsBouncedDialog;
@@ -132,6 +135,8 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private boolean isShowLoadingMore = false;
 
     private int id = 0;
+    private GetOrderBouncedDialog getOrderBouncedDialog = null;
+    private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -164,18 +169,32 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        //     GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-//        if (childView.getId() == R.id.rl_getorder) {
-//            robSingleBouncedDialog = null;
-//            robSingleBouncedDialog = new RobSingleBouncedDialog(aty, listBean) {
-//                @Override
-//                public void confirm(String money) {
-//                    this.dismiss();
-//                    mRefreshLayout.beginRefreshing();
-//                }
-//            };
-//            ((SupplyGoodsContract.Presenter) mPresenter).isLogin(2);
-//        }
+        SupplyGoodsBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
+        if (childView.getId() == R.id.tv_getorder) {
+            String money = "";
+            if (listBean.getMind_price().equals("0.00")) {
+                money = listBean.getSystem_price();
+            } else {
+                money = listBean.getMind_price();
+            }
+            getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mRefreshLayout.beginRefreshing();
+                }
+            };
+            ((SupplyGoodsContract.Presenter) mPresenter).isLogin(2);
+        } else if (childView.getId() == R.id.tv_sendQuotation) {
+            sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mRefreshLayout.beginRefreshing();
+                }
+            };
+            ((SupplyGoodsContract.Presenter) mPresenter).isLogin(3);
+        }
     }
 
     @Override
@@ -302,35 +321,32 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 mAdapter.addMoreData(supplyGoodsBean.getResult().getList());
             }
         } else if (flag == 1) {
-//            if (supplyGoodsSweetAlertDialog == null) {
-//                initDialog();
-//            }
-//            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(supplyGoodsSweetAlertDialog, 1);
+            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(1);
         } else if (flag == 2) {
-//            if (supplyGoodsSweetAlertDialog == null) {
-//                initDialog();
-//            }
-//            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(supplyGoodsSweetAlertDialog, 2);
+            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(2);
         } else if (flag == 3) {
-//            if (supplyGoodsSweetAlertDialog == null) {
-//                initDialog();
-//            }
-//            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(supplyGoodsSweetAlertDialog, 0);
+            ((SupplyGoodsContract.Presenter) mPresenter).isCertification(3);
         } else if (flag == 4) {
-            aty.showActivity(aty, SetTheLineActivity.class);
-        } else if (flag == 5) {
             PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "SupplyGoodsFragment");
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", id);
             //    intent.putExtra("designation", "goodDetail");
             aty.showActivity(aty, intent);
+        } else if (flag == 5) {
+            // aty.showActivity(aty, SetTheLineActivity.class);
+            int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
+            if (isGoWork == 1) {
+                ViewInject.toast(getString(R.string.notOrder));
+                return;
+            }
+            getOrderBouncedDialog.show();
         } else if (flag == 6) {
             int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
             if (isGoWork == 1) {
                 ViewInject.toast(getString(R.string.notOrder));
                 return;
             }
-            //  robSingleBouncedDialog.show();
+            sendQuotationBouncedDialog.show();
         }
         dismissLoadingDialog();
     }
@@ -355,12 +371,11 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 startActivity(intent);
             }
         } else if (flag == 4) {
-            String auth_status = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "auth_status");
-            Intent newUserInformation = new Intent(aty, NewUserInformationActivity.class);
-            newUserInformation.putExtra("auth_status", auth_status);
+            Intent newUserInformation = new Intent(aty, IdentityAuthenticationActivity.class);
             aty.showActivity(aty, newUserInformation);
         } else if (flag == 5) {
-            ViewInject.toast(getString(R.string.inAuthentication) + "," + getString(R.string.pleaseWait));
+            Intent vehicleCertification = new Intent(aty, VehicleCertificationActivity.class);
+            aty.showActivity(aty, vehicleCertification);
         }
         dismissLoadingDialog();
     }
@@ -374,7 +389,14 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        if (getOrderBouncedDialog != null) {
+            getOrderBouncedDialog.cancel();
+        }
+        if (sendQuotationBouncedDialog != null) {
+            sendQuotationBouncedDialog.cancel();
+        }
+        getOrderBouncedDialog = null;
+        sendQuotationBouncedDialog = null;
     }
 
 

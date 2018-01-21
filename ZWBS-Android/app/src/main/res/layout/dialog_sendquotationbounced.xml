@@ -78,6 +78,7 @@
             android:layout_marginRight="@dimen/dimen26" />
 
         <TextView
+            android:id="@+id/tv_estimatePrice"
             style="@style/MatchWrap"
             android:layout_marginLeft="@dimen/dimen26"
             android:layout_marginRight="@dimen/dimen26"

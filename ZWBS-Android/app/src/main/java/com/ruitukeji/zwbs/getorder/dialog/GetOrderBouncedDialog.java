@@ -20,16 +20,18 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
 
 public abstract class GetOrderBouncedDialog extends BaseDialog implements View.OnClickListener, GetOrderBouncedContract.View {
 
+    private String money = "0.00";
     private Context context;
     private TextView tv_cancel;
     private TextView tv_determine;
-    private ListBean listBean;
+    private int orderId;
     private GetOrderBouncedContract.Presenter mPresenter;
 
-    public GetOrderBouncedDialog(Context context, ListBean listBean) {
+    public GetOrderBouncedDialog(Context context, int orderId, String money) {
         super(context, R.style.MyDialog);
         this.context = context;
-        this.listBean = listBean;
+        this.orderId = orderId;
+        this.money = money;
     }
 
     @Override
@@ -51,14 +53,14 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_cancel:
-                dismiss();
+                cancel();
                 break;
             case R.id.tv_determine:
-                if (listBean.getMind_price() == null || listBean.getMind_price().equals("0.00")) {
-                    mPresenter.getQuoteAdd(listBean.getId(), listBean.getSystem_price(), 1);
-                    break;
-                }
-                mPresenter.getQuoteAdd(listBean.getId(), listBean.getMind_price(), 1);
+//                if (listBean.getMind_price() == null || listBean.getMind_price().equals("0.00")) {
+//                    mPresenter.getQuoteAdd(listBean.getId(), listBean.getSystem_price(), 1);
+//                    break;
+//                }
+                mPresenter.getQuoteAdd(orderId, money, 1);
                 break;
         }
     }

@@ -25,18 +25,20 @@ import static com.ruitukeji.zwbs.utils.MathUtil.judgeTwoDecimal;
 public abstract class SendQuotationBouncedDialog extends BaseDialog implements View.OnClickListener, GetOrderBouncedContract.View {
 
 
+    private int orderId = 0;
+    private String money = "";
     private Context context;
     private TextView tv_firmQuotation;
     private EditText et_pleaseEnterPrice;
     private ImageView iv_cancel;
-    private ListBean listBean;
 
     private GetOrderBouncedContract.Presenter mPresenter;
 
-    public SendQuotationBouncedDialog(Context context, ListBean listBean) {
+    public SendQuotationBouncedDialog(Context context, int orderId, String money) {
         super(context, R.style.MyDialog);
         this.context = context;
-        this.listBean = listBean;
+        this.orderId = orderId;
+        this.money = money;
     }
 
 
@@ -50,6 +52,8 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     private void initView() {
         tv_firmQuotation = (TextView) findViewById(R.id.tv_firmQuotation);
         tv_firmQuotation.setOnClickListener(this);
+        TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
+        tv_estimatePrice.setText(money);
         et_pleaseEnterPrice = (EditText) findViewById(R.id.et_pleaseEnterPrice);
         iv_cancel = (ImageView) findViewById(R.id.iv_cancel);
         iv_cancel.setOnClickListener(this);
@@ -59,12 +63,12 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_cancel:
-                dismiss();
+                cancel();
                 break;
             case R.id.tv_firmQuotation:
                 String moneys = et_pleaseEnterPrice.getText().toString().trim();
                 if (judgeTwoDecimal(moneys)) {
-                    mPresenter.getQuoteAdd(listBean.getId(), moneys, 0);
+                    mPresenter.getQuoteAdd(orderId, moneys, 0);
                 } else {
                     ViewInject.toast(context.getString(R.string.hintDriverBid1));
                 }

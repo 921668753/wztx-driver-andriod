@@ -4,12 +4,9 @@ import android.os.Handler;
 
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-import com.ruitukeji.zwbs.common.BaseView;
 import com.ruitukeji.zwbs.entity.NationalCity;
 
 import java.util.ArrayList;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Administrator on 2017/2/21.
@@ -37,7 +34,7 @@ public interface SupplyGoodsContract {
         /**
          * 是否认证
          */
-        void isCertification(SweetAlertDialog sweetAlertDialog, int flag);
+        void isCertification(int flag);
 
 
         /**

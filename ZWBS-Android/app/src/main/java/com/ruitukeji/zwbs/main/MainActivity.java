@@ -30,6 +30,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
+import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.umeng.analytics.MobclickAgent;
 
@@ -309,10 +310,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
-        if (toLigon1(msg) && flag == 0) {
-            return;
-        } else if (flag != 0) {
-            ViewInject.toast(msg);
+        if (flag == 0 || flag == 2 || flag == 3) {
+            toLigon1(msg);
         }
     }
 

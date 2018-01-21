@@ -25,8 +25,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
     @Override
     protected void setItemChildListener(BGAViewHolderHelper viewHolderHelper) {
         viewHolderHelper.setItemChildClickListener(R.id.tv_getorder);
-        viewHolderHelper.setItemChildLongClickListener(R.id.tv_reject);
-        viewHolderHelper.setItemChildLongClickListener(R.id.tv_sendQuotation);
+        viewHolderHelper.setItemChildClickListener(R.id.tv_sendQuotation);
     }
 
     @Override

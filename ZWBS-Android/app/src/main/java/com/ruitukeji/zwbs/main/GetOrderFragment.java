@@ -354,7 +354,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 7) {
             //报价
             GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-            SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean) {
+            SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
                 @Override
                 public void confirm() {
                     this.dismiss();
@@ -371,7 +371,13 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 11) {
             //接单
             GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-            GetOrderBouncedDialog getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean) {
+            String money = "";
+            if (listBean.getMind_price().equals("0.00")) {
+                money = listBean.getSystem_price();
+            } else {
+                money = listBean.getMind_price();
+            }
+            GetOrderBouncedDialog getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
                 @Override
                 public void confirm() {
                     this.dismiss();
