@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.supplygoods.SupplyGoodsViewAdapter;
 import com.ruitukeji.zwbs.application.MyApplication;
@@ -60,7 +61,10 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private TextView tv_startingPoint;
     @BindView(id = R.id.img_startingPoint)
     private ImageView img_startingPoint;
-
+    private int startProvinceId = 0;
+    private int startCityId = 0;
+    private int startAreaId = 0;
+    private String startingpoint = "";
     /**
      * 目的地
      */
@@ -70,7 +74,10 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private TextView tv_endPoint;
     @BindView(id = R.id.img_endPoint)
     private ImageView img_endPoint;
-
+    private int endProvinceId = 0;
+    private int endCityId = 0;
+    private int endAreaId = 0;
+    private String endpoint = "";
     /**
      * 可接单类型
      */
@@ -80,7 +87,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private TextView tv_availableType;
     @BindView(id = R.id.img_availableType)
     private ImageView img_availableType;
-    private int availableTypeId = 0;
+    private String availableTypeName = "all";
     /**
      * 车长车型
      */
@@ -90,7 +97,8 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private TextView tv_conductorModels;
     @BindView(id = R.id.img_conductorModels)
     private ImageView img_conductorModels;
-
+    private int vehicleModelId = 0;
+    private int vehicleLengthId = 0;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -100,10 +108,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     @BindView(id = R.id.lv_order)
     private ListView lv_order;
 
-    private String startingpoint = "";
-    private String endpoint = "";
-    private String vehiclelength = "";
-    private String vehiclemodel = "";
 
     /**
      * 错误提示页
@@ -127,13 +131,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
      */
     private boolean isShowLoadingMore = false;
 
-    private int vehicleModelId = 0;
-    private int vehicleLengthId = 0;
     private int id = 0;
-    private int provinceId = 0;
-    private int cityId = 0;
-    private int areaId = 0;
-    private String type = "all";
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -185,7 +183,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, type, mMorePageNumber);
+        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, availableTypeName, mMorePageNumber);
     }
 
     @Override
@@ -200,7 +198,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, type, mMorePageNumber);
+        ((SupplyGoodsContract.Presenter) mPresenter).getSupplyGoods(startingpoint, endpoint, vehicleLengthId, vehicleModelId, availableTypeName, mMorePageNumber);
         return true;
     }
 
@@ -212,32 +210,47 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 aty.showActivity(aty, SetTheLineActivity.class);
                 break;
             case R.id.ll_startingPoint:
-                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, provinceId, cityId, areaId) {
+                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, startProvinceId, startCityId, startAreaId) {
                     @Override
-                    public void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
-
-
+                    public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
+                        startProvinceId = provinceId;
+                        startCityId = cityId;
+                        startAreaId = areaId;
+                        startingpoint = provinceName;
+                        if (!StringUtils.isEmpty(provinceName)) {
+                            tv_startingPoint.setText(provinceName);
+                        }
+                        img_startingPoint.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
                     }
                 };
                 originBouncedDialog.show();
                 break;
             case R.id.ll_endPoint:
-                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, provinceId, cityId, areaId) {
+                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, endProvinceId, endCityId, endAreaId) {
                     @Override
-                    public void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
+                    public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
                         //   province1Name = provinceName;
-
+                        endProvinceId = provinceId;
+                        endCityId = cityId;
+                        endAreaId = areaId;
+                        endpoint = provinceName;
+                        if (!StringUtils.isEmpty(provinceName)) {
+                            tv_endPoint.setText(provinceName);
+                        }
+                        img_endPoint.setImageResource(R.mipmap.ic_category_gray_down);
+                        mRefreshLayout.beginRefreshing();
                     }
                 };
                 originBouncedDialog1.show();
                 break;
             case R.id.ll_availableType:
-                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeId) {
+                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
                     @Override
-                    public void confirm(String availableTypeName, int availableTypeId1) {
+                    public void confirm(String availableTypeName1, String availableTypeValue) {
                         this.dismiss();
-                        availableTypeId = availableTypeId1;
-                        tv_availableType.setText(availableTypeName);
+                        availableTypeName = availableTypeName1;
+                        tv_availableType.setText(availableTypeValue);
                         img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }

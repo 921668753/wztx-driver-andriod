@@ -280,7 +280,7 @@
     <string name="startingpoint">出发地</string>
     <string name="endpoint">目的地</string>
     <string name="emptying">清空</string>
-
+    <string name="all1">全</string>
 
     <!--订单-->
     <string name="all">全部</string>

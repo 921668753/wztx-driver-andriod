@@ -25,7 +25,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class OriginBouncedDialog extends BaseDialog implements View.OnClickListener, AdapterView.OnItemClickListener, OriginBouncedContract.View {
+public abstract class OriginBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, OriginBouncedContract.View {
 
     private Context context;
 
@@ -41,10 +41,13 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
 
     private AreaViewAdapter areaViewAdapter = null;
 
+    ResultBean provinceBean;
     private int provinceId = 0;
 
+    ResultBean cityBean;
     private int cityId = 0;
 
+    ResultBean areaBean;
     private int areaId = 0;
 
     private OriginBouncedContract.Presenter mPresenter;
@@ -56,6 +59,9 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
     public OriginBouncedDialog(Context context, int provinceId, int cityId, int areaId) {
         super(context, R.style.dialog);
         this.context = context;
+        this.provinceId = provinceId;
+        this.cityId = cityId;
+        this.areaId = areaId;
     }
 
     @Override
@@ -89,27 +95,41 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_transparent:
-                //   dismiss();
-                break;
-        }
-    }
-
-    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.lv_province) {
-
-
+            provinceBean = provinceViewAdapter.getItem(position);
+            selectProvince(provinceBean.getId());
+            if (provinceBean.getName().startsWith(context.getString(R.string.all1))) {
+                dismiss();
+                confirm("", 0, 0, 0);
+                return;
+            }
         } else if (parent.getId() == R.id.lv_city) {
+            cityBean = cityViewAdapter.getItem(position);
+            selectCity(cityBean.getId());
+            if (cityBean.getName().startsWith(context.getString(R.string.all1))) {
+                dismiss();
+                confirm(provinceBean.getName(), provinceBean.getId(), 0, 0);
+                return;
+            }
 
         } else if (parent.getId() == R.id.lv_area) {
-
+            areaBean = areaViewAdapter.getItem(position);
+            selectArea(areaBean.getId());
+            dismiss();
+            if (areaBean.getName().startsWith(context.getString(R.string.all1)) && cityBean.getName().contains(provinceBean.getName())) {
+                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
+            } else if (areaBean.getName().startsWith(context.getString(R.string.all1)) && !cityBean.getName().contains(provinceBean.getName())) {
+                confirm(provinceBean.getName() + cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
+            } else if (cityBean.getName() != null && cityBean.getName().contains(provinceBean.getName())) {
+                confirm(cityBean.getName() + areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
+            } else {
+                confirm(provinceBean.getName() + cityBean.getName() + areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
+            }
         }
     }
 
-    public abstract void confirm(String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId);
+    public abstract void confirm(String addressName, int provinceId, int cityId, int areaId);
 
     @Override
     public void setPresenter(OriginBouncedContract.Presenter presenter) {
@@ -144,9 +164,17 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
     private void selectProvince(int provinceId) {
         for (int i = 0; i < provinceBeanlist.size(); i++) {
             if (provinceId == provinceBeanlist.get(i).getId() || provinceId == i && provinceId == 0) {
-                ResultBean provinceBean = provinceBeanlist.get(i);
+                provinceBean = provinceBeanlist.get(i);
                 provinceBean.setStatus(1);
-                mPresenter.getAddress(provinceBeanlist.get(i).getId(), 1);
+                lv_province.setSelection(i);
+                lv_province.smoothScrollToPosition(i);
+                cityViewAdapter.clear();
+                areaViewAdapter.clear();
+                if (provinceBean.getName().startsWith(context.getString(R.string.all1))) {
+                    dismissLoadingDialog();
+                } else {
+                    mPresenter.getAddress(provinceBean.getId(), 1);
+                }
             } else {
                 provinceBeanlist.get(i).setStatus(0);
             }
@@ -161,9 +189,16 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
     private void selectCity(int cityId) {
         for (int i = 0; i < cityBeanlist.size(); i++) {
             if (cityId == cityBeanlist.get(i).getId() || cityId == i && cityId == 0) {
-                ResultBean provinceBean = cityBeanlist.get(i);
-                provinceBean.setStatus(1);
-                mPresenter.getAddress(cityBeanlist.get(i).getId(), 2);
+                cityBean = cityBeanlist.get(i);
+                cityBean.setStatus(1);
+                lv_city.setSelection(i);
+                lv_city.smoothScrollToPosition(i);
+                areaViewAdapter.clear();
+                if (cityBean.getName().startsWith(context.getString(R.string.all1))) {
+                    dismissLoadingDialog();
+                } else {
+                    mPresenter.getAddress(cityBean.getId(), 2);
+                }
             } else {
                 cityBeanlist.get(i).setStatus(0);
             }
@@ -178,8 +213,10 @@ public abstract class OriginBouncedDialog extends BaseDialog implements View.OnC
     private void selectArea(int areaId) {
         for (int i = 0; i < areaBeanlist.size(); i++) {
             if (areaId == areaBeanlist.get(i).getId() || areaId == i && areaId == 0) {
-                ResultBean provinceBean = areaBeanlist.get(i);
-                provinceBean.setStatus(1);
+                areaBean = areaBeanlist.get(i);
+                areaBean.setStatus(1);
+                lv_area.setSelection(i);
+                lv_area.smoothScrollToPosition(i);
             } else {
                 areaBeanlist.get(i).setStatus(0);
             }

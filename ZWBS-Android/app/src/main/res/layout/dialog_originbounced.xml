@@ -10,7 +10,7 @@
     <ListView
         android:id="@+id/lv_province"
         style="@style/AutoMatch"
-        android:layout_weight="0.7"
+        android:layout_weight="1"
         android:background="@color/f5F5F5colors"
         android:divider="@color/transparent"
         android:dividerHeight="@dimen/dimen0"

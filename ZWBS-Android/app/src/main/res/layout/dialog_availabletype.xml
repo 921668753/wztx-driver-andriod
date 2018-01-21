@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:layout_marginTop="@dimen/dimen105"
+    android:layout_marginTop="@dimen/dimen95"
     android:background="@color/transparent_1"
     android:orientation="vertical">
 
