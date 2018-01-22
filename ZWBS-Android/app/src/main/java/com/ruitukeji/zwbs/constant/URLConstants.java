@@ -176,6 +176,11 @@ public class URLConstants {
     public static String QUOTEGETINFO = APIURL + "quote/getInfo";
 
     /**
+     * 拒绝接单
+     */
+    public static String REFUSEORDER = APIURL + "goods/refuseOrder";
+
+    /**
      * 提交货源报价done
      */
     public static String QUOTEADD = APIURL + "quote/saveQuote";

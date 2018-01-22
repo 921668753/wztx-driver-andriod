@@ -453,6 +453,25 @@ public class RequestClient {
     }
 
     /**
+     * 拒绝接单  refuseOrder
+     */
+    public static void postRefuseOrder(HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "postRefuseOrder");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.REFUSEORDER, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 获得报价信息
      */
     public static void getQuoteInfo(HttpParams httpParams, final ResponseListener<String> listener) {

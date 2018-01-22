@@ -343,7 +343,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         } else if (flag == 3) {
             ((SupplyGoodsContract.Presenter) mPresenter).isCertification(3);
         } else if (flag == 4) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "SupplyGoodsFragment");
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", id);
             //    intent.putExtra("designation", "goodDetail");

@@ -95,6 +95,7 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
             private String org_city;
             private String volume;
             private String kilometres;
+            private int is_assigned;
             private int is_driver_dock;
             private String order_code;
             private String org_send_name;
@@ -143,6 +144,14 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
 
             public void setKilometres(String kilometres) {
                 this.kilometres = kilometres;
+            }
+
+            public int getIs_assigned() {
+                return is_assigned;
+            }
+
+            public void setIs_assigned(int is_assigned) {
+                this.is_assigned = is_assigned;
             }
 
             public int getIs_driver_dock() {

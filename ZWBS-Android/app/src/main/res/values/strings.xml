@@ -205,6 +205,7 @@
     <string name="pleaseEnterPrice">请输入价格</string>
     <string name="firmQuotation">确认报价</string>
     <string name="isConfirmOrder">是否确认接单？</string>
+    <string name="confirmReceiptRejected">确认拒绝该接单？</string>
     <string name="cancel1">取消</string>
     <string name="estimatePrice">该订单系统预估价格：¥</string>
     <string name="afterSubmission">报价提交后不可修改</string>

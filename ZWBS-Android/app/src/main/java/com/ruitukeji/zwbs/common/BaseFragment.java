@@ -98,6 +98,21 @@ public abstract class BaseFragment extends KJFragment implements LoadingDialogVi
         }
     }
 
+    public boolean toLigon1(String msg) {
+        if (StringUtils.isEmpty(msg)) {
+            ViewInject.toast(getString(R.string.otherError));
+            return true;
+        }
+        if (msg.equals("" + NumericConstants.TOLINGIN)) {
+            dismissLoadingDialog();
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+            return false;
+        }
+        ViewInject.toast(msg);
+        return true;
+    }
+
     public void callMsgEvent(MsgEvent msgEvent) {
 
     }

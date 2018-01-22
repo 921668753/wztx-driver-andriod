@@ -94,8 +94,8 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
 
     @Override
     public void isCertification(int flag) {
-        String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status","init");
-        String car_auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "car_auth_status","init");
+        String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status", "init");
+        String car_auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "car_auth_status", "init");
         if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
             AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行身份认证！") {
                 @Override
@@ -116,16 +116,16 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (car_auth_status != null && car_auth_status.equals("init") || car_auth_status != null && car_auth_status.equals("refuse") || car_auth_status != null && car_auth_status.equals("delete")) {
-                AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行车辆认证！") {
-                    @Override
-                    public void confirm() {
-                        this.cancel();
-                        mView.errorMsg("", 5);
-                    }
-                };
-                authenticationBouncedDialog.show();
-                return;
-        }else if (car_auth_status != null && car_auth_status.equals("check")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行车辆认证！") {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mView.errorMsg("", 5);
+                }
+            };
+            authenticationBouncedDialog.show();
+            return;
+        } else if (car_auth_status != null && car_auth_status.equals("check")) {
             AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "车辆认证还未通过，请耐心等待！") {
                 @Override
                 public void confirm() {
@@ -134,16 +134,16 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
             };
             authenticationBouncedDialog.show();
             return;
-        }else {
-              if (flag == 1) {
-                    mView.getSuccess("", 4);
-                } else if (flag == 2) {
-                    mView.getSuccess("", 5);
-                }else   if (flag == 3) {
-                  mView.getSuccess("", 6);
-              }
+        } else {
+            if (flag == 1) {
+                mView.getSuccess("", 4);
+            } else if (flag == 2) {
+                mView.getSuccess("", 5);
+            } else if (flag == 3) {
+                mView.getSuccess("", 6);
+            }
         }
-        }
+    }
 
     @Override
     public void initJsonData(Handler mHandler, ArrayList<NationalCity> options1Items, ArrayList<ArrayList<String>> options2Items, ArrayList<ArrayList<ArrayList<String>>> options3Items) {

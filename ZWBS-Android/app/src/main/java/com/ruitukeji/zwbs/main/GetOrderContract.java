@@ -40,8 +40,12 @@ public interface GetOrderContract {
         /**
          * 是否认证
          */
-        void isCertification(SweetAlertDialog sweetAlertDialog, int flag);
+        void isCertification(int flag);
 
+        /**
+         * 拒绝订单
+         */
+        void postRefuseOrder(int id);
     }
 
     interface View extends BaseNewView<Presenter, String> {

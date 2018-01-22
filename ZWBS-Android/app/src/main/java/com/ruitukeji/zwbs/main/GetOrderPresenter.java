@@ -13,6 +13,7 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.GaoDeCreateBean;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
+import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.MathUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
@@ -54,17 +55,28 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
     }
 
     @Override
-    public void getUnRead() {
+    public void getQuoteOrder(int page, String city, int car_type_id, int car_length_id, String order_type) {
+        //  mView.showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getUnRead(httpParams, new ResponseListener<String>() {
+        httpParams.put("page", page);
+        httpParams.put("pageSize", 5);
+        httpParams.put("city", city);
+        if (car_length_id != 0) {
+            httpParams.put("car_style_length_id", car_length_id);
+        }
+        if (car_type_id != 0) {
+            httpParams.put("car_style_type_id", car_type_id);
+        }
+        httpParams.put("type", order_type);
+        RequestClient.getQuoteList(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 12);
+                mView.getSuccess(response, 2);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 12);
+                mView.errorMsg(msg, 2);
             }
         });
     }
@@ -106,33 +118,6 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
     }
 
     @Override
-    public void getQuoteOrder(int page, String city, int car_type_id, int car_length_id, String order_type) {
-        //  mView.showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("page", page);
-        httpParams.put("pageSize", 5);
-        httpParams.put("city", city);
-        if (car_length_id != 0) {
-            httpParams.put("car_style_length_id", car_length_id);
-        }
-        if (car_type_id != 0) {
-            httpParams.put("car_style_type_id", car_type_id);
-        }
-        httpParams.put("type", order_type);
-        RequestClient.getQuoteList(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 2);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.errorMsg(msg, 2);
-            }
-        });
-    }
-
-    @Override
     public void downloadApp(String updateAppUrl) {
         mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.download));
         ProgressListener progressListener = new ProgressListener() {
@@ -146,6 +131,80 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 3);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
+    public void isCertification(int flag) {
+        String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status", "init");
+        String car_auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "car_auth_status", "init");
+        if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行身份认证！") {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mView.errorMsg("", 8);
+                }
+            };
+            authenticationBouncedDialog.show();
+            return;
+        } else if (auth_status != null && auth_status.equals("check")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "身份认证还未通过，请耐心等待！") {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                }
+            };
+            authenticationBouncedDialog.show();
+            return;
+        } else if (car_auth_status != null && car_auth_status.equals("init") || car_auth_status != null && car_auth_status.equals("refuse") || car_auth_status != null && car_auth_status.equals("delete")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行车辆认证！") {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mView.errorMsg("", 9);
+                }
+            };
+            authenticationBouncedDialog.show();
+            return;
+        } else if (car_auth_status != null && car_auth_status.equals("check")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "车辆认证还未通过，请耐心等待！") {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                }
+            };
+            authenticationBouncedDialog.show();
+            return;
+        } else {
+            if (flag == 0) {
+                mView.getSuccess("", 8);
+            } else if (flag == 1) {
+                mView.getSuccess("", 9);
+            } else if (flag == 2) {
+                mView.getSuccess("", 10);
+            } else if (flag == 3) {
+                mView.getSuccess("", 11);
+            }
+        }
+    }
+
+    @Override
+    public void postRefuseOrder(int id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        Map map = new HashMap();
+        map.put("g_id", id);
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+        RequestClient.postRefuseOrder(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 12);
             }
 
             @Override
@@ -171,61 +230,78 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
     }
 
     @Override
-    public void isCertification(SweetAlertDialog sweetAlertDialog, int flag) {
-        String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status");
-        if (flag == 0) {
-            if (auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
-                sweetAlertDialog.setTitleText(KJActivityStack.create().topActivity().getString(R.string.notPass))
-                        .setConfirmText(KJActivityStack.create().topActivity().getString(R.string.confirm))
-                        .showCancelButton(true)
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        })
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                                mView.errorMsg("", 9);
-                            }
-                        }).show();
+    public void getUnRead() {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getUnRead(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 12);
             }
-        } else if (flag == 1) {
-            if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
-                sweetAlertDialog.setTitleText(KJActivityStack.create().topActivity().getString(R.string.notPass))
-                        .setConfirmText(KJActivityStack.create().topActivity().getString(R.string.confirm))
-                        .showCancelButton(true)
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                                mView.errorMsg("", 9);
-                            }
-                        })
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismiss();
-                            }
-                        }).show();
-                return;
-            } else if (auth_status != null && auth_status.equals("check")) {
-                ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.inAuthentication) + "," + KJActivityStack.create().topActivity().getString(R.string.pleaseWait));
-                return;
-            } else {
-                int GetOrderFragmentOnItemChildClick = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "GetOrderFragmentOnItemChildClick", 0);
-                if (GetOrderFragmentOnItemChildClick == 0) {
-                    mView.getSuccess("", 10);
-                } else if (GetOrderFragmentOnItemChildClick == 1) {
-                    mView.getSuccess("", 11);
-                } else if (GetOrderFragmentOnItemChildClick == 2) {
-                    mView.getSuccess("", 7);
-                }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 12);
             }
-        }
+        });
     }
+
+
+//    @Override
+//    public void isCertification( int flag) {
+//        String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status");
+//        if (flag == 0) {
+//            if (auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
+////                sweetAlertDialog.setTitleText(KJActivityStack.create().topActivity().getString(R.string.notPass))
+////                        .setConfirmText(KJActivityStack.create().topActivity().getString(R.string.confirm))
+////                        .showCancelButton(true)
+////                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+////                            @Override
+////                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+////                                sweetAlertDialog.dismiss();
+////                            }
+////                        })
+////                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+////                            @Override
+////                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+////                                sweetAlertDialog.dismiss();
+////                                mView.errorMsg("", 9);
+////                            }
+////                        }).show();
+//            }
+//        } else if (flag == 1) {
+//            if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
+////                sweetAlertDialog.setTitleText(KJActivityStack.create().topActivity().getString(R.string.notPass))
+////                        .setConfirmText(KJActivityStack.create().topActivity().getString(R.string.confirm))
+////                        .showCancelButton(true)
+////                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+////                            @Override
+////                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+////                                sweetAlertDialog.dismiss();
+////                                mView.errorMsg("", 9);
+////                            }
+////                        })
+////                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+////                            @Override
+////                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+////                                sweetAlertDialog.dismiss();
+////                            }
+////                        }).show();
+//                return;
+//            } else if (auth_status != null && auth_status.equals("check")) {
+//                ViewInject.toast(KJActivityStack.create().topActivity().getString(R.string.inAuthentication) + "," + KJActivityStack.create().topActivity().getString(R.string.pleaseWait));
+//                return;
+//            } else {
+//                int GetOrderFragmentOnItemChildClick = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "GetOrderFragmentOnItemChildClick", 0);
+//                if (GetOrderFragmentOnItemChildClick == 0) {
+//                    mView.getSuccess("", 10);
+//                } else if (GetOrderFragmentOnItemChildClick == 1) {
+//                    mView.getSuccess("", 11);
+//                } else if (GetOrderFragmentOnItemChildClick == 2) {
+//                    mView.getSuccess("", 7);
+//                }
+//            }
+//        }
+//    }
 
 
 }

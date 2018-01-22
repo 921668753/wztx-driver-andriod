@@ -22,6 +22,7 @@ import com.ruitukeji.zwbs.adapter.getorder.GetOrderViewAdapter;
 import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
@@ -41,6 +42,9 @@ import com.ruitukeji.zwbs.getorder.message.SystemMessageActivity;
 import com.ruitukeji.zwbs.getorder.selectioncity.SelectionCityActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
+import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
+import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
+import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -200,15 +204,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        position = i;
-        if (sweetAlertDialog == null) {
-            initDialog();
-        }
-        ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 1);
-    }
-
-    @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
@@ -233,21 +228,24 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     }
 
     @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        position = i;
+        ((GetOrderContract.Presenter) mPresenter).isLogin(4);
+    }
+
+    @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position1) {
         position = position1;
         //接单
         if (childView.getId() == R.id.tv_getorder) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "GetOrderFragmentOnItemChildClick", 1);
-            if (sweetAlertDialog == null) {
-                initDialog();
-            }
-            ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 1);
+            ((GetOrderContract.Presenter) mPresenter).isLogin(5);
+            //  ((GetOrderContract.Presenter) mPresenter).isCertification(1);
+        } else if (childView.getId() == R.id.tv_reject) {
+            ((GetOrderContract.Presenter) mPresenter).isLogin(6);
+            //   ((GetOrderContract.Presenter) mPresenter).isCertification(2);
         } else if (childView.getId() == R.id.tv_sendQuotation) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "GetOrderFragmentOnItemChildClick", 2);
-            if (sweetAlertDialog == null) {
-                initDialog();
-            }
-            ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 1);
+            ((GetOrderContract.Presenter) mPresenter).isLogin(7);
+            //  ((GetOrderContract.Presenter) mPresenter).isCertification(3);
         }
     }
 
@@ -261,15 +259,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 if (sweetAlertDialog == null) {
                     initDialog();
                 }
-                ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 0);
+                ((GetOrderContract.Presenter) mPresenter).isCertification(0);
                 return;
             }
             updateAppUrl = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "updateAppUrl", null);
             if (StringUtils.isEmpty(updateAppUrl)) {
-                if (sweetAlertDialog == null) {
-                    initDialog();
-                }
-                ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 0);
+                ((GetOrderContract.Presenter) mPresenter).isCertification(0);
                 return;
             }
             sweetAlertDialog.setTitleText(getString(R.string.updateVersion))
@@ -279,10 +274,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
                             sweetAlertDialog.dismiss();
-                            if (sweetAlertDialog == null) {
-                                initDialog();
-                            }
-                            ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 0);
+                            ((GetOrderContract.Presenter) mPresenter).isCertification(0);
                         }
                     })
                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
@@ -336,40 +328,26 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             if (sweetAlertDialog == null) {
                 initDialog();
             }
-            ((GetOrderContract.Presenter) mPresenter).isCertification(sweetAlertDialog, 0);
+            ((GetOrderContract.Presenter) mPresenter).isCertification(0);
         } else if (flag == 4) {
-            showLoadingDialog(getString(R.string.dataLoad));
-            ((GetOrderContract.Presenter) mPresenter).getUnRead();
+            ((GetOrderContract.Presenter) mPresenter).isCertification(0);
         } else if (flag == 5) {
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods1", false);
-//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", false);
-            WorkingStateBean workingStateBean = (WorkingStateBean) JsonUtil.getInstance().json2Obj(s, WorkingStateBean.class);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", workingStateBean.getResult().getOnline());
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", workingStateBean.getResult().getAuth_status());
-            boolean isUpdate = PreferenceHelper.readBoolean(MyApplication.getContext(), StringConstants.FILENAME, "isUpdate", false);
-            getSuccess(String.valueOf(isUpdate), 0);
+            ((GetOrderContract.Presenter) mPresenter).isCertification(1);
         } else if (flag == 6) {
-            dismissLoadingDialog();
+            ((GetOrderContract.Presenter) mPresenter).isCertification(2);
         } else if (flag == 7) {
-            //报价
-            GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-            SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
-                @Override
-                public void confirm() {
-                    this.dismiss();
-                    mRefreshLayout.beginRefreshing();
-                }
-            };
-            sendQuotationBouncedDialog.show();
-        } else if (flag == 10) {
-            // PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
+            ((GetOrderContract.Presenter) mPresenter).isCertification(3);
+        } else if (flag == 8) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
             //    intent.putExtra("designation", "getGoodDetail");
             aty.showActivity(aty, intent);
-        } else if (flag == 11) {
-            //接单
+        } else if (flag == 9) {
+            int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
+            if (isGoWork == 1) {
+                ViewInject.toast(getString(R.string.notOrder));
+                return;
+            }
             GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
             String money = "";
             if (listBean.getMind_price().equals("0.00")) {
@@ -377,38 +355,55 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             } else {
                 money = listBean.getMind_price();
             }
+            //接单
             GetOrderBouncedDialog getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
                 @Override
                 public void confirm() {
-                    this.dismiss();
+                    this.cancel();
                     mRefreshLayout.beginRefreshing();
                 }
             };
             getOrderBouncedDialog.show();
-        } else if (flag == 12) {
-            //消息
-            MessageCenterBean messageCenterBean = (MessageCenterBean) JsonUtil.getInstance().json2Obj(s, MessageCenterBean.class);
-            if (messageCenterBean.getResult().getList() == null || messageCenterBean.getResult().getList().size() == 0) {
-                // isVisibilityTag = false;
-                tv_message.setVisibility(View.GONE);
+        } else if (flag == 10) {
+            int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
+            if (isGoWork == 1) {
+                ViewInject.toast(getString(R.string.notOrder));
+                return;
             }
-            if (messageCenterBean.getResult().getList().get(0) == null || messageCenterBean.getResult().getList().get(1) == null) {
-                //  isVisibilityTag = false;
-                tv_message.setVisibility(View.GONE);
-            }
-            if (messageCenterBean.getResult().getList().get(0).getUnread() > 0 || messageCenterBean.getResult().getList().get(1).getUnread() > 0) {
-                // isVisibilityTag = true;
-                String accessToken = PreferenceHelper.readString(MyApplication.getContext(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    tv_message.setVisibility(View.GONE);
-                } else {
-                    tv_message.setVisibility(View.VISIBLE);
+            //拒绝
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmReceiptRejected)) {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    //拒绝
+                    GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
+                    //  showLoadingDialog(getString(R.string.submissionLoad));
+                    ((GetOrderContract.Presenter) mPresenter).postRefuseOrder(listBean.getId());
                 }
-            } else {
-                tv_message.setVisibility(View.GONE);
+            };
+            authenticationBouncedDialog.show();
+        } else if (flag == 11) {
+            int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
+            if (isGoWork == 1) {
+                ViewInject.toast(getString(R.string.notOrder));
+                return;
             }
-//            String line_id = PreferenceHelper.readString(aty, StringConstants.FILENAME, "line_id", "");
-//            ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, line_id);
+            //报价
+            GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
+            SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
+                @Override
+                public void confirm() {
+                    this.cancel();
+                    mRefreshLayout.beginRefreshing();
+                }
+            };
+            sendQuotationBouncedDialog.show();
+        } else if (flag == 12) {
+            dismissLoadingDialog();
+            mRefreshLayout.beginRefreshing();
+        } else if (flag == 13) {
+
+
         }
     }
 
@@ -477,18 +472,15 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 mRefreshLayout.endLoadingMore();
             }
             dismissLoadingDialog();
-        } else if (flag == 7 || flag == 8) {
-            if (msg.equals("" + NumericConstants.TOLINGIN)) {
-                Intent intent = new Intent(aty, LoginActivity.class);
-                // intent.putExtra("name", "GetOrderFragment");
-                aty.showActivity(aty, intent);
-            }
-        } else if (flag == 9) {
-            String auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "auth_status");
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
-            Intent newUserInformation = new Intent(aty, NewUserInformationActivity.class);
-            newUserInformation.putExtra("auth_status", auth_status);
+        } else if (flag == 4 || flag == 5 || flag == 6 || flag == 7) {
+            dismissLoadingDialog();
+            toLigon1(msg);
+        } else if (flag == 8) {
+            Intent newUserInformation = new Intent(aty, IdentityAuthenticationActivity.class);
             aty.showActivity(aty, newUserInformation);
+        } else if (flag == 9) {
+            Intent vehicleCertification = new Intent(aty, VehicleCertificationActivity.class);
+            aty.showActivity(aty, vehicleCertification);
         } else if (flag == 12) {
             ((GetOrderContract.Presenter) mPresenter).getUnRead();
         }

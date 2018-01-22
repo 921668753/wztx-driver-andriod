@@ -24,6 +24,7 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
     @Override
     protected void setItemChildListener(BGAViewHolderHelper viewHolderHelper) {
         viewHolderHelper.setItemChildClickListener(R.id.tv_getorder);
+        viewHolderHelper.setItemChildClickListener(R.id.tv_reject);
         viewHolderHelper.setItemChildClickListener(R.id.tv_sendQuotation);
     }
 
@@ -47,7 +48,13 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         } else if (listBean.getType().equals("appoint")) {
             viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_yuyue);
         }
-        viewHolderHelper.setVisibility(R.id.img_z, View.GONE);
+        if (listBean.getIs_assigned() == 0) {
+            viewHolderHelper.setVisibility(R.id.img_z, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_reject, View.GONE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.img_z, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_reject, View.VISIBLE);
+        }
 
         /**
          * 时间
