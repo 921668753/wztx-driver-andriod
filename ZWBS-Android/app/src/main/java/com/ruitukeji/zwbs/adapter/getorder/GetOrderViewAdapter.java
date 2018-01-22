@@ -72,11 +72,6 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrder_code());
 
         /**
-         * 重量
-         */
-        viewHolderHelper.setText(R.id.tv_weight, listBean.getWeight());
-
-        /**
          * 车长
          */
         viewHolderHelper.setText(R.id.tv_conductor, listBean.getCar_style_length());
@@ -125,9 +120,9 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
          * 实际价格
          */
         if (StringUtils.isEmpty(listBean.getMind_price()) || listBean.getMind_price().equals("0.00")) {
-            viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getSystem_price());
+            viewHolderHelper.setText(R.id.tv_actualPrice, mContext.getString(R.string.renminbi) + listBean.getSystem_price());
         } else {
-            viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getMind_price());
+            viewHolderHelper.setText(R.id.tv_actualPrice, mContext.getString(R.string.renminbi) + listBean.getMind_price());
         }
 
         /**

@@ -1,13 +1,6 @@
 package com.ruitukeji.zwbs.getorder;
 
-import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
-import com.ruitukeji.zwbs.common.KJActivityStack;
-import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.getorder.OrderDetailsContract;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
@@ -30,23 +23,6 @@ public class OrderDetailsPresenter implements OrderDetailsContract.Presenter {
     }
 
     @Override
-    public void getOrderDetails(int order_id) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("order_id", order_id);
-        RequestClient.getOrderDetails(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg);
-            }
-        });
-    }
-
-    @Override
     public void getGoodDetails(int good_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("id", good_id);
@@ -58,23 +34,19 @@ public class OrderDetailsPresenter implements OrderDetailsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg);
+                mView.errorMsg(msg, 0);
             }
         });
     }
 
-    /**
-     * 提交司机报价
-     */
+
     @Override
-    public void postQuoteAdd(int quote_id, String dr_price, int is_place_order) {
+    public void postRefuseOrder(int id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("goods_id", quote_id);
-        map.put("dr_price", dr_price);
-        map.put("is_receive", is_place_order);
+        Map map = new HashMap();
+        map.put("g_id", id);
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.getQuoteAdd(httpParams, new ResponseListener<String>() {
+        RequestClient.postRefuseOrder(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);
@@ -82,43 +54,8 @@ public class OrderDetailsPresenter implements OrderDetailsContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.error(msg);
+                mView.errorMsg(msg, 0);
             }
         });
     }
-
-
-    /**
-     * 司机进行发货动作
-     */
-    @Override
-    public void postShipping(int order_id) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        Map<String, Object> map = new HashMap<String, Object>();
-        if (order_id <= 0) {
-            mView.error(MyApplication.getContext().getString(R.string.locateFailure));
-            return;
-        }
-        map.put("order_id", order_id);
-        String currentLocationLatitudeLongitude = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "currentLocationLatitudeLongitude");
-        if (StringUtils.isEmpty(currentLocationLatitudeLongitude)) {
-            mView.error(MyApplication.getContext().getString(R.string.locateFailure));
-            return;
-        }
-        map.put("org_address_maps", currentLocationLatitudeLongitude);
-        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.postShipping(httpParams, new ResponseListener<String>() {
-            @Override
-            public void onSuccess(String response) {
-                mView.getSuccess(response, 2);
-            }
-
-            @Override
-            public void onFailure(String msg) {
-                mView.error(msg);
-            }
-        });
-
-    }
-
 }

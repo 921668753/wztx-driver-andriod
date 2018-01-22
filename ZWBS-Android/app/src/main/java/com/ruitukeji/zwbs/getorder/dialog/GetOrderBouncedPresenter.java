@@ -45,7 +45,5 @@ public class GetOrderBouncedPresenter implements GetOrderBouncedContract.Present
                 mView.error(msg);
             }
         });
-
-
     }
 }
