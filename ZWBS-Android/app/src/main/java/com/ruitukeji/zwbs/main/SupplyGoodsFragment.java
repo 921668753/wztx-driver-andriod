@@ -408,9 +408,15 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             startProvinceName = "";
             startCityName = "";
             startAreaName = "";
+            endProvinceId = 0;
+            endCityId = 0;
+            endAreaId = 0;
             endProvinceName = "";
             endCityName = "";
             endAreaName = "";
+            endProvinceId = 0;
+            endCityId = 0;
+            endAreaId = 0;
         }
     }
 

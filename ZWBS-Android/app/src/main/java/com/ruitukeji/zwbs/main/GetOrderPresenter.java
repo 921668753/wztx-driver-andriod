@@ -110,11 +110,15 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
         //  mView.showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
-        httpParams.put("pageSize", 10);
+        httpParams.put("pageSize", 5);
         httpParams.put("city", city);
-        httpParams.put("car_type_id", car_type_id);
-        httpParams.put("car_length_id", car_length_id);
-        httpParams.put("order_type", order_type);
+        if (car_length_id != 0) {
+            httpParams.put("car_style_length_id", car_length_id);
+        }
+        if (car_type_id != 0) {
+            httpParams.put("car_style_type_id", car_type_id);
+        }
+        httpParams.put("type", order_type);
         RequestClient.getQuoteList(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

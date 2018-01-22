@@ -1,7 +1,9 @@
 package com.ruitukeji.zwbs.adapter.getorder;
 
 import android.content.Context;
+import android.view.View;
 
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.entity.getorder.GetOrderBean.ResultBean.ListBean;
 
@@ -22,34 +24,35 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
     @Override
     protected void setItemChildListener(BGAViewHolderHelper viewHolderHelper) {
         viewHolderHelper.setItemChildClickListener(R.id.tv_getorder);
-        viewHolderHelper.setItemChildLongClickListener(R.id.tv_sendQuotation);
+        viewHolderHelper.setItemChildClickListener(R.id.tv_sendQuotation);
     }
 
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ListBean listBean) {
 
         /**
-         *  客户名称
+         * 姓名
          */
-        viewHolderHelper.setText(R.id.tv_name, listBean.getGoods_name());
+        viewHolderHelper.setText(R.id.tv_name, listBean.getOrg_send_name());
 
         /**
-         * 订单属性
+         * 标签
          */
-//        if (StringUtils.isEmpty(listBean.getType())) {
-//            viewHolderHelper.setVisibility(R.id.img_state, View.GONE);
-//        } else if (listBean.getType().equals("often")) {
-//            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_shishi);
-//        } else if (listBean.getType().equals("urgent")) {
-//            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_jiaji);
-//        } else if (listBean.getType().equals("appoint")) {
-//            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_yuyue);
-//        }
+        if (StringUtils.isEmpty(listBean.getType())) {
+            viewHolderHelper.setImageDrawable(R.id.img_state, null);
+        } else if (listBean.getType().equals("often")) {
+            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_shishi);
+        } else if (listBean.getType().equals("urgent")) {
+            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_jiaji);
+        } else if (listBean.getType().equals("appoint")) {
+            viewHolderHelper.setImageResource(R.id.img_state, R.mipmap.label_yuyue);
+        }
+        viewHolderHelper.setVisibility(R.id.img_z, View.GONE);
 
         /**
-         * 订单时间
+         * 时间
          */
-        viewHolderHelper.setText(R.id.tv_time, listBean.getOrg_city());
+        viewHolderHelper.setText(R.id.tv_time, listBean.getAppoint_at());
 
         /**
          * 货物名称
@@ -59,7 +62,12 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 订单号
          */
-        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrg_city());
+        viewHolderHelper.setText(R.id.tv_orderNumber, listBean.getOrder_code());
+
+        /**
+         * 重量
+         */
+        viewHolderHelper.setText(R.id.tv_weight, listBean.getWeight());
 
         /**
          * 车长
@@ -67,65 +75,70 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         viewHolderHelper.setText(R.id.tv_conductor, listBean.getCar_style_length());
 
         /**
-         * 车型
+         *车型
          */
         viewHolderHelper.setText(R.id.tv_models, listBean.getCar_style_type());
 
         /**
          * 重量
          */
-        viewHolderHelper.setText(R.id.tv_weight, listBean.getWeight() + "吨");
+        viewHolderHelper.setText(R.id.tv_weight, listBean.getWeight());
 
         /**
          * 体积
          */
         viewHolderHelper.setText(R.id.tv_volume, listBean.getVolume());
 
-
         /**
-         * 起点
+         * 起运地
          */
-//        int orgprovince = listBean.getOrg_city().indexOf("省");
-//        int orgcity = listBean.getOrg_city().indexOf("市");
-//        if (orgprovince == -1 && orgcity != -1) {
-////            int orgarea = listBean.getOrg_city().indexOf("区");
-////            viewHolderHelper.setText(R.id.tv_start, listBean.getOrg_city().substring(0, orgcity) + listBean.getOrg_city().substring(orgcity + 1, orgarea));
-//            viewHolderHelper.setText(R.id.tv_start, listBean.getOrg_city().substring(0, orgcity));
-//        } else if (orgprovince != -1 && orgcity != -1) {
-//            viewHolderHelper.setText(R.id.tv_start, listBean.getOrg_city().substring(0, orgprovince) + listBean.getOrg_city().substring(orgprovince + 1, orgcity));
-//        } else {
         viewHolderHelper.setText(R.id.tv_thePlace, listBean.getOrg_city());
-//        }
 
         /**
-         * 终点
+         * 目的地
          */
         viewHolderHelper.setText(R.id.tv_destination, listBean.getDest_city());
 
         /**
-         *用车时间
-         */
-        viewHolderHelper.setText(R.id.tv_time, listBean.getUsecar_time() + "");
-
-        /**
          *预计公里数
          */
-        viewHolderHelper.setText(R.id.tv_expectedMileage, listBean.getUsecar_time() + "");
+        viewHolderHelper.setText(R.id.tv_expectedMileage, listBean.getKilometres());
 
         /**
          *预计耗时
          */
-        viewHolderHelper.setText(R.id.tv_estimatedTime, listBean.getUsecar_time() + "");
+        if (StringUtils.isEmpty(listBean.getUsecar_time())) {
+            viewHolderHelper.setVisibility(R.id.ll_estimatedTime, View.GONE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.ll_estimatedTime, View.VISIBLE);
+            viewHolderHelper.setText(R.id.tv_estimatedTime, listBean.getUsecar_time());
+        }
 
         /**
          * 实际价格
          */
-        if (listBean.getMind_price().equals("0.00")) {
+        if (StringUtils.isEmpty(listBean.getMind_price()) || listBean.getMind_price().equals("0.00")) {
             viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getSystem_price());
         } else {
             viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getMind_price());
         }
 
+        /**
+         * 是否有签收单
+         */
+        if (listBean.getIs_driver_dock() == 0) {
+            viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNotNeeds));
+        } else {
+            viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds));
+        }
+
+        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quote")) {
+            viewHolderHelper.setVisibility(R.id.tv_getorder, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_sendQuotation, View.VISIBLE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.tv_getorder, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_sendQuotation, View.GONE);
+        }
     }
 
 }

@@ -215,13 +215,13 @@
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch"
         android:layout_marginLeft="@dimen/dimen10"
-        android:layout_marginRight="@dimen/dimen10"
-        android:layout_marginTop="@dimen/dimen10">
+        android:layout_marginRight="@dimen/dimen10">
 
         <!--item_getorder.xml-->
         <ListView
             android:id="@+id/lv_getorder"
             style="@style/MatchMatch"
+            android:layout_marginTop="@dimen/dimen10"
             android:background="@color/background"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen10"

@@ -40,7 +40,6 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
 
     private SetTheLineViewAdapter setTheLineViewAdapter;
 
-
     /**
      * 错误提示页
      */
@@ -48,7 +47,6 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     private LinearLayout ll_commonError;
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
-
 
     @Override
     public void setRootView() {
@@ -104,7 +102,6 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
 
     @Override
     public void getSuccess(String s, int flag) {
-        //setTheLineViewAdapter.addNewData();
         if (flag == 0) {
             ll_commonError.setVisibility(View.GONE);
             lv_settheline.setVisibility(View.VISIBLE);
@@ -115,7 +112,6 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
             }
             setTheLineViewAdapter.clear();
             setTheLineViewAdapter.addMoreData(setTheLineBean.getResult().getList());
-
             dismissLoadingDialog();
         } else if (flag == 1) {
             showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
@@ -188,14 +184,60 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", setTheLineViewAdapter.getItem(position).getDrline_id() + "");
+        String startOrgCityName = setTheLineViewAdapter.getItem(position).getOrg_city();
+        String endDestCityName = setTheLineViewAdapter.getItem(position).getDest_city();
+        String startProvinceName = "";
+        String startCityName = "";
+        String startAreaName = "";
+
+        /**
+         * 起点
+         */
+        int orgprovince = startOrgCityName.indexOf("省");
+        int orgcity = startOrgCityName.indexOf("市");
+        int orgarea = startOrgCityName.indexOf("区");
+        if (orgprovince == -1 && orgcity != -1) {
+            startProvinceName = startOrgCityName.substring(0, orgcity + 1);
+            startCityName = startOrgCityName.substring(0, orgcity + 1);
+            startAreaName = startOrgCityName.substring(orgcity + 1);
+        } else if (orgprovince != -1 && orgcity != -1) {
+            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
+            startCityName = startOrgCityName.substring(orgprovince + 1, orgcity + 1);
+            startAreaName = startOrgCityName.substring(orgcity + 1);
+        } else if (orgprovince != -1 && orgcity == -1) {
+            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
+            startCityName = "县";
+            startAreaName = startOrgCityName.substring(orgprovince + 1);
+        } else {
+//            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
+//            startCityName = startOrgCityName.substring(orgprovince + 1, orgcity + 1);
+//            startAreaName = startOrgCityName.substring(orgcity + 1);
+        }
+
+        /**
+         * 终点
+         */
+        int destprovince = endDestCityName.indexOf("省");//("市")
+        int destcity = endDestCityName.indexOf("市");
+//        if (destprovince == -1 && destcity != -1) {
+//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city().substring(0, destcity));
+//        } else if (destprovince != -1 && destcity != -1) {
+//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city().substring(0, destprovince) + listBean.getDest_city().substring(destprovince + 1, destcity));
+//        } else {
+//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city());
+//        }
+
+        String endProvinceName = "";
+        String endCityName = "";
+        String endAreaName = "";
         Intent intent = new Intent();
         // 获取内容
-//        intent.putExtra("startProvinceName", startProvinceName);
-//        intent.putExtra("startCityName", startCityName);
-//        intent.putExtra("startAreaName", startAreaName);
-//        intent.putExtra("endProvinceName", endProvinceName);
-//        intent.putExtra("endCityName", endCityName);
-//        intent.putExtra("endAreaName", endAreaName);
+        intent.putExtra("startProvinceName", startProvinceName);
+        intent.putExtra("startCityName", startCityName);
+        intent.putExtra("startAreaName", startAreaName);
+        intent.putExtra("endProvinceName", endProvinceName);
+        intent.putExtra("endCityName", endCityName);
+        intent.putExtra("endAreaName", endAreaName);
         // 设置结果 结果码，一个数据
         setResult(RESULT_OK, intent);
         // 结束该activity 结束之后，前面的activity才可以处理结果

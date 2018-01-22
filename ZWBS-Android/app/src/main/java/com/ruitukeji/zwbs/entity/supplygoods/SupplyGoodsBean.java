@@ -89,6 +89,7 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
              */
 
             private int id;
+            private String org_send_name;
             private String org_city;
             private String volume;
             private String kilometres;
@@ -114,6 +115,14 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
 
             public void setId(int id) {
                 this.id = id;
+            }
+
+            public String getOrg_send_name() {
+                return org_send_name;
+            }
+
+            public void setOrg_send_name(String org_send_name) {
+                this.org_send_name = org_send_name;
             }
 
             public String getOrg_city() {

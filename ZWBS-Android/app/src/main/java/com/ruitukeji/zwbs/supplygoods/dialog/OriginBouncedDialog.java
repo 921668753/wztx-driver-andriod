@@ -8,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.supplygoods.dialog.AreaViewAdapter;
@@ -16,7 +15,6 @@ import com.ruitukeji.zwbs.adapter.supplygoods.dialog.CityViewAdapter;
 import com.ruitukeji.zwbs.adapter.supplygoods.dialog.ProvinceViewAdapter;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
-import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean.ResultBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;

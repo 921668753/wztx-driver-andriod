@@ -34,7 +34,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 姓名
          */
-        viewHolderHelper.setText(R.id.tv_name, listBean.getGoods_name());
+        viewHolderHelper.setText(R.id.tv_name, listBean.getOrg_send_name());
 
         /**
          * 标签
@@ -118,7 +118,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 实际价格
          */
-        if (listBean.getMind_price().equals("0.00")) {
+        if (StringUtils.isEmpty(listBean.getMind_price()) || listBean.getMind_price().equals("0.00")) {
             viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getSystem_price());
         } else {
             viewHolderHelper.setText(R.id.tv_actualPrice, "￥" + listBean.getMind_price());
