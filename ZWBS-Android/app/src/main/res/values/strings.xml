@@ -355,7 +355,9 @@
     <string name="licensePlateNumber">请填写车牌号</string>
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
     <string name="conductorModels1">车长/车型</string>
+    <string name="vehicleBrand">车辆品牌</string>
     <string name="vehicleRegistrationDate">车辆注册日期</string>
+    <string name="residentAddress">常驻地地址</string>
     <string name="vehicleRegistrationDate1">车辆注册日期应小于当前日期</string>
     <string name="faceLight">车辆正面照</string>
     <string name="uploadFaceLight">请上传车牌清晰，车头完整的正面照片</string>

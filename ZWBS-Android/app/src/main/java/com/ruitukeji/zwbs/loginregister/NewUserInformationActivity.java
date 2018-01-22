@@ -399,14 +399,14 @@ public class NewUserInformationActivity extends BaseActivity implements EasyPerm
      * 选项选择器
      */
     private void initPickerView() {
-        if (pickerViewUtil == null) {
-            pickerViewUtil = new PickerViewUtil(this, 0) {
-                @Override
-                public void getAddress(String address) {
-                    tv_permanentAddress.setText(address);
-                }
-            };
-        }
+//        if (pickerViewUtil == null) {
+//            pickerViewUtil = new PickerViewUtil(this, 0) {
+//                @Override
+//                public void getAddress(String address) {
+//                    tv_permanentAddress.setText(address);
+//                }
+//            };
+//        }
     }
 
 

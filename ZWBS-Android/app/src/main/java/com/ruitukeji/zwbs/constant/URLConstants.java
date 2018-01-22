@@ -130,10 +130,14 @@ public class URLConstants {
     public static String CARAUTH = APIURL + "User/carAuth";
 
     /**
+     * 车辆品牌
+     */
+    public static String VEHICLEBRAND = APIURL + "User/carBand";
+
+    /**
      * 获取车辆认证信息
      */
     public static String GETCARAUTHINFO = APIURL + "user/getCarAuthInfo";
-
 
     /**
      * 重置密码

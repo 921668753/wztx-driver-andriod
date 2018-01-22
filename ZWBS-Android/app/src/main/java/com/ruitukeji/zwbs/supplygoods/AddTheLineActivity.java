@@ -65,23 +65,23 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
      * 选项选择器
      */
     private void initPickerView() {
-        if (pickerViewUtil == null) {
-            pickerViewUtil = new PickerViewUtil(this, 1) {
-                @Override
-                public void getAddress(String address) {
-                    tv_start.setText(address);
-                }
-            };
-        }
-        if (pickerViewUtil1 == null) {
-            pickerViewUtil1 = new PickerViewUtil(this, 1) {
-                @Override
-                public void getAddress(String address) {
-                    //    img_stop.setRotation(360);
-                    tv_stop.setText(address);
-                }
-            };
-        }
+//        if (pickerViewUtil == null) {
+//            pickerViewUtil = new PickerViewUtil(this, 1) {
+//                @Override
+//                public void getAddress(String address) {
+//                    tv_start.setText(address);
+//                }
+//            };
+//        }
+//        if (pickerViewUtil1 == null) {
+//            pickerViewUtil1 = new PickerViewUtil(this, 1) {
+//                @Override
+//                public void getAddress(String address) {
+//                    //    img_stop.setRotation(360);
+//                    tv_stop.setText(address);
+//                }
+//            };
+//        }
     }
 
 

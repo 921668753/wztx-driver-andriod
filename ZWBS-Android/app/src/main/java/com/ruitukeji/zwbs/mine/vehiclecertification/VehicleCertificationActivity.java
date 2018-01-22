@@ -27,17 +27,17 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.UploadImageBean;
 import com.ruitukeji.zwbs.entity.loginregister.CodeBean;
 import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ProvinceShortBean;
+import com.ruitukeji.zwbs.entity.mine.vehiclecertification.VehicleBrandBean;
 import com.ruitukeji.zwbs.entity.mine.vehiclecertification.VehicleCertificationBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationContract;
-import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationPresenter;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.GetJsonDataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.PickerViewUtil;
 import com.ruitukeji.zwbs.utils.SoftKeyboardUtils;
-import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
 import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.ruitukeji.zwbs.utils.rx.RxBus;
 
@@ -96,7 +96,14 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     String vehicleModel = "";
     String vehicleLength = "";
 
-
+    /**
+     * 车辆品牌
+     */
+    @BindView(id = R.id.ll_vehicleBrand, click = true)
+    private LinearLayout ll_vehicleBrand;
+    @BindView(id = R.id.tv_vehicleBrand)
+    private TextView tv_vehicleBrand;
+    private OptionsPickerView pvOptions1;
     /**
      * 车辆注册时间
      */
@@ -106,6 +113,18 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     private TextView tv_vehicleRegistrationDate;
     Calendar calendar = Calendar.getInstance();
     public long vehicleRegistrationDate = 0;
+
+    /**
+     * 常驻地地址
+     */
+    @BindView(id = R.id.ll_residentAddress, click = true)
+    private LinearLayout ll_residentAddress;
+    @BindView(id = R.id.tv_residentAddress)
+    private TextView tv_residentAddress;
+    private PickerViewUtil pickerViewUtil;
+    private int area = 0;
+    private int city = 0;
+    private int province = 0;
 
     /**
      * 车辆正面照
@@ -213,6 +232,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     private TimePickerView pvTime1;
     private SamplePictureBouncedDialog samplePictureBouncedDialog = null;
     private List<ProvinceShortBean.ResultBean> provinceShortList = null;
+    private List<VehicleBrandBean.ResultBean> vehicleBrandList = null;
 
     @Override
     public void setRootView() {
@@ -225,16 +245,18 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         mPresenter = new VehicleCertificationPresenter(this);
         images = new ArrayList<>();
         samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
+        showLoadingDialog(getString(R.string.dataLoad));
+        vehicleBrandAbbreviation();
+        ((VehicleCertificationContract.Presenter) mPresenter).getVehicleBrand();
         initImagePicker();
         asOfTheDatePicker();
         asOfTheDatePicker1();
         addressAbbreviation();
-
+        initPickerView();
         String car_auth_status = PreferenceHelper.readString(aty, StringConstants.FILENAME, "car_auth_status", "init");
         if (car_auth_status != null && car_auth_status.equals("init")) {
             return;
         }
-        showLoadingDialog(getString(R.string.dataLoad));
         ((VehicleCertificationContract.Presenter) mPresenter).getCarAuthInfo();
     }
 
@@ -356,10 +378,23 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 intent.putExtra("vehicleLengthId", vehicleLengthId);
                 startActivityForResult(intent, 3);
                 break;
+            case R.id.ll_vehicleBrand:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                pvOptions1.show(tv_vehicleBrand);
+                break;
             case R.id.ll_vehicleRegistrationDate:
                 pvTime1.setDate(calendar);
                 //弹出时间选择器
                 pvTime1.show(tv_vehicleRegistrationDate);
+                break;
+            case R.id.ll_residentAddress:
+                SoftKeyboardUtils.packUpKeyboard(this);
+                //点击弹出选项选择器
+                pickerViewUtil.onoptionsSelectListener();
+                if (province == 0 && city == 0 && area == 0) {
+                    break;
+                }
+                pickerViewUtil.onoptionsSelect(province, city, area);
                 break;
             case R.id.img_uploadFaceLight:
                 if (isUploadFaceLight) {
@@ -488,9 +523,9 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 break;
             case R.id.tv_submit:
                 ((VehicleCertificationContract.Presenter) mPresenter).postVehicleCertification((tv_addressAbbreviation.getText().toString() + et_licenseNumber.getText().toString().trim()),
-                        vehicleModel, vehicleModelId, vehicleLength, vehicleLengthId, vehicleRegistrationDate, uploadFaceLightUrl, uploadSidingUrl, uploadRearLightUrl,
-                        validityLicense, uploadDrivingLicensePhotosUrl, roadTransportValidityPeriodDate, uploadRoadQualification1Url, durationInsurance,
-                        uploadBusinessInsurancePolicyPhotoUrl, durationInsurance1, uploadhandHandPolicyPhotoUrl);
+                        vehicleModel, vehicleModelId, vehicleLength, vehicleLengthId, tv_vehicleBrand.getText().toString().trim(), vehicleRegistrationDate, tv_residentAddress.getText().toString().trim(),
+                        uploadFaceLightUrl, uploadSidingUrl, uploadRearLightUrl, validityLicense, uploadDrivingLicensePhotosUrl, roadTransportValidityPeriodDate, uploadRoadQualification1Url,
+                        durationInsurance, uploadBusinessInsurancePolicyPhotoUrl, durationInsurance1, uploadhandHandPolicyPhotoUrl, province, city, area);
                 break;
             default:
                 break;
@@ -529,6 +564,38 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                     return;
                 }
             }
+        }
+    }
+
+    /**
+     * 选择车辆品牌
+     */
+    @SuppressWarnings("unchecked")
+    private void vehicleBrandAbbreviation() {
+        pvOptions1 = new OptionsPickerView.Builder(aty, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                //  car_type_id = carInfoBean.getResult().get(options1).getId();
+                ((TextView) v).setText(vehicleBrandList.get(options1).getName());
+            }
+        }).build();
+    }
+
+    /**
+     * 选项选择器
+     */
+    private void initPickerView() {
+        if (pickerViewUtil == null) {
+            pickerViewUtil = new PickerViewUtil(this, 0) {
+                @Override
+                public void getAddress(String address, int province1, int city1, int area1) {
+                    province = province1;
+                    city = city1;
+                    area = area1;
+                    tv_residentAddress.setText(address);
+                }
+            };
         }
     }
 
@@ -728,11 +795,23 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             vehicleModelId = vehicleCertificationBean.getResult().getCar_style_type_id();
             vehicleLengthId = vehicleCertificationBean.getResult().getCar_style_length_id();
 
+            if (!StringUtils.isEmpty(vehicleCertificationBean.getResult().getCar_band())) {
+                tv_vehicleBrand.setText(vehicleCertificationBean.getResult().getCar_band());
+                setVehicleBrand(vehicleCertificationBean.getResult().getCar_band());
+            }
+
             vehicleRegistrationDate = StringUtils.toLong(vehicleCertificationBean.getResult().getCar_registered_time());
             String d = DataUtil.formatData(vehicleRegistrationDate, "yyyy-MM-dd");
             tv_vehicleRegistrationDate.setText(d);
             Date date = new Date(vehicleRegistrationDate * 1000);
             calendar.setTime(date);
+
+            if (!StringUtils.isEmpty(vehicleCertificationBean.getResult().getPermanent_address())) {
+                tv_residentAddress.setText(vehicleCertificationBean.getResult().getPermanent_address());
+                province = vehicleCertificationBean.getResult().getProvince();
+                city = vehicleCertificationBean.getResult().getCity();
+                area = vehicleCertificationBean.getResult().getArea();
+            }
 
             uploadFaceLightUrl = vehicleCertificationBean.getResult().getCar_front_pic();
             GlideImageLoader.glideOrdinaryLoader(this, uploadFaceLightUrl + "?imageView2/1/w/161/h/103", img_uploadFaceLight);
@@ -765,7 +844,6 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             GlideImageLoader.glideOrdinaryLoader(this, uploadRoadQualification1Url + "?imageView2/1/w/161/h/103", img_uploadRoadQualification1);
             isUploadRoadQualification1 = false;
 
-
             durationInsurance = StringUtils.toLong(vehicleCertificationBean.getResult().getPolicy_time());
             String d3 = DataUtil.formatData(durationInsurance, "yyyy-MM-dd");
             tv_durationInsurance.setText(d3);
@@ -797,9 +875,29 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             dismissLoadingDialog();
             aty.finish();
             return;
+        } else if (flag == 2) {
+            VehicleBrandBean vehicleBrandBean = (VehicleBrandBean) JsonUtil.json2Obj(success, VehicleBrandBean.class);
+            vehicleBrandList = vehicleBrandBean.getResult();
+            if (vehicleBrandList != null && vehicleBrandList.size() > 0) {
+                pvOptions1.setPicker(vehicleBrandList);
+            }
         }
         dismissLoadingDialog();
     }
+
+    /**
+     * @param name 设置车辆品牌
+     */
+
+    private void setVehicleBrand(String name) {
+        for (int i = 0; i < vehicleBrandList.size(); i++) {
+            if (name.equals(vehicleBrandList.get(i).getName())) {
+                pvOptions1.setSelectOptions(i);
+                return;
+            }
+        }
+    }
+
 
     @Override
     public void errorMsg(String msg, int flag) {
@@ -816,7 +914,13 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (pickerViewUtil != null && pickerViewUtil.isShowing()) {
+            pickerViewUtil.onDismiss();
+        }
+        pickerViewUtil = null;
         images.clear();
+        pvOptions = null;
+        pvOptions1 = null;
         samplePictureBouncedDialog = null;
         images = null;
         pvTime = null;

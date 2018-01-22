@@ -109,7 +109,7 @@ public abstract class PickerViewUtil {
                         tx = options1Items1 + options1Items2 + options1Items3;
                     }
                 }
-                getAddress(tx);
+                getAddress(tx, options1, option2, options3);
             }
         })
                 /*.setSubmitText("确定")
@@ -141,6 +141,13 @@ public abstract class PickerViewUtil {
         pvOptions.show();
     }
 
+    public void onoptionsSelect(int currentLocationProvinceItemPosition, int currentLocationCityItemPosition, int currentLocationAreaItemPosition) {
+        if (pvOptions != null) {
+            pvOptions.setSelectOptions(currentLocationProvinceItemPosition, currentLocationCityItemPosition, currentLocationAreaItemPosition);
+        }
+    }
+
+
     public void onDestroy() {
         pvOptions.dismiss();
         pvOptions = null;
@@ -167,7 +174,7 @@ public abstract class PickerViewUtil {
     }
 
 
-    public abstract void getAddress(String address);
+    public abstract void getAddress(String address, int province, int city, int area);
 
     public ArrayList<NationalCity> parseData(String result) {//Gson 解析
         ArrayList<NationalCity> detail = new ArrayList<>();

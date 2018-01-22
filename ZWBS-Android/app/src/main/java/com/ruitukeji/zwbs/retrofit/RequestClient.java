@@ -241,6 +241,7 @@ public class RequestClient {
         }, listener);
     }
 
+
     /**
      * 个人中心----车辆认证
      */
@@ -258,6 +259,14 @@ public class RequestClient {
                 HttpRequest.requestPostHttp(URLConstants.CARAUTH, httpParams, listener);
             }
         }, listener);
+    }
+
+    /**
+     * 个人中心----车辆认证----获取车辆品牌
+     */
+    public static void getVehicleBrand(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getVehicleBrand");
+        HttpRequest.requestGetHttp(URLConstants.VEHICLEBRAND, httpParams, listener);
     }
 
     /**

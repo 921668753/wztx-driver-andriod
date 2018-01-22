@@ -1,15 +1,15 @@
 [
   {
     "value": 0,
-    "text": "中国",
+    "text": "全国",
     "children": [
       {
         "value": 0,
-        "text": "中国",
+        "text": "",
         "children": [
           {
             "value": 0,
-            "text": "中国",
+            "text": "",
             "children": null
           }
         ]

@@ -28,8 +28,6 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.entity.getorder.GetOrderBean;
-import com.ruitukeji.zwbs.entity.MessageCenterBean;
-import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
 import com.ruitukeji.zwbs.entity.getorder.HomeBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.getorder.announcement.AnnouncementActivity;
@@ -41,7 +39,6 @@ import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
 import com.ruitukeji.zwbs.getorder.message.SystemMessageActivity;
 import com.ruitukeji.zwbs.getorder.selectioncity.SelectionCityActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.loginregister.NewUserInformationActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
@@ -239,13 +236,10 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         //接单
         if (childView.getId() == R.id.tv_getorder) {
             ((GetOrderContract.Presenter) mPresenter).isLogin(5);
-            //  ((GetOrderContract.Presenter) mPresenter).isCertification(1);
         } else if (childView.getId() == R.id.tv_reject) {
             ((GetOrderContract.Presenter) mPresenter).isLogin(6);
-            //   ((GetOrderContract.Presenter) mPresenter).isCertification(2);
         } else if (childView.getId() == R.id.tv_sendQuotation) {
             ((GetOrderContract.Presenter) mPresenter).isLogin(7);
-            //  ((GetOrderContract.Presenter) mPresenter).isCertification(3);
         }
     }
 
