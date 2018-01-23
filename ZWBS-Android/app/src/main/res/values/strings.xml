@@ -676,7 +676,7 @@
     <string name="alipayPay">支付宝支付</string>
     <string name="prepaidImmediately">立即充值</string>
     <string name="rechargeRecord">充值记录</string>
-    <string name="renminbi">￥</string>
+    <string name="renminbi">¥</string>
     <string name="inputAmountFull">输入充值金额</string>
     <string name="inputAmountFull1">请输入正确的充值金额</string>
 
