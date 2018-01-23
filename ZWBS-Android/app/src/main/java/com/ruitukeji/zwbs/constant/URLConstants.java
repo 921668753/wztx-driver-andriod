@@ -100,6 +100,11 @@ public class URLConstants {
     public static String TASK = APIURL + "goods/todayTask";
 
     /**
+     * 任务--填写快递单
+     */
+    public static String FILLCOURIER = APIURL + "goods/fillCourier";
+
+    /**
      * 货源--地址
      */
     public static String ADDRESS = APIURL + "Help/getAddress";

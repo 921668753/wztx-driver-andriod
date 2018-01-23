@@ -12,10 +12,14 @@ public interface UploadReceiptVoucherContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 填写快递单
+         * 上传到货凭证
          */
-        void postFillOutExpress(int page, long time, int type);
+        void uploadCerPic(int order_id, String img_url, String dest_address_maps);
 
+        /**
+         * 上传图片
+         */
+        void postUpLoadImg(String path, int code);
     }
 
     interface View extends BaseNewView<Presenter, String> {

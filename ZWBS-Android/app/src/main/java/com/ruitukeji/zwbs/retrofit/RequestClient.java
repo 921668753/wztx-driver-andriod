@@ -551,6 +551,43 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 任务--填写快递单
+     */
+    public static void postfillCourier(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postfillCourier");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.FILLCOURIER, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 任务---上传到货凭证
+     */
+    public static void postUploadCerPic(HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "postUploadCerPic");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.UPLOADCERPIC, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 货源--获取货源列表
@@ -601,26 +638,6 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("authorization-token", accessToken);
                 HttpRequest.requestGetHttp(URLConstants.ORDERLISTINFO, httpParams, listener);
-            }
-        }, listener);
-    }
-
-
-    /**
-     * 上传到货凭证
-     */
-    public static void postUploadCerPic(HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "postUploadCerPic");
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestPostHttp(URLConstants.UPLOADCERPIC, httpParams, listener);
             }
         }, listener);
     }

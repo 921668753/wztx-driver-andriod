@@ -23,12 +23,14 @@ public class FillOutExpressPresenter implements FillOutExpressContract.Presenter
     }
 
     @Override
-    public void postFillOutExpress(int page, long time, int type) {
+    public void postFillOutExpress(int g_id, String num, String company) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("goods_id", page);
+        map.put("g_id", g_id);
+        map.put("num", num);
+        map.put("company", company);
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.getTask(httpParams, new ResponseListener<String>() {
+        RequestClient.postfillCourier(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

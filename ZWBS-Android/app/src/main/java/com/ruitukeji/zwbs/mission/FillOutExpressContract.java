@@ -14,7 +14,7 @@ public interface FillOutExpressContract {
         /**
          * 填写快递单
          */
-        void postFillOutExpress(int page, long time, int type);
+        void postFillOutExpress(int g_id, String num, String company);
 
     }
 

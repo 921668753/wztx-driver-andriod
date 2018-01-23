@@ -12,10 +12,14 @@ public interface ExceptionReportingContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 填写快递单
+         * 上报异常信息
          */
-        void postFillOutExpress(int page, long time, int type);
+        void postAbnormalInsert(int id, String img, String place, String content);
 
+        /**
+         * 上传图片
+         */
+        void postUpLoadImg(String path, int code);
     }
 
     interface View extends BaseNewView<Presenter, String> {
