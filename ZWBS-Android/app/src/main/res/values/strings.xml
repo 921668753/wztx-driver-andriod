@@ -721,8 +721,13 @@
 
     <!--添加路线-->
     <string name="selectOrigin">请选择出发地</string>
+    <string name="selectOrigin1">选择出发地:</string>
     <string name="selectDestination">请选择目的地</string>
+    <string name="selectDestination1">选择目的地:</string>
     <string name="placeCannotSame">出发地和目的地不能相同</string>
+    <string name="currentRegion">当前地区:</string>
+    <string name="returnUpperLevel">返回上一级</string>
+
 
     <!--关于我们-->
     <string name="aboutUs">关于我们</string>

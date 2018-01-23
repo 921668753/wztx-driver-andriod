@@ -39,7 +39,7 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
         private String org_city;
         private String volume;
         private String kilometres;
-        private int is_driver_dock;
+        private int is_cargo_receipt;
         private String order_code;
         private String org_send_name;
         private String mind_price;
@@ -97,12 +97,12 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
             this.kilometres = kilometres;
         }
 
-        public int getIs_driver_dock() {
-            return is_driver_dock;
+        public int getIs_cargo_receipt() {
+            return is_cargo_receipt;
         }
 
-        public void setIs_driver_dock(int is_driver_dock) {
-            this.is_driver_dock = is_driver_dock;
+        public void setIs_cargo_receipt(int is_cargo_receipt) {
+            this.is_cargo_receipt = is_cargo_receipt;
         }
 
         public String getOrder_code() {

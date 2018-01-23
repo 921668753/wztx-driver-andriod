@@ -269,12 +269,12 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             }
             system_price = resultBean.getSystem_price();
             if (StringUtils.isEmpty(resultBean.getMind_price()) || resultBean.getMind_price().equals("0.00")) {
-                tv_actualPrice.setText(getString(R.string.renminbi)+ resultBean.getSystem_price());
+                tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getSystem_price());
             } else {
                 mind_price = resultBean.getMind_price();
                 tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getMind_price());
             }
-            if (resultBean.getIs_driver_dock() == 0) {
+            if (resultBean.getIs_cargo_receipt() == 0) {
                 tv_orderNeeds.setText(getString(R.string.orderNotNeeds));
             } else {
                 tv_orderNeeds.setText(getString(R.string.orderNeeds));

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_start"
+        style="@style/Match44"
+        android:layout_marginLeft="@dimen/dimen58"
+        android:layout_marginTop="@dimen/dimen58"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv_end"
+        style="@style/Match44"
+        android:layout_marginLeft="@dimen/dimen58"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        style="@style/DividerWidth"
+        android:layout_marginTop="@dimen/dimen10" />
+
+    <TextView
+        android:id="@+id/tv_select"
+        style="@style/MatchWrap"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dimen13"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen13"
+        android:text="@string/selectOrigin1"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize14" />
+
+
+    <GridView
+        android:id="@+id/gv_address"
+        style="@style/MatchWrap"
+        android:background="@color/white"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="4"
+        android:overScrollMode="never"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_addlineaddress" />
+
+
+</LinearLayout>

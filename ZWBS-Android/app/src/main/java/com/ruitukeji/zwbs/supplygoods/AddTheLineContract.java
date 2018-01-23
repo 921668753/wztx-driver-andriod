@@ -14,7 +14,7 @@ public interface AddTheLineContract {
         /**
          * 添加路线
          */
-        void postRoute(String startPoint, String endPoint);
+        void postRoute(String startPoint, String endPoint, int origin_province, int origin_city, int origin_area, int destination_province, int destination_city, int destination_area);
     }
 
     interface View extends BaseView<Presenter> {

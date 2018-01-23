@@ -128,7 +128,7 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 是否有签收单
          */
-        if (listBean.getIs_driver_dock() == 0) {
+        if (listBean.getIs_cargo_receipt() == 0) {
             viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNotNeeds));
         } else {
             viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds));

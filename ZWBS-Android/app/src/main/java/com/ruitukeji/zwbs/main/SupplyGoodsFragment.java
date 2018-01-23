@@ -403,18 +403,21 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {
-            startProvinceName = "";
-            startCityName = "";
-            startAreaName = "";
-            endProvinceId = 0;
-            endCityId = 0;
-            endAreaId = 0;
-            endProvinceName = "";
-            endCityName = "";
-            endAreaName = "";
-            endProvinceId = 0;
-            endCityId = 0;
-            endAreaId = 0;
+            startProvinceId = data.getIntExtra("startProvinceName", 0);
+            startCityId = data.getIntExtra("startCityName", 0);
+            startAreaId = data.getIntExtra("startAreaName", 0);
+            endProvinceId = data.getIntExtra("endProvinceName", 0);
+            endCityId = data.getIntExtra("endCityName", 0);
+            endAreaId = data.getIntExtra("endAreaName", 0);
+            startingpoint = data.getStringExtra("org_address");
+            endpoint = data.getStringExtra("dest_address");
+            if (!StringUtils.isEmpty(startingpoint)) {
+                tv_startingPoint.setText(startingpoint);
+            }
+            if (!StringUtils.isEmpty(endpoint)) {
+                tv_endPoint.setText(endpoint);
+            }
+            mRefreshLayout.beginRefreshing();
         }
     }
 

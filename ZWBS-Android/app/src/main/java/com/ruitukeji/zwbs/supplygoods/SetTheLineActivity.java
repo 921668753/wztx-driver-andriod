@@ -16,13 +16,13 @@ import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.SetTheLineBean;
-import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
-import com.ruitukeji.zwbs.utils.DialogUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
@@ -32,8 +32,10 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
  * Created by Administrator on 2017/2/21.
  */
 
-public class SetTheLineActivity extends BaseActivity implements SetTheLineContract.View, BGAOnItemChildClickListener, AdapterView.OnItemClickListener {
+public class SetTheLineActivity extends BaseActivity implements SetTheLineContract.View, BGAOnItemChildClickListener, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
+    @BindView(id = R.id.mRefreshLayout)
+    private BGARefreshLayout mRefreshLayout;
 
     @BindView(id = R.id.lv_settheline)
     private ListView lv_settheline;
@@ -63,6 +65,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void initWidget() {
         super.initWidget();
+        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, this, false);
         SimpleDelegate simpleDelegate = new SimpleDelegate() {
             @Override
             public void onClickLeftCtv() {
@@ -81,8 +84,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
         lv_settheline.setAdapter(setTheLineViewAdapter);
         lv_settheline.setOnItemClickListener(this);
         setTheLineViewAdapter.setOnItemChildClickListener(this);
-        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-        ((SetTheLineContract.Presenter) mPresenter).getRouteList();
+        mRefreshLayout.beginRefreshing();
     }
 
 
@@ -94,8 +96,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_hintText:
-                showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-                ((SetTheLineContract.Presenter) mPresenter).getRouteList();
+                mRefreshLayout.beginRefreshing();
                 break;
         }
     }
@@ -121,8 +122,11 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
 
     @Override
     public void error(String msg) {
-        toLigon(msg);
-        lv_settheline.setVisibility(View.GONE);
+        if (!toLigon1(msg)) {
+            finish();
+            return;
+        }
+        mRefreshLayout.setVisibility(View.GONE);
         ll_commonError.setVisibility(View.VISIBLE);
         tv_hintText.setText(msg + getString(R.string.clickRefresh));
         dismissLoadingDialog();
@@ -138,17 +142,21 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {
-            String startProvinceName = data.getStringExtra("startProvinceName");
-            String startCityName = data.getStringExtra("startCityName");
-            String startAreaName = data.getStringExtra("startAreaName");
-            String endProvinceName = data.getStringExtra("endProvinceName");
-            String endCityName = data.getStringExtra("endCityName");
-            String endAreaName = data.getStringExtra("endAreaName");
+            int startProvinceName = data.getIntExtra("startProvinceName", 0);
+            int startCityName = data.getIntExtra("startCityName", 0);
+            int startAreaName = data.getIntExtra("startAreaName", 0);
+            int endProvinceName = data.getIntExtra("endProvinceName", 0);
+            int endCityName = data.getIntExtra("endCityName", 0);
+            int endAreaName = data.getIntExtra("endAreaName", 0);
+            String org_address = data.getStringExtra("org_address");
+            String dest_address = data.getStringExtra("dest_address");
             Intent intent = new Intent();
             // 获取内容
+            intent.putExtra("org_address", org_address);
             intent.putExtra("startProvinceName", startProvinceName);
             intent.putExtra("startCityName", startCityName);
             intent.putExtra("startAreaName", startAreaName);
+            intent.putExtra("dest_address", dest_address);
             intent.putExtra("endProvinceName", endProvinceName);
             intent.putExtra("endCityName", endCityName);
             intent.putExtra("endAreaName", endAreaName);
@@ -173,8 +181,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
                 @Override
                 public void confirm() {
                     this.cancel();
-                    showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-                    ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(setTheLineViewAdapter.getItem(i).getDrline_id());
+                    mRefreshLayout.beginRefreshing();
                 }
             };
             authenticationBouncedDialog.show();
@@ -183,64 +190,34 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", setTheLineViewAdapter.getItem(position).getDrline_id() + "");
-        String startOrgCityName = setTheLineViewAdapter.getItem(position).getOrg_city();
-        String endDestCityName = setTheLineViewAdapter.getItem(position).getDest_city();
-        String startProvinceName = "";
-        String startCityName = "";
-        String startAreaName = "";
-
-        /**
-         * 起点
-         */
-        int orgprovince = startOrgCityName.indexOf("省");
-        int orgcity = startOrgCityName.indexOf("市");
-        int orgarea = startOrgCityName.indexOf("区");
-        if (orgprovince == -1 && orgcity != -1) {
-            startProvinceName = startOrgCityName.substring(0, orgcity + 1);
-            startCityName = startOrgCityName.substring(0, orgcity + 1);
-            startAreaName = startOrgCityName.substring(orgcity + 1);
-        } else if (orgprovince != -1 && orgcity != -1) {
-            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
-            startCityName = startOrgCityName.substring(orgprovince + 1, orgcity + 1);
-            startAreaName = startOrgCityName.substring(orgcity + 1);
-        } else if (orgprovince != -1 && orgcity == -1) {
-            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
-            startCityName = "县";
-            startAreaName = startOrgCityName.substring(orgprovince + 1);
-        } else {
-//            startProvinceName = startOrgCityName.substring(0, orgprovince + 1);
-//            startCityName = startOrgCityName.substring(orgprovince + 1, orgcity + 1);
-//            startAreaName = startOrgCityName.substring(orgcity + 1);
-        }
-
-        /**
-         * 终点
-         */
-        int destprovince = endDestCityName.indexOf("省");//("市")
-        int destcity = endDestCityName.indexOf("市");
-//        if (destprovince == -1 && destcity != -1) {
-//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city().substring(0, destcity));
-//        } else if (destprovince != -1 && destcity != -1) {
-//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city().substring(0, destprovince) + listBean.getDest_city().substring(destprovince + 1, destcity));
-//        } else {
-//            viewHolderHelper.setText(R.id.tv_stop, listBean.getDest_city());
-//        }
-
-        String endProvinceName = "";
-        String endCityName = "";
-        String endAreaName = "";
+        SetTheLineBean.ResultBean.ListBean listBean = setTheLineViewAdapter.getItem(position);
+        PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", listBean.getDrline_id());
         Intent intent = new Intent();
         // 获取内容
-        intent.putExtra("startProvinceName", startProvinceName);
-        intent.putExtra("startCityName", startCityName);
-        intent.putExtra("startAreaName", startAreaName);
-        intent.putExtra("endProvinceName", endProvinceName);
-        intent.putExtra("endCityName", endCityName);
-        intent.putExtra("endAreaName", endAreaName);
+        intent.putExtra("org_address", listBean.getOrg_city());
+        intent.putExtra("startProvinceName", listBean.getOrigin_province());
+        intent.putExtra("startCityName", listBean.getOrigin_city());
+        intent.putExtra("startAreaName", listBean.getOrigin_area());
+        intent.putExtra("dest_address", listBean.getDest_city());
+        intent.putExtra("endProvinceName", listBean.getDestination_province());
+        intent.putExtra("endCityName", listBean.getDestination_city());
+        intent.putExtra("endAreaName", listBean.getDestination_area());
         // 设置结果 结果码，一个数据
         setResult(RESULT_OK, intent);
         // 结束该activity 结束之后，前面的activity才可以处理结果
         aty.finish();
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout bgaRefreshLayout) {
+        mRefreshLayout.endRefreshing();
+        showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
+        ((SetTheLineContract.Presenter) mPresenter).getRouteList();
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout bgaRefreshLayout) {
+        mRefreshLayout.endLoadingMore();
+        return false;
     }
 }

@@ -1,8 +1,9 @@
 package com.ruitukeji.zwbs.supplygoods;
 
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,9 +18,9 @@ import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.AddTheLineBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
+import com.ruitukeji.zwbs.supplygoods.dialog.AddLineProvinceBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.PickerViewUtil;
 
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
 
@@ -34,19 +35,24 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
     private LinearLayout ll_start;
     @BindView(id = R.id.tv_start)
     private TextView tv_start;
-//    @BindView(id = R.id.img_start)
-//    private ImageView img_start;
+    @BindView(id = R.id.img_start)
+    private ImageView img_start;
 
     @BindView(id = R.id.ll_stop, click = true)
     private LinearLayout ll_stop;
     @BindView(id = R.id.tv_stop)
     private TextView tv_stop;
-//    @BindView(id = R.id.img_stop)
-//    private ImageView img_stop;
+    @BindView(id = R.id.img_stop)
+    private ImageView img_stop;
+    private AddLineProvinceBouncedDialog stopProvinceBouncedDialog = null;
+    private AddLineProvinceBouncedDialog startProvinceBouncedDialog = null;
 
-    private PickerViewUtil pickerViewUtil;
-    private PickerViewUtil pickerViewUtil1;
-
+    private int origin_province = 0;
+    private int origin_city = 0;
+    private int origin_area = 0;
+    private int destination_province = 0;
+    private int destination_city = 0;
+    private int destination_area = 0;
 
     @Override
     public void setRootView() {
@@ -57,33 +63,7 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
     public void initData() {
         super.initData();
         mPresenter = new AddTheLinePresenter(this);
-        //选项选择器
-        initPickerView();
     }
-
-    /**
-     * 选项选择器
-     */
-    private void initPickerView() {
-//        if (pickerViewUtil == null) {
-//            pickerViewUtil = new PickerViewUtil(this, 1) {
-//                @Override
-//                public void getAddress(String address) {
-//                    tv_start.setText(address);
-//                }
-//            };
-//        }
-//        if (pickerViewUtil1 == null) {
-//            pickerViewUtil1 = new PickerViewUtil(this, 1) {
-//                @Override
-//                public void getAddress(String address) {
-//                    //    img_stop.setRotation(360);
-//                    tv_stop.setText(address);
-//                }
-//            };
-//        }
-    }
-
 
     @Override
     public void initWidget() {
@@ -99,7 +79,8 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
             public void onClickRightCtv() {
                 super.onClickRightCtv();
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                ((AddTheLineContract.Presenter) mPresenter).postRoute(tv_start.getText().toString(), tv_stop.getText().toString());
+                ((AddTheLineContract.Presenter) mPresenter).postRoute(tv_start.getText().toString(), tv_stop.getText().toString(), origin_province, origin_city, origin_area,
+                        destination_province, destination_city, destination_area);
             }
         };
         ActivityTitleUtils.initToolbar(aty, getString(R.string.addtheline), getString(R.string.determine), R.id.titlebar, simpleDelegate);
@@ -110,13 +91,52 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_start:
-                //  img_start.setRotation(180);
-                //点击弹出选项选择器
-                pickerViewUtil.onoptionsSelectListener();
+                img_start.setImageResource(R.mipmap.ic_arrow_up);
+                if (startProvinceBouncedDialog != null && !startProvinceBouncedDialog.isShowing()) {
+                    startProvinceBouncedDialog.show();
+                    return;
+                }
+                startProvinceBouncedDialog = new AddLineProvinceBouncedDialog(aty, "", 0, 0) {
+                    @Override
+                    public void confirmProvince(String provinceName, int provinceId, int cityId, int areaId) {
+                        this.cancel();
+                        origin_province = provinceId;
+                        origin_city = cityId;
+                        origin_area = areaId;
+                        tv_start.setText(provinceName);
+                    }
+                };
+                startProvinceBouncedDialog.show();
+                startProvinceBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_start.setImageResource(R.mipmap.ic_arrow_down);
+                    }
+                });
                 break;
             case R.id.ll_stop:
-                // img_stop.setRotation(180);
-                pickerViewUtil1.onoptionsSelectListener();
+                img_stop.setImageResource(R.mipmap.ic_arrow_up);
+                if (stopProvinceBouncedDialog != null && !stopProvinceBouncedDialog.isShowing()) {
+                    stopProvinceBouncedDialog.show();
+                    return;
+                }
+                stopProvinceBouncedDialog = new AddLineProvinceBouncedDialog(aty, "", 0, 1) {
+                    @Override
+                    public void confirmProvince(String provinceName, int provinceId, int cityId, int areaId) {
+                        this.cancel();
+                        destination_province = provinceId;
+                        destination_city = cityId;
+                        destination_area = areaId;
+                        tv_stop.setText(provinceName);
+                    }
+                };
+                stopProvinceBouncedDialog.show();
+                stopProvinceBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_stop.setImageResource(R.mipmap.ic_arrow_down);
+                    }
+                });
                 break;
 
         }
@@ -126,16 +146,17 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
     public void getSuccess(String s) {
         AddTheLineBean addTheLineBean = (AddTheLineBean) JsonUtil.getInstance().json2Obj(s, AddTheLineBean.class);
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", addTheLineBean.getResult().getDrline_id() + "");
-        KJActivityStack.create().finishActivity(SetTheLineActivity.class);
         dismissLoadingDialog();
         Intent intent = new Intent();
         // 获取内容
-//        intent.putExtra("startProvinceName", startProvinceName);
-//        intent.putExtra("startCityName", startCityName);
-//        intent.putExtra("startAreaName", startAreaName);
-//        intent.putExtra("endProvinceName", endProvinceName);
-//        intent.putExtra("endCityName", endCityName);
-//        intent.putExtra("endAreaName", endAreaName);
+        intent.putExtra("org_address", tv_start.getText().toString());
+        intent.putExtra("startProvinceName", origin_province);
+        intent.putExtra("startCityName", origin_city);
+        intent.putExtra("startAreaName", origin_area);
+        intent.putExtra("dest_address", tv_stop.getText().toString());
+        intent.putExtra("endProvinceName", destination_province);
+        intent.putExtra("endCityName", destination_city);
+        intent.putExtra("endAreaName", destination_area);
         // 设置结果 结果码，一个数据
         setResult(RESULT_OK, intent);
         // 结束该activity 结束之后，前面的activity才可以处理结果
@@ -160,41 +181,16 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
     }
 
 
-    /**
-     * @param keyCode
-     * @param event
-     * @return
-     */
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (pickerViewUtil != null && pickerViewUtil.isShowing()) {
-//                img_start.setRotation(360);
-//                img_stop.setRotation(360);
-                pickerViewUtil.onDismiss();
-                return true;
-            }
-            if (pickerViewUtil1 != null && pickerViewUtil1.isShowing()) {
-//                img_start.setRotation(360);
-//                img_stop.setRotation(360);
-                pickerViewUtil1.onDismiss();
-                return true;
-            }
-
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (pickerViewUtil != null && pickerViewUtil.isShowing()) {
-            pickerViewUtil.onDismiss();
+        if (startProvinceBouncedDialog != null) {
+            startProvinceBouncedDialog.cancel();
         }
-        pickerViewUtil = null;
-        if (pickerViewUtil1 != null && pickerViewUtil1.isShowing()) {
-            pickerViewUtil1.onDismiss();
+        if (stopProvinceBouncedDialog != null) {
+            stopProvinceBouncedDialog.cancel();
         }
-        pickerViewUtil1 = null;
+        stopProvinceBouncedDialog = null;
+        startProvinceBouncedDialog = null;
     }
 }
