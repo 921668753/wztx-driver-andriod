@@ -17,7 +17,7 @@
             android:id="@+id/tv_name"
             style="@style/WrapWrap"
             android:maxWidth="@dimen/dimen250"
-            android:text="唯物速运（上海）有限公司"
+            android:text="--"
             android:textColor="@color/announceColors"
             android:textSize="@dimen/textsize16" />
 
@@ -47,7 +47,7 @@
         android:paddingLeft="@dimen/dimen12"
         android:paddingRight="@dimen/dimen12"
         android:singleLine="true"
-        android:text="2017-11-09 10:37"
+        android:text="--"
         android:textSize="@dimen/textsize13" />
 
     <LinearLayout
@@ -67,7 +67,7 @@
             android:id="@+id/tv_goodName"
             style="@style/WrapWrap"
             android:maxWidth="@dimen/dimen90"
-            android:text="快递"
+            android:text="--"
             android:textColor="@color/descriptionGoodsColors"
             android:textSize="@dimen/textsize13" />
 
@@ -81,7 +81,7 @@
         <TextView
             android:id="@+id/tv_orderNumber"
             style="@style/WrapWrap"
-            android:text="2017103140026666"
+            android:text="--"
             android:textColor="@color/descriptionGoodsColors"
             android:textSize="@dimen/textsize13" />
 
@@ -113,7 +113,7 @@
         <TextView
             android:id="@+id/tv_conductor"
             style="@style/WrapWrap"
-            android:text="4.2米"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -127,7 +127,7 @@
         <TextView
             android:id="@+id/tv_models"
             style="@style/WrapWrap"
-            android:text="厢式货车"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
     </LinearLayout>
@@ -157,7 +157,7 @@
         <TextView
             android:id="@+id/tv_weight"
             style="@style/WrapWrap"
-            android:text="5吨"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -171,7 +171,7 @@
         <TextView
             android:id="@+id/tv_volume"
             style="@style/WrapWrap"
-            android:text="10立方"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
     </LinearLayout>
@@ -194,7 +194,7 @@
             android:id="@+id/tv_thePlace"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen43"
-            android:text="江苏省昆山市花桥镇"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -217,7 +217,7 @@
             android:id="@+id/tv_destination"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen43"
-            android:text="江苏省苏州市工业园区"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -242,7 +242,7 @@
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen15"
             android:singleLine="true"
-            android:text="35.5千米"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -268,7 +268,7 @@
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen26"
             android:singleLine="true"
-            android:text="1小时36分钟"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
@@ -292,7 +292,7 @@
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen26"
             android:singleLine="true"
-            android:text="260.00RMB"
+            android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 

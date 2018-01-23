@@ -9,11 +9,11 @@
 
         <ScrollView
             android:id="@+id/sv_mine"
-            style="@style/MatchMatch"
+            style="@style/MatchWrap"
             android:scrollbars="none">
 
             <LinearLayout
-                style="@style/MatchMatch"
+                style="@style/MatchWrap"
                 android:orientation="vertical">
 
                 <LinearLayout

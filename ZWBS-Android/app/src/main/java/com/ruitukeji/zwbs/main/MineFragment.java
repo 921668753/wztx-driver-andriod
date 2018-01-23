@@ -2,9 +2,11 @@ package com.ruitukeji.zwbs.main;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,7 +117,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.sv_mine)
     private ScrollView sv_mine;
 
-
+    @BindView(id = R.id.ll_divider)
+    private LinearLayout ll_divider;
     @BindView(id = R.id.ll_divider1)
     private LinearLayout ll_divider1;
 
@@ -199,6 +202,16 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         // ActivityTitleUtils.initToolbar(parentView, getString(R.string.mine), R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, getActivity(), false);
         sv_mine.setOnScrollChangeListener(this);
+        Resources resources = this.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+//        float density = dm.density;
+//        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        if (height >= sv_mine.getHeight() + 45) {
+            ll_divider.setVisibility(View.GONE);
+            ll_personalData1.setVisibility(View.GONE);
+            ll_divider1.setVisibility(View.GONE);
+        }
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
