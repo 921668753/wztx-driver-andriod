@@ -5,9 +5,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-
     <include layout="@layout/common_title" />
-
 
     <LinearLayout
         style="@style/MatchWrap"
@@ -42,6 +40,7 @@
 
 
     <ImageView
+        android:id="@+id/img_uploadPictures"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen190"
         android:background="@color/mainColor"
@@ -51,6 +50,7 @@
 
 
     <TextView
+        android:id="@+id/tv_submit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen45"
         android:layout_marginLeft="@dimen/dimen15"

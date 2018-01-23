@@ -32,12 +32,12 @@
 
 
         <TextView
+            android:id="@+id/tv_mailingAddress"
             style="@style/MatchWrap"
             android:paddingLeft="@dimen/dimen23"
             android:text="江苏省昆山市花桥镇"
             android:textColor="@color/titletextcolors"
             android:textSize="@dimen/textsize14" />
-
 
     </LinearLayout>
 
@@ -58,6 +58,7 @@
 
 
         <TextView
+            android:id="@+id/tv_recipient"
             style="@style/MatchWrap"
             android:paddingLeft="@dimen/dimen36"
             android:text="戴志浩"
@@ -84,6 +85,7 @@
 
 
         <TextView
+            android:id="@+id/tv_contactInformation"
             style="@style/MatchWrap"
             android:paddingLeft="@dimen/dimen20"
             android:text="13965236321"
@@ -111,9 +113,12 @@
             android:textSize="@dimen/textsize15" />
 
         <EditText
+            android:id="@+id/et_expressNumber"
             style="@style/MatchMatch"
             android:background="@android:color/transparent"
+            android:digits="0123456789"
             android:hint="@string/pleaseFillOut"
+            android:inputType="number"
             android:paddingLeft="@dimen/dimen15"
             android:textColor="@color/titletextcolors"
             android:textColorHint="@color/c7C7CDColors"
@@ -140,6 +145,7 @@
             android:textSize="@dimen/textsize15" />
 
         <EditText
+            android:id="@+id/et_expressCompany"
             style="@style/MatchMatch"
             android:background="@android:color/transparent"
             android:hint="@string/pleaseFillOut"
@@ -151,8 +157,8 @@
 
     </LinearLayout>
 
-
     <TextView
+        android:id="@+id/tv_completeOrder"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen45"
         android:layout_marginLeft="@dimen/dimen15"
