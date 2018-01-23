@@ -599,7 +599,7 @@
 
 
     <TextView
-        android:id="@+id/ll_divider"
+        android:id="@+id/tv_divider"
         style="@style/DividerWidth"
         android:layout_below="@+id/ll_personalData1" />
 
@@ -607,7 +607,7 @@
         android:id="@+id/ll_divider1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen65"
-        android:layout_below="@+id/ll_divider"
+        android:layout_below="@+id/tv_divider"
         android:background="@color/mainColor"
         android:clickable="true"
         android:orientation="horizontal">

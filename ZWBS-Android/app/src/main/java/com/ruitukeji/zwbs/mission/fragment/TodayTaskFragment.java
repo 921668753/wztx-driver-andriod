@@ -25,8 +25,6 @@ import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.mission.dialog.CalendarBouncedDialog;
-import com.ruitukeji.zwbs.order.OrderContract;
-import com.ruitukeji.zwbs.order.OrderPresenter;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -39,7 +37,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/12/5.
  */
 
-public class TodayTaskFragment extends BaseFragment implements OrderContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
+public class TodayTaskFragment extends BaseFragment implements TaskContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
 
     private MainActivity aty;
 
@@ -90,7 +88,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
     /**
      * 订单状态
      */
-    private String type = "all";
+    private int type = 0;
     private long dataLong = 0;
 
     @Override
@@ -103,7 +101,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
     @Override
     protected void initData() {
         super.initData();
-        mPresenter = new OrderPresenter(this);
+        mPresenter = new TaskPresenter(this);
         mAdapter = new TaskViewAdapter(getActivity());
         dataLong = System.currentTimeMillis() / 1000;
     }
@@ -115,16 +113,13 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
         lv_mission.setAdapter(mAdapter);
         lv_mission.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getOrder(mMorePageNumber, type);
+        mRefreshLayout.beginRefreshing();
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
         intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
-//        intent.putExtra("designation", "AllOrderFragment");
         aty.showActivity(aty, intent);
     }
 
@@ -133,7 +128,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getOrder(mMorePageNumber, type);
+        ((TaskContract.Presenter) mPresenter).getTask(mMorePageNumber, dataLong, type);
     }
 
     @Override
@@ -148,7 +143,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getOrder(mMorePageNumber, type);
+        ((TaskContract.Presenter) mPresenter).getTask(mMorePageNumber, dataLong, type);
         return true;
     }
 
@@ -197,14 +192,13 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
                     aty.showActivity(aty, intent);
                     break;
                 }
-                //  ViewInject.toast("onBGARefreshLayoutBeginRefreshing");
                 mRefreshLayout.beginRefreshing();
                 break;
         }
     }
 
     @Override
-    public void getSuccess(String s) {
+    public void getSuccess(String s, int flag) {
         PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", false);
         PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", false);
         isShowLoadingMore = true;
@@ -214,7 +208,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
         mMorePageNumber = orderBean.getResult().getPage();
         totalPageNumber = orderBean.getResult().getPageTotal();
         if (orderBean.getResult().getList() == null || orderBean.getResult().getList().size() == 0) {
-            error(getString(R.string.serverReturnsDataNull));
+            errorMsg(getString(R.string.serverReturnsDataNull), 0);
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
@@ -229,7 +223,7 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
     }
 
     @Override
-    public void error(String msg) {
+    public void errorMsg(String msg, int flag) {
         if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
             dismissLoadingDialog();
             tv_hintText.setText(getString(R.string.login1));
@@ -249,21 +243,10 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
     }
 
     @Override
-    public void setPresenter(OrderContract.Presenter presenter) {
+    public void setPresenter(TaskContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
-    /**
-     * 当通过changeFragment()显示时会被调用(类似于onResume)
-     */
-    @Override
-    public void onChange() {
-        super.onChange();
-//        boolean isRefreshAllOrderFragment1 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", false);
-//        if (isRefreshAllOrderFragment1) {
-//            mRefreshLayout.beginRefreshing();
-//        }
-    }
 
     @Override
     public void onDestroy() {
@@ -285,15 +268,6 @@ public class TodayTaskFragment extends BaseFragment implements OrderContract.Vie
             NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
             navigationBouncedDialog.show();
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        boolean isRefreshGetGoods = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", false);
-//        if (isRefreshGetGoods) {
-//            mRefreshLayout.beginRefreshing();
-//        }
     }
 
 }

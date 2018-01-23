@@ -95,6 +95,11 @@ public class URLConstants {
     public static String HOME = APIURL + "index/home";
 
     /**
+     * 任务--今日任务
+     */
+    public static String TASK = APIURL + "goods/todayTask";
+
+    /**
      * 货源--地址
      */
     public static String ADDRESS = APIURL + "Help/getAddress";

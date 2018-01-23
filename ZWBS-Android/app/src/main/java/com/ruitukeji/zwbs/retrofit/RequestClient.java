@@ -207,12 +207,6 @@ public class RequestClient {
         HttpRequest.requestGetHttp(URLConstants.HOME, httpParams, listener);
     }
 
-    /**
-     * 货源--地址列表
-     */
-    public static void getAddress(HttpParams httpParams, ResponseListener<String> listener) {
-        HttpRequest.requestGetHttp(URLConstants.ADDRESS, httpParams, listener);
-    }
 
     /**
      * 公告详情
@@ -538,13 +532,58 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 任务--获取任务列表
+     */
+    public static void getTask(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getTask");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.TASK, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
-     * 获取货源列表
+     * 货源--获取货源列表
      */
     public static void getGoodsList(HttpParams httpParams, final ResponseListener<String> listener) {
         Log.d("tag", "getGoodsList");
         HttpRequest.requestGetHttp(URLConstants.GOODLIST, httpParams, listener);
+    }
+
+    /**
+     * 货源--地址列表
+     */
+    public static void getAddress(HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(URLConstants.ADDRESS, httpParams, listener);
+    }
+
+    /**
+     * 获取货源详情
+     */
+    public static void getGoodDetails(HttpParams httpParams, final ResponseListener<String> listener) {
+        Log.d("tag", "getGoodDetails");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.GOODSDETAIL, httpParams, listener);
+            }
+        }, listener);
     }
 
     /**
@@ -606,25 +645,6 @@ public class RequestClient {
         }, listener);
     }
 
-
-    /**
-     * 获取货源详情
-     */
-    public static void getGoodDetails(HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "getGoodDetails");
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestGetHttp(URLConstants.GOODSDETAIL, httpParams, listener);
-            }
-        }, listener);
-    }
 
     /**
      * 获取评论详情

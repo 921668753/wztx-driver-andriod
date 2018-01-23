@@ -117,8 +117,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.sv_mine)
     private ScrollView sv_mine;
 
-    @BindView(id = R.id.ll_divider)
-    private LinearLayout ll_divider;
+    @BindView(id = R.id.tv_divider)
+    private TextView tv_divider;
     @BindView(id = R.id.ll_divider1)
     private LinearLayout ll_divider1;
 
@@ -204,11 +204,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         sv_mine.setOnScrollChangeListener(this);
         Resources resources = this.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
-//        float density = dm.density;
-//        int width = dm.widthPixels;
         int height = dm.heightPixels;
-        if (height >= sv_mine.getHeight() + 45) {
-            ll_divider.setVisibility(View.GONE);
+        if (height >= sv_mine.getHeight() + 49) {
+            tv_divider.setVisibility(View.GONE);
             ll_personalData1.setVisibility(View.GONE);
             ll_divider1.setVisibility(View.GONE);
         }
@@ -510,8 +508,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             //  img_headPortrait.setImageURI(Uri.parse(msgEvent.getMsg() + "?imageView2/1/w/70/h/70"));
             //   GlideImageLoader.glideLoader(KJActivityStack.create().topActivity(), msgEvent.getMsg() + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
         } else if (((String) msgEvent.getData()).equals("RxBusIdentityAuthenticationEvent")) {
-//            tv_incompleteCertification.setText(getString(R.string.inAuthentication));
-//            tv_incompleteCertification1.setText(getString(R.string.inAuthentication));
             tv_identityAuthentication.setText(getString(R.string.inAuthentication));
             String real_name = PreferenceHelper.readString(aty, StringConstants.FILENAME, "real_name", "");
             if (!StringUtils.isEmpty(real_name)) {
