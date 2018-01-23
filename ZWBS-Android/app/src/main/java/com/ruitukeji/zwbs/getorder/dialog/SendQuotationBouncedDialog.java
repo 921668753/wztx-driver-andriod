@@ -90,9 +90,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
 
     @Override
     public void getSuccess(String s, int flag) {
-        if (flag == 0) {
-            confirm();
-        }
+        confirm();
         dismissLoadingDialog();
     }
 

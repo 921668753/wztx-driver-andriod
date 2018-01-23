@@ -69,9 +69,7 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
 
     @Override
     public void getSuccess(String s, int flag) {
-        if (flag == 0) {
-            confirm();
-        }
+        confirm();
         dismissLoadingDialog();
     }
 

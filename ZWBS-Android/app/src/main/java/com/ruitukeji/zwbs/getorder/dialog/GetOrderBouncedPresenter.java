@@ -26,7 +26,7 @@ public class GetOrderBouncedPresenter implements GetOrderBouncedContract.Present
     }
 
     @Override
-    public void getQuoteAdd(int goods_id, String dr_price,int is_place_order) {
+    public void getQuoteAdd(int goods_id, String dr_price, int is_place_order) {
         mView.showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
@@ -37,7 +37,7 @@ public class GetOrderBouncedPresenter implements GetOrderBouncedContract.Present
         RequestClient.getQuoteAdd(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 1);
+                mView.getSuccess(response, 0);
             }
 
             @Override
