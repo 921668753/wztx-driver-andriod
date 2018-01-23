@@ -1,6 +1,7 @@
 package com.ruitukeji.zwbs.main;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -175,6 +176,9 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
      * 订单状态
      */
     private int position = 0;
+    private ModelsBouncedDialog modelsBouncedDialog = null;
+    private ConductorBouncedDialog conductorBouncedDialog = null;
+    private AvailableTypeBouncedDialog availableTypeBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -489,47 +493,73 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 startActivityForResult(selectionIntent, STATUS);
                 break;
             case R.id.ll_models:
-                ModelsBouncedDialog modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
+                img_models.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (modelsBouncedDialog != null && !modelsBouncedDialog.isShowing()) {
+                    modelsBouncedDialog.show();
+                    return;
+                }
+                modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
                     @Override
                     public void confirm(String typeName, int typeId) {
-                        this.dismiss();
+                        this.cancel();
                         modelsId = typeId;
                         tv_models.setText(typeName);
-                        img_models.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
-                img_models.setImageResource(R.mipmap.icon_category_orange_up1);
                 modelsBouncedDialog.show();
+                modelsBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_models.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
             case R.id.ll_conductor:
-                ConductorBouncedDialog conductorBouncedDialog = new ConductorBouncedDialog(aty, vehicleLengthId) {
+                img_conductor.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (conductorBouncedDialog != null && !conductorBouncedDialog.isShowing()) {
+                    conductorBouncedDialog.show();
+                    return;
+                }
+                conductorBouncedDialog = new ConductorBouncedDialog(aty, vehicleLengthId) {
                     @Override
                     public void confirm(String conductorName, int conductorId) {
-                        this.dismiss();
+                        this.cancel();
                         vehicleLengthId = conductorId;
                         tv_conductor.setText(conductorName);
-                        img_conductor.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
-                img_conductor.setImageResource(R.mipmap.icon_category_orange_up1);
                 conductorBouncedDialog.show();
+                conductorBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_conductor.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
-
             case R.id.ll_availableType:
-                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
+                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (availableTypeBouncedDialog != null && !availableTypeBouncedDialog.isShowing()) {
+                    availableTypeBouncedDialog.show();
+                    return;
+                }
+                availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
                     @Override
                     public void confirm(String availableTypeName1, String availableTypeValue) {
-                        this.dismiss();
+                        this.cancel();
                         availableTypeName = availableTypeName1;
                         tv_availableType.setText(availableTypeValue);
-                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
-                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
                 availableTypeBouncedDialog.show();
+                availableTypeBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
 
             case R.id.tv_hintText:
@@ -593,8 +623,20 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     public void onDestroy() {
         super.onDestroy();
         if (sweetAlertDialog != null && sweetAlertDialog.isShowing()) {
-            sweetAlertDialog.dismiss();
+            sweetAlertDialog.cancel();
         }
+        if (modelsBouncedDialog != null) {
+            modelsBouncedDialog.cancel();
+        }
+        modelsBouncedDialog = null;
+        if (conductorBouncedDialog != null) {
+            conductorBouncedDialog.cancel();
+        }
+        conductorBouncedDialog = null;
+        if (availableTypeBouncedDialog != null) {
+            availableTypeBouncedDialog.cancel();
+        }
+        availableTypeBouncedDialog = null;
         sweetAlertDialog = null;
         tips.clear();
         tips = null;

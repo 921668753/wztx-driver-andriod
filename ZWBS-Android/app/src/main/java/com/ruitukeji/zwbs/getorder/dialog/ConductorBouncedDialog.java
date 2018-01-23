@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.getorder.dialog.LengthsViewAdapter;
@@ -23,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class ConductorBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, ConductorModelsContract.View {
+public abstract class ConductorBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, View.OnClickListener, ConductorModelsContract.View {
 
     private Context context;
     private ListView lv_models;
@@ -56,11 +57,21 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements Adapt
         lengthsViewAdapter = new LengthsViewAdapter(context);
         lv_models.setOnItemClickListener(this);
         lv_models.setAdapter(lengthsViewAdapter);
+        TextView tv_conductor = (TextView) findViewById(R.id.tv_conductor);
+        tv_conductor.setOnClickListener(this);
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter = new ConductorModelsPresenter(this);
         mPresenter.getConductorModels();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_conductor:
+                cancel();
+                break;
+        }
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

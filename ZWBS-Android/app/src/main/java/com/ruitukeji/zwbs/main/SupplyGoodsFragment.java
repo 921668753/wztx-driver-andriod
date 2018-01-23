@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.main;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -145,6 +146,10 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private int id = 0;
     private GetOrderBouncedDialog getOrderBouncedDialog = null;
     private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
+    private OriginBouncedDialog originBouncedDialog = null;
+    private OriginBouncedDialog originBouncedDialog1 = null;
+    private AvailableTypeBouncedDialog availableTypeBouncedDialog = null;
+    private ConductorModelsBouncedDialog conductorModelsBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -244,9 +249,15 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 startActivityForResult(intent, REQUEST_CODE_SELECT);
                 break;
             case R.id.ll_startingPoint:
-                OriginBouncedDialog originBouncedDialog = new OriginBouncedDialog(aty, startProvinceName, startProvinceId, startCityName, startCityId, startAreaName, startAreaId) {
+                img_startingPoint.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (originBouncedDialog != null && !originBouncedDialog.isShowing()) {
+                    originBouncedDialog.show();
+                    return;
+                }
+                originBouncedDialog = new OriginBouncedDialog(aty, startProvinceName, startProvinceId, startCityName, startCityId, startAreaName, startAreaId, 0) {
                     @Override
                     public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
+                        this.cancel();
                         startProvinceId = provinceId;
                         startCityId = cityId;
                         startAreaId = areaId;
@@ -254,17 +265,28 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                         if (!StringUtils.isEmpty(provinceName)) {
                             tv_startingPoint.setText(provinceName);
                         }
-                        img_startingPoint.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
                 originBouncedDialog.show();
+                originBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        originBouncedDialog = null;
+                        img_startingPoint.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
             case R.id.ll_endPoint:
-                OriginBouncedDialog originBouncedDialog1 = new OriginBouncedDialog(aty, endProvinceName, endProvinceId, endCityName, endCityId, endAreaName, endAreaId) {
+                img_endPoint.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (originBouncedDialog1 != null && !originBouncedDialog1.isShowing()) {
+                    originBouncedDialog1.show();
+                    return;
+                }
+                originBouncedDialog1 = new OriginBouncedDialog(aty, endProvinceName, endProvinceId, endCityName, endCityId, endAreaName, endAreaId, 1) {
                     @Override
                     public void confirm(String provinceName, int provinceId, int cityId, int areaId) {
-                        //   province1Name = provinceName;
+                        this.cancel();
                         endProvinceId = provinceId;
                         endCityId = cityId;
                         endAreaId = areaId;
@@ -272,40 +294,65 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                         if (!StringUtils.isEmpty(provinceName)) {
                             tv_endPoint.setText(provinceName);
                         }
-                        img_endPoint.setImageResource(R.mipmap.ic_category_gray_down);
+
                         mRefreshLayout.beginRefreshing();
                     }
                 };
                 originBouncedDialog1.show();
+                originBouncedDialog1.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        originBouncedDialog1 = null;
+                        img_endPoint.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
             case R.id.ll_availableType:
-                AvailableTypeBouncedDialog availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
+                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (availableTypeBouncedDialog != null && !availableTypeBouncedDialog.isShowing()) {
+                    availableTypeBouncedDialog.show();
+                    return;
+                }
+                availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
                     @Override
                     public void confirm(String availableTypeName1, String availableTypeValue) {
-                        this.dismiss();
+                        this.cancel();
                         availableTypeName = availableTypeName1;
                         tv_availableType.setText(availableTypeValue);
-                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
-                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
                 availableTypeBouncedDialog.show();
+                availableTypeBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
             case R.id.ll_conductorModels:
-                ConductorModelsBouncedDialog conductorModelsBouncedDialog = new ConductorModelsBouncedDialog(aty, vehicleLengthId, vehicleModelId) {
+                img_conductorModels.setImageResource(R.mipmap.icon_category_orange_up1);
+                if (conductorModelsBouncedDialog != null && !conductorModelsBouncedDialog.isShowing()) {
+                    conductorModelsBouncedDialog.show();
+                    return;
+                }
+                conductorModelsBouncedDialog = new ConductorModelsBouncedDialog(aty, vehicleLengthId, vehicleModelId) {
                     @Override
                     public void confirm(String conductorName, int conductorId, String modelsName, int modelsId) {
-                        this.dismiss();
+                        this.cancel();
                         vehicleLengthId = conductorId;
                         vehicleModelId = modelsId;
                         tv_conductorModels.setText(conductorName + "/" + modelsName);
-                        img_conductorModels.setImageResource(R.mipmap.ic_category_gray_down);
                         mRefreshLayout.beginRefreshing();
                     }
                 };
-                img_conductorModels.setImageResource(R.mipmap.icon_category_orange_up1);
                 conductorModelsBouncedDialog.show();
+                conductorModelsBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        img_conductorModels.setImageResource(R.mipmap.ic_category_gray_down);
+                    }
+                });
                 break;
             case R.id.tv_hintText:
                 mRefreshLayout.beginRefreshing();
@@ -430,8 +477,20 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         if (sendQuotationBouncedDialog != null) {
             sendQuotationBouncedDialog.cancel();
         }
+        if (originBouncedDialog != null) {
+            originBouncedDialog.cancel();
+        }
+        if (originBouncedDialog1 != null) {
+            originBouncedDialog1.cancel();
+        }
+        if (availableTypeBouncedDialog != null) {
+            availableTypeBouncedDialog.cancel();
+        }
+        originBouncedDialog = null;
+        originBouncedDialog1 = null;
         getOrderBouncedDialog = null;
         sendQuotationBouncedDialog = null;
+        availableTypeBouncedDialog = null;
     }
 
 

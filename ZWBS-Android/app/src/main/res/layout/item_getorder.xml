@@ -309,7 +309,6 @@
         android:textColor="@color/ff9A06Colors"
         android:textSize="@dimen/textsize12" />
 
-
     <LinearLayout
         android:id="@+id/ll_button"
         style="@style/MatchWrap"
@@ -339,7 +338,8 @@
             android:paddingTop="@dimen/dimen10.5"
             android:text="@string/reject"
             android:textColor="@color/announcementCloseColors"
-            android:textSize="@dimen/textsize15" />
+            android:textSize="@dimen/textsize15"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_sendQuotation"

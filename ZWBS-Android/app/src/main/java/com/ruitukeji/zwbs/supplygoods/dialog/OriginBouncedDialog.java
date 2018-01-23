@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -26,8 +27,9 @@ import java.util.List;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class OriginBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, OriginBouncedContract.View {
+public abstract class OriginBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, View.OnClickListener, OriginBouncedContract.View {
 
+    private int type = 0;
     private Context context;
 
     private ListView lv_province;
@@ -60,7 +62,7 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
     private List<ResultBean> areaBeanlist = null;
 
 
-    public OriginBouncedDialog(Context context, String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId) {
+    public OriginBouncedDialog(Context context, String provinceName, int provinceId, String cityName, int cityId, String areaName, int areaId, int type) {
         super(context, R.style.dialog);
         this.context = context;
         this.provinceName = provinceName;
@@ -69,6 +71,7 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
         this.cityId = cityId;
         this.areaName = areaName;
         this.areaId = areaId;
+        this.type = type;
     }
 
     @Override
@@ -97,9 +100,30 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
         lv_area = (ListView) findViewById(R.id.lv_area);
         lv_area.setOnItemClickListener(this);
         lv_area.setAdapter(areaViewAdapter);
+        if (type == 0) {
+            TextView tv_startingPoint = (TextView) findViewById(R.id.tv_startingPoint);
+            tv_startingPoint.setOnClickListener(this);
+        } else {
+            TextView tv_endPoint = (TextView) findViewById(R.id.tv_endPoint);
+            tv_endPoint.setOnClickListener(this);
+        }
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter.getAddress(0, 0);
     }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_startingPoint:
+                cancel();
+                break;
+            case R.id.tv_endPoint:
+                cancel();
+                break;
+        }
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

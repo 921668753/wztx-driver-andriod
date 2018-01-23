@@ -52,8 +52,6 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
 
     private Context context;
 
-    private TextView tv_determine;
-    private TextView tv_emptying;
 
     public ConductorModelsBouncedDialog(Context context, int vehicleLengthId, int vehicleModelId) {
         super(context, R.style.dialog);
@@ -77,10 +75,12 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     private void initView() {
         gv_vehiclelength = (NoScrollGridView) findViewById(R.id.gv_vehiclelength);
         gv_vehiclemodel = (NoScrollGridView) findViewById(R.id.gv_vehiclemodel);
-        tv_emptying = (TextView) findViewById(R.id.tv_emptying);
+        TextView tv_emptying = (TextView) findViewById(R.id.tv_emptying);
         tv_emptying.setOnClickListener(this);
-        tv_determine = (TextView) findViewById(R.id.tv_determine);
+        TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
         tv_determine.setOnClickListener(this);
+        TextView tv_conductorModels = (TextView) findViewById(R.id.tv_conductorModels);
+        tv_conductorModels.setOnClickListener(this);
         mPresenter = new ConductorModelsPresenter(this);
         lengthsViewAdapter = new LengthsNewViewAdapter(context);
         typesViewAdapter = new TypesNewViewAdapter(context);
@@ -94,6 +94,9 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_conductorModels:
+                cancel();
+                break;
             case R.id.tv_emptying:
                 confirm(context.getString(R.string.conductor), 0, context.getString(R.string.models), 0);
                 break;

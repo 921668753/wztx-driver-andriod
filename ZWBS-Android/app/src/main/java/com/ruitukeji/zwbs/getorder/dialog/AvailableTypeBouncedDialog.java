@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.entity.getorder.dialog.AvailableTypeBean.ResultBean;
@@ -23,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class AvailableTypeBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, AvailableTypeBouncedContract.View {
+public abstract class AvailableTypeBouncedDialog extends BaseDialog implements AdapterView.OnItemClickListener, View.OnClickListener, AvailableTypeBouncedContract.View {
 
     private String availableTypeName = "all";
 
@@ -60,9 +61,21 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
         mPresenter = new AvailableTypeBouncedPresenter(this);
         lv_models = (ListView) findViewById(R.id.lv_models);
         lv_models.setOnItemClickListener(this);
+        TextView tv_availableType = (TextView) findViewById(R.id.tv_availableType);
+        tv_availableType.setOnClickListener(this);
         lv_models.setAdapter(availableTypeViewAdapter);
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter.getAvailableType();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_availableType:
+                cancel();
+                break;
+        }
     }
 
     @Override
