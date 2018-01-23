@@ -28,4 +28,6 @@ public class ExceptionReportingActivity extends BaseActivity {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.exceptionReporting), true, R.id.titlebar);
     }
+
+
 }

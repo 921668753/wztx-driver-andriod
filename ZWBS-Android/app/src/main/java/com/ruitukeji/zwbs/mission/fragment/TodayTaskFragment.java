@@ -113,6 +113,8 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
         lv_mission.setAdapter(mAdapter);
         lv_mission.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
+        String todayStr = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+        tv_data.setText(todayStr);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -187,9 +189,7 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "expireTime", "0");
                     PreferenceHelper.write(aty, StringConstants.FILENAME, "timeBefore", "0");
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
-                    Intent intent = new Intent(aty, LoginActivity.class);
-                    aty.showActivity(aty, intent);
+                    aty.showActivity(aty, LoginActivity.class);
                     break;
                 }
                 mRefreshLayout.beginRefreshing();
@@ -199,8 +199,6 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
 
     @Override
     public void getSuccess(String s, int flag) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", false);
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", false);
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
@@ -258,7 +256,6 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (!mAdapter.getItem(i).getStatus().equals("distribute")) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
             aty.showActivity(aty, intent);

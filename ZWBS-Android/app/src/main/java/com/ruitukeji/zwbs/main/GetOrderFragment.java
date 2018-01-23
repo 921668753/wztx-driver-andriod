@@ -59,6 +59,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.app.Activity.RESULT_OK;
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 import static com.ruitukeji.zwbs.constant.NumericConstants.STATUS;
 
 /**
@@ -338,8 +339,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 8) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
-            //    intent.putExtra("designation", "getGoodDetail");
-            aty.showActivity(aty, intent);
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
         } else if (flag == 9) {
             int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
             if (isGoWork == 1) {
@@ -668,7 +668,11 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             //   showLoadingDialog(aty.getString(R.string.dataLoad));
             //  ((HomePageContract.Presenter) mPresenter).getHomePage(selectCity);
             Log.d("tag888", selectCity);
+        } else if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {// 如果等于1
+            mRefreshLayout.beginRefreshing();
         }
+
+
     }
 
     /**

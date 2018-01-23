@@ -40,6 +40,7 @@ import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static android.app.Activity.RESULT_OK;
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PREVIEW;
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
@@ -391,8 +392,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         } else if (flag == 4) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", id);
-            //    intent.putExtra("designation", "goodDetail");
-            aty.showActivity(aty, intent);
+            startActivityForResult(intent, REQUEST_CODE_PREVIEW);
         } else if (flag == 5) {
             // aty.showActivity(aty, SetTheLineActivity.class);
             int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
@@ -464,6 +464,8 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             if (!StringUtils.isEmpty(endpoint)) {
                 tv_endPoint.setText(endpoint);
             }
+            mRefreshLayout.beginRefreshing();
+        } else if (requestCode == REQUEST_CODE_PREVIEW && resultCode == RESULT_OK) {
             mRefreshLayout.beginRefreshing();
         }
     }

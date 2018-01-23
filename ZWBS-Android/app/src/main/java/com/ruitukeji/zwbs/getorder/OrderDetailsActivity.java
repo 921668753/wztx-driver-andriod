@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.getorder;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -145,6 +146,9 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     private int order_id = 0;
     private String system_price = "0.00";
     private String mind_price = "0.00";
+    private GetOrderBouncedDialog getOrderBouncedDialog = null;
+    private AuthenticationBouncedDialog authenticationBouncedDialog = null;
+    private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
 
     @Override
     public void setRootView() {
@@ -164,9 +168,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.orderDetails), true, R.id.titlebar);
-//        order_id = getIntent().getIntExtra("order_id", 0);
-//        showLoadingDialog(getString(R.string.dataLoad));
-//        ((OrderDetailsContract.Presenter) mPresenter).getGoodDetails(order_id);
     }
 
 
@@ -181,22 +182,34 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 } else {
                     money = mind_price;
                 }
+                if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
+                    getOrderBouncedDialog.show();
+                    return;
+                }
                 //接单
-                GetOrderBouncedDialog getOrderBouncedDialog = new GetOrderBouncedDialog(aty, order_id, money) {
+                getOrderBouncedDialog = new GetOrderBouncedDialog(aty, order_id, money) {
                     @Override
                     public void confirm() {
                         this.cancel();
                         tv_getorder.setVisibility(View.GONE);
                         tv_reject.setVisibility(View.GONE);
                         tv_sendQuotation.setVisibility(View.GONE);
-                        finish();
+                        Intent intent = new Intent();
+                        // 设置结果 结果码，一个数据
+                        setResult(RESULT_OK, intent);
+                        // 结束该activity 结束之后，前面的activity才可以处理结果
+                        aty.finish();
                     }
                 };
                 getOrderBouncedDialog.show();
                 break;
             case R.id.tv_reject:
+                if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
+                    authenticationBouncedDialog.show();
+                    return;
+                }
                 //拒绝
-                AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmReceiptRejected)) {
+                authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmReceiptRejected)) {
                     @Override
                     public void confirm() {
                         this.cancel();
@@ -208,15 +221,23 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 authenticationBouncedDialog.show();
                 break;
             case R.id.tv_sendQuotation:
+                if (sendQuotationBouncedDialog != null && !sendQuotationBouncedDialog.isShowing()) {
+                    sendQuotationBouncedDialog.show();
+                    return;
+                }
                 //报价
-                SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, order_id, system_price) {
+                sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, order_id, system_price) {
                     @Override
                     public void confirm() {
                         this.cancel();
                         tv_getorder.setVisibility(View.GONE);
                         tv_reject.setVisibility(View.GONE);
                         tv_sendQuotation.setVisibility(View.GONE);
-                        finish();
+                        Intent intent = new Intent();
+                        // 设置结果 结果码，一个数据
+                        setResult(RESULT_OK, intent);
+                        // 结束该activity 结束之后，前面的activity才可以处理结果
+                        aty.finish();
                     }
                 };
                 sendQuotationBouncedDialog.show();
@@ -287,9 +308,12 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_sendQuotation.setVisibility(View.GONE);
             }
         } else if (flag == 1) {
-            finish();
+            Intent intent = new Intent();
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
+            // 结束该activity 结束之后，前面的activity才可以处理结果
+            aty.finish();
         }
-
     }
 
     @Override
@@ -304,5 +328,22 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     @Override
     public void setPresenter(OrderDetailsContract.Presenter presenter) {
         mPresenter = presenter;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (getOrderBouncedDialog != null) {
+            getOrderBouncedDialog.cancel();
+        }
+        if (authenticationBouncedDialog != null) {
+            authenticationBouncedDialog.cancel();
+        }
+        if (sendQuotationBouncedDialog != null) {
+            sendQuotationBouncedDialog.cancel();
+        }
+        sendQuotationBouncedDialog = null;
+        authenticationBouncedDialog = null;
+        getOrderBouncedDialog = null;
     }
 }
