@@ -99,7 +99,7 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+       // intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
 //        intent.putExtra("designation", "AllOrderFragment");
         aty.showActivity(aty, intent);
     }
@@ -169,11 +169,11 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            mAdapter.addNewData(orderBean.getResult().getList());
+         //   mAdapter.addNewData(orderBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(orderBean.getResult().getList());
+          //  mAdapter.addMoreData(orderBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
@@ -227,13 +227,13 @@ public class AllOrderFragment extends BaseFragment implements OrderContract.View
         if (!mAdapter.getItem(i).getStatus().equals("distribute")) {
             PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "AllOrderFragment");
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
-            intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+           // intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
             aty.showActivity(aty, intent);
             return;
         }
         if (view.getId() == R.id.rl_navigation) {
-            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
-            navigationBouncedDialog.show();
+//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
+//            navigationBouncedDialog.show();
         }
     }
 

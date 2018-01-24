@@ -138,12 +138,27 @@
             android:name=".getorder.announcement.AnnouncementActivity"
             android:screenOrientation="portrait" />
 
-        <!--设定路线-->
+        <!--任务  上传收货凭证-->
+        <activity
+            android:name=".mission.UploadReceiptVoucherActivity"
+            android:screenOrientation="portrait" />
+
+        <!--任务  填写快递单-->
+        <activity
+            android:name=".mission.FillOutExpressActivity"
+            android:screenOrientation="portrait" />
+
+        <!--任务  异常上报-->
+        <activity
+            android:name=".mission.ExceptionReportingActivity"
+            android:screenOrientation="portrait" />
+
+        <!--货源  设定路线-->
         <activity
             android:name=".supplygoods.SetTheLineActivity"
             android:screenOrientation="portrait" />
 
-        <!--添加路线-->
+        <!--货源 添加路线-->
         <activity
             android:name=".supplygoods.AddTheLineActivity"
             android:screenOrientation="portrait" />
@@ -172,7 +187,7 @@
             android:name=".order.EvaluationShareActivity"
             android:screenOrientation="portrait" />
 
-        <!--   车辆认证-->
+        <!--个人中心  车辆认证-->
         <activity
             android:name=".mine.vehiclecertification.VehicleCertificationActivity"
             android:screenOrientation="portrait" />

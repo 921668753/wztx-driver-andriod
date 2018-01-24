@@ -10,6 +10,7 @@
     <LinearLayout
         style="@style/MatchWrap"
         android:background="@color/mainColor"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/dimen18"
         android:paddingLeft="@dimen/dimen15"
@@ -23,6 +24,7 @@
             android:textSize="@dimen/textsize15" />
 
         <TextView
+            android:id="@+id/tv_submissionCredentials"
             style="@style/MatchWrap"
             android:paddingLeft="@dimen/dimen28"
             android:text="江苏省昆山市花桥镇"

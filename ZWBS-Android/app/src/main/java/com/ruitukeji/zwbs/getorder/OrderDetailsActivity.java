@@ -305,6 +305,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_sendQuotation.setVisibility(View.VISIBLE);
             } else {
                 tv_getorder.setVisibility(View.GONE);
+                tv_reject.setVisibility(View.GONE);
                 tv_sendQuotation.setVisibility(View.GONE);
             }
         } else if (flag == 1) {

@@ -96,7 +96,7 @@ public class NoDistributionOrderFragment extends BaseFragment implements OrderCo
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "NoDistributionOrderFragment");
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+     //   intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
      //   intent.putExtra("designation", "NoDistributionOrderFragment");
         aty.showActivity(aty, intent);
     }
@@ -165,11 +165,11 @@ public class NoDistributionOrderFragment extends BaseFragment implements OrderCo
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            mAdapter.addNewData(orderBean.getResult().getList());
+          //  mAdapter.addNewData(orderBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(orderBean.getResult().getList());
+          //  mAdapter.addMoreData(orderBean.getResult().getList());
         }
 
         dismissLoadingDialog();

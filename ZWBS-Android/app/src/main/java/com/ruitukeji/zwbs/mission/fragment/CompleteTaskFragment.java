@@ -20,7 +20,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.dialog.NavigationBouncedDialog;
-import com.ruitukeji.zwbs.entity.OrderBean;
+import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
@@ -122,7 +122,7 @@ public class CompleteTaskFragment extends BaseFragment implements TaskContract.V
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+        intent.putExtra("order_id", mAdapter.getItem(i).getId());
         aty.showActivity(aty, intent);
     }
 
@@ -204,20 +204,20 @@ public class CompleteTaskFragment extends BaseFragment implements TaskContract.V
         isShowLoadingMore = true;
         ll_commonError.setVisibility(View.GONE);
         mRefreshLayout.setVisibility(View.VISIBLE);
-        OrderBean orderBean = (OrderBean) JsonUtil.getInstance().json2Obj(s, OrderBean.class);
-        mMorePageNumber = orderBean.getResult().getPage();
-        totalPageNumber = orderBean.getResult().getPageTotal();
-        if (orderBean.getResult().getList() == null || orderBean.getResult().getList().size() == 0) {
+        TaskBean taskBean = (TaskBean) JsonUtil.getInstance().json2Obj(s, TaskBean.class);
+        mMorePageNumber = taskBean.getResult().getPage();
+        totalPageNumber = taskBean.getResult().getPageTotal();
+        if (taskBean.getResult().getList() == null || taskBean.getResult().getList().size() == 0) {
             errorMsg(getString(R.string.serverReturnsDataNull), 0);
             return;
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            mAdapter.addNewData(orderBean.getResult().getList());
+            mAdapter.addNewData(taskBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(orderBean.getResult().getList());
+            mAdapter.addMoreData(taskBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
@@ -258,13 +258,13 @@ public class CompleteTaskFragment extends BaseFragment implements TaskContract.V
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (!mAdapter.getItem(i).getStatus().equals("distribute")) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
-            intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+            intent.putExtra("order_id", mAdapter.getItem(i).getId());
             aty.showActivity(aty, intent);
             return;
         }
         if (view.getId() == R.id.rl_navigation) {
-            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
-            navigationBouncedDialog.show();
+//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
+//            navigationBouncedDialog.show();
         }
     }
 }

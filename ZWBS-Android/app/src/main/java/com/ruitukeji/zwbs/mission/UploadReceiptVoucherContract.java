@@ -14,7 +14,7 @@ public interface UploadReceiptVoucherContract {
         /**
          * 上传到货凭证
          */
-        void uploadCerPic(int order_id, String img_url, String dest_address_maps);
+        void uploadCerPic(int order_id, String img_url);
 
         /**
          * 上传图片

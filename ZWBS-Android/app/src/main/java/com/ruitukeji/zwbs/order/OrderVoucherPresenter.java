@@ -6,7 +6,6 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.nanchen.compresshelper.FileUtil;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.retrofit.RequestClient;

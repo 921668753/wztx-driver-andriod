@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.mission.TaskViewAdapter;
 import com.ruitukeji.zwbs.common.BaseFragment;
@@ -20,10 +21,12 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.dialog.NavigationBouncedDialog;
-import com.ruitukeji.zwbs.entity.OrderBean;
+import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
+import com.ruitukeji.zwbs.mission.ExceptionReportingActivity;
+import com.ruitukeji.zwbs.mission.UploadReceiptVoucherActivity;
 import com.ruitukeji.zwbs.mission.dialog.CalendarBouncedDialog;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -31,6 +34,9 @@ import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+
+import static android.app.Activity.RESULT_OK;
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
  * 今日任务
@@ -76,6 +82,7 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
      * 当前页码
      */
     private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 总页码
      */
@@ -90,6 +97,7 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
      */
     private int type = 0;
     private long dataLong = 0;
+    private int position = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -118,12 +126,6 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
         mRefreshLayout.beginRefreshing();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
-        aty.showActivity(aty, intent);
-    }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
@@ -199,43 +201,69 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
 
     @Override
     public void getSuccess(String s, int flag) {
-        isShowLoadingMore = true;
-        ll_commonError.setVisibility(View.GONE);
-        mRefreshLayout.setVisibility(View.VISIBLE);
-        OrderBean orderBean = (OrderBean) JsonUtil.getInstance().json2Obj(s, OrderBean.class);
-        mMorePageNumber = orderBean.getResult().getPage();
-        totalPageNumber = orderBean.getResult().getPageTotal();
-        if (orderBean.getResult().getList() == null || orderBean.getResult().getList().size() == 0) {
-            errorMsg(getString(R.string.serverReturnsDataNull), 0);
-            return;
-        }
-        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            mAdapter.clear();
-            mAdapter.addNewData(orderBean.getResult().getList());
-            mRefreshLayout.endRefreshing();
-        } else {
-            mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(orderBean.getResult().getList());
+        if (flag == 0) {
+            isShowLoadingMore = true;
+            ll_commonError.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+            TaskBean taskBean = (TaskBean) JsonUtil.getInstance().json2Obj(s, TaskBean.class);
+            mMorePageNumber = taskBean.getResult().getPage();
+            totalPageNumber = taskBean.getResult().getPageTotal();
+            if (taskBean.getResult().getList() == null || taskBean.getResult().getList().size() == 0) {
+                errorMsg(getString(R.string.serverReturnsDataNull), 0);
+                return;
+            }
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mAdapter.clear();
+                mAdapter.addNewData(taskBean.getResult().getList());
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(taskBean.getResult().getList());
+            }
+        } else if (flag == 1) {
+            Intent intent = new Intent(aty, OrderDetailsActivity.class);
+            intent.putExtra("order_id", mAdapter.getItem(position).getId());
+            aty.showActivity(aty, intent);
+        } else if (flag == 2) {
+        } else if (flag == 3) {
+        } else if (flag == 4) {
+            Intent intent = new Intent(aty, UploadReceiptVoucherActivity.class);
+            intent.putExtra("order_id", mAdapter.getItem(position).getId());
+            intent.putExtra("is_cargo_receipt", mAdapter.getItem(position).getIs_cargo_receipt());
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
+        } else if (flag == 5) {
+            Intent intent = new Intent(aty, ExceptionReportingActivity.class);
+            intent.putExtra("order_id", mAdapter.getItem(position).getId());
+            aty.showActivity(aty, intent);
+        } else if (flag == 6) {
+            mRefreshLayout.beginRefreshing();
+        } else if (flag == 7) {
+            mRefreshLayout.beginRefreshing();
         }
         dismissLoadingDialog();
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
-        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
+        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN) && flag == 0) {
             dismissLoadingDialog();
             tv_hintText.setText(getString(R.string.login1));
             aty.showActivity(aty, LoginActivity.class);
             return;
-        }
-        isShowLoadingMore = false;
-        mRefreshLayout.setVisibility(View.GONE);
-        ll_commonError.setVisibility(View.VISIBLE);
-        tv_hintText.setText(msg + getString(R.string.clickRefresh));
-        if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-            mRefreshLayout.endRefreshing();
+        } else if (flag == 0) {
+            isShowLoadingMore = false;
+            mRefreshLayout.setVisibility(View.GONE);
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setText(msg + getString(R.string.clickRefresh));
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+            }
         } else {
-            mRefreshLayout.endLoadingMore();
+            if (!toLigon1(msg)) {
+                return;
+            }
         }
         dismissLoadingDialog();
     }
@@ -254,17 +282,43 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
     }
 
     @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        position = i;
+        ((TaskContract.Presenter) mPresenter).isLogin(1);
+    }
+
+    @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
-        if (!mAdapter.getItem(i).getStatus().equals("distribute")) {
-            Intent intent = new Intent(aty, OrderDetailsActivity.class);
-            intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
-            aty.showActivity(aty, intent);
-            return;
-        }
-        if (view.getId() == R.id.rl_navigation) {
-            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
-            navigationBouncedDialog.show();
+        position = i;
+        if (view.getId() == R.id.img_navigation) {
+            ((TaskContract.Presenter) mPresenter).isLogin(2);
+//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
+//            navigationBouncedDialog.show();
+        } else if (view.getId() == R.id.img_phone) {
+            ((TaskContract.Presenter) mPresenter).isLogin(3);
+//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
+//            navigationBouncedDialog.show();
+        } else if (view.getId() == R.id.img_start && StringUtils.isEmpty(mAdapter.getItem(i).getArr_org_time_str())) {
+            showLoadingDialog(getString(R.string.submissionLoad));
+            ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 0);
+        } else if (view.getId() == R.id.img_car && StringUtils.isEmpty(mAdapter.getItem(i).getSend_time())) {
+            showLoadingDialog(getString(R.string.submissionLoad));
+            ((TaskContract.Presenter) mPresenter).postShipping(mAdapter.getItem(i).getId());
+        } else if (view.getId() == R.id.img_end && StringUtils.isEmpty(mAdapter.getItem(i).getArr_time())) {
+            showLoadingDialog(getString(R.string.submissionLoad));
+            ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 1);
+        } else if (view.getId() == R.id.tv_submitDocuments) {
+            ((TaskContract.Presenter) mPresenter).isLogin(4);
+        } else if (view.getId() == R.id.tv_exceptionReporting) {
+            ((TaskContract.Presenter) mPresenter).isLogin(5);
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {// 如果等于1
+            mRefreshLayout.beginRefreshing();
+        }
+    }
 }

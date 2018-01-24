@@ -107,7 +107,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.tv_serviceLevel1)
     private TextView tv_serviceLevel1;
 
-
     @BindView(id = R.id.tv_complaintsNumber)
     private TextView tv_complaintsNumber;
 

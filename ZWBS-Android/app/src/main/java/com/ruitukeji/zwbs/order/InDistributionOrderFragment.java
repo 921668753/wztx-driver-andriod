@@ -100,7 +100,7 @@ public class InDistributionOrderFragment extends BaseFragment implements OrderCo
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "InDistributionOrderFragment");
         Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
+        //intent.putExtra("order_id", mAdapter.getItem(i).getOrder_id());
         aty.showActivity(aty, intent);
     }
 
@@ -168,11 +168,11 @@ public class InDistributionOrderFragment extends BaseFragment implements OrderCo
         }
         if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
             mAdapter.clear();
-            mAdapter.addNewData(orderBean.getResult().getList());
+         //   mAdapter.addNewData(orderBean.getResult().getList());
             mRefreshLayout.endRefreshing();
         } else {
             mRefreshLayout.endLoadingMore();
-            mAdapter.addMoreData(orderBean.getResult().getList());
+        //    mAdapter.addMoreData(orderBean.getResult().getList());
         }
         dismissLoadingDialog();
     }
@@ -227,8 +227,8 @@ public class InDistributionOrderFragment extends BaseFragment implements OrderCo
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (view.getId() == R.id.rl_navigation) {
             if (view.getId() == R.id.rl_navigation) {
-                NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty,mAdapter.getItem(i).getDest_address_name());
-                navigationBouncedDialog.show();
+//                NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty,mAdapter.getItem(i).getDest_address_name());
+//                navigationBouncedDialog.show();
             }
         }
     }

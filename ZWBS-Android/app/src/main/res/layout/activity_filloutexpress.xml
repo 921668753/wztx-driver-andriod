@@ -8,6 +8,7 @@
     <include layout="@layout/common_title" />
 
     <TextView
+        android:id="@+id/tv_billReceipt"
         style="@style/MatchWrap"
         android:background="@color/mainColor"
         android:paddingBottom="@dimen/dimen15"

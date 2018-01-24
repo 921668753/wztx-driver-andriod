@@ -210,6 +210,11 @@ public class URLConstants {
     public static String ISWORK = APIURL + "User/isWork";
 
     /**
+     * 到达起运地时间
+     */
+    public static String ARRORGTIME = APIURL + "goods/arrOrgTime";
+
+    /**
      * 司机进行发货动作
      */
     public static String SHHIPPING = APIURL + "order/shipping";

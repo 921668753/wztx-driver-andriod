@@ -514,25 +514,6 @@ public class RequestClient {
 
 
     /**
-     * 司机进行发货动作
-     */
-    public static void postShipping(HttpParams httpParams, final ResponseListener<String> listener) {
-        Log.d("tag", "postShipping");
-        doServer(new TokenCallback() {
-            @Override
-            public void execute() {
-                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
-                if (StringUtils.isEmpty(accessToken)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("authorization-token", accessToken);
-                HttpRequest.requestPostHttp(URLConstants.SHHIPPING, httpParams, listener);
-            }
-        }, listener);
-    }
-
-    /**
      * 任务--获取任务列表
      */
     public static void getTask(HttpParams httpParams, ResponseListener<String> listener) {
@@ -547,6 +528,44 @@ public class RequestClient {
                 }
                 httpParams.putHeaders("authorization-token", accessToken);
                 HttpRequest.requestGetHttp(URLConstants.TASK, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 任务-- 到达起运地时间
+     */
+    public static void postarrOrgTime(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postShipping");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.ARRORGTIME, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 任务-- 司机进行发货动作
+     */
+    public static void postShipping(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postShipping");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.SHHIPPING, httpParams, listener);
             }
         }, listener);
     }

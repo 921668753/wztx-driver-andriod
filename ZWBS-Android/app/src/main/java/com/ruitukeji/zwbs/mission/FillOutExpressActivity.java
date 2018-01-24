@@ -1,5 +1,6 @@
 package com.ruitukeji.zwbs.mission;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +16,12 @@ import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
  */
 
 public class FillOutExpressActivity extends BaseActivity implements FillOutExpressContract.View {
+
+    /**
+     * 签收单邮寄地址
+     */
+    @BindView(id = R.id.tv_billReceipt)
+    private TextView tv_billReceipt;
 
     /**
      * 签收单邮寄地址
@@ -62,7 +69,7 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
     public void initData() {
         super.initData();
         mPresenter = new FillOutExpressPresenter(this);
-        g_id = getIntent().getIntExtra("", 0);
+        g_id = getIntent().getIntExtra("order_id", 0);
     }
 
 
@@ -70,8 +77,17 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.fillOutExpress), true, R.id.titlebar);
-
-
+        int cargo_is_express = getIntent().getIntExtra("cargo_is_express", 0);
+        if (cargo_is_express == 0) {
+            tv_billReceipt.setText(getString(R.string.billReceipt1));
+        } else {
+            tv_billReceipt.setText(getString(R.string.billReceipt));
+        }
+        String cargo_address = getIntent().getStringExtra("cargo_address");
+        String cargo_address_detail = getIntent().getStringExtra("cargo_address_detail");
+        tv_mailingAddress.setText(cargo_address + cargo_address_detail);
+        tv_recipient.setText(getIntent().getStringExtra("cargo_man"));
+        tv_contactInformation.setText(getIntent().getStringExtra("cargo_tel"));
     }
 
 
@@ -93,8 +109,11 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
 
     @Override
     public void getSuccess(String success, int flag) {
-
-        finish();
+        Intent intent = new Intent();
+        // 设置结果 结果码，一个数据
+        setResult(RESULT_OK, intent);
+        // 结束该activity 结束之后，前面的activity才可以处理结果
+        aty.finish();
         dismissLoadingDialog();
     }
 

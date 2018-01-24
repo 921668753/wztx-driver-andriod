@@ -265,9 +265,12 @@
     <string name="pleaseSelectTime">请选择时间</string>
     <string name="abnormalReason">异常原因</string>
 
+
+
     <!--填写快递单-->
     <string name="fillOutExpress">填写快递单</string>
     <string name="billReceipt">本订单需要签收单，签收单快递费到付（未签收）</string>
+    <string name="billReceipt1">本订单需要签收单，签收单快递费需要您付款（未签收）</string>
     <string name="mailingAddress">签收单邮寄地址</string>
     <string name="recipient">签收单收件人</string>
     <string name="contactInformation">签收单联系方式</string>
