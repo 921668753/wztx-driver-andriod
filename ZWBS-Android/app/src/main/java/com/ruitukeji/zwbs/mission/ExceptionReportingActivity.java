@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.lzy.imagepicker.ImagePicker;
@@ -30,7 +31,10 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -59,9 +63,12 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
     private LinearLayout ll_abnormalTime;
     @BindView(id = R.id.tv_abnormalTime)
     private TextView tv_abnormalTime;
+    private TimePickerView pvTime;
+    Calendar calendar = Calendar.getInstance();
+    public long abnormalTime = 0;
 
     /**
-     * 异常时间
+     * 异常原因
      */
     @BindView(id = R.id.et_abnormalReason)
     private EditText et_abnormalReason;
@@ -79,6 +86,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
     private int maxImgCount = 3;
     private int order_id = 0;
 
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_exceptionreporting);
@@ -91,15 +99,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
         order_id = getIntent().getIntExtra("order_id", 0);
         initView();
         initImagePicker();
-    }
-
-    private void initView() {
-        selImageList = new ArrayList<ImageItem>();
-        adapter = new ImagePickerAdapter(this, selImageList, maxImgCount);
-        adapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
+       // asOfTheDatePicker();
     }
 
     @Override
@@ -118,6 +118,15 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
         imagePicker.setCrop(false);                           //允许裁剪（单选才有效）
 //        imagePicker.setSaveRectangle(false);                   //是否按矩形区域保存
         imagePicker.setSelectLimit(maxImgCount);              //选中数量限制
+    }
+
+    private void initView() {
+        selImageList = new ArrayList<ImageItem>();
+        adapter = new ImagePickerAdapter(this, selImageList, maxImgCount);
+        adapter.setOnItemClickListener(this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -141,6 +150,12 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
+            case R.id.ll_abnormalTime:
+                pvTime.setDate(calendar);
+                //弹出时间选择器
+                pvTime.show(tv_abnormalTime);
+                break;
+
             case R.id.tv_submit:
                 showLoadingDialog(getString(R.string.submissionLoad));
                 ((ExceptionReportingContract.Presenter) mPresenter).postAbnormalInsert(order_id, selImageList, tv_abnormalLocation.getText().toString().trim(), et_abnormalReason.getText().toString().trim());
@@ -246,4 +261,42 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
         mPresenter = presenter;
     }
 
+
+    /**
+     * 时间选择器----截止日期
+     */
+    @SuppressWarnings("deprecation")
+    public void asOfTheDatePicker() {
+        boolean[] type = new boolean[]{false, false, false, true, true, false};//显示类型 默认全部显示
+        //控制时间范围
+        Calendar calendarSet = Calendar.getInstance();
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(calendarSet.get(Calendar.YEAR), calendarSet.get(Calendar.MONTH), calendarSet.get(Calendar.DAY_OF_MONTH), calendarSet.get(Calendar.HOUR) - 1, calendarSet.get(Calendar.MINUTE));
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(calendarSet.get(Calendar.YEAR), calendarSet.get(Calendar.MONTH), calendarSet.get(Calendar.DAY_OF_MONTH), calendarSet.get(Calendar.HOUR), calendarSet.get(Calendar.MINUTE));
+        pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                if (date.getTime() > System.currentTimeMillis()) {
+                    ViewInject.toast(getString(R.string.abnormalTime2));
+                    return;
+                }
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                abnormalTime = date.getTime() / 1000;
+                calendar.setTime(date);
+                ((TextView) v).setText(format.format(date));
+            }
+        }).setType(type)
+                .setLabel("", "", "", "", "", "") //设置空字符串以隐藏单位提示   hide label
+                .setContentSize(20)
+                .setRangDate(startDate, endDate)
+                .build();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pvTime = null;
+    }
 }

@@ -703,7 +703,7 @@
     <string name="abnormalLocation1">异常地点：</string>
     <string name="abnormalTime1">异常时间：</string>
     <string name="abnormalReason1">异常原因：</string>
-
+    <string name="abnormalTime2">异常时间要小于等于当前时间</string>
 
     <!--账单-->
     <string name="freight">运价：</string>

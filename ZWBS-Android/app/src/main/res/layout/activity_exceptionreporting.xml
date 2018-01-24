@@ -17,7 +17,6 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-
             <TextView
                 style="@style/MatchWrap"
                 android:padding="@dimen/dimen15"
@@ -34,6 +33,10 @@
                 android:divider="@null"
                 android:fadingEdge="none"
                 android:listSelector="@android:color/transparent"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen5"
+                android:paddingTop="@dimen/dimen10"
                 android:scrollbarStyle="outsideOverlay"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
                 app:spanCount="3"
@@ -65,7 +68,9 @@
 
             </LinearLayout>
 
-            <include layout="@layout/commom_dividerwidth1" />
+            <include
+                layout="@layout/commom_dividerwidth1"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/ll_abnormalTime"
@@ -76,7 +81,8 @@
                 android:paddingBottom="@dimen/dimen18"
                 android:paddingLeft="@dimen/dimen15"
                 android:paddingRight="@dimen/dimen15"
-                android:paddingTop="@dimen/dimen18">
+                android:paddingTop="@dimen/dimen18"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/WrapWrap"
