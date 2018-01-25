@@ -17,7 +17,7 @@ public interface ExceptionReportingContract {
         /**
          * 上报异常信息
          */
-        void postAbnormalInsert(int id, ArrayList<ImageItem> imgList, String place, String content);
+        void postAbnormalInsert(int id, ArrayList<ImageItem> imgList, String place, String content, String abnormal_map);
 
         /**
          * 上传图片

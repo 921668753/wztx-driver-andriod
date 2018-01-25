@@ -35,7 +35,6 @@
                 android:listSelector="@android:color/transparent"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen15"
-                android:paddingRight="@dimen/dimen5"
                 android:paddingTop="@dimen/dimen10"
                 android:scrollbarStyle="outsideOverlay"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"

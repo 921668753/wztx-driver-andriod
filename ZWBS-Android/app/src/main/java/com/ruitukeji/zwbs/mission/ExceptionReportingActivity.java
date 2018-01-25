@@ -23,6 +23,7 @@ import com.ruitukeji.zwbs.adapter.ImagePickerAdapter;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
@@ -85,7 +86,9 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
 
     private int maxImgCount = 3;
     private int order_id = 0;
+    private String address_maps = "";
 
+    private ArrayList<ImageItem> images = null;
 
     @Override
     public void setRootView() {
@@ -99,7 +102,6 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
         order_id = getIntent().getIntExtra("order_id", 0);
         initView();
         initImagePicker();
-       // asOfTheDatePicker();
     }
 
     @Override
@@ -107,6 +109,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.exceptionReporting), true, R.id.titlebar);
         String currentLocationAddress = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationAddress", "");
+        address_maps = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "currentLocationLatitudeLongitude");
         tv_abnormalLocation.setText(currentLocationAddress);
     }
 
@@ -131,17 +134,27 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (position) {
-            case NumericConstants.IMAGE_ITEM_ADD:
-                choicePhotoWrapper();
+        switch (view.getId()) {
+            case R.id.img_delete:
+                images.remove(position);
+                selImageList.clear();
+                selImageList.addAll(images);
+                adapter.setImages(selImageList);
                 break;
-            default:
-                //打开预览
-                Intent intentPreview = new Intent(this, ImagePreviewDelActivity.class);
-                intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) adapter.getImages());
-                intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
-                intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
-                startActivityForResult(intentPreview, NumericConstants.REQUEST_CODE_PREVIEW);
+            case R.id.iv_img:
+                switch (position) {
+                    case NumericConstants.IMAGE_ITEM_ADD:
+                        choicePhotoWrapper();
+                        break;
+                    default:
+                        //打开预览
+                        Intent intentPreview = new Intent(this, ImagePreviewDelActivity.class);
+                        intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) adapter.getImages());
+                        intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
+                        intentPreview.putExtra(ImagePicker.EXTRA_FROM_ITEMS, true);
+                        startActivityForResult(intentPreview, NumericConstants.REQUEST_CODE_PREVIEW);
+                        break;
+                }
                 break;
         }
     }
@@ -155,10 +168,9 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
                 //弹出时间选择器
                 pvTime.show(tv_abnormalTime);
                 break;
-
             case R.id.tv_submit:
                 showLoadingDialog(getString(R.string.submissionLoad));
-                ((ExceptionReportingContract.Presenter) mPresenter).postAbnormalInsert(order_id, selImageList, tv_abnormalLocation.getText().toString().trim(), et_abnormalReason.getText().toString().trim());
+                ((ExceptionReportingContract.Presenter) mPresenter).postAbnormalInsert(order_id, selImageList, tv_abnormalLocation.getText().toString().trim(), et_abnormalReason.getText().toString().trim(), address_maps);
                 break;
             default:
                 break;
@@ -177,7 +189,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             intent.putExtra(ImageGridActivity.EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
             startActivityForResult(intent, NumericConstants.REQUEST_CODE_SELECT);
         } else {
-            EasyPermissions.requestPermissions(this, "图片选择需要以下权限:\n\n1.访问设备上的照片\n\n2.拍照", NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
+            EasyPermissions.requestPermissions(this, getString(R.string.needPermission), NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER, perms);
         }
     }
 
@@ -194,12 +206,9 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (requestCode == NumericConstants.REQUEST_CODE_PERMISSION_PHOTO_PICKER) {
-            Toast.makeText(this, "您拒绝了「图片选择」所需要的相关权限!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.denyPermission), Toast.LENGTH_SHORT).show();
         }
     }
-
-
-    ArrayList<ImageItem> images = null;
 
 
     @SuppressWarnings("unchecked")
@@ -236,7 +245,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(s, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
                 ImageItem imageItem = new ImageItem();
-                imageItem.path = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/300/h/500";
+                imageItem.path = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/110/h/110";
                 selImageList.add(imageItem);
                 adapter.setImages(selImageList);
             }
@@ -252,6 +261,10 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             startActivity(intent);
             return;
         }
+        ImageItem imageItem = new ImageItem();
+        imageItem.path = "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png";
+        selImageList.add(imageItem);
+        adapter.setImages(selImageList);
         dismissLoadingDialog();
         ViewInject.toast(msg);
     }

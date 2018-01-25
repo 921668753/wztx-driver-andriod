@@ -376,6 +376,11 @@ public class URLConstants {
     public static String UPLOADCERPIC = APIURL + "order/uploadCerPic";
 
     /**
+     * 异常信息
+     */
+    public static String ABNORMALTNSERT = APIURL + "Abnormal/AbnormalInsert";
+
+    /**
      * 帮助中心
      */
     public static String HELPCENTER = APIURL + "Help/HelpMain";

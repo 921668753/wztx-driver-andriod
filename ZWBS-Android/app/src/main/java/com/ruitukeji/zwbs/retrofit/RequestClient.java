@@ -592,7 +592,7 @@ public class RequestClient {
     /**
      * 任务---上传到货凭证
      */
-    public static void postUploadCerPic(HttpParams httpParams, final ResponseListener<String> listener) {
+    public static void postUploadCerPic(HttpParams httpParams, ResponseListener<String> listener) {
         Log.d("tag", "postUploadCerPic");
         doServer(new TokenCallback() {
             @Override
@@ -607,6 +607,26 @@ public class RequestClient {
             }
         }, listener);
     }
+
+    /**
+     * 任务---异常信息
+     */
+    public static void postAbnormalInsert(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAbnormalInsert");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.ABNORMALTNSERT, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
      * 货源--获取货源列表

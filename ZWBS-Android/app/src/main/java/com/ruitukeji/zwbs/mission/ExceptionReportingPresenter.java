@@ -33,27 +33,29 @@ public class ExceptionReportingPresenter implements ExceptionReportingContract.P
     }
 
     @Override
-    public void postAbnormalInsert(int goods_id, ArrayList<ImageItem> imgList, String place, String content) {
-        if (imgList == null || imgList.size() < 1) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData1), 0);
-            return;
-        }
+    public void postAbnormalInsert(int goods_id, ArrayList<ImageItem> imgList, String place, String content, String abnormal_map) {
+//        if (imgList == null || imgList.size() < 1) {
+//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData1), 0);
+//            return;
+//        }
         if (StringUtils.isEmpty(content)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseFillOut) + KJActivityStack.create().topActivity().getString(R.string.abnormalReason), 0);
             return;
         }
-        String img_url = "";
-        for (int i = 0; i < imgList.size(); i++) {
-            img_url += imgList.get(i).path + "|";
-        }
+//        String img_url = "";
+//        for (int i = 0; i < imgList.size(); i++) {
+//            img_url += imgList.get(i).path + "|";
+//        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("goods_id", goods_id);
-        map.put("img", img_url.substring(0, img_url.length() - 1));
+        map.put("g_id", goods_id);
+        //  map.put("img", img_url.substring(0, img_url.length() - 1));
+        map.put("img", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
         map.put("place", place);
-        map.put("content", content);
+        map.put("reason", content);
+        map.put("abnormal_map", abnormal_map);
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-        RequestClient.getTask(httpParams, new ResponseListener<String>() {
+        RequestClient.postAbnormalInsert(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
