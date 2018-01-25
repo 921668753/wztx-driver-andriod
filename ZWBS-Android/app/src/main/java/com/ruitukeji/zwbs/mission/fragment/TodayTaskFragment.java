@@ -1,7 +1,9 @@
 package com.ruitukeji.zwbs.mission.fragment;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +27,21 @@ import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
+import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mission.ExceptionReportingActivity;
 import com.ruitukeji.zwbs.mission.UploadReceiptVoucherActivity;
 import com.ruitukeji.zwbs.mission.dialog.CalendarBouncedDialog;
+import com.ruitukeji.zwbs.mission.dialog.CancelOrderBouncedDialog;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
 
+import java.util.List;
+
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.app.Activity.RESULT_OK;
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
@@ -43,9 +51,11 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
  * Created by Administrator on 2017/12/5.
  */
 
-public class TodayTaskFragment extends BaseFragment implements TaskContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
+public class TodayTaskFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, TaskContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
 
     private MainActivity aty;
+
+    private final int REQUEST_CODE_PERMISSION_CALL = 1;
 
     @BindView(id = R.id.tv_today, click = true)
     private TextView tv_today;
@@ -87,6 +97,7 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
      * 总页码
      */
     private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+
     /**
      * 是否加载更多
      */
@@ -98,6 +109,10 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
     private int type = 0;
     private long dataLong = 0;
     private int position = 0;
+    private CalendarBouncedDialog calendarBouncedDialog = null;
+    private CustomerServiceTelephoneBouncedDialog customerServiceTelephoneBouncedDialog = null;
+    private NavigationBouncedDialog navigationBouncedDialog = null;
+    private CancelOrderBouncedDialog cancelOrderBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -162,24 +177,33 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
                 dataLong = System.currentTimeMillis() / 1000;
                 String todayStr = DataUtil.formatData(dataLong, "yyyy-MM-dd");
                 tv_data.setText(todayStr);
+                mRefreshLayout.beginRefreshing();
                 break;
             case R.id.img_arrowLeft:
                 dataLong = dataLong - 24 * 60 * 60;
                 String arrowLeft = DataUtil.formatData(dataLong, "yyyy-MM-dd");
                 tv_data.setText(arrowLeft);
+                mRefreshLayout.beginRefreshing();
                 break;
             case R.id.img_arrowRight:
                 dataLong = dataLong + 24 * 60 * 60;
                 String arrowRight = DataUtil.formatData(dataLong, "yyyy-MM-dd");
                 tv_data.setText(arrowRight);
+                mRefreshLayout.beginRefreshing();
                 break;
             case R.id.img_calendar:
-                CalendarBouncedDialog calendarBouncedDialog = new CalendarBouncedDialog(aty, dataLong) {
+                if (calendarBouncedDialog != null && !calendarBouncedDialog.isShowing()) {
+                    calendarBouncedDialog.show();
+                    calendarBouncedDialog.setSingleDate(dataLong);
+                    return;
+                }
+                calendarBouncedDialog = new CalendarBouncedDialog(aty, dataLong) {
                     @Override
                     public void confirm(String dataStr, long data) {
-                        this.dismiss();
+                        this.cancel();
                         tv_data.setText(dataStr);
                         dataLong = data;
+                        mRefreshLayout.beginRefreshing();
                     }
                 };
                 calendarBouncedDialog.show();
@@ -225,7 +249,21 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
             aty.showActivity(aty, intent);
         } else if (flag == 2) {
+            String address_name = "";
+            if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
+                address_name = mAdapter.getItem(position).getOrg_address_name();
+            } else if (StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
+                    || StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
+                address_name = mAdapter.getItem(position).getDest_address_name();
+            }
+            if (navigationBouncedDialog == null) {
+                navigationBouncedDialog = new NavigationBouncedDialog(aty, address_name);
+            } else {
+                navigationBouncedDialog.setDestination(address_name);
+            }
+            navigationBouncedDialog.show();
         } else if (flag == 3) {
+            choiceCallWrapper(mAdapter.getItem(position).getPhone());
         } else if (flag == 4) {
             Intent intent = new Intent(aty, UploadReceiptVoucherActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
@@ -236,7 +274,18 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
             aty.showActivity(aty, intent);
         } else if (flag == 6) {
-            mRefreshLayout.beginRefreshing();
+            if (cancelOrderBouncedDialog == null) {
+                cancelOrderBouncedDialog = new CancelOrderBouncedDialog(aty, mAdapter.getItem(position).getId()) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        TodayTaskFragment.this.getSuccess("", 7);
+                    }
+                };
+            } else {
+                cancelOrderBouncedDialog.setOrderId(mAdapter.getItem(position).getId());
+            }
+            cancelOrderBouncedDialog.show();
         } else if (flag == 7) {
             mRefreshLayout.beginRefreshing();
         }
@@ -278,6 +327,22 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
     public void onDestroy() {
         super.onDestroy();
         mAdapter.clear();
+        if (customerServiceTelephoneBouncedDialog != null) {
+            customerServiceTelephoneBouncedDialog.cancel();
+        }
+        customerServiceTelephoneBouncedDialog = null;
+        if (navigationBouncedDialog != null) {
+            navigationBouncedDialog.cancel();
+        }
+        navigationBouncedDialog = null;
+        if (calendarBouncedDialog != null) {
+            calendarBouncedDialog.cancel();
+        }
+        if (cancelOrderBouncedDialog != null) {
+            cancelOrderBouncedDialog.cancel();
+        }
+        cancelOrderBouncedDialog = null;
+        calendarBouncedDialog = null;
         mAdapter = null;
     }
 
@@ -292,12 +357,8 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
         position = i;
         if (view.getId() == R.id.img_navigation) {
             ((TaskContract.Presenter) mPresenter).isLogin(2);
-//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
-//            navigationBouncedDialog.show();
         } else if (view.getId() == R.id.img_phone) {
             ((TaskContract.Presenter) mPresenter).isLogin(3);
-//            NavigationBouncedDialog navigationBouncedDialog = new NavigationBouncedDialog(aty, mAdapter.getItem(i).getDest_address_name());
-//            navigationBouncedDialog.show();
         } else if (view.getId() == R.id.img_start && StringUtils.isEmpty(mAdapter.getItem(i).getArr_org_time_str())) {
             showLoadingDialog(getString(R.string.submissionLoad));
             ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 0);
@@ -311,6 +372,8 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
             ((TaskContract.Presenter) mPresenter).isLogin(4);
         } else if (view.getId() == R.id.tv_exceptionReporting) {
             ((TaskContract.Presenter) mPresenter).isLogin(5);
+        } else if (view.getId() == R.id.tv_cancelOrder) {
+            ((TaskContract.Presenter) mPresenter).isLogin(6);
         }
     }
 
@@ -321,4 +384,38 @@ public class TodayTaskFragment extends BaseFragment implements TaskContract.View
             mRefreshLayout.beginRefreshing();
         }
     }
+
+    @AfterPermissionGranted(REQUEST_CODE_PERMISSION_CALL)
+    private void choiceCallWrapper(String phone) {
+        String[] perms = {Manifest.permission.CALL_PHONE};
+        if (EasyPermissions.hasPermissions(aty, perms)) {
+            if (customerServiceTelephoneBouncedDialog == null) {
+                customerServiceTelephoneBouncedDialog = new CustomerServiceTelephoneBouncedDialog(getActivity(), phone);
+            } else {
+                customerServiceTelephoneBouncedDialog.setPhone(phone);
+            }
+            customerServiceTelephoneBouncedDialog.show();
+        } else {
+            EasyPermissions.requestPermissions(this, getString(R.string.phoneCallPermissions), REQUEST_CODE_PERMISSION_CALL, perms);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (requestCode == REQUEST_CODE_PERMISSION_CALL) {
+            ViewInject.toast(getString(R.string.phoneCallPermissions1));
+        }
+    }
+
 }

@@ -57,16 +57,20 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_cancel:
-                dismiss();
+                cancel();
                 break;
             case R.id.tv_determine:
-                Uri uri = Uri.parse("tel:" + phone);
+                Uri uri = Uri.parse("tel:" + tv_phone.getText().toString().trim());
                 Intent intent = new Intent(Intent.ACTION_DIAL, uri);
                 //     系统打电话界面：
                 context.startActivity(intent);
-                dismiss();
+                cancel();
                 break;
         }
+    }
+
+    public void setPhone(String phone) {
+        tv_phone.setText(phone);
     }
 
 }

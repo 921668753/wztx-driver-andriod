@@ -106,6 +106,7 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
             private String dest_address_maps;
             private String phone;
             private int is_assigned;
+            private int is_cancel;
             private String status;
             private String appoint_at_str;
             private int is_cargo_receipt;
@@ -232,6 +233,14 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
 
             public void setIs_assigned(int is_assigned) {
                 this.is_assigned = is_assigned;
+            }
+
+            public int getIs_cancel() {
+                return is_cancel;
+            }
+
+            public void setIs_cancel(int is_cancel) {
+                this.is_cancel = is_cancel;
             }
 
             public String getStatus() {

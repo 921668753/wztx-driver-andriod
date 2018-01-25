@@ -23,7 +23,7 @@ import com.ruitukeji.zwbs.utils.DataUtil;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class CalendarBouncedDialog extends BaseDialog implements View.OnClickListener {
+public abstract class CalendarBouncedDialog extends BaseDialog {
 
     private TextView tv_title;
     private long singleDate;
@@ -55,7 +55,7 @@ public abstract class CalendarBouncedDialog extends BaseDialog implements View.O
         calendarView = (CalendarView) findViewById(R.id.calendar);
         String singleDateStr = DataUtil.formatData(singleDate, "yyyy.MM.dd");
         calendarView.setStartEndDate("2017.12", "2099.12")
-                .setInitDate(singleDateStr.substring(0, 6))
+                .setInitDate(singleDateStr.substring(0, 8))
                 .setSingleDate(singleDateStr)
                 .init();
         DateBean dateBean = calendarView.getSingleDate();
@@ -104,14 +104,16 @@ public abstract class CalendarBouncedDialog extends BaseDialog implements View.O
         });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-//            case R.id.tv_determine:
-//                break;
-        }
+
+    public void setSingleDate(long date) {
+        String singleDateStr = DataUtil.formatData(date, "yyyy.MM.dd");
+        calendarView.setSingleDate(singleDateStr);
     }
 
+    /**
+     * @param dataStr
+     * @param data
+     */
     public abstract void confirm(String dataStr, long data);
 
 }

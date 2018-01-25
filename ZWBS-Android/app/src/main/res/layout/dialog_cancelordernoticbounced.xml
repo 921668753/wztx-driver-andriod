@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/transparent_1"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/dimen270"
+        android:layout_height="@dimen/dimen243"
+        android:background="@drawable/shape_cancelordernoticbounced">
+
+        <ImageView
+            android:id="@+id/img_cancel"
+            android:layout_width="@dimen/dimen33"
+            android:layout_height="@dimen/dimen33"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen11"
+            android:layout_marginTop="@dimen/dimen11"
+            android:padding="@dimen/dimen10"
+            android:src="@mipmap/logincancel" />
+
+        <ImageView
+            android:id="@+id/img_logincancel"
+            android:layout_width="@dimen/dimen50"
+            android:layout_height="@dimen/dimen50"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen25"
+            android:src="@mipmap/icon_remind" />
+
+        <TextView
+            android:id="@+id/tv_cancelOrder1"
+            style="@style/WrapWrap"
+            android:layout_below="@id/img_logincancel"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingTop="@dimen/dimen26"
+            android:text="@string/cancelOrder1"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_orderNumber"
+            style="@style/WrapWrap"
+            android:layout_below="@id/tv_cancelOrder1"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="@dimen/dimen14"
+            android:text="@string/orderNumber1"
+            android:textColor="@color/hintcolors"
+            android:textSize="@dimen/textsize12" />
+
+
+        <TextView
+            android:id="@+id/tv_checkDetails"
+            style="@style/Match44"
+            android:layout_below="@id/tv_orderNumber"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/dimen28"
+            android:layout_marginRight="@dimen/dimen28"
+            android:layout_marginTop="@dimen/dimen31"
+            android:background="@drawable/shape_checkdetails"
+            android:gravity="center"
+            android:text="@string/checkDetails"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize15" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

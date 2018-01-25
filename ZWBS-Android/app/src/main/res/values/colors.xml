@@ -78,7 +78,7 @@
 
     <!-- 任务-->
     <color name="aAAAAAColors">#AAAAAA</color>
-
+    <color name="e7E7EColors">#7E7E7E</color>
 
     <!-- 填写快递单号-->
     <color name="c7C7CDColors">#C7C7CD</color>

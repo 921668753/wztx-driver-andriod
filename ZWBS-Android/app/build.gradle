@@ -186,7 +186,7 @@ dependencies {
      * https://github.com/Othershe/CalendarView
      * 日历控件
      */
-    compile 'com.github.Othershe:CalendarView:1.1.0'
+    compile 'com.github.Othershe:CalendarView:1.2.1'
 
     /**
      * 俗名：可垂直跑、可水平跑的跑马灯

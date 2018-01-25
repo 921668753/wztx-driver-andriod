@@ -170,10 +170,12 @@
         </LinearLayout>
 
 
-        <TextView style="@style/DividerHeight" />
-
+        <TextView
+            android:id="@+id/tv_divider"
+            style="@style/DividerHeight" />
 
         <LinearLayout
+            android:id="@+id/ll_right"
             style="@style/WrapMatch"
             android:orientation="vertical"
             android:paddingRight="@dimen/dimen12">
@@ -352,6 +354,7 @@
         android:paddingLeft="@dimen/dimen10"
         android:paddingRight="@dimen/dimen12">
 
+
         <TextView
             android:id="@+id/tv_submitDocuments"
             style="@style/AutoWrap"
@@ -361,6 +364,18 @@
             android:paddingTop="@dimen/dimen10.5"
             android:text="@string/submitDocuments"
             android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_cancelOrder"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_cancelorder"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/cancelOrder2"
+            android:textColor="@color/titletextcolors"
             android:textSize="@dimen/textsize15" />
 
         <TextView
@@ -374,6 +389,7 @@
             android:text="@string/exceptionReporting"
             android:textColor="@color/mainColor"
             android:textSize="@dimen/textsize15" />
+
 
     </LinearLayout>
 

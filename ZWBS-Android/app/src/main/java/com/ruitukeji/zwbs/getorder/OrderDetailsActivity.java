@@ -26,13 +26,11 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
 
 public class OrderDetailsActivity extends BaseActivity implements OrderDetailsContract.View {
 
-
     /**
      * 姓名
      */
     @BindView(id = R.id.tv_name)
     private TextView tv_name;
-
 
     /**
      * 标签
@@ -41,7 +39,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     private ImageView img_state;
     @BindView(id = R.id.img_z)
     private ImageView img_z;
-
 
     /**
      * 时间
@@ -79,13 +76,11 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     @BindView(id = R.id.tv_models)
     private TextView tv_models;
 
-
     /**
      * 体积
      */
     @BindView(id = R.id.tv_volume)
     private TextView tv_volume;
-
 
     /**
      * 起运地
@@ -282,7 +277,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             tv_thePlace.setText(resultBean.getOrg_city());
             tv_destination.setText(resultBean.getDest_city());
             tv_expectedMileage.setText(resultBean.getKilometres());
-            if (StringUtils.isEmpty(resultBean.getUsecar_time())) {
+            if (StringUtils.isEmpty(resultBean.getUsecar_time()) || !StringUtils.isEmpty(resultBean.getUsecar_time()) && resultBean.getUsecar_time().equals("0")) {
                 ll_estimatedTime.setVisibility(View.GONE);
             } else {
                 ll_estimatedTime.setVisibility(View.VISIBLE);

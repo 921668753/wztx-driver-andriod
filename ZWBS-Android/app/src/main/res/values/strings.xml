@@ -252,7 +252,12 @@
     <string name="submitDocuments">提交凭证</string>
     <string name="exceptionReporting">异常上报</string>
     <string name="remainingTime">装车剩余时间</string>
+    <string name="cancelOrder2">取消订单</string>
 
+
+    <!--任务  取消订单弹框-->
+    <string name="cancelOrder">该订单需要经货主同意后才能取消，确定取消订单吗？</string>
+    <string name="cancelOrder1">您有一个被取消的订单</string>
 
     <!--上传收货凭证-->
     <string name="uploadReceiptVoucher">上传收货凭证</string>
@@ -264,8 +269,6 @@
     <string name="abnormalTime">异常时间</string>
     <string name="pleaseSelectTime">请选择时间</string>
     <string name="abnormalReason">异常原因</string>
-
-
 
     <!--填写快递单-->
     <string name="fillOutExpress">填写快递单</string>

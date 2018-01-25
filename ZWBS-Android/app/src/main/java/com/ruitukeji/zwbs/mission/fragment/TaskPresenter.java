@@ -73,12 +73,12 @@ public class TaskPresenter implements TaskContract.Presenter {
         RequestClient.postarrOrgTime(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 6);
+                mView.getSuccess(response, 7);
             }
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 6);
+                mView.errorMsg(msg, 7);
             }
         });
     }

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -27,7 +29,7 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     private TextView tv_cancel;
 
     public NavigationBouncedDialog(Context context, String destination) {
-        super(context, R.style.MyDialog);
+        super(context, R.style.dialog);
         this.context = context;
         this.destination = destination;
     }
@@ -37,6 +39,11 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_navigationbounced);
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setAttributes(lp);
         initView();
     }
 
@@ -62,21 +69,24 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.tv_baidu:
-                dismiss();
+                cancel();
                 //百度
                 initBaiDuMap("", destination);
                 break;
             case R.id.tv_gaode:
-                dismiss();
+                cancel();
                 //高德
                 initGaoDeMap("", destination);
                 break;
             case R.id.tv_cancel:
-                dismiss();
+                cancel();
                 break;
         }
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
 

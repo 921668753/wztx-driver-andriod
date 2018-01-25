@@ -3,7 +3,6 @@ package com.ruitukeji.zwbs.adapter.mission;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.TextView;
 
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -31,6 +30,7 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         viewHolderHelper.setItemChildClickListener(R.id.img_car);
         viewHolderHelper.setItemChildClickListener(R.id.img_end);
         viewHolderHelper.setItemChildClickListener(R.id.tv_submitDocuments);
+        viewHolderHelper.setItemChildClickListener(R.id.tv_cancelOrder);
         viewHolderHelper.setItemChildClickListener(R.id.tv_exceptionReporting);
     }
 
@@ -97,6 +97,7 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_onArrival, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.VISIBLE);
             viewHolderHelper.setImageResource(R.id.img_start, R.mipmap.ic_start_unselected);
         } else {
             viewHolderHelper.setImageResource(R.id.img_start, R.mipmap.ic_start_selected);
@@ -124,11 +125,13 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
 
         if (StringUtils.isEmpty(listBean.getSend_time())) {
             viewHolderHelper.setVisibility(R.id.tv_start, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.VISIBLE);
         } else {
             if (time != null) {
                 time.cancel();
                 time = null;
             }
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_start, View.VISIBLE);
@@ -142,12 +145,22 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_selected);
             viewHolderHelper.setText(R.id.tv_destination1, listBean.getArr_time());
         }
-        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted")) {
+        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 0) {
+            viewHolderHelper.setVisibility(R.id.ll_bottom, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_submitDocuments, View.INVISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_exceptionReporting, View.GONE);
+            viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_unselected);
+            viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_unselected);
+        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 1) {
             viewHolderHelper.setVisibility(R.id.ll_bottom, View.GONE);
             viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_unselected);
             viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_unselected);
         } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("distribute") || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("arrive")) {
             viewHolderHelper.setVisibility(R.id.ll_bottom, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_submitDocuments, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_exceptionReporting, View.VISIBLE);
             viewHolderHelper.setVisibility(R.id.tv_onArrival, View.VISIBLE);
             viewHolderHelper.setVisibility(R.id.tv_start, View.VISIBLE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
@@ -161,9 +174,13 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_destination1, View.VISIBLE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
-            viewHolderHelper.setImageResource(R.id.img_start, R.mipmap.ic_start_selected);
-            viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_selected);
-            viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_selected);
+        }
+        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("photo") || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("pay_failed")) {
+            viewHolderHelper.setVisibility(R.id.img_navigation, View.GONE);
+        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("pay_success") || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("comment")
+                || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("cancel") && listBean.getIs_cancel() == 1) {
+            viewHolderHelper.setVisibility(R.id.ll_right, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_divider, View.GONE);
         }
     }
 

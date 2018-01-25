@@ -44,7 +44,7 @@ public class ExceptionReportingPresenter implements ExceptionReportingContract.P
         }
 //        String img_url = "";
 //        for (int i = 0; i < imgList.size(); i++) {
-//            img_url += imgList.get(i).path + "|";
+//            img_url += imgList.get(i).path + ",";
 //        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();

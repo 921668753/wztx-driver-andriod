@@ -609,6 +609,44 @@ public class RequestClient {
     }
 
     /**
+     * 任务---取消订单
+     */
+    public static void postCancelOrder(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postUploadCerPic");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.CANCELGOODS, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 任务---确认取消订单
+     */
+    public static void postConfirmCancelOrder(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postConfirmCancelOrder");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestPostHttp(URLConstants.CANCELGOODSCOMPLETE, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 任务---异常信息
      */
     public static void postAbnormalInsert(HttpParams httpParams, ResponseListener<String> listener) {

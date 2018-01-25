@@ -82,7 +82,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.tv_driverLevel)
     private TextView tv_driverLevel;
 
-
     @BindView(id = R.id.ll_personalData1, click = true)
     private LinearLayout ll_personalData1;
 
@@ -129,7 +128,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @BindView(id = R.id.tv_identityAuthentication)
     private TextView tv_identityAuthentication;
 
-
     /**
      * 车辆认证
      */
@@ -137,7 +135,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     private LinearLayout ll_vehicleCertification;
     @BindView(id = R.id.tv_vehicleCertification)
     private TextView tv_vehicleCertification;
-
 
     /**
      * 我的钱包
