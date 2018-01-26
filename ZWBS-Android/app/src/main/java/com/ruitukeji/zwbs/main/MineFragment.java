@@ -512,6 +512,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             }
         } else if (((String) msgEvent.getData()).equals("RxBusVehicleCertificationEvent")) {
             tv_vehicleCertification.setText(getString(R.string.inAuthentication));
+        } else if (((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
+            ((MineContract.Presenter) mPresenter).getInfo();
         }
     }
 

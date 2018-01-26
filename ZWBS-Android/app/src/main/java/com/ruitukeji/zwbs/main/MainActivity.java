@@ -32,6 +32,7 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
@@ -463,5 +464,18 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         String map_code = PreferenceHelper.readString(aty, StringConstants.FILENAME, "map_code");
         ((MainContract.Presenter) mPresenter).postDriverLocation(map_code, amapLocation.getLongitude() + "," + amapLocation.getLatitude(), amapLocation.getAddress());
     }
+
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent")) {
+            ((MainContract.Presenter) mPresenter).getWorkingState();
+        }
+    }
+
 
 }

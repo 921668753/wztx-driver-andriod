@@ -132,6 +132,7 @@ public class HttpRequest {
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "refreshToken", "");
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "expireTime", "0");
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "timeBefore", "0");
+                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 1);
                 listener.onFailure(NumericConstants.TOLINGIN + "");
                 return false;
             }

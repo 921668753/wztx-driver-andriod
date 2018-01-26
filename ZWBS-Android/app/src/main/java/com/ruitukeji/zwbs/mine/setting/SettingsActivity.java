@@ -152,7 +152,6 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
                 ViewInject.toast("清除成功");
                 break;
             case R.id.tv_logOut:
-                //    PreferenceHelper.clean(this, StringConstants.FILENAME);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "userId", 0);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "accessToken", "");
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
@@ -161,7 +160,7 @@ public class SettingsActivity extends BaseActivity implements SettingsContract.V
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", true);
                 PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshGetGoods2", true);
                 skipActivity(aty, LoginActivity.class);
-                RxBus.getInstance().post(new MsgEvent("RxBusRefreshMineEvent"));
+                RxBus.getInstance().post(new MsgEvent("RxBusLogOutEvent"));
                 break;
         }
     }

@@ -46,6 +46,7 @@ import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 import com.sunfusheng.marqueeview.MarqueeView;
 
 import java.io.File;
@@ -564,14 +565,8 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
 
             case R.id.tv_hintText:
                 if (tv_hintText.getText().toString().equals(getString(R.string.login1))) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "id", 0);
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "accessToken", "");
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "expireTime", "0");
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "timeBefore", "0");
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshName", "GetOrderFragment");
                     Intent intent = new Intent(aty, LoginActivity.class);
-                    // intent.putExtra("name", "GetOrderFragment");
+//                     intent.putExtra("name", "GetOrderFragment");
                     aty.showActivity(aty, intent);
                     break;
                 }
@@ -618,6 +613,29 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite), NumericConstants.READ_AND_WRITE_CODE, perms);
         }
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            marqueeView.stopFlipping();
+        } else {
+            //可见时执行的操作
+            marqueeView.startFlipping();
+        }
+    }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        marqueeView.startFlipping();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        marqueeView.stopFlipping();
+//    }
 
     @Override
     public void onDestroy() {
@@ -673,6 +691,17 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         }
 
 
+    }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
+            ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
+        }
     }
 
     /**
