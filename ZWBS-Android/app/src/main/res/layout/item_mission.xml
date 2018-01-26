@@ -240,7 +240,7 @@
             <TextView
                 android:id="@+id/tv_remainingTime1"
                 style="@style/WrapWrap"
-                android:text="50:46"
+                android:text="00:00:00"
                 android:textColor="@color/ff9A06Colors"
                 android:textSize="@dimen/textsize13" />
 

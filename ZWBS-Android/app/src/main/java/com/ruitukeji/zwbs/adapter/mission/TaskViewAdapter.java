@@ -120,6 +120,8 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
                     }
                 };// 构造CountDownTimer对象
                 time.start();
+            } else {
+                viewHolderHelper.setText(R.id.tv_remainingTime1, "00:00:00");
             }
         }
 
@@ -223,6 +225,5 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         }
         return strtime;
     }
-
 
 }
