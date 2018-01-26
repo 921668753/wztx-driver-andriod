@@ -492,12 +492,12 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent")) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     sv_mine.scrollTo(0, 2);
-                    mRefreshLayout.beginRefreshing();
+                    ((MineContract.Presenter) mPresenter).getInfo();
                 }
             }, 600);
         } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
@@ -512,8 +512,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             }
         } else if (((String) msgEvent.getData()).equals("RxBusVehicleCertificationEvent")) {
             tv_vehicleCertification.setText(getString(R.string.inAuthentication));
-        } else if (((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
-            ((MineContract.Presenter) mPresenter).getInfo();
         }
     }
 

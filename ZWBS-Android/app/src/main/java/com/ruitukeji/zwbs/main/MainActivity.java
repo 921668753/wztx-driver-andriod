@@ -300,6 +300,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         } else if (flag == 4) {
             isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 1);
             if (isGoWork == 0) {
+
                 img_chuche.setImageResource(R.mipmap.shouche);
             } else {
                 img_chuche.setImageResource(R.mipmap.chuche);
@@ -472,7 +473,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent")) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
             ((MainContract.Presenter) mPresenter).getWorkingState();
         }
     }
