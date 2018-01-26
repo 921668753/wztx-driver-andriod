@@ -322,7 +322,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 toImagePreviewDelActivity(img_uploadRoadQualification, images, NumericConstants.REQUEST_CODE_PREVIEW4);
                 break;
             case R.id.img_roadQualification:
-                show(R.mipmap.pic_driver_licence, getString(R.string.makeClear));
+                show(R.mipmap.congyezigezhao, getString(R.string.makeClear));
                 break;
             case R.id.img_uploadIntegrityAssessment:
                 if (isUploadIntegrityAssessment) {
@@ -337,7 +337,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 toImagePreviewDelActivity(img_uploadIntegrityAssessment, images, NumericConstants.REQUEST_CODE_PREVIEW5);
                 break;
             case R.id.img_integrityAssessment:
-                show(R.mipmap.pic_driver_licence, getString(R.string.makeClear));
+                show(R.mipmap.chengxinkaohezhao, getString(R.string.makeClear));
                 break;
             case R.id.tv_submit:
                 ((IdentityAuthenticationContract.Presenter) mPresenter).postIdentityAuthentication(et_name.getText().toString().trim(), et_IdNumber.getText().toString().trim(), validityIdentityCard,
