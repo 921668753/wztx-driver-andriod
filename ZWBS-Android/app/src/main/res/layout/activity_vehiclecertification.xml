@@ -605,7 +605,7 @@
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
                         android:padding="@dimen/dimen8"
-                        android:src="@mipmap/pic_driver_licence" />
+                        android:src="@mipmap/pic_road_qualification" />
 
                     <TextView
                         style="@style/WrapWrap"

@@ -244,7 +244,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
         super.initData();
         mPresenter = new VehicleCertificationPresenter(this);
         images = new ArrayList<>();
-        samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
+        // samplePictureBouncedDialog = new SamplePictureBouncedDialog(this, R.mipmap.pic_car_front, getString(R.string.licensePlatesClear));
         showLoadingDialog(getString(R.string.dataLoad));
         vehicleBrandAbbreviation();
         ((VehicleCertificationContract.Presenter) mPresenter).getVehicleBrand();
@@ -479,7 +479,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 toImagePreviewDelActivity(img_uploadRoadQualification1, images, NumericConstants.REQUEST_CODE_PREVIEW4);
                 break;
             case R.id.img_roadQualification1:
-                show(R.mipmap.pic_driver_licence, getString(R.string.makeClear));
+                show(R.mipmap.pic_road_qualification, getString(R.string.makeClear));
                 break;
             case R.id.ll_durationInsurance:
                 pvTime.setDate(calendar3);

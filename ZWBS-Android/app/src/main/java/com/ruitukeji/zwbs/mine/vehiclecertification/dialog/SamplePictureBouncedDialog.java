@@ -48,7 +48,9 @@ public class SamplePictureBouncedDialog extends Dialog implements View.OnClickLi
     }
 
 
-    public void setImgText(int pic, String samplePictureText) {
+    public void setImgText(int pic1, String samplePictureText1) {
+        this.pic = pic1;
+        this.samplePictureText = samplePictureText1;
         img_samplePicture.setImageResource(pic);
         tv_samplePicture.setText(samplePictureText);
     }
