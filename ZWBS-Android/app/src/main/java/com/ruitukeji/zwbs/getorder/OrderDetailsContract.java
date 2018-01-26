@@ -22,6 +22,11 @@ public interface OrderDetailsContract {
          */
         void postRefuseOrder(int id);
 
+        /**
+         * 司机确认 取消订单功能
+         */
+        void postCancelGoodsComplete(int goods_id, int type);
+
     }
 
     interface View extends BaseNewView<Presenter, String> {

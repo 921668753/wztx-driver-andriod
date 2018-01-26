@@ -356,4 +356,47 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/tv_divider"
+        style="@style/DividerWidth"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_button1"
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen28"
+        android:paddingRight="@dimen/dimen28"
+        android:paddingTop="@dimen/dimen12"
+        android:visibility="gone">
+
+        <TextView style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_donotAgree"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_getorder"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/donotAgree"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_consent"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_sendquotation"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/consent"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+
 </LinearLayout>

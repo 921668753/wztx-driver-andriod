@@ -14,7 +14,6 @@ import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.entity.getorder.OrderDetailsBean;
 import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
-import com.ruitukeji.zwbs.main.GetOrderContract;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -120,6 +119,9 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     @BindView(id = R.id.tv_orderNeeds)
     private TextView tv_orderNeeds;
 
+    @BindView(id = R.id.ll_button)
+    private LinearLayout ll_button;
+
     /**
      * 发送
      */
@@ -138,12 +140,36 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     @BindView(id = R.id.tv_sendQuotation, click = true)
     private TextView tv_sendQuotation;
 
+    @BindView(id = R.id.ll_button1)
+    private LinearLayout ll_button1;
+
+    /**
+     * 分割线
+     */
+    @BindView(id = R.id.tv_divider)
+    private TextView tv_divider;
+
+    /**
+     * 不同意
+     */
+    @BindView(id = R.id.tv_donotAgree, click = true)
+    private TextView tv_donotAgree;
+
+    /**
+     * 同意
+     */
+    @BindView(id = R.id.tv_consent, click = true)
+    private TextView tv_consent;
+
+
     private int order_id = 0;
     private String system_price = "0.00";
     private String mind_price = "0.00";
     private GetOrderBouncedDialog getOrderBouncedDialog = null;
     private AuthenticationBouncedDialog authenticationBouncedDialog = null;
     private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
+    private AuthenticationBouncedDialog authenticationBouncedDialog1 = null;
+    private AuthenticationBouncedDialog authenticationBouncedDialog2 = null;
 
     @Override
     public void setRootView() {
@@ -210,7 +236,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                         this.cancel();
                         //拒绝
                         showLoadingDialog(getString(R.string.submissionLoad));
-                        ((GetOrderContract.Presenter) mPresenter).postRefuseOrder(order_id);
+                        ((OrderDetailsContract.Presenter) mPresenter).postRefuseOrder(order_id);
                     }
                 };
                 authenticationBouncedDialog.show();
@@ -236,6 +262,40 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                     }
                 };
                 sendQuotationBouncedDialog.show();
+                break;
+            case R.id.tv_donotAgree:
+                if (authenticationBouncedDialog1 != null && !authenticationBouncedDialog1.isShowing()) {
+                    authenticationBouncedDialog1.show();
+                    return;
+                }
+                //不同意
+                authenticationBouncedDialog1 = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmAgreeCancelOrder1)) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        //不同意
+                        showLoadingDialog(getString(R.string.submissionLoad));
+                        ((OrderDetailsContract.Presenter) mPresenter).postCancelGoodsComplete(order_id, 0);
+                    }
+                };
+                authenticationBouncedDialog1.show();
+                break;
+            case R.id.tv_consent:
+                if (authenticationBouncedDialog2 != null && !authenticationBouncedDialog2.isShowing()) {
+                    authenticationBouncedDialog2.show();
+                    return;
+                }
+                //同意
+                authenticationBouncedDialog2 = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmAgreeCancelOrder)) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        //同意
+                        showLoadingDialog(getString(R.string.submissionLoad));
+                        ((OrderDetailsContract.Presenter) mPresenter).postCancelGoodsComplete(order_id, 1);
+                    }
+                };
+                authenticationBouncedDialog2.show();
                 break;
         }
     }
@@ -298,12 +358,24 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quote")) {
                 tv_getorder.setVisibility(View.VISIBLE);
                 tv_sendQuotation.setVisibility(View.VISIBLE);
+                tv_divider.setVisibility(View.GONE);
+                ll_button1.setVisibility(View.GONE);
+            } else if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quoted") && resultBean.getIs_cancel() == 2) {
+                ll_button.setVisibility(View.GONE);
+                tv_divider.setVisibility(View.VISIBLE);
+                ll_button1.setVisibility(View.VISIBLE);
             } else {
-                tv_getorder.setVisibility(View.GONE);
-                tv_reject.setVisibility(View.GONE);
-                tv_sendQuotation.setVisibility(View.GONE);
+                tv_divider.setVisibility(View.GONE);
+                ll_button.setVisibility(View.GONE);
+                ll_button1.setVisibility(View.GONE);
             }
         } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
+            // 结束该activity 结束之后，前面的activity才可以处理结果
+            aty.finish();
+        } else if (flag == 2) {
             Intent intent = new Intent();
             // 设置结果 结果码，一个数据
             setResult(RESULT_OK, intent);
@@ -338,8 +410,16 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
         if (sendQuotationBouncedDialog != null) {
             sendQuotationBouncedDialog.cancel();
         }
+        if (authenticationBouncedDialog1 != null) {
+            authenticationBouncedDialog1.cancel();
+        }
+        if (authenticationBouncedDialog2 != null) {
+            authenticationBouncedDialog2.cancel();
+        }
         sendQuotationBouncedDialog = null;
         authenticationBouncedDialog = null;
+        authenticationBouncedDialog1 = null;
+        authenticationBouncedDialog2 = null;
         getOrderBouncedDialog = null;
     }
 }

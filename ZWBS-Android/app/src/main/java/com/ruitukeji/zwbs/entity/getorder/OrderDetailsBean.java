@@ -49,6 +49,7 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
         private String type;
         private String appoint_at;
         private String goods_name;
+        private int is_cancel;
         private String status;
         private String car_style_length;
         private int car_style_length_id;
@@ -103,6 +104,14 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
 
         public void setIs_cargo_receipt(int is_cargo_receipt) {
             this.is_cargo_receipt = is_cargo_receipt;
+        }
+
+        public int getIs_cancel() {
+            return is_cancel;
+        }
+
+        public void setIs_cancel(int is_cancel) {
+            this.is_cancel = is_cancel;
         }
 
         public String getOrder_code() {

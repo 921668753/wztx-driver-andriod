@@ -154,7 +154,8 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_exceptionReporting, View.GONE);
             viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_unselected);
             viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_unselected);
-        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 1) {
+        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 1
+                || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 2) {
             viewHolderHelper.setVisibility(R.id.ll_bottom, View.GONE);
             viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_unselected);
             viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_unselected);

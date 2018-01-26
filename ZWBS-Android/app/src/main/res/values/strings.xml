@@ -209,7 +209,8 @@
     <string name="cancel1">取消</string>
     <string name="estimatePrice">该订单系统预估价格：¥</string>
     <string name="afterSubmission">报价提交后不可修改</string>
-
+    <string name="confirmAgreeCancelOrder1">确认不同意取消该接单？</string>
+    <string name="confirmAgreeCancelOrder">确认同意取消该接单？</string>
 
     <!--城市选择-->
     <string name="selectCity">选择城市</string>
@@ -544,6 +545,8 @@
     <string name="installedGaoDe">请安装高德地图后，才能为您导航</string>
     <string name="orderId">订单id错误</string>
     <string name="locateFailure">定位失败请重新定位！</string>
+    <string name="donotAgree">不同意</string>
+
 
     <!--评价-->
     <string name="share">分享</string>

@@ -141,6 +141,7 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_getorder, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_sendQuotation, View.GONE);
         }
+        viewHolderHelper.setVisibility(R.id.ll_button1, View.GONE);
     }
 
 }

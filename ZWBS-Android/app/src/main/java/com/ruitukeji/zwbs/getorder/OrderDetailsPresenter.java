@@ -58,4 +58,25 @@ public class OrderDetailsPresenter implements OrderDetailsContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void postCancelGoodsComplete(int goods_id, int type) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        Map map = new HashMap();
+        map.put("goods_id", goods_id);
+        map.put("type", type);
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+        RequestClient.postConfirmCancelOrder(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 2);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
 }

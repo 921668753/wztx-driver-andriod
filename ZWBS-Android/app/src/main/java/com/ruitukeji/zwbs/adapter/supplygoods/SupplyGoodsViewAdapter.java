@@ -137,6 +137,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_reject, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_sendQuotation, View.GONE);
         }
+        viewHolderHelper.setVisibility(R.id.ll_button1, View.GONE);
     }
 
 }
