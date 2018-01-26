@@ -54,6 +54,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogWindow.setWindowAnimations(R.style.dialog_supply_animation);  //添加动画
         dialogWindow.setAttributes(lp);
         initView();
     }

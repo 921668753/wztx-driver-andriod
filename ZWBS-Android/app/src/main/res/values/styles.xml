@@ -171,9 +171,13 @@
     </style>
 
 
-    <style name="dialog_animation" parent="android:Animation">
-        <item name="android:windowEnterAnimation">@anim/dialog_animation_show</item>
-        <item name="android:windowExitAnimation">@anim/dialog_animation_hide</item>
+    <style name="dialog_getorder_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_getorder_animation_show</item>
+        <item name="android:windowExitAnimation">@anim/dialog_getorder_animation_hide</item>
     </style>
 
+    <style name="dialog_supply_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_supply_animation_show</item>
+        <item name="android:windowExitAnimation">@anim/dialog_supply_animation_hide</item>
+    </style>
 </resources>

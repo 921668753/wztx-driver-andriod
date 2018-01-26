@@ -39,9 +39,6 @@
 
     <ScrollView
         style="@style/MatchAuto"
-        android:background="@color/transparent_1"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/dimen100"
         android:scrollbars="none">
 
         <LinearLayout
@@ -122,4 +119,8 @@
         </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen100"
+        android:background="@color/transparent_1" />
 </LinearLayout>
