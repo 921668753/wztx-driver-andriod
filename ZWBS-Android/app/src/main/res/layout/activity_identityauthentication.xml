@@ -547,7 +547,7 @@
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
                         android:padding="@dimen/dimen8"
-                        android:src="@mipmap/pic_driver_licence" />
+                        android:src="@mipmap/congyezigezhao" />
 
                     <TextView
                         style="@style/WrapWrap"
@@ -614,7 +614,7 @@
                         android:layout_height="@dimen/dimen103"
                         android:background="@mipmap/icon_upload"
                         android:padding="@dimen/dimen8"
-                        android:src="@mipmap/pic_driver_licence" />
+                        android:src="@mipmap/chengxinkaohezhao" />
 
                     <TextView
                         style="@style/WrapWrap"
