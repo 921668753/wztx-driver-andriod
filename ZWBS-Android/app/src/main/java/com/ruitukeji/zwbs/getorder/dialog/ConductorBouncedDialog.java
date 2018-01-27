@@ -105,7 +105,7 @@ public abstract class ConductorBouncedDialog extends BaseDialog implements Adapt
                 break;
             case R.id.tv_models:
                 cancel();
-                RxBus.getInstance().post(new MsgEvent<String>("RxBusModelseEvent"));
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusModelsEvent"));
                 break;
             case R.id.tv_conductor:
                 cancel();

@@ -92,30 +92,30 @@ public abstract class ModelsBouncedDialog extends BaseDialog implements AdapterV
                 cancel();
                 break;
             case R.id.tv_city:
-                cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusCityEvent"));
+                cancel();
                 break;
             case R.id.tv_back:
                 cancel();
                 break;
             case R.id.tv_message:
-                cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusMessageEvent"));
+                cancel();
                 break;
             case R.id.tv_ad:
-                cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusAdEvent"));
+                cancel();
                 break;
             case R.id.tv_models:
                 cancel();
                 break;
             case R.id.tv_conductor:
-                cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusConductorEvent"));
+                cancel();
                 break;
             case R.id.tv_availableType:
-                cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusAvailableTypeEvent"));
+                cancel();
                 break;
         }
     }

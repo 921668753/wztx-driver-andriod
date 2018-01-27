@@ -110,7 +110,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
                 break;
             case R.id.tv_models:
                 cancel();
-                RxBus.getInstance().post(new MsgEvent<String>("RxBusModelseEvent"));
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusModelsEvent"));
                 break;
             case R.id.tv_conductor:
                 cancel();
