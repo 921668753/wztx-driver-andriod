@@ -19,6 +19,8 @@ import com.ruitukeji.zwbs.utils.MathUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +69,9 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
         if (car_type_id != 0) {
             httpParams.put("car_style_type_id", car_type_id);
         }
-        httpParams.put("type", order_type);
+        if (!order_type.equals("all")) {
+            httpParams.put("type", order_type);
+        }
         RequestClient.getQuoteList(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

@@ -250,16 +250,19 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             aty.showActivity(aty, intent);
         } else if (flag == 2) {
             String address_name = "";
+            String location = "";
             if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
                 address_name = mAdapter.getItem(position).getOrg_address_name();
-            } else if (StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
-                    || StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
+                location = mAdapter.getItem(position).getOrg_address_maps();
+            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
+                    || !StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
                 address_name = mAdapter.getItem(position).getDest_address_name();
+                location = mAdapter.getItem(position).getDest_address_maps();
             }
             if (navigationBouncedDialog == null) {
-                navigationBouncedDialog = new NavigationBouncedDialog(aty, address_name);
+                navigationBouncedDialog = new NavigationBouncedDialog(aty, address_name, location);
             } else {
-                navigationBouncedDialog.setDestination(address_name);
+                navigationBouncedDialog.setDestination(address_name, location);
             }
             navigationBouncedDialog.show();
         } else if (flag == 3) {

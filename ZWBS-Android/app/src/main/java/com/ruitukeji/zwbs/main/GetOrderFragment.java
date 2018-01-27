@@ -494,75 +494,14 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 startActivityForResult(selectionIntent, STATUS);
                 break;
             case R.id.ll_models:
-                img_models.setImageResource(R.mipmap.icon_category_orange_up1);
-                if (modelsBouncedDialog != null && !modelsBouncedDialog.isShowing()) {
-                    modelsBouncedDialog.show();
-                    return;
-                }
-                modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
-                    @Override
-                    public void confirm(String typeName, int typeId) {
-                        this.cancel();
-                        modelsId = typeId;
-                        tv_models.setText(typeName);
-                        mRefreshLayout.beginRefreshing();
-                    }
-                };
-                modelsBouncedDialog.show();
-                modelsBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        img_models.setImageResource(R.mipmap.ic_category_gray_down);
-                    }
-                });
+                setModels();
                 break;
             case R.id.ll_conductor:
-                img_conductor.setImageResource(R.mipmap.icon_category_orange_up1);
-                if (conductorBouncedDialog != null && !conductorBouncedDialog.isShowing()) {
-                    conductorBouncedDialog.show();
-                    return;
-                }
-                conductorBouncedDialog = new ConductorBouncedDialog(aty, vehicleLengthId) {
-                    @Override
-                    public void confirm(String conductorName, int conductorId) {
-                        this.cancel();
-                        vehicleLengthId = conductorId;
-                        tv_conductor.setText(conductorName);
-                        mRefreshLayout.beginRefreshing();
-                    }
-                };
-                conductorBouncedDialog.show();
-                conductorBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        img_conductor.setImageResource(R.mipmap.ic_category_gray_down);
-                    }
-                });
+                setConductor();
                 break;
             case R.id.ll_availableType:
-                img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
-                if (availableTypeBouncedDialog != null && !availableTypeBouncedDialog.isShowing()) {
-                    availableTypeBouncedDialog.show();
-                    return;
-                }
-                availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
-                    @Override
-                    public void confirm(String availableTypeName1, String availableTypeValue) {
-                        this.cancel();
-                        availableTypeName = availableTypeName1;
-                        tv_availableType.setText(availableTypeValue);
-                        mRefreshLayout.beginRefreshing();
-                    }
-                };
-                availableTypeBouncedDialog.show();
-                availableTypeBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
-                    }
-                });
+                setAvailableType();
                 break;
-
             case R.id.tv_hintText:
                 if (tv_hintText.getText().toString().equals(getString(R.string.login1))) {
                     Intent intent = new Intent(aty, LoginActivity.class);
@@ -579,6 +518,77 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         }
     }
 
+    public void setModels() {
+        img_models.setImageResource(R.mipmap.icon_category_orange_up1);
+        if (modelsBouncedDialog != null && !modelsBouncedDialog.isShowing()) {
+            modelsBouncedDialog.show();
+            return;
+        }
+        modelsBouncedDialog = new ModelsBouncedDialog(aty, modelsId) {
+            @Override
+            public void confirm(String typeName, int typeId) {
+                this.cancel();
+                modelsId = typeId;
+                tv_models.setText(typeName);
+                mRefreshLayout.beginRefreshing();
+            }
+        };
+        modelsBouncedDialog.show();
+        modelsBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                img_models.setImageResource(R.mipmap.ic_category_gray_down);
+            }
+        });
+    }
+
+    public void setConductor() {
+        img_conductor.setImageResource(R.mipmap.icon_category_orange_up1);
+        if (conductorBouncedDialog != null && !conductorBouncedDialog.isShowing()) {
+            conductorBouncedDialog.show();
+            return;
+        }
+        conductorBouncedDialog = new ConductorBouncedDialog(aty, vehicleLengthId) {
+            @Override
+            public void confirm(String conductorName, int conductorId) {
+                this.cancel();
+                vehicleLengthId = conductorId;
+                tv_conductor.setText(conductorName);
+                mRefreshLayout.beginRefreshing();
+            }
+        };
+        conductorBouncedDialog.show();
+        conductorBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                img_conductor.setImageResource(R.mipmap.ic_category_gray_down);
+            }
+        });
+    }
+
+    public void setAvailableType() {
+        img_availableType.setImageResource(R.mipmap.icon_category_orange_up1);
+        if (availableTypeBouncedDialog != null && !availableTypeBouncedDialog.isShowing()) {
+            availableTypeBouncedDialog.show();
+            return;
+        }
+        availableTypeBouncedDialog = new AvailableTypeBouncedDialog(aty, availableTypeName) {
+            @Override
+            public void confirm(String availableTypeName1, String availableTypeValue) {
+                this.cancel();
+                availableTypeName = availableTypeName1;
+                tv_availableType.setText(availableTypeValue);
+                mRefreshLayout.beginRefreshing();
+            }
+        };
+        availableTypeBouncedDialog.show();
+        availableTypeBouncedDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                img_availableType.setImageResource(R.mipmap.ic_category_gray_down);
+            }
+        });
+    }
 
     @Override
     public void setPresenter(GetOrderContract.Presenter presenter) {
@@ -699,8 +709,14 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent")) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") || ((String) msgEvent.getData()).equals("RxBusGoWorkEvent")) {
             ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
+        } else if (((String) msgEvent.getData()).equals("RxBusModelsEvent")) {
+            setModels();
+        } else if (((String) msgEvent.getData()).equals("RxBusConductorEvent")) {
+            setConductor();
+        } else if (((String) msgEvent.getData()).equals("RxBusAvailableTypeEvent")) {
+            setAvailableType();
         }
     }
 

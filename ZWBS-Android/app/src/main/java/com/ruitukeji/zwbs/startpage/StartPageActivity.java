@@ -85,7 +85,7 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
 
 
     private void jumpTo() {
-        boolean isFirst = PreferenceHelper.readBoolean(this, StringConstants.FILENAME, "isFirstOpen", true);
+        boolean isFirst = PreferenceHelper.readBoolean(this, StringConstants.FILENAME, "isFirstOpen", false);
         Intent jumpIntent = new Intent();
         jumpIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         jumpIntent.setAction("android.intent.action.MAIN");
@@ -150,13 +150,14 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
 
     @AfterPermissionGranted(NumericConstants.READ_AND_WRITE_CODE)
     public void readAndWriteTask() {
-        String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.CHANGE_WIFI_STATE};
+        String[] perms = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS, Manifest.permission.CHANGE_WIFI_STATE};
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Have permission, do the thing!
             RxVolley.setRequestQueue(RequestQueue.newRequestQueue(FileUtils.getSaveFolder(StringConstants.CACHEPATH), new OkHttpStack(new OkHttpClient())));
             ((StartPageContract.Presenter) mPresenter).getAppConfig();
         } else {
-            // Ask for one permission
             EasyPermissions.requestPermissions(this, getString(R.string.readAndWrite), NumericConstants.READ_AND_WRITE_CODE, perms);
         }
     }
@@ -176,7 +177,7 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-//        Log.d(TAG, "onPermissionsDenied:" + requestCode + ":" + perms.size());
+        Log.d("tag", "onPermissionsDenied:" + requestCode + ":" + perms.size());
 
         // (Optional) Check whether the user denied any permissions and checked "NEVER ASK AGAIN."
         // This will display a dialog directing them to enable the permission in app settings.

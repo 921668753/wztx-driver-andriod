@@ -49,6 +49,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     private LinearLayout ll_commonError;
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
+    private AuthenticationBouncedDialog authenticationBouncedDialog = null;
 
     @Override
     public void setRootView() {
@@ -115,8 +116,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
             setTheLineViewAdapter.addMoreData(setTheLineBean.getResult().getList());
             dismissLoadingDialog();
         } else if (flag == 1) {
-            showLoadingDialog(MyApplication.getContext().getString(R.string.dataLoad));
-            ((SetTheLineContract.Presenter) mPresenter).getRouteList();
+            mRefreshLayout.beginRefreshing();
         }
     }
 
@@ -170,6 +170,10 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (authenticationBouncedDialog != null) {
+            authenticationBouncedDialog.cancel();
+        }
+        authenticationBouncedDialog = null;
         setTheLineViewAdapter.clear();
         setTheLineViewAdapter = null;
     }
@@ -177,11 +181,15 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (view.getId() == R.id.iv_delete) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(aty, getString(R.string.deleteRoute)) {
+            if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
+                authenticationBouncedDialog.show();
+                return;
+            }
+            authenticationBouncedDialog = new AuthenticationBouncedDialog(aty, getString(R.string.deleteRoute)) {
                 @Override
                 public void confirm() {
                     this.cancel();
-                    mRefreshLayout.beginRefreshing();
+                    ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(setTheLineViewAdapter.getItem(i).getDrline_id());
                 }
             };
             authenticationBouncedDialog.show();

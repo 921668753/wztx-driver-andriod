@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +16,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
+import com.ruitukeji.zwbs.utils.map.GPSUtil;
 
 import java.net.URISyntaxException;
 
@@ -22,16 +25,18 @@ import java.net.URISyntaxException;
  */
 
 public class NavigationBouncedDialog extends Dialog implements View.OnClickListener {
+    private String location = "";
     private String destination;
     private Context context;
     private TextView tv_baidu;
     private TextView tv_gaode;
     private TextView tv_cancel;
 
-    public NavigationBouncedDialog(Context context, String destination) {
+    public NavigationBouncedDialog(Context context, String destination, String location) {
         super(context, R.style.dialog);
         this.context = context;
         this.destination = destination;
+        this.location = location;
     }
 
 
@@ -72,12 +77,12 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
             case R.id.tv_baidu:
                 cancel();
                 //百度
-                initBaiDuMap("", destination);
+                initBaiDuMap(destination, location);
                 break;
             case R.id.tv_gaode:
                 cancel();
                 //高德
-                initGaoDeMap("", destination);
+                initGaoDeMap(destination, location);
                 break;
             case R.id.tv_cancel:
                 cancel();
@@ -85,30 +90,33 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
         }
     }
 
-    public void setDestination(String destination) {
+    public void setDestination(String destination, String location) {
         this.destination = destination;
+        this.location = location;
     }
 
 
     /**
-     * 调起百度地图
+     * 调起百度地图 导航
      *
-     * @param chufa 出发地
-     * @param mudi  目的地
+     * @param mudi     地址
+     * @param location 经纬度
      */
-    public void initBaiDuMap(String chufa, String mudi) {
-
+    public void initBaiDuMap(String mudi, String location) {
+        Log.d("tag1111", location);
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
             try {
                 // 驾车导航
-                Intent intent = Intent.getIntent("baidumap://map/navi?query=" + mudi);
+//                Intent intent = Intent.getIntent("baidumap://map/navi?query=" + mudi);
+//                context.startActivity(intent);
+                location = GPSUtil.gaoDeToBaiduStr(location);
+                Intent intent = new Intent();
+                intent.setData(Uri.parse("baidumap://map/navi?query=" + mudi + "&location=" + location));
+                //    intent.setPackage("com.baidu.BaiduMap");
                 context.startActivity(intent);
-            } catch (URISyntaxException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                ViewInject.toast("路径解析错误");
-            } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-                //showDialog();
+                ViewInject.toast(context.getString(R.string.parsingError));
             }
             return;
         }
@@ -123,19 +131,23 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     /**
      * 高德
      *
-     * @param chufa 出发地
-     * @param mudi  目的地
+     * @param destination 出发地
+     * @param location    目的地
      */
-    public void initGaoDeMap(String chufa, String mudi) {
+    public void initGaoDeMap(String destination, String location) {
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.autonavi.minimap")) {
             try {
-                Intent intent = Intent.getIntent("androidamap://keywordNavi?sourceApplication=" + context.getString(R.string.app_name) + "&keyword=" + mudi + "&style=2");
+                //  Intent intent = Intent.getIntent("androidamap://keywordNavi?sourceApplication=" "&keyword=" + mudi + "&style=2");
+                String[] gd_lat_lon = location.split(",");
+                Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
                 intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse("androidamap://navi?sourceApplication=" + context.getString(R.string.app_name) + "&lat=" + gd_lat_lon[1] + "&lon=" + gd_lat_lon[0] + "&dev=1&style=2"));
+                intent.setPackage("com.autonavi.minimap");
                 context.startActivity(intent);
-            } catch (URISyntaxException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
-                ViewInject.toast("路径解析错误");
+                ViewInject.toast(context.getString(R.string.parsingError));
             }
             return;
         }

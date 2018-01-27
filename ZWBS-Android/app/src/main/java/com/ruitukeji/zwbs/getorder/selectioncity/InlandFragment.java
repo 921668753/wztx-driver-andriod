@@ -143,7 +143,7 @@ public class InlandFragment extends BaseFragment implements InlandContract.View,
                         recyclerView.setLayoutManager(new GridLayoutManager(aty, 1));
                         break;
                     case R.layout.inland_item_header_top:
-                        String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "locationCity", getString(R.string.locateFailure));
+                        String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationCity", getString(R.string.locateFailure));
                         textView = holder.getView(R.id.tvCurrent);
                         textView.setText(locationCity);
                         textView.setFocusable(true);

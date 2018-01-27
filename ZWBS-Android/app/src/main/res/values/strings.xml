@@ -169,6 +169,8 @@
     <string name="startingPoint">出&#160;&#160;&#160;&#160;&#160;发&#160;&#160;&#160;&#160;&#160;地</string>
     <string name="endPoint">目&#160;&#160;&#160;&#160;&#160;的&#160;&#160;&#160;&#160;&#160;地</string>
     <string name="conductormodels">车长车型</string>
+    <string name="cuccessCar">出车成功，请注意听取订单！</string>
+    <string name="collectSuccess">收车成功，请注意好好休息！</string>
 
     <!--公告通知-->
     <!--公告通知-->
@@ -543,6 +545,8 @@
     <string name="uninstalled">未安装</string>
     <string name="installedBaiDu">请安装百度地图后，才能为您导航</string>
     <string name="installedGaoDe">请安装高德地图后，才能为您导航</string>
+    <string name="parsingError">路径解析错误</string>
+
     <string name="orderId">订单id错误</string>
     <string name="locateFailure">定位失败请重新定位！</string>
     <string name="donotAgree">不同意</string>

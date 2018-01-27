@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean.ResultBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.List;
 
@@ -101,13 +104,16 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
         lv_area = (ListView) findViewById(R.id.lv_area);
         lv_area.setOnItemClickListener(this);
         lv_area.setAdapter(areaViewAdapter);
-        if (type == 0) {
-            TextView tv_startingPoint = (TextView) findViewById(R.id.tv_startingPoint);
-            tv_startingPoint.setOnClickListener(this);
-        } else {
-            TextView tv_endPoint = (TextView) findViewById(R.id.tv_endPoint);
-            tv_endPoint.setOnClickListener(this);
-        }
+        LinearLayout ll_dialog = (LinearLayout) findViewById(R.id.ll_dialog);
+        ll_dialog.setOnClickListener(this);
+        TextView tv_startingPoint = (TextView) findViewById(R.id.tv_startingPoint);
+        tv_startingPoint.setOnClickListener(this);
+        TextView tv_endPoint = (TextView) findViewById(R.id.tv_endPoint);
+        tv_endPoint.setOnClickListener(this);
+        TextView tv_availableType = (TextView) findViewById(R.id.tv_availableType);
+        tv_availableType.setOnClickListener(this);
+        TextView tv_conductorModels = (TextView) findViewById(R.id.tv_conductorModels);
+        tv_conductorModels.setOnClickListener(this);
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter.getAddress(0, 0);
     }
@@ -116,11 +122,28 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_dialog:
+                cancel();
+                break;
             case R.id.tv_startingPoint:
                 cancel();
+                if (type == 1) {
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusStartingPointEvent"));
+                }
                 break;
             case R.id.tv_endPoint:
                 cancel();
+                if (type == 0) {
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusEndPointEvent"));
+                }
+                break;
+            case R.id.tv_availableType:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAvailableTypeBouncedEvent"));
+                break;
+            case R.id.tv_conductorModels:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusConductorModelsEvent"));
                 break;
         }
     }
@@ -132,7 +155,7 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
             provinceBean = provinceViewAdapter.getItem(position);
             selectProvince(provinceBean.getId());
             if (provinceBean.getName().startsWith(context.getString(R.string.all1))) {
-                dismiss();
+                cancel();
                 confirm("", 0, 0, 0);
                 return;
             }
@@ -140,23 +163,22 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
             cityBean = cityViewAdapter.getItem(position);
             selectCity(cityBean.getId());
             if (cityBean.getName().startsWith(context.getString(R.string.all1))) {
-                dismiss();
+                cancel();
                 confirm(provinceBean.getName(), provinceBean.getId(), 0, 0);
                 return;
             }
-
         } else if (parent.getId() == R.id.lv_area) {
             areaBean = areaViewAdapter.getItem(position);
             selectArea(areaBean.getId());
-            dismiss();
+            cancel();
             if (areaBean.getName().startsWith(context.getString(R.string.all1)) && cityBean.getName().contains(provinceBean.getName())) {
                 confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
             } else if (areaBean.getName().startsWith(context.getString(R.string.all1)) && !cityBean.getName().contains(provinceBean.getName())) {
-                confirm(provinceBean.getName() + cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
+                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
             } else if (cityBean.getName() != null && cityBean.getName().contains(provinceBean.getName())) {
-                confirm(cityBean.getName() + areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
+                confirm(areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
             } else {
-                confirm(provinceBean.getName() + cityBean.getName() + areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
+                confirm(areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
             }
         }
     }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -20,6 +21,8 @@ import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsContract;
 import com.ruitukeji.zwbs.getorder.dialog.ConductorModelsPresenter;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.myview.NoScrollGridView;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.List;
 
@@ -80,6 +83,14 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         tv_emptying.setOnClickListener(this);
         TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
         tv_determine.setOnClickListener(this);
+        LinearLayout ll_dialog = (LinearLayout) findViewById(R.id.ll_dialog);
+        ll_dialog.setOnClickListener(this);
+        TextView tv_startingPoint = (TextView) findViewById(R.id.tv_startingPoint);
+        tv_startingPoint.setOnClickListener(this);
+        TextView tv_endPoint = (TextView) findViewById(R.id.tv_endPoint);
+        tv_endPoint.setOnClickListener(this);
+        TextView tv_availableType = (TextView) findViewById(R.id.tv_availableType);
+        tv_availableType.setOnClickListener(this);
         TextView tv_conductorModels = (TextView) findViewById(R.id.tv_conductorModels);
         tv_conductorModels.setOnClickListener(this);
         mPresenter = new ConductorModelsPresenter(this);
@@ -95,6 +106,21 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_dialog:
+                cancel();
+                break;
+            case R.id.tv_startingPoint:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusStartingPointEvent"));
+                break;
+            case R.id.tv_endPoint:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusEndPointEvent"));
+                break;
+            case R.id.tv_availableType:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAvailableTypeBouncedEvent"));
+                break;
             case R.id.tv_conductorModels:
                 cancel();
                 break;

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,6 +17,8 @@ import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.entity.getorder.dialog.AvailableTypeBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.List;
 
@@ -62,8 +65,14 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
         mPresenter = new AvailableTypeBouncedPresenter(this);
         lv_models = (ListView) findViewById(R.id.lv_models);
         lv_models.setOnItemClickListener(this);
+        TextView tv_models = (TextView) findViewById(R.id.tv_models);
+        tv_models.setOnClickListener(this);
+        TextView tv_conductor = (TextView) findViewById(R.id.tv_conductor);
+        tv_conductor.setOnClickListener(this);
         TextView tv_availableType = (TextView) findViewById(R.id.tv_availableType);
         tv_availableType.setOnClickListener(this);
+        LinearLayout ll_models = (LinearLayout) findViewById(R.id.ll_models);
+        ll_models.setOnClickListener(this);
         lv_models.setAdapter(availableTypeViewAdapter);
         showLoadingDialog(context.getString(R.string.dataLoad));
         mPresenter.getAvailableType();
@@ -73,8 +82,20 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_models:
+                cancel();
+                break;
+            case R.id.tv_models:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusModelseEvent"));
+                break;
+            case R.id.tv_conductor:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusConductorEvent"));
+                break;
             case R.id.tv_availableType:
                 cancel();
+
                 break;
         }
     }

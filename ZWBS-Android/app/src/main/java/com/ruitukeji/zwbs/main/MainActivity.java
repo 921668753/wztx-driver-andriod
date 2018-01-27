@@ -30,9 +30,9 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.main.WorkingStateBean;
-import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
@@ -300,11 +300,13 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         } else if (flag == 4) {
             isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 1);
             if (isGoWork == 0) {
-
                 img_chuche.setImageResource(R.mipmap.shouche);
+                ((MainContract.Presenter) mPresenter).speech(mTts, getString(R.string.cuccessCar));
             } else {
                 img_chuche.setImageResource(R.mipmap.chuche);
+                ((MainContract.Presenter) mPresenter).speech(mTts, getString(R.string.collectSuccess));
             }
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusGoWorkEvent"));
             dismissLoadingDialog();
         }
     }

@@ -75,10 +75,11 @@ public abstract class BaseActivity extends KJActivity implements LoadingDialogVi
     @Override
     public void showLoadingDialog(String title) {
         if (mLoadingDialog == null) {
-            mLoadingDialog = new SweetAlertDialog(KJActivityStack.create().topActivity(), SweetAlertDialog.PROGRESS_TYPE);
+            mLoadingDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
             mLoadingDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.lonincolors));
             mLoadingDialog.setCancelable(false);
         }
+        finish();
         mLoadingDialog.setTitleText(title);
         mLoadingDialog.show();
         ((View) mLoadingDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).getParent()).setVisibility(View.GONE);

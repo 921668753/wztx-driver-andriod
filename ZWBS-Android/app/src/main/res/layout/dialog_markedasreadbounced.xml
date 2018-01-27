@@ -42,7 +42,7 @@
                 android:gravity="center"
                 android:paddingBottom="@dimen/dimen15"
                 android:paddingTop="@dimen/dimen15"
-                android:text="@string/cancel"
+                android:text="@string/cancel1"
                 android:textColor="@color/aFF007Colors"
                 android:textSize="@dimen/textsize15" />
 

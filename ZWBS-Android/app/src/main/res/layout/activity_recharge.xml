@@ -40,6 +40,7 @@
             <EditText
                 android:id="@+id/et_topUpAmount"
                 style="@style/AutoWrap"
+                android:paddingLeft="@dimen/dimen10"
                 android:background="@android:color/transparent"
                 android:hint="@string/topUpAmount"
                 android:inputType="numberDecimal"
