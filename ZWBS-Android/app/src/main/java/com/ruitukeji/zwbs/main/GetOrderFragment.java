@@ -181,6 +181,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private ModelsBouncedDialog modelsBouncedDialog = null;
     private ConductorBouncedDialog conductorBouncedDialog = null;
     private AvailableTypeBouncedDialog availableTypeBouncedDialog = null;
+    private List<HomeBean.ResultBean.ListBean> adList = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -287,6 +288,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         } else if (flag == 1) {
             //获取首页公告
             HomeBean homeBean = (HomeBean) JsonUtil.getInstance().json2Obj(s, HomeBean.class);
+            adList = homeBean.getResult().getList();
             processLogic(homeBean.getResult().getList());
             if (homeBean.getResult().getUnreadMsg() == null || homeBean.getResult().getUnreadMsg().getMsgX() == 0) {
                 tv_message.setVisibility(View.GONE);
@@ -725,7 +727,13 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             aty.showActivity(aty, SystemMessageActivity.class);
             tv_message.setVisibility(View.GONE);
         } else if (((String) msgEvent.getData()).equals("RxBusAdEvent")) {
-            ((GetOrderContract.Presenter) mPresenter).setSimulateClick(marqueeView, 160, 43);
+            if (adList == null || adList.size() == 0) {
+                ll_ad.setVisibility(View.GONE);
+                return;
+            }
+            Intent intent = new Intent(aty, AnnouncementActivity.class);
+            intent.putExtra("id", adList.get(marqueeView.getPosition()).getId());
+            aty.showActivity(aty, intent);
         }
     }
 
