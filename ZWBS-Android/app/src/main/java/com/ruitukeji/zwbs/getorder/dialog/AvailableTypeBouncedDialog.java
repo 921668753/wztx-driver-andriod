@@ -65,6 +65,14 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
         mPresenter = new AvailableTypeBouncedPresenter(this);
         lv_models = (ListView) findViewById(R.id.lv_models);
         lv_models.setOnItemClickListener(this);
+        TextView tv_city = (TextView) findViewById(R.id.tv_city);
+        tv_city.setOnClickListener(this);
+        TextView tv_back = (TextView) findViewById(R.id.tv_back);
+        tv_back.setOnClickListener(this);
+        TextView tv_message = (TextView) findViewById(R.id.tv_message);
+        tv_message.setOnClickListener(this);
+        TextView tv_ad = (TextView) findViewById(R.id.tv_ad);
+        tv_ad.setOnClickListener(this);
         TextView tv_models = (TextView) findViewById(R.id.tv_models);
         tv_models.setOnClickListener(this);
         TextView tv_conductor = (TextView) findViewById(R.id.tv_conductor);
@@ -85,6 +93,21 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
             case R.id.ll_models:
                 cancel();
                 break;
+            case R.id.tv_city:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusCityEvent"));
+                break;
+            case R.id.tv_back:
+                cancel();
+                break;
+            case R.id.tv_message:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusMessageEvent"));
+                break;
+            case R.id.tv_ad:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAdEvent"));
+                break;
             case R.id.tv_models:
                 cancel();
                 RxBus.getInstance().post(new MsgEvent<String>("RxBusModelseEvent"));
@@ -95,7 +118,6 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
                 break;
             case R.id.tv_availableType:
                 cancel();
-
                 break;
         }
     }

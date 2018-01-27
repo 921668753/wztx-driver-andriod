@@ -1,14 +1,16 @@
 package com.ruitukeji.zwbs.main;
 
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.view.View;
+
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.client.ProgressListener;
 import com.ruitukeji.zwbs.BuildConfig;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.KJActivityStack;
-import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.GaoDeCreateBean;
@@ -19,12 +21,9 @@ import com.ruitukeji.zwbs.utils.MathUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
 import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 /**
@@ -83,6 +82,20 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
                 mView.errorMsg(msg, 2);
             }
         });
+    }
+
+    @Override
+    public void setSimulateClick(View view, float x, float y) {
+        long downTime = SystemClock.uptimeMillis();
+        final MotionEvent downEvent = MotionEvent.obtain(downTime, downTime,
+                MotionEvent.ACTION_DOWN, x, y, 0);
+        downTime += 1000;
+        final MotionEvent upEvent = MotionEvent.obtain(downTime, downTime,
+                MotionEvent.ACTION_UP, x, y, 0);
+        view.onTouchEvent(downEvent);
+        view.onTouchEvent(upEvent);
+        downEvent.recycle();
+        upEvent.recycle();
     }
 
     /**
@@ -217,6 +230,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             }
         });
     }
+
+
 
     @Override
     public void isLogin(int flag) {

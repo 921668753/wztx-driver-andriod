@@ -79,7 +79,6 @@ public abstract class BaseActivity extends KJActivity implements LoadingDialogVi
             mLoadingDialog.getProgressHelper().setBarColor(getResources().getColor(R.color.lonincolors));
             mLoadingDialog.setCancelable(false);
         }
-        finish();
         mLoadingDialog.setTitleText(title);
         mLoadingDialog.show();
         ((View) mLoadingDialog.getButton(SweetAlertDialog.BUTTON_CONFIRM).getParent()).setVisibility(View.GONE);

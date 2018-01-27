@@ -85,6 +85,8 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         tv_determine.setOnClickListener(this);
         LinearLayout ll_dialog = (LinearLayout) findViewById(R.id.ll_dialog);
         ll_dialog.setOnClickListener(this);
+        TextView tv_setLine = (TextView) findViewById(R.id.tv_setLine);
+        tv_setLine.setOnClickListener(this);
         TextView tv_startingPoint = (TextView) findViewById(R.id.tv_startingPoint);
         tv_startingPoint.setOnClickListener(this);
         TextView tv_endPoint = (TextView) findViewById(R.id.tv_endPoint);
@@ -108,6 +110,10 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         switch (v.getId()) {
             case R.id.ll_dialog:
                 cancel();
+                break;
+            case R.id.tv_setLine:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusSetLineEvent"));
                 break;
             case R.id.tv_startingPoint:
                 cancel();

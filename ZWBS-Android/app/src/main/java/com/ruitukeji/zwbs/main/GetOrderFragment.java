@@ -425,6 +425,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
 // 在代码里设置自己的动画
         ll_ad.setVisibility(View.VISIBLE);
         marqueeView.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+
             @Override
             public void onItemClick(int position, TextView textView) {
                 Intent intent = new Intent(aty, AnnouncementActivity.class);
@@ -717,6 +718,14 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             setConductor();
         } else if (((String) msgEvent.getData()).equals("RxBusAvailableTypeEvent")) {
             setAvailableType();
+        } else if (((String) msgEvent.getData()).equals("RxBusCityEvent")) {
+            Intent selectionIntent = new Intent(aty, SelectionCityActivity.class);
+            startActivityForResult(selectionIntent, STATUS);
+        } else if (((String) msgEvent.getData()).equals("RxBusMessageEvent")) {
+            aty.showActivity(aty, SystemMessageActivity.class);
+            tv_message.setVisibility(View.GONE);
+        } else if (((String) msgEvent.getData()).equals("RxBusAdEvent")) {
+            ((GetOrderContract.Presenter) mPresenter).setSimulateClick(marqueeView, 160, 43);
         }
     }
 

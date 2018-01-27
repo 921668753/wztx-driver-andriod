@@ -3,8 +3,6 @@ package com.ruitukeji.zwbs.main;
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
  * Created by Administrator on 2017/2/19.
  */
@@ -46,6 +44,15 @@ public interface GetOrderContract {
          * 拒绝订单
          */
         void postRefuseOrder(int id);
+
+        /**
+         * 模拟点击
+         *
+         * @param view
+         * @param x
+         * @param y
+         */
+        void setSimulateClick(android.view.View view, float x, float y);
     }
 
     interface View extends BaseNewView<Presenter, String> {

@@ -9,7 +9,7 @@
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen15"
         android:paddingTop="@dimen/dimen15"
-        android:text="不限"
+        android:text="--"
         android:textColor="@color/titletextcolors"
         android:textSize="@dimen/textsize16" />
 

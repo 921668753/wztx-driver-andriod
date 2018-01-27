@@ -268,7 +268,6 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
         }
     }
 
-
     public void setStartingPoint() {
         img_startingPoint.setImageResource(R.mipmap.icon_category_orange_up1);
         if (originBouncedDialog != null && !originBouncedDialog.isShowing()) {
@@ -527,7 +526,9 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             setAvailableType();
         } else if (((String) msgEvent.getData()).equals("RxBusConductorModelsEvent")) {
             setConductorModels();
+        } else if (((String) msgEvent.getData()).equals("RxBusSetLineEvent")) {
+            Intent intent = new Intent(aty, SetTheLineActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
         }
     }
-
 }

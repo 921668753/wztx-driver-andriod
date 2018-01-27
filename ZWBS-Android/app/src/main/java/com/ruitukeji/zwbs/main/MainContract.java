@@ -1,11 +1,8 @@
 package com.ruitukeji.zwbs.main;
 
-import android.view.View;
-
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.ruitukeji.zwbs.common.BaseNewView;
 import com.ruitukeji.zwbs.common.BasePresenter;
-import com.ruitukeji.zwbs.common.BaseView;
 
 /**
  * Created by Administrator on 2017/2/19.
