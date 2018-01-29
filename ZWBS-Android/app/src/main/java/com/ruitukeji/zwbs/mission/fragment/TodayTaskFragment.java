@@ -254,6 +254,10 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
                 address_name = mAdapter.getItem(position).getOrg_address_name();
                 location = mAdapter.getItem(position).getOrg_address_maps();
+            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("quoted") &&
+                    !StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str()) && StringUtils.isEmpty(mAdapter.getItem(position).getSend_time())) {
+                ViewInject.toast(getString(R.string.afterDeparture));
+                return;
             } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
                     || !StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
                 address_name = mAdapter.getItem(position).getDest_address_name();

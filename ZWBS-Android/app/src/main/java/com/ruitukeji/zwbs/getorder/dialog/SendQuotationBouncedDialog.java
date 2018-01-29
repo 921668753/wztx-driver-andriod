@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.application.MyApplication;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
@@ -23,17 +24,16 @@ import static com.ruitukeji.zwbs.utils.MathUtil.judgeTwoDecimal;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class SendQuotationBouncedDialog extends BaseDialog implements View.OnClickListener, GetOrderBouncedContract.View {
+public abstract class SendQuotationBouncedDialog extends BaseDialog implements View.OnClickListener, SendQuotationBouncedContract.View {
 
 
     private int orderId = 0;
     private String money = "";
     private Context context;
-    private TextView tv_firmQuotation;
     private EditText et_pleaseEnterPrice;
     private ImageView iv_cancel;
 
-    private GetOrderBouncedContract.Presenter mPresenter;
+    private SendQuotationBouncedContract.Presenter mPresenter;
 
     public SendQuotationBouncedDialog(Context context, int orderId, String money) {
         super(context, R.style.dialog);
@@ -48,6 +48,8 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_sendquotationbounced);
         Window dialogWindow = getWindow();
+        //让布局向上移来显示软键盘
+//        dialogWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
         lp.height = WindowManager.LayoutParams.MATCH_PARENT;
@@ -56,7 +58,8 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     }
 
     private void initView() {
-        tv_firmQuotation = (TextView) findViewById(R.id.tv_firmQuotation);
+        mPresenter=new SendQuotationBouncedPresenter(this);
+        TextView tv_firmQuotation = (TextView) findViewById(R.id.tv_firmQuotation);
         tv_firmQuotation.setOnClickListener(this);
         TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
         tv_estimatePrice.setText(context.getString(R.string.estimatePrice) + money);
@@ -74,6 +77,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
             case R.id.tv_firmQuotation:
                 String moneys = et_pleaseEnterPrice.getText().toString().trim();
                 if (judgeTwoDecimal(moneys)) {
+                    showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
                     mPresenter.getQuoteAdd(orderId, moneys, 0);
                 } else {
                     ViewInject.toast(context.getString(R.string.hintDriverBid1));
@@ -84,7 +88,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     }
 
     @Override
-    public void setPresenter(GetOrderBouncedContract.Presenter presenter) {
+    public void setPresenter(SendQuotationBouncedContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

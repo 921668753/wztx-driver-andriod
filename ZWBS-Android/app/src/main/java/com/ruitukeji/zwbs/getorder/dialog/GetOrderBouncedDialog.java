@@ -19,14 +19,14 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class GetOrderBouncedDialog extends BaseDialog implements View.OnClickListener, GetOrderBouncedContract.View {
+public abstract class GetOrderBouncedDialog extends BaseDialog implements View.OnClickListener, SendQuotationBouncedContract.View {
 
     private String money = "0.00";
     private Context context;
     private TextView tv_cancel;
     private TextView tv_determine;
     private int orderId;
-    private GetOrderBouncedContract.Presenter mPresenter;
+    private SendQuotationBouncedContract.Presenter mPresenter;
 
     public GetOrderBouncedDialog(Context context, int orderId, String money) {
         super(context, R.style.dialog);
@@ -52,7 +52,7 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
         tv_cancel.setOnClickListener(this);
         tv_determine = (TextView) findViewById(R.id.tv_determine);
         tv_determine.setOnClickListener(this);
-        mPresenter = new GetOrderBouncedPresenter(this);
+        mPresenter = new SendQuotationBouncedPresenter(this);
     }
 
     @Override
@@ -74,7 +74,7 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
     }
 
     @Override
-    public void setPresenter(GetOrderBouncedContract.Presenter presenter) {
+    public void setPresenter(SendQuotationBouncedContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

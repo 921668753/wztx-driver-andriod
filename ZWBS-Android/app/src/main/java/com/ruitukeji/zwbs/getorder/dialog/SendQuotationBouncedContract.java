@@ -7,7 +7,7 @@ import com.ruitukeji.zwbs.common.BaseView;
  * Created by Admin on 2017/7/12.
  */
 
-public class GetOrderBouncedContract {
+public class SendQuotationBouncedContract {
 
     interface Presenter extends BasePresenter {
 
