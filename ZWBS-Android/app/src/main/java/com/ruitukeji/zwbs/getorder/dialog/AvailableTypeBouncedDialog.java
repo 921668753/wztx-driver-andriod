@@ -124,7 +124,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        selectedAvailableType(availableTypeViewAdapter.getItem(position).getValue());
+        selectedAvailableType(availableTypeViewAdapter.getItem(position).getName());
         confirm(availableTypeViewAdapter.getItem(position).getName(), availableTypeViewAdapter.getItem(position).getValue());
     }
 
@@ -160,6 +160,7 @@ public abstract class AvailableTypeBouncedDialog extends BaseDialog implements A
                 availableTypeList.get(i).setStatus(0);
             }
         }
+        availableTypeViewAdapter.clear();
         availableTypeViewAdapter.addMoreData(availableTypeList);
     }
 
