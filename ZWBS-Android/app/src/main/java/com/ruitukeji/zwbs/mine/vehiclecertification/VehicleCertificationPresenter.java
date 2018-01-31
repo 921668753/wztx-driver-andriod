@@ -101,22 +101,22 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.residentAddress), 0);
             return;
         }
-        if (permanent_address.contains("苏州")&&car_band.contains("江淮")) {
+        if (permanent_address.contains("苏州") && car_band.contains("江淮")) {
             mView.errorMsg("暂不支持苏州地区江淮品牌车辆认证！如有疑问请联系客服！", 0);
             return;
         }
-//        if (StringUtils.isEmpty(car_front_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadFaceLight), 0);
-//            return;
-//        }
-//        if (StringUtils.isEmpty(car_bank_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadSiding), 0);
-//            return;
-//        }
-//        if (StringUtils.isEmpty(car_tail_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRearLight), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(car_front_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadFaceLight), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(car_bank_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadSiding), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(car_tail_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRearLight), 0);
+            return;
+        }
         String dateStr = DataUtil.formatData(System.currentTimeMillis() / 1000, "yyyy-MM-dd");
         long dateLong = DataUtil.getStringToDate(dateStr + " 00:00:00", "yyyy-MM-dd HH:mm:ss") / 1000;
         if (license_time < 1) {
@@ -127,10 +127,10 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             mView.errorMsg(MyApplication.getContext().getString(R.string.validityLicense1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(license_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadDrivingLicensePhotos1), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(license_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadDrivingLicensePhotos1), 0);
+            return;
+        }
         if (transport_pic_time < 1) {
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.roadTransportValidityPeriodDate), 0);
             return;
@@ -139,10 +139,10 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             mView.errorMsg(MyApplication.getContext().getString(R.string.roadTransportValidityPeriodDate1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(transport_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRoadQualification1), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(transport_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRoadQualification1), 0);
+            return;
+        }
         if (policy_time < 1) {
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.businessInsurancePolicy), 0);
             return;
@@ -151,10 +151,10 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             mView.errorMsg(MyApplication.getContext().getString(R.string.businessInsurancePolicy1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(policy_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadBusinessInsurancePolicyPhoto1), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(policy_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadBusinessInsurancePolicyPhoto1), 0);
+            return;
+        }
         if (insurance_time < 1) {
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.validityInsurance), 0);
             return;
@@ -163,10 +163,10 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             mView.errorMsg(MyApplication.getContext().getString(R.string.validityInsurance1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(insurance_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.handHandPolicyPhoto1), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(insurance_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.handHandPolicyPhoto1), 0);
+            return;
+        }
         SubmitBouncedDialog submitBouncedDialog = new SubmitBouncedDialog(KJActivityStack.create().topActivity()) {
             @Override
             public void confirm() {
@@ -181,17 +181,17 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
                 map.put("car_style_length_id", car_style_length_id);
                 map.put("car_band", car_band);
                 map.put("car_registered_time", car_registered_time);
-                map.put("car_front_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
-                map.put("car_bank_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
-                map.put("car_tail_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("car_front_pic", car_front_pic);
+                map.put("car_bank_pic", car_bank_pic);
+                map.put("car_tail_pic", car_tail_pic);
                 map.put("license_time", license_time);
-                map.put("license_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("license_pic", license_pic);
                 map.put("transport_pic_time", transport_pic_time);
-                map.put("transport_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("transport_pic", transport_pic);
                 map.put("policy_time", policy_time);
-                map.put("policy_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("policy_pic", policy_pic);
                 map.put("insurance_time", insurance_time);
-                map.put("insurance_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("insurance_pic", insurance_pic);
                 map.put("permanent_address", permanent_address);
                 map.put("province", province1);
                 map.put("city", city1);

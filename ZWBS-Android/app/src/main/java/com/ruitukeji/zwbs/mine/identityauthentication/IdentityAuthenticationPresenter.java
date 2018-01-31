@@ -86,18 +86,18 @@ public class IdentityAuthenticationPresenter implements IdentityAuthenticationCo
             mView.errorMsg(MyApplication.getContext().getString(R.string.validityIdentityCard1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(front_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadYourIdCard), 0);
-//            return;
-//        }
-//        if (StringUtils.isEmpty(back_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadClearYourIdCard), 0);
-//            return;
-//        }
-//        if (StringUtils.isEmpty(hold_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploudHoldingIdPhoto), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(front_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadYourIdCard), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(back_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadClearYourIdCard), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(hold_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploudHoldingIdPhoto), 0);
+            return;
+        }
         if (license_pic_time < 1) {
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.validityDrivingLicence), 0);
             return;
@@ -106,10 +106,10 @@ public class IdentityAuthenticationPresenter implements IdentityAuthenticationCo
             mView.errorMsg(MyApplication.getContext().getString(R.string.validityDrivingLicence1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(license_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadDrivingLicensePhotos), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(license_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadDrivingLicensePhotos), 0);
+            return;
+        }
         if (transport_pic_time < 1) {
             mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.roadTransportValidityPeriod), 0);
             return;
@@ -118,14 +118,14 @@ public class IdentityAuthenticationPresenter implements IdentityAuthenticationCo
             mView.errorMsg(MyApplication.getContext().getString(R.string.roadTransportValidityPeriod1), 0);
             return;
         }
-//        if (StringUtils.isEmpty(transport_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRoadQualification), 0);
-//            return;
-//        }
-//        if (StringUtils.isEmpty(faith_pic)) {
-//            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadIntegrityAssessment), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(transport_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadRoadQualification), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(faith_pic)) {
+            mView.errorMsg(MyApplication.getContext().getString(R.string.uploadIntegrityAssessment), 0);
+            return;
+        }
         SubmitBouncedDialog submitBouncedDialog = new SubmitBouncedDialog(KJActivityStack.create().topActivity()) {
             @Override
             public void confirm() {
@@ -136,14 +136,14 @@ public class IdentityAuthenticationPresenter implements IdentityAuthenticationCo
                 map.put("real_name", real_name);
                 map.put("identity", identity);
                 map.put("identity_pic_time", identity_pic_time);
-                map.put("hold_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
-                map.put("front_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
-                map.put("back_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("hold_pic", hold_pic);
+                map.put("front_pic", front_pic);
+                map.put("back_pic", back_pic);
                 map.put("license_pic_time", license_pic_time);
-                map.put("license_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("license_pic", license_pic);
                 map.put("transport_pic_time", transport_pic_time);
-                map.put("transport_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
-                map.put("faith_pic", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+                map.put("transport_pic", transport_pic);
+                map.put("faith_pic", faith_pic);
                 httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
                 RequestClient.postDriverAuth(httpParams, new ResponseListener<String>() {
                     @Override
