@@ -293,6 +293,7 @@
     <string name="endpoint">目的地</string>
     <string name="emptying">清空</string>
     <string name="all1">全</string>
+    <string name="national">全国</string>
 
     <!--订单-->
     <string name="all">全部</string>
@@ -742,7 +743,7 @@
     <string name="placeCannotSame">出发地和目的地不能相同</string>
     <string name="currentRegion">当前地区:</string>
     <string name="returnUpperLevel">返回上一级</string>
-
+    <string name="pleaseSetPointDeparture">请设置好出发地/目的地信息后再保存！</string>
 
     <!--关于我们-->
     <string name="aboutUs">关于我们</string>

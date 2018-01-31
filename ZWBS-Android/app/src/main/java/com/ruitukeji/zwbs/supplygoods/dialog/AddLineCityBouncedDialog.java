@@ -19,6 +19,8 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean.ResultBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.List;
 
@@ -38,7 +40,6 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
     ResultBean cityBean;
     private String cityName = "";
     private int cityId = 0;
-
 
     private OriginBouncedContract.Presenter mPresenter;
 
@@ -73,6 +74,12 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
         gv_address.setAdapter(cityViewAdapter);
         LinearLayout ll_back = (LinearLayout) findViewById(R.id.ll_back);
         ll_back.setOnClickListener(this);
+        TextView tv_back = (TextView) findViewById(R.id.tv_back);
+        tv_back.setOnClickListener(this);
+        TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+        tv_cancel.setOnClickListener(this);
+        TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
+        tv_determine.setOnClickListener(this);
         TextView tv_select = (TextView) findViewById(R.id.tv_select);
         tv_select.setText(provinceName);
         showLoadingDialog(context.getString(R.string.dataLoad));
@@ -82,6 +89,16 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_back:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAddTheLineFinishEvent"));
+                break;
+            case R.id.tv_cancel:
+                cancel();
+                break;
+            case R.id.tv_determine:
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAddTheLineDetermineEvent"));
+                break;
             case R.id.ll_back:
                 cancel();
                 break;
@@ -99,6 +116,7 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
         }
         if (addLineAreaBouncedDialog != null && !addLineAreaBouncedDialog.isShowing()) {
             addLineAreaBouncedDialog.show();
+            addLineAreaBouncedDialog.setCityId(cityBean.getName(), cityBean.getId());
             return;
         }
         addLineAreaBouncedDialog = new AddLineAreaBouncedDialog(context, cityBean.getName(), cityBean.getId()) {
@@ -155,6 +173,15 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
         ViewInject.toast(msg);
+    }
+
+    public void setProvinceId(String provinceName, int provinceId) {
+        this.provinceName = provinceName;
+        this.provinceId = provinceId;
+        TextView tv_select = (TextView) findViewById(R.id.tv_select);
+        tv_select.setText(provinceName);
+        showLoadingDialog(context.getString(R.string.dataLoad));
+        mPresenter.getAddress(provinceId, 0);
     }
 
     @Override

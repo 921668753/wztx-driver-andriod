@@ -49,10 +49,10 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
         httpParams.put("pageSize", 5);
-        if (!StringUtils.isEmpty(startPoint)) {
+        if (!StringUtils.isEmpty(startPoint) && !startPoint.equals(KJActivityStack.create().topActivity().getString(R.string.national))) {
             httpParams.put("org_city", startPoint);
         }
-        if (!StringUtils.isEmpty(endPoint)) {
+        if (!StringUtils.isEmpty(endPoint) && !endPoint.equals(KJActivityStack.create().topActivity().getString(R.string.national))) {
             httpParams.put("dest_city", endPoint);
         }
         if (vehicleLength != 0) {

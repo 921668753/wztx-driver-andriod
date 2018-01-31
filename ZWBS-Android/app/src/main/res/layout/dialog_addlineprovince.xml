@@ -5,11 +5,32 @@
     android:background="@android:color/transparent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="@dimen/dimen70"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/AutoMatch" />
+
+        <TextView
+            android:id="@+id/tv_determine"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_start"
         style="@style/Match44"
         android:layout_marginLeft="@dimen/dimen58"
-        android:layout_marginTop="@dimen/dimen58"
+        android:layout_marginTop="@dimen/dimen8"
         android:background="@android:color/transparent" />
 
     <TextView

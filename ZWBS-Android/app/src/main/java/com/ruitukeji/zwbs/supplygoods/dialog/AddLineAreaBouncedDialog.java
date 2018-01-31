@@ -18,6 +18,8 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean;
 import com.ruitukeji.zwbs.entity.supplygoods.dialog.AddressBean.ResultBean;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.List;
 
@@ -71,6 +73,12 @@ public abstract class AddLineAreaBouncedDialog extends BaseDialog implements Ada
         gv_address = (GridView) findViewById(R.id.gv_address);
         gv_address.setOnItemClickListener(this);
         gv_address.setAdapter(areaViewAdapter);
+        TextView tv_back = (TextView) findViewById(R.id.tv_back);
+        tv_back.setOnClickListener(this);
+        TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+        tv_cancel.setOnClickListener(this);
+        TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
+        tv_determine.setOnClickListener(this);
         TextView tv_select = (TextView) findViewById(R.id.tv_select);
         tv_select.setText(cityName);
         LinearLayout ll_back = (LinearLayout) findViewById(R.id.ll_back);
@@ -82,6 +90,16 @@ public abstract class AddLineAreaBouncedDialog extends BaseDialog implements Ada
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_back:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAddTheLineFinishEvent"));
+                break;
+            case R.id.tv_cancel:
+                cancel();
+                break;
+            case R.id.tv_determine:
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusAddTheLineDetermineEvent"));
+                break;
             case R.id.ll_back:
                 cancel();
                 break;
@@ -139,6 +157,17 @@ public abstract class AddLineAreaBouncedDialog extends BaseDialog implements Ada
         areaViewAdapter.clear();
         areaViewAdapter.addMoreData(areaBeanlist);
     }
+
+
+    public void setCityId(String cityName, int cityId) {
+        this.cityName = cityName;
+        this.cityId = cityId;
+        TextView tv_select = (TextView) findViewById(R.id.tv_select);
+        tv_select.setText(cityName);
+        showLoadingDialog(context.getString(R.string.dataLoad));
+        mPresenter.getAddress(cityId, 0);
+    }
+
 
     @Override
     public void errorMsg(String msg, int flag) {

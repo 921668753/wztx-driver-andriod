@@ -21,8 +21,11 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AddLineProvinceBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 import cn.bingoogolapple.titlebar.BGATitleBar.SimpleDelegate;
+
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
  * 添加路线
@@ -192,5 +195,18 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
         }
         stopProvinceBouncedDialog = null;
         startProvinceBouncedDialog = null;
+    }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusAddTheLineFinishEvent")) {
+            aty.finish();
+        } else if (((String) msgEvent.getData()).equals("RxBusAddTheLineDetermineEvent")) {
+            ViewInject.toast(getString(R.string.pleaseSetPointDeparture));
+        }
     }
 }
