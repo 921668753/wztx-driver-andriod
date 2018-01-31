@@ -19,10 +19,8 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
 
 public class HttpRequest {
 
-    private static RxVolley.Builder builder = null;
-
     public static void requestHttp(String url, int httpMethod, int contentType, HttpParams params, boolean isCache, ResponseListener responseListener) {
-        builder = new RxVolley.Builder();
+        RxVolley.Builder builder = new RxVolley.Builder();
         //http请求的回调，内置了很多方法，详细请查看源码
 //包括在异步响应的onSuccessInAsync():注不能做UI操作
 //网络请求成功时的回调onSuccess()
@@ -31,14 +29,12 @@ public class HttpRequest {
             @Override
             public void onSuccess(String t) {
                 super.onSuccess(t);
-                builder = null;
                 doSuccess(t, responseListener);
             }
 
             @Override
             public void onFailure(int errorNo, String strMsg) {
                 super.onFailure(errorNo, strMsg);
-                builder = null;
                 doFailure(errorNo, strMsg, responseListener);
             }
         };
