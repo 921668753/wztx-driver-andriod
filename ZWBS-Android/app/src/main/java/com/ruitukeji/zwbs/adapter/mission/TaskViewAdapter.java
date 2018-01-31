@@ -2,6 +2,7 @@ package com.ruitukeji.zwbs.adapter.mission;
 
 import android.content.Context;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 
 import com.kymjs.common.StringUtils;
@@ -219,7 +220,7 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             second1 = "" + second;
         }
         String strtime = "";
-        if (l / 2 == 0) {
+        if (l.intValue() % 2 == 0) {
             strtime = hour1 + ":" + minute1 + ":" + second1;
         } else {
             strtime = hour1 + " " + minute1 + " " + second1;

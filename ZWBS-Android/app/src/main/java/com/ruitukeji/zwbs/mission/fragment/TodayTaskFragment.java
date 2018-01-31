@@ -35,6 +35,7 @@ import com.ruitukeji.zwbs.mission.dialog.CancelOrderBouncedDialog;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 import java.util.List;
 
@@ -424,5 +425,31 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             ViewInject.toast(getString(R.string.phoneCallPermissions1));
         }
     }
+
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusTodayEvent")) {
+            dataLong = System.currentTimeMillis() / 1000;
+            String todayStr = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+            tv_data.setText(todayStr);
+            mRefreshLayout.beginRefreshing();
+        } else if (((String) msgEvent.getData()).equals("RxBusArrowLeftEvent")) {
+            dataLong = dataLong - 24 * 60 * 60;
+            String arrowLeft = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+            tv_data.setText(arrowLeft);
+            mRefreshLayout.beginRefreshing();
+        } else if (((String) msgEvent.getData()).equals("RxBusArrowRightEvent")) {
+            dataLong = dataLong + 24 * 60 * 60;
+            String arrowRight = DataUtil.formatData(dataLong, "yyyy-MM-dd");
+            tv_data.setText(arrowRight);
+            mRefreshLayout.beginRefreshing();
+        }
+    }
+
 
 }

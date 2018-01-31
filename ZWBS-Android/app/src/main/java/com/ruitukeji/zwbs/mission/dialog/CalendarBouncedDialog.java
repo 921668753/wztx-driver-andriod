@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.othershe.calendarview.bean.DateBean;
@@ -17,15 +18,16 @@ import com.othershe.calendarview.weiget.CalendarView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.utils.DataUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 /**
  * 今日任务---日历弹框
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class CalendarBouncedDialog extends BaseDialog {
+public abstract class CalendarBouncedDialog extends BaseDialog implements View.OnClickListener {
 
-    private TextView tv_title;
     private long singleDate;
     private Context context;
     private CalendarView calendarView;
@@ -50,7 +52,33 @@ public abstract class CalendarBouncedDialog extends BaseDialog {
     }
 
     private void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
+
+        TextView tv_todayTask = (TextView) findViewById(R.id.tv_todayTask);
+        tv_todayTask.setOnClickListener(this);
+
+        TextView tv_completeMission = (TextView) findViewById(R.id.tv_completeMission);
+        tv_completeMission.setOnClickListener(this);
+
+        TextView tv_today = (TextView) findViewById(R.id.tv_today);
+        tv_today.setOnClickListener(this);
+
+        TextView tv_arrowLeft = (TextView) findViewById(R.id.tv_arrowLeft);
+        tv_arrowLeft.setOnClickListener(this);
+
+        TextView tv_data = (TextView) findViewById(R.id.tv_data);
+        tv_data.setOnClickListener(this);
+
+        TextView tv_arrowRight = (TextView) findViewById(R.id.tv_arrowRight);
+        tv_arrowRight.setOnClickListener(this);
+
+        TextView tv_calendar = (TextView) findViewById(R.id.tv_calendar);
+        tv_calendar.setOnClickListener(this);
+
+        LinearLayout ll_calendar = (LinearLayout) findViewById(R.id.ll_calendar);
+        ll_calendar.setOnClickListener(this);
+        TextView tv_transparent = (TextView) findViewById(R.id.tv_transparent);
+        tv_transparent.setOnClickListener(this);
+        TextView tv_title = (TextView) findViewById(R.id.tv_title);
 //        tv_cancel.setOnClickListener(this);
         calendarView = (CalendarView) findViewById(R.id.calendar);
         String singleDateStr = DataUtil.formatData(singleDate, "yyyy.MM.dd");
@@ -104,6 +132,43 @@ public abstract class CalendarBouncedDialog extends BaseDialog {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_calendar:
+                cancel();
+                break;
+            case R.id.tv_todayTask:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusTodayTaskEvent"));
+                break;
+            case R.id.tv_completeMission:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusCompleteMissionEvent"));
+                break;
+            case R.id.tv_today:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusTodayEvent"));
+                break;
+            case R.id.tv_arrowLeft:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusArrowLeftEvent"));
+                break;
+            case R.id.tv_data:
+                cancel();
+                break;
+            case R.id.tv_arrowRight:
+                cancel();
+                RxBus.getInstance().post(new MsgEvent<String>("RxBusArrowRightEvent"));
+                break;
+            case R.id.tv_calendar:
+                cancel();
+                break;
+            case R.id.tv_transparent:
+                cancel();
+                break;
+        }
+    }
 
     public void setSingleDate(long date) {
         String singleDateStr = DataUtil.formatData(date, "yyyy.MM.dd");

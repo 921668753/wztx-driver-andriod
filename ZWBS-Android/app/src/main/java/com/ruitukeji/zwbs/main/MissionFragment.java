@@ -12,6 +12,7 @@ import com.ruitukeji.zwbs.common.BaseFragment;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.mission.fragment.CompleteTaskFragment;
 import com.ruitukeji.zwbs.mission.fragment.TodayTaskFragment;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
 
 /**
  * 任务
@@ -140,4 +141,25 @@ public class MissionFragment extends BaseFragment {
         }
     }
 
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusTodayTaskEvent")) {
+            chageIcon = 20;
+            cleanColors(20);
+            changeFragment(contentFragment);
+        } else if (((String) msgEvent.getData()).equals("RxBusCompleteMissionEvent")) {
+            chageIcon = 21;
+            cleanColors(21);
+            changeFragment(contentFragment1);
+        } else {
+            chageIcon = 20;
+            cleanColors(20);
+            changeFragment(contentFragment);
+        }
+    }
 }

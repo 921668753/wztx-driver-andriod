@@ -15,18 +15,17 @@
 
         <TextView
             android:id="@+id/tv_today"
-            style="@style/WrapMatch"
+            style="@style/AutoMatch"
             android:gravity="center"
-            android:paddingLeft="@dimen/dimen10"
-            android:paddingRight="@dimen/dimen33"
             android:text="@string/today"
             android:textColor="@color/hintcolors"
             android:textSize="@dimen/textsize15" />
 
         <ImageView
             android:id="@+id/img_arrowLeft"
-            style="@style/WrapWrap"
-            android:padding="@dimen/dimen15"
+            style="@style/WrapMatch"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen20"
             android:src="@mipmap/ic_arrow_left" />
 
         <TextView
@@ -39,20 +38,18 @@
 
         <ImageView
             android:id="@+id/img_arrowRight"
-            style="@style/WrapWrap"
-            android:padding="@dimen/dimen15"
+            style="@style/WrapMatch"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen15"
             android:src="@mipmap/ic_arrow_right" />
 
 
         <ImageView
             android:id="@+id/img_calendar"
-            style="@style/WrapWrap"
-            android:paddingBottom="@dimen/dimen5"
-            android:paddingLeft="@dimen/dimen35"
-            android:paddingRight="@dimen/dimen15"
-            android:paddingTop="@dimen/dimen5"
+            style="@style/AutoMatch"
+            android:paddingBottom="@dimen/dimen12"
+            android:paddingTop="@dimen/dimen12"
             android:src="@mipmap/ic_calendar" />
-
 
     </LinearLayout>
 
