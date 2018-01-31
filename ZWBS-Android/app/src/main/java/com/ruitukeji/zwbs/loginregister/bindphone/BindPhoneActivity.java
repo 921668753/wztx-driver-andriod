@@ -77,6 +77,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
     private String nickname;
     private String head_pic;
     private int sex = 0;
+    private long millisUntilFinished = 0;
 
 
     @Override
@@ -114,6 +115,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
      * 设置标题
      */
     public void initTitle() {
+        tv_code.setClickable(false);
         tv_determine.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.bindPhone), true, R.id.titlebar);
     }
@@ -153,14 +155,16 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
         @Override
         public void onFinish() {// 计时完毕时触发
             tv_code.setText(getString(R.string.revalidation));
+            millisUntilFinished = 0;
             tv_code.setClickable(true);
             tv_code.setBackgroundResource(R.drawable.shape_login);
         }
 
         @Override
-        public void onTick(long millisUntilFinished) {// 计时过程显示
+        public void onTick(long millisUntilFinished1) {// 计时过程显示
+            millisUntilFinished = millisUntilFinished1;
             tv_code.setClickable(false);
-            tv_code.setText(millisUntilFinished / 1000 + getString(R.string.toResend));
+            tv_code.setText(millisUntilFinished1 / 1000 + getString(R.string.toResend));
             tv_code.setBackgroundResource(R.drawable.shape_login1);
         }
     }
@@ -182,10 +186,11 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
                     if (view != null) {
                         view.setVisibility(View.VISIBLE);
                     }
-                    if (editText.getId() == R.id.et_phone) {
+                    if (editText.getId() == R.id.et_phone && millisUntilFinished == 0 && et_phone.getText().toString().trim().length() == 11) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
+                        tv_code.setClickable(true);
                     }
-                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4) {
+                    if (et_phone.getText().toString().trim().length() == 11 && et_code.getText().length() >= 4) {
                         tv_determine.setClickable(true);
                         tv_determine.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -197,6 +202,7 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
                         view.setVisibility(View.GONE);
                     }
                     if (editText.getId() == R.id.et_phone) {
+                        tv_code.setClickable(false);
                         tv_code.setBackgroundResource(R.drawable.shape_login1);
                     }
                     tv_determine.setClickable(false);

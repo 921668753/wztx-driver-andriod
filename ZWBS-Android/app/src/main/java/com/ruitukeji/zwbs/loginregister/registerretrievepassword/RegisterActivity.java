@@ -101,6 +101,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
      * t验证码类型 reg=注册 restpwd=找回密码 login=登陆 bind=绑定手机号.
      */
     private String type = "reg";
+    private long millisUntilFinished = 0;
 
     @Override
     public void setRootView() {
@@ -133,6 +134,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
      * 设置标题
      */
     public void initTitle() {
+        tv_code.setClickable(false);
         tv_registe.setClickable(false);
         ActivityTitleUtils.initToolbar(aty, getString(R.string.register), true, R.id.titlebar);
     }
@@ -191,15 +193,17 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
         @Override
         public void onFinish() {// 计时完毕时触发
+            millisUntilFinished = 0;
             tv_code.setText(getString(R.string.revalidation));
             tv_code.setClickable(true);
             tv_code.setBackgroundResource(R.drawable.shape_login);
         }
 
         @Override
-        public void onTick(long millisUntilFinished) {// 计时过程显示
+        public void onTick(long millisUntilFinished1) {// 计时过程显示
             tv_code.setClickable(false);
-            tv_code.setText(millisUntilFinished / 1000 + getString(R.string.toResend));
+            millisUntilFinished = millisUntilFinished1;
+            tv_code.setText(millisUntilFinished1 / 1000 + getString(R.string.toResend));
             tv_code.setBackgroundResource(R.drawable.shape_login1);
         }
     }
@@ -255,10 +259,11 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     if (view != null) {
                         view.setVisibility(View.VISIBLE);
                     }
-                    if (editText.getId() == R.id.et_phone) {
+                    if (editText.getId() == R.id.et_phone && millisUntilFinished == 0 && et_phone.getText().toString().trim().length() == 11) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
+                        tv_code.setClickable(true);
                     }
-                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
+                    if (et_phone.getText().toString().trim().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
                         tv_registe.setClickable(true);
                         tv_registe.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -270,6 +275,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                         view.setVisibility(View.GONE);
                     }
                     if (editText.getId() == R.id.et_phone) {
+                        tv_code.setClickable(false);
                         tv_code.setBackgroundResource(R.drawable.shape_login1);
                     }
                     tv_registe.setClickable(false);

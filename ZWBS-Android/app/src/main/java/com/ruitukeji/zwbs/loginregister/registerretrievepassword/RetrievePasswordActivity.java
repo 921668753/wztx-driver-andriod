@@ -77,6 +77,8 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
      */
     private String type = "resetpwd";
 
+    private long millisUntilFinished = 0;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_retrievepassword);
@@ -99,6 +101,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
     public void initWidget() {
         super.initWidget();
         initTitle();
+        tv_code.setClickable(false);
         changeInputView(et_phone, img_deletePhone);
         changeInputView(et_code, img_deleteCode);
         changeInputView(et_pwd, img_delete);
@@ -152,21 +155,25 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
 
     /* 定义一个倒计时的内部类 */
     class TimeCount extends CountDownTimer {
+
+
         public TimeCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);// 参数依次为总时长,和计时的时间间隔
         }
 
         @Override
         public void onFinish() {// 计时完毕时触发
+            millisUntilFinished = 0;
             tv_code.setText(getString(R.string.revalidation));
             tv_code.setClickable(true);
             tv_code.setBackgroundResource(R.drawable.shape_login);
         }
 
         @Override
-        public void onTick(long millisUntilFinished) {// 计时过程显示
+        public void onTick(long millisUntilFinished1) {// 计时过程显示
             tv_code.setClickable(false);
-            tv_code.setText(millisUntilFinished / 1000 + getString(R.string.toResend));
+            millisUntilFinished = millisUntilFinished1;
+            tv_code.setText(millisUntilFinished1 / 1000 + getString(R.string.toResend));
             tv_code.setBackgroundResource(R.drawable.shape_login1);
         }
     }
@@ -188,10 +195,11 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
                     if (view != null) {
                         view.setVisibility(View.VISIBLE);
                     }
-                    if (editText.getId() == R.id.et_phone) {
+                    if (editText.getId() == R.id.et_phone && et_phone.getText().length() == 11 && millisUntilFinished == 0) {
                         tv_code.setBackgroundResource(R.drawable.shape_login);
+                        tv_code.setClickable(true);
                     }
-                    if (et_phone.getText().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
+                    if (et_phone.getText().toString().trim().length() == 11 && et_code.getText().length() >= 4 && et_pwd.getText().length() >= 6) {
                         tv_resetPassword.setClickable(true);
                         tv_resetPassword.setBackgroundResource(R.drawable.shape_login);
                     } else {
@@ -203,6 +211,7 @@ public class RetrievePasswordActivity extends BaseActivity implements RegisterCo
                         view.setVisibility(View.GONE);
                     }
                     if (editText.getId() == R.id.et_phone) {
+                        tv_code.setClickable(false);
                         tv_code.setBackgroundResource(R.drawable.shape_login1);
                     }
                     tv_resetPassword.setClickable(false);
