@@ -255,8 +255,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", false);
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", false);
+//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo", false);
+//            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInfo1", false);
             mRefreshLayout.setPullDownRefreshEnable(true);
             MineBean mineBean = (MineBean) JsonUtil.getInstance().json2Obj(s, MineBean.class);
             if (StringUtils.isEmpty(mineBean.getResult().getAvatar())) {
