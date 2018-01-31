@@ -697,9 +697,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             int selectCityId = data.getIntExtra("selectCityId", 0);
             PreferenceHelper.write(aty, StringConstants.FILENAME, "selectCity", selectCity);
             tv_city.setText(selectCity);
-            //   showLoadingDialog(aty.getString(R.string.dataLoad));
-            //  ((HomePageContract.Presenter) mPresenter).getHomePage(selectCity);
-            Log.d("tag888", selectCity);
+            mRefreshLayout.beginRefreshing();
         } else if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {// 如果等于1
             mRefreshLayout.beginRefreshing();
         }

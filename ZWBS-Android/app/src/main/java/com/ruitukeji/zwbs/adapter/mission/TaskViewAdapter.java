@@ -220,11 +220,11 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             second1 = "" + second;
         }
         String strtime = "";
-        if (l.intValue() % 2 == 0) {
+//        if (l.intValue() % 2 == 0) {
             strtime = hour1 + ":" + minute1 + ":" + second1;
-        } else {
-            strtime = hour1 + " " + minute1 + " " + second1;
-        }
+//        } else {
+//            strtime = hour1 + " " + minute1 + " " + second1;
+//        }
         return strtime;
     }
 

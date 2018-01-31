@@ -277,6 +277,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 tv_licensePlateNumber.setVisibility(View.GONE);
                 tv_licensePlateNumber1.setVisibility(View.GONE);
             } else {
+                tv_licensePlateNumber.setVisibility(View.VISIBLE);
+                tv_licensePlateNumber1.setVisibility(View.VISIBLE);
                 tv_licensePlateNumber.setText(getString(R.string.licenseNumber2) + mineBean.getResult().getCard_number());
                 tv_licensePlateNumber1.setText(getString(R.string.licenseNumber2) + mineBean.getResult().getCard_number());
             }

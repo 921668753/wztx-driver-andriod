@@ -181,14 +181,15 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (view.getId() == R.id.iv_delete) {
-            if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
-                authenticationBouncedDialog.show();
-                return;
-            }
+//            if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
+//                authenticationBouncedDialog.show();
+//                return;
+//            }
             authenticationBouncedDialog = new AuthenticationBouncedDialog(aty, getString(R.string.deleteRoute)) {
                 @Override
                 public void confirm() {
                     this.cancel();
+                    authenticationBouncedDialog = null;
                     ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(setTheLineViewAdapter.getItem(i).getDrline_id());
                 }
             };

@@ -2,14 +2,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:layout_marginTop="@dimen/dimen165"
-    android:background="@color/white"
+    android:background="@android:color/transparent"
     android:orientation="vertical">
 
-    <TextView style="@style/DividerWidth" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen50"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="@dimen/dimen70"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/AutoMatch" />
+
+        <TextView
+            android:id="@+id/tv_determine"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_start"
+        style="@style/Match44"
+        android:layout_marginLeft="@dimen/dimen58"
+        android:layout_marginTop="@dimen/dimen8"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv_end"
+        style="@style/Match44"
+        android:layout_marginLeft="@dimen/dimen58"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@android:color/transparent" />
+
+    <TextView
+        style="@style/DividerWidth"
+        android:layout_marginTop="@dimen/dimen10" />
 
     <LinearLayout
         style="@style/MatchWrap"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <TextView
@@ -61,15 +98,15 @@
 
     <GridView
         android:id="@+id/gv_address"
-        style="@style/MatchWrap"
-        android:layout_marginLeft="@dimen/dimen10"
-        android:layout_marginRight="@dimen/dimen10"
+        style="@style/MatchMatch"
+        android:background="@color/white"
         android:listSelector="@android:color/transparent"
         android:numColumns="4"
         android:overScrollMode="never"
         android:paddingBottom="@dimen/dimen10"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen10"
         android:scrollbars="none"
         tools:listitem="@layout/item_addlineaddress" />
-
 
 </LinearLayout>
