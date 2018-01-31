@@ -33,15 +33,15 @@ public class UploadReceiptVoucherPresenter implements UploadReceiptVoucherContra
 
     @Override
     public void uploadCerPic(int order_id, String img_url) {
-//        if (StringUtils.isEmpty(img_url)) {
-//            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData1), 0);
-//            return;
-//        }
+        if (StringUtils.isEmpty(img_url)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData1), 0);
+            return;
+        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         String dest_address_maps = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "currentLocationLatitudeLongitude");
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("order_id", order_id);
-        map.put("img_url", "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png");
+        map.put("img_url", img_url);
         map.put("dest_address_maps", dest_address_maps);
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
         RequestClient.postUploadCerPic(httpParams, new ResponseListener<String>() {
@@ -63,7 +63,6 @@ public class UploadReceiptVoucherPresenter implements UploadReceiptVoucherContra
      */
     @Override
     public void postUpLoadImg(String path, int code) {
-        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
         if (StringUtils.isEmpty(path)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 0);
             return;

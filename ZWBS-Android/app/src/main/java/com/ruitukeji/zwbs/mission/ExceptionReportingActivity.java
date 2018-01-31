@@ -220,6 +220,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             if (data != null && requestCode == NumericConstants.REQUEST_CODE_SELECT) {
                 images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 if (images != null) {
+                    showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
                     ((ExceptionReportingContract.Presenter) mPresenter).postUpLoadImg(images.get(0).path, 1);
                 }
             }
@@ -261,10 +262,6 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             startActivity(intent);
             return;
         }
-        ImageItem imageItem = new ImageItem();
-        imageItem.path = "http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png";
-        selImageList.add(imageItem);
-        adapter.setImages(selImageList);
         dismissLoadingDialog();
         ViewInject.toast(msg);
     }

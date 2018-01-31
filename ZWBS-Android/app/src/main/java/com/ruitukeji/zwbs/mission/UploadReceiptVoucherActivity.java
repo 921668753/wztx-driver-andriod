@@ -17,6 +17,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
@@ -176,6 +177,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
                     return;
                 }
                 String filePath = images.get(0).path;
+                showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
                 ((UploadReceiptVoucherContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
             } else {
                 ViewInject.toast(getString(R.string.noData));
@@ -208,7 +210,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
         if (data != null && images != null && requestCode == NumericConstants.REQUEST_CODE_PREVIEW && images.size() == 0) {
             isUploadPictures = true;
             uploadPicturesUrl = null;
-            img_uploadPictures.setImageDrawable(null);
+            img_uploadPictures.setImageResource(R.mipmap.ic_upload);
         }
     }
 
@@ -253,7 +255,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
                 uploadPicturesUrl = uploadImageBean.getResult().getFile().getUrl();
-                GlideImageLoader.glideOrdinaryLoader(this, uploadPicturesUrl + "?imageView2/1/w/300/h/150", img_uploadPictures);
+                GlideImageLoader.glideLoader(this, uploadPicturesUrl + "?imageView2/1/w/300/h/150", img_uploadPictures, 1);
                 isUploadPictures = false;
             }
         }
