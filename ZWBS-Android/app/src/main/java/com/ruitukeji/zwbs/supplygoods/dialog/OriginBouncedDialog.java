@@ -178,9 +178,9 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
             selectArea(areaBean.getId());
             cancel();
             if (areaBean.getName().startsWith(context.getString(R.string.all1)) && cityBean.getName().contains(provinceBean.getName())) {
-                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
+                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
             } else if (areaBean.getName().startsWith(context.getString(R.string.all1)) && !cityBean.getName().contains(provinceBean.getName())) {
-                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), 0);
+                confirm(cityBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
             } else if (cityBean.getName() != null && cityBean.getName().contains(provinceBean.getName())) {
                 confirm(areaBean.getName(), provinceBean.getId(), cityBean.getId(), areaBean.getId());
             } else {

@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.kymjs.common.Log;
 import com.kymjs.common.StringUtils;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -148,6 +149,7 @@ public class AbnormalSituationActivity extends BaseActivity implements AbnormalS
     @Override
     public void getSuccess(String s) {
         AbnormalSituationBean abnormalSituationBean = (AbnormalSituationBean) JsonUtil.json2Obj(s, AbnormalSituationBean.class);
+        Log.d("tag1111",abnormalSituationBean.getResult().getSp_name());
         tv_name.setText(abnormalSituationBean.getResult().getSp_name());
         if (StringUtils.isEmpty(abnormalSituationBean.getResult().getG_type())) {
             img_label.setImageDrawable(null);

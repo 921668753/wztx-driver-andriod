@@ -11,48 +11,50 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
 
     public class ResultBean {
         /**
-         * id : 1
-         * sp_id : 172
+         * id : 15
          * dr_id : 62
-         * dr_name : 曹大福司机
-         * card_number : 苏A123654
-         * car_length : 2.5米
-         * car_type : 货车
-         * g_time : 2018-01-08 08:46:30
+         * sp_name : 看见了
+         * dr_name : 看见了
+         * card_number : 苏11111
+         * car_length : 6.8
+         * car_style_length_id : 7
+         * car_type : 飞翼箱式车
+         * car_style_type_id : 1015
          * g_type : often
-         * order_code : 13759842654
-         * start_address : 江苏省苏州市昆山市花桥镇海星路5号两岸新天地
-         * end_address : 陕西省商洛市洛南县景兴村
-         * create_time : 2017-12-30 18:42:17
-         * update_time : 2017-12-22 12:53:12
+         * g_time : 1516585881
+         * order_code : 2018012257995199
+         * start_address : 江苏省苏州市昆山市玉山镇前进西路292号(近中山路口)刚刚好刚刚
+         * end_address : 江苏省苏州市姑苏区西环路与西环路高架出口交叉口西100米扣扣扣扣麻将屋
+         * create_time : 2018-01-25 11:07:53
          * content : http://ot090bmn8.bkt.clouddn.com/37bfbbf2e59ee54286762726db5881c5.png
-         * place : 异常地点
-         * abnormal_time : 1514630537
-         * reason : 异常原因
-         * goods_name : 铁块
-         * sp_name : 丁坤
+         * place : 江苏省苏州市昆山市海星路5号靠近昆山市仁之源劳务服务有限公司
+         * abnormal_time : 2018-01-25 11:07
+         * reason : 看见了
+         * goods_name : 五金
+         * abnormal_map : 121.062544,31.320191
          */
 
         private int id;
-        private int sp_id;
         private int dr_id;
+        private String sp_name;
         private String dr_name;
         private String card_number;
         private String car_length;
+        private int car_style_length_id;
         private String car_type;
-        private String g_time;
+        private int car_style_type_id;
         private String g_type;
+        private int g_time;
         private String order_code;
         private String start_address;
         private String end_address;
         private String create_time;
-        private String update_time;
         private String content;
         private String place;
         private String abnormal_time;
         private String reason;
         private String goods_name;
-        private String sp_name;
+        private String abnormal_map;
 
         public int getId() {
             return id;
@@ -62,20 +64,20 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
             this.id = id;
         }
 
-        public int getSp_id() {
-            return sp_id;
-        }
-
-        public void setSp_id(int sp_id) {
-            this.sp_id = sp_id;
-        }
-
         public int getDr_id() {
             return dr_id;
         }
 
         public void setDr_id(int dr_id) {
             this.dr_id = dr_id;
+        }
+
+        public String getSp_name() {
+            return sp_name;
+        }
+
+        public void setSp_name(String sp_name) {
+            this.sp_name = sp_name;
         }
 
         public String getDr_name() {
@@ -102,6 +104,14 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
             this.car_length = car_length;
         }
 
+        public int getCar_style_length_id() {
+            return car_style_length_id;
+        }
+
+        public void setCar_style_length_id(int car_style_length_id) {
+            this.car_style_length_id = car_style_length_id;
+        }
+
         public String getCar_type() {
             return car_type;
         }
@@ -110,12 +120,12 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
             this.car_type = car_type;
         }
 
-        public String getG_time() {
-            return g_time;
+        public int getCar_style_type_id() {
+            return car_style_type_id;
         }
 
-        public void setG_time(String g_time) {
-            this.g_time = g_time;
+        public void setCar_style_type_id(int car_style_type_id) {
+            this.car_style_type_id = car_style_type_id;
         }
 
         public String getG_type() {
@@ -124,6 +134,14 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
 
         public void setG_type(String g_type) {
             this.g_type = g_type;
+        }
+
+        public int getG_time() {
+            return g_time;
+        }
+
+        public void setG_time(int g_time) {
+            this.g_time = g_time;
         }
 
         public String getOrder_code() {
@@ -156,14 +174,6 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
 
         public void setCreate_time(String create_time) {
             this.create_time = create_time;
-        }
-
-        public String getUpdate_time() {
-            return update_time;
-        }
-
-        public void setUpdate_time(String update_time) {
-            this.update_time = update_time;
         }
 
         public String getContent() {
@@ -206,12 +216,12 @@ public class AbnormalSituationBean extends BaseResult<AbnormalSituationBean.Resu
             this.goods_name = goods_name;
         }
 
-        public String getSp_name() {
-            return sp_name;
+        public String getAbnormal_map() {
+            return abnormal_map;
         }
 
-        public void setSp_name(String sp_name) {
-            this.sp_name = sp_name;
+        public void setAbnormal_map(String abnormal_map) {
+            this.abnormal_map = abnormal_map;
         }
     }
 }

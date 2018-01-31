@@ -45,7 +45,6 @@
                     android:layout_marginLeft="@dimen/dimen5"
                     android:src="@mipmap/label_shishi" />
 
-                <TextView style="@style/AutoWrap" />
             </LinearLayout>
 
             <TextView
