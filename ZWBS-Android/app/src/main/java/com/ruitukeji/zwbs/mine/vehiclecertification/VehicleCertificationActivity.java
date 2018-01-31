@@ -657,6 +657,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                     return;
                 }
                 String filePath = images.get(0).path;
+                showLoadingDialog(getString(R.string.crossLoad));
                 ((IdentityAuthenticationContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
             } else {
                 ViewInject.toast(getString(R.string.noData));

@@ -164,7 +164,6 @@ public class IdentityAuthenticationPresenter implements IdentityAuthenticationCo
 
     @Override
     public void postUpLoadImg(String path, int flag) {
-        mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
         if (StringUtils.isEmpty(path)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 0);
             return;

@@ -20,6 +20,7 @@ import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.GlideImageLoader;
+import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
@@ -405,6 +406,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                     return;
                 }
                 String filePath = images.get(0).path;
+                showLoadingDialog(getString(R.string.crossLoad));
                 ((IdentityAuthenticationContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
             } else {
                 ViewInject.toast(getString(R.string.noData));
