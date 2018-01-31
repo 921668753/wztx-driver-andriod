@@ -97,6 +97,7 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
             private String mind_price;
             private String system_price;
             private String dest_city;
+            private int effective_time;
             private String weight;
             private String type;
             private String order_code;
@@ -179,6 +180,14 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
 
             public void setDest_city(String dest_city) {
                 this.dest_city = dest_city;
+            }
+
+            public int getEffective_time() {
+                return effective_time;
+            }
+
+            public void setEffective_time(int effective_time) {
+                this.effective_time = effective_time;
             }
 
             public String getWeight() {

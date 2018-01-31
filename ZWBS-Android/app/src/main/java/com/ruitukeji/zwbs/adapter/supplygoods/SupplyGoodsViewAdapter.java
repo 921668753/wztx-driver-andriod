@@ -103,7 +103,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          *预计耗时
          */
-        if (StringUtils.isEmpty(listBean.getUsecar_time())) {
+        if (StringUtils.isEmpty(listBean.getUsecar_time()) || listBean.getEffective_time() == 0) {
             viewHolderHelper.setVisibility(R.id.ll_estimatedTime, View.GONE);
         } else {
             viewHolderHelper.setVisibility(R.id.ll_estimatedTime, View.VISIBLE);

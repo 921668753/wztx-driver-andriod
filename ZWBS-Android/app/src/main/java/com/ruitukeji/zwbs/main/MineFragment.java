@@ -433,10 +433,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void onChange() {
         super.onChange();
-//        boolean isRefreshInfo1 = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "isRefreshInfo1", false);
-//        if (isRefreshInfo1) {
-//            mRefreshLayout.beginRefreshing();
-//        }
     }
 
 
@@ -517,8 +513,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
 
     @Override
     public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-        Log.d("tag", "scrollY" + scrollY);
-        Log.d("tag", "oldScrollY" + oldScrollY);
         if (scrollY == 0) {
             ll_personalData1.setVisibility(View.GONE);
             ll_divider1.setVisibility(View.GONE);
@@ -533,12 +527,11 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         super.onDestroy();
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
-            handler = null;
         }
+        handler = null;
         if (inAuthenticationBouncedDialog != null) {
             inAuthenticationBouncedDialog.cancel();
-            inAuthenticationBouncedDialog = null;
         }
-
+        inAuthenticationBouncedDialog = null;
     }
 }

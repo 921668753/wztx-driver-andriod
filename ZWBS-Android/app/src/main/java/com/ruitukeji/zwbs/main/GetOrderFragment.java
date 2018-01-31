@@ -129,6 +129,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private String availableTypeName = "all";
 
     private GetOrderContract.Presenter mPresenter;
+
     private MainActivity aty;
 
     @BindView(id = R.id.mRefreshLayout)
