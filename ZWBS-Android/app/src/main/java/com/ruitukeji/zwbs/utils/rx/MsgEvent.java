@@ -8,9 +8,25 @@ package com.ruitukeji.zwbs.utils.rx;
 public class MsgEvent<T> {
 
     private T data;
-    private String mMsg;
+    private String msg;
     private int type;
-    private int request;
+    private String request;
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setRequest(String request) {
+        this.request = request;
+    }
 
     public MsgEvent(T data) {
         this.data = data;
@@ -18,24 +34,29 @@ public class MsgEvent<T> {
 
     public MsgEvent(int type, String msg) {
         this.type = type;
-        this.mMsg = msg;
+        this.msg = msg;
     }
 
-    public MsgEvent(int request, int type, String msg) {
+    public MsgEvent(String request, String msg) {
+        this.msg = msg;
+        this.request = request;
+    }
+
+    public MsgEvent(int type, String request, String msg) {
         this.type = type;
-        this.mMsg = msg;
+        this.msg = msg;
         this.request = request;
     }
 
     public String getMsg() {
-        return mMsg;
+        return msg;
     }
 
     public int getType() {
         return type;
     }
 
-    public int getRequest() {
+    public String getRequest() {
         return request;
     }
 

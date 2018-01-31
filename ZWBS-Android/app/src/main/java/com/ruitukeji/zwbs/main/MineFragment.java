@@ -496,8 +496,11 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 }
             }, 600);
         } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
-            //  img_headPortrait.setImageURI(Uri.parse(msgEvent.getMsg() + "?imageView2/1/w/70/h/70"));
-            //   GlideImageLoader.glideLoader(KJActivityStack.create().topActivity(), msgEvent.getMsg() + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
+            String avatar = PreferenceHelper.readString(aty, StringConstants.FILENAME, "avatar", "");
+            if (!StringUtils.isEmpty(avatar)) {
+                GlideImageLoader.glideLoader(getActivity(), avatar + "?imageView2/1/w/70/h/70", img_avatar, 0);
+                GlideImageLoader.glideLoader(getActivity(), avatar + "?imageView2/1/w/70/h/70", img_avatar1, 0);
+            }
         } else if (((String) msgEvent.getData()).equals("RxBusIdentityAuthenticationEvent")) {
             tv_identityAuthentication.setText(getString(R.string.inAuthentication));
             String real_name = PreferenceHelper.readString(aty, StringConstants.FILENAME, "real_name", "");

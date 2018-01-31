@@ -28,6 +28,8 @@ import com.ruitukeji.zwbs.entity.UploadImageBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -196,13 +198,12 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
         if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
             GlideImageLoader.glideLoader(this, uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/70/h/70", img_user, 0);
             PreferenceHelper.write(this, StringConstants.FILENAME, "avatar", uploadImageBean.getResult().getFile().getUrl());
-            PreferenceHelper.write(this, StringConstants.FILENAME, "isRefreshAvatar", true);
-//                /**
-//                 * 发送消息
-//                 */
-//                MsgEvent msgEvent = new MsgEvent<String>("RxBusAvatarEvent");
-//                msgEvent.setMsg(uploadImageBean.getResult().getFile().getUrl());
-//                RxBus.getInstance().post(msgEvent);
+                /**
+                 * 发送消息
+                 */
+                MsgEvent msgEvent = new MsgEvent<String>("RxBusAvatarEvent");
+                msgEvent.setMsg(uploadImageBean.getResult().getFile().getUrl());
+                RxBus.getInstance().post(msgEvent);
         }
         dismissLoadingDialog();
     }
