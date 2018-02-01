@@ -104,7 +104,6 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
             private String dest_address_name;
             private String org_address_maps;
             private String dest_address_maps;
-            private String phone;
             private int is_assigned;
             private int is_cancel;
             private String status;
@@ -114,6 +113,10 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
             private String send_time;
             private int arr_org_time;
             private String arr_org_time_str;
+            private String dest_phone;
+            private String dest_telphone;
+            private String org_phone;
+            private String org_telphone;
 
             public int getId() {
                 return id;
@@ -219,14 +222,6 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
                 this.dest_address_maps = dest_address_maps;
             }
 
-            public String getPhone() {
-                return phone;
-            }
-
-            public void setPhone(String phone) {
-                this.phone = phone;
-            }
-
             public int getIs_assigned() {
                 return is_assigned;
             }
@@ -297,6 +292,38 @@ public class TaskBean extends BaseResult<TaskBean.ResultBean> {
 
             public void setArr_org_time_str(String arr_org_time_str) {
                 this.arr_org_time_str = arr_org_time_str;
+            }
+
+            public String getDest_phone() {
+                return dest_phone;
+            }
+
+            public void setDest_phone(String dest_phone) {
+                this.dest_phone = dest_phone;
+            }
+
+            public String getDest_telphone() {
+                return dest_telphone;
+            }
+
+            public void setDest_telphone(String dest_telphone) {
+                this.dest_telphone = dest_telphone;
+            }
+
+            public String getOrg_phone() {
+                return org_phone;
+            }
+
+            public void setOrg_phone(String org_phone) {
+                this.org_phone = org_phone;
+            }
+
+            public String getOrg_telphone() {
+                return org_telphone;
+            }
+
+            public void setOrg_telphone(String org_telphone) {
+                this.org_telphone = org_telphone;
             }
         }
     }

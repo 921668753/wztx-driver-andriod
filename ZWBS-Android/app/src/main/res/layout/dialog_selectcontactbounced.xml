@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/transparent_1">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_alignParentBottom="true"
+        android:background="@color/mainColor"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:padding="@dimen/dimen10"
+            android:text="@string/selectContact"
+            android:textColor="@color/lonincolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_orgPhone"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/orgPhone"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            android:id="@+id/tv_divider"
+            style="@style/DividerWidth"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15" />
+
+
+        <TextView
+            android:id="@+id/tv_orgTelphone"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/orgTelphone"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            android:id="@+id/tv_divider1"
+            style="@style/DividerWidth"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15" />
+
+
+        <TextView
+            android:id="@+id/tv_destPhone"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/destPhone"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            android:id="@+id/tv_divider2"
+            style="@style/DividerWidth"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:layout_marginRight="@dimen/dimen15" />
+
+
+        <TextView
+            android:id="@+id/tv_destTelphone"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/destTelphone"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/cancel"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize16" />
+
+    </LinearLayout>
+</RelativeLayout>

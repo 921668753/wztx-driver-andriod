@@ -1,36 +1,34 @@
 package com.ruitukeji.zwbs.mission.dialog;
 
-import android.app.Dialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
+import com.ruitukeji.zwbs.common.BaseDialog;
 import com.ruitukeji.zwbs.common.KJActivityStack;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
 import com.ruitukeji.zwbs.utils.map.GPSUtil;
 
-import java.net.URISyntaxException;
 
 /**
+ * 任务---选择导航弹框
  * Created by Admin on 2017/7/23.
  */
 
-public class NavigationBouncedDialog extends Dialog implements View.OnClickListener {
+public class NavigationBouncedDialog extends BaseDialog implements View.OnClickListener {
     private String location = "";
     private String destination;
     private Context context;
     private TextView tv_baidu;
     private TextView tv_gaode;
-    private TextView tv_cancel;
+
 
     public NavigationBouncedDialog(Context context, String destination, String location) {
         super(context, R.style.dialog);
@@ -55,19 +53,10 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     private void initView() {
         tv_baidu = (TextView) findViewById(R.id.tv_baidu);
         tv_baidu.setOnClickListener(this);
-        if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
-            tv_baidu.setText(context.getString(R.string.baiDuNavigation));
-        } else {
-            tv_baidu.setText(context.getString(R.string.baiDuNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
-        }
         tv_gaode = (TextView) findViewById(R.id.tv_gaode);
         tv_gaode.setOnClickListener(this);
-        if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.autonavi.minimap")) {
-            tv_gaode.setText(context.getString(R.string.gaoDeNavigation));
-        } else {
-            tv_gaode.setText(context.getString(R.string.gaoDeNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
-        }
-        tv_cancel = (TextView) findViewById(R.id.tv_cancel);
+        setText();
+        TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
         tv_cancel.setOnClickListener(this);
     }
 
@@ -93,8 +82,22 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
     public void setDestination(String destination, String location) {
         this.destination = destination;
         this.location = location;
+        setText();
     }
 
+
+    private void setText() {
+        if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
+            tv_baidu.setText(context.getString(R.string.baiDuNavigation));
+        } else {
+            tv_baidu.setText(context.getString(R.string.baiDuNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
+        }
+        if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.autonavi.minimap")) {
+            tv_gaode.setText(context.getString(R.string.gaoDeNavigation));
+        } else {
+            tv_gaode.setText(context.getString(R.string.gaoDeNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
+        }
+    }
 
     /**
      * 调起百度地图 导航

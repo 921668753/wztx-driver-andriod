@@ -27,11 +27,11 @@ import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
-import com.ruitukeji.zwbs.mine.dialog.CustomerServiceTelephoneBouncedDialog;
 import com.ruitukeji.zwbs.mission.ExceptionReportingActivity;
 import com.ruitukeji.zwbs.mission.UploadReceiptVoucherActivity;
 import com.ruitukeji.zwbs.mission.dialog.CalendarBouncedDialog;
 import com.ruitukeji.zwbs.mission.dialog.CancelOrderBouncedDialog;
+import com.ruitukeji.zwbs.mission.dialog.SelectContactBouncedDialog;
 import com.ruitukeji.zwbs.utils.DataUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -111,9 +111,9 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     private long dataLong = 0;
     private int position = 0;
     private CalendarBouncedDialog calendarBouncedDialog = null;
-    private CustomerServiceTelephoneBouncedDialog customerServiceTelephoneBouncedDialog = null;
     private NavigationBouncedDialog navigationBouncedDialog = null;
     private CancelOrderBouncedDialog cancelOrderBouncedDialog = null;
+    private SelectContactBouncedDialog selectContactBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -271,7 +271,8 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             }
             navigationBouncedDialog.show();
         } else if (flag == 3) {
-            choiceCallWrapper(mAdapter.getItem(position).getPhone());
+            TaskBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
+            choiceCallWrapper(listBean.getOrg_phone(), listBean.getOrg_telphone(), listBean.getDest_phone(), listBean.getDest_telphone());
         } else if (flag == 4) {
             Intent intent = new Intent(aty, UploadReceiptVoucherActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
@@ -335,10 +336,10 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     public void onDestroy() {
         super.onDestroy();
         mAdapter.clear();
-        if (customerServiceTelephoneBouncedDialog != null) {
-            customerServiceTelephoneBouncedDialog.cancel();
+        if (selectContactBouncedDialog != null) {
+            selectContactBouncedDialog.cancel();
         }
-        customerServiceTelephoneBouncedDialog = null;
+        selectContactBouncedDialog = null;
         if (navigationBouncedDialog != null) {
             navigationBouncedDialog.cancel();
         }
@@ -394,15 +395,18 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     }
 
     @AfterPermissionGranted(REQUEST_CODE_PERMISSION_CALL)
-    private void choiceCallWrapper(String phone) {
+    private void choiceCallWrapper(String org_phone, String org_telphone, String dest_phone, String dest_telphone) {
         String[] perms = {Manifest.permission.CALL_PHONE};
         if (EasyPermissions.hasPermissions(aty, perms)) {
-            if (customerServiceTelephoneBouncedDialog == null) {
-                customerServiceTelephoneBouncedDialog = new CustomerServiceTelephoneBouncedDialog(getActivity(), phone);
-            } else {
-                customerServiceTelephoneBouncedDialog.setPhone(phone);
+            if (selectContactBouncedDialog != null && !selectContactBouncedDialog.isShowing()) {
+                selectContactBouncedDialog.setPhone(org_phone, org_telphone, dest_phone, dest_telphone);
+                selectContactBouncedDialog.show();
+                return;
             }
-            customerServiceTelephoneBouncedDialog.show();
+            if (selectContactBouncedDialog == null) {
+                selectContactBouncedDialog = new SelectContactBouncedDialog(getActivity(), org_phone, org_telphone, dest_phone, dest_telphone);
+            }
+            selectContactBouncedDialog.show();
         } else {
             EasyPermissions.requestPermissions(this, getString(R.string.phoneCallPermissions), REQUEST_CODE_PERMISSION_CALL, perms);
         }

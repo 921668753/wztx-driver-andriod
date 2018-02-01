@@ -70,6 +70,7 @@ public class CustomerServiceTelephoneBouncedDialog extends Dialog implements Vie
     }
 
     public void setPhone(String phone) {
+        this.phone = phone;
         tv_phone.setText(phone);
     }
 
