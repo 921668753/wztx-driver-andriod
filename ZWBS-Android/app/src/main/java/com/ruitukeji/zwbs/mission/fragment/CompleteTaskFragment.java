@@ -280,6 +280,7 @@ public class CompleteTaskFragment extends BaseFragment implements EasyPermission
     public void onDestroy() {
         super.onDestroy();
         mAdapter.clear();
+        mAdapter.cancelAllTimers();
         mAdapter = null;
         if (selectContactBouncedDialog != null) {
             selectContactBouncedDialog.cancel();

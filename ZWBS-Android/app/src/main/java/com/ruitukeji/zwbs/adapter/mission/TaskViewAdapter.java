@@ -3,7 +3,9 @@ package com.ruitukeji.zwbs.adapter.mission;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
+import android.widget.TextView;
 
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -19,8 +21,12 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
 
+    //用于退出 Activity,避免 Countdown，造成资源浪费。
+    private SparseArray<CountDownTimer> countDownCounters;
+
     public TaskViewAdapter(Context context) {
         super(context, R.layout.item_mission);
+        this.countDownCounters = new SparseArray<>();
     }
 
     @Override
@@ -93,7 +99,7 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
          * 目的地
          */
         viewHolderHelper.setText(R.id.tv_destination, listBean.getDest_address_name() + listBean.getDest_address_detail());
-        CountDownTimer time = null;
+
         if (StringUtils.isEmpty(listBean.getArr_org_time_str())) {
             viewHolderHelper.setVisibility(R.id.tv_onArrival, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
@@ -107,20 +113,24 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_onArrival, View.VISIBLE);
             viewHolderHelper.setText(R.id.tv_onArrival, listBean.getArr_org_time_str());
             long org_time = listBean.getArr_org_time() + 60 * 60 * 2 - (System.currentTimeMillis() / 1000);
+            CountDownTimer countDownTimer = countDownCounters.get(((TextView) viewHolderHelper.getTextView(R.id.tv_remainingTime1)).hashCode());
+            if (countDownTimer != null) {
+                //将复用的倒计时清除
+                countDownTimer.cancel();
+            }
+            //expirationTime 与系统时间做比较，timer 小于零，则此时倒计时已经结束。
             if (org_time > 0) {
-                time = new CountDownTimer(org_time * 1000, 1000) {
-                    @Override
+                countDownTimer = new CountDownTimer(org_time * 1000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         viewHolderHelper.setText(R.id.tv_remainingTime1, formatLongToTimeStr(millisUntilFinished / 1000));
                     }
 
-                    @Override
                     public void onFinish() {
-                        this.cancel();
                         viewHolderHelper.setText(R.id.tv_remainingTime1, "00:00:00");
                     }
-                };// 构造CountDownTimer对象
-                time.start();
+                }.start();
+                //将此 countDownTimer 放入list.
+                countDownCounters.put(((TextView) viewHolderHelper.getTextView(R.id.tv_remainingTime1)).hashCode(), countDownTimer);
             } else {
                 viewHolderHelper.setText(R.id.tv_remainingTime1, "00:00:00");
             }
@@ -130,10 +140,6 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.tv_start, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.VISIBLE);
         } else {
-            if (time != null) {
-                time.cancel();
-                time = null;
-            }
             viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
@@ -221,11 +227,28 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         }
         String strtime = "";
 //        if (l.intValue() % 2 == 0) {
-            strtime = hour1 + ":" + minute1 + ":" + second1;
+        strtime = hour1 + ":" + minute1 + ":" + second1;
 //        } else {
 //            strtime = hour1 + " " + minute1 + " " + second1;
 //        }
         return strtime;
+    }
+
+
+    /**
+     * 清空当前 CountTimeDown 资源
+     */
+    public void cancelAllTimers() {
+        if (countDownCounters == null) {
+            return;
+        }
+        Log.e("TAG", "size :  " + countDownCounters.size());
+        for (int i = 0, length = countDownCounters.size(); i < length; i++) {
+            CountDownTimer cdt = countDownCounters.get(countDownCounters.keyAt(i));
+            if (cdt != null) {
+                cdt.cancel();
+            }
+        }
     }
 
 }

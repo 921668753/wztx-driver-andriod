@@ -336,6 +336,7 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     public void onDestroy() {
         super.onDestroy();
         mAdapter.clear();
+        mAdapter.cancelAllTimers();
         if (selectContactBouncedDialog != null) {
             selectContactBouncedDialog.cancel();
         }
