@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.adapter.mission.TaskViewAdapter;
 import com.ruitukeji.zwbs.common.BaseFragment;
@@ -22,7 +21,6 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
-import com.ruitukeji.zwbs.dialog.NavigationBouncedDialog;
 import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;

@@ -1,4 +1,4 @@
-package com.ruitukeji.zwbs.dialog;
+package com.ruitukeji.zwbs.mission.dialog;
 
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -103,7 +103,6 @@ public class NavigationBouncedDialog extends Dialog implements View.OnClickListe
      * @param location 经纬度
      */
     public void initBaiDuMap(String mudi, String location) {
-        Log.d("tag1111", location);
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
             try {
                 // 驾车导航

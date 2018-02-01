@@ -17,6 +17,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.SetTheLineBean;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
+import com.ruitukeji.zwbs.supplygoods.dialog.DeleteRouteBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -49,7 +50,7 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     private LinearLayout ll_commonError;
     @BindView(id = R.id.tv_hintText, click = true)
     private TextView tv_hintText;
-    private AuthenticationBouncedDialog authenticationBouncedDialog = null;
+    private DeleteRouteBouncedDialog deleteRouteBouncedDialog = null;
 
     @Override
     public void setRootView() {
@@ -170,10 +171,10 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (authenticationBouncedDialog != null) {
-            authenticationBouncedDialog.cancel();
+        if (deleteRouteBouncedDialog != null) {
+            deleteRouteBouncedDialog.cancel();
         }
-        authenticationBouncedDialog = null;
+        deleteRouteBouncedDialog = null;
         setTheLineViewAdapter.clear();
         setTheLineViewAdapter = null;
     }
@@ -181,19 +182,20 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         if (view.getId() == R.id.iv_delete) {
-//            if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
-//                authenticationBouncedDialog.show();
-//                return;
-//            }
-            authenticationBouncedDialog = new AuthenticationBouncedDialog(aty, getString(R.string.deleteRoute)) {
+            String id = setTheLineViewAdapter.getItem(i).getDrline_id();
+            if (deleteRouteBouncedDialog != null && !deleteRouteBouncedDialog.isShowing()) {
+                deleteRouteBouncedDialog.show();
+                deleteRouteBouncedDialog.setRouteId(id);
+                return;
+            }
+            deleteRouteBouncedDialog = new DeleteRouteBouncedDialog(aty, getString(R.string.deleteRoute), id) {
                 @Override
-                public void confirm() {
+                public void confirm(String id) {
                     this.cancel();
-                    authenticationBouncedDialog = null;
-                    ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(setTheLineViewAdapter.getItem(i).getDrline_id());
+                    ((SetTheLineContract.Presenter) mPresenter).postDeleteRoute(id);
                 }
             };
-            authenticationBouncedDialog.show();
+            deleteRouteBouncedDialog.show();
         }
     }
 

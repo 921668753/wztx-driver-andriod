@@ -58,7 +58,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     }
 
     private void initView() {
-        mPresenter=new SendQuotationBouncedPresenter(this);
+        mPresenter = new SendQuotationBouncedPresenter(this);
         TextView tv_firmQuotation = (TextView) findViewById(R.id.tv_firmQuotation);
         tv_firmQuotation.setOnClickListener(this);
         TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
@@ -91,6 +91,14 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     public void setPresenter(SendQuotationBouncedContract.Presenter presenter) {
         mPresenter = presenter;
     }
+
+    public void setSysMoney(int orderId, String money) {
+        this.orderId = orderId;
+        this.money = money;
+        TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
+        tv_estimatePrice.setText(context.getString(R.string.estimatePrice) + money);
+    }
+
 
     @Override
     public void getSuccess(String s, int flag) {
