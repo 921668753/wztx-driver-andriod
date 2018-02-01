@@ -291,6 +291,8 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             HomeBean homeBean = (HomeBean) JsonUtil.getInstance().json2Obj(s, HomeBean.class);
             adList = homeBean.getResult().getList();
             processLogic(homeBean.getResult().getList());
+            String locationCity = PreferenceHelper.readString(aty, StringConstants.FILENAME, "currentLocationCity", getString(R.string.locateFailure));
+            tv_city.setText(locationCity);
             if (homeBean.getResult().getUnreadMsg() == null || homeBean.getResult().getUnreadMsg().getMsgX() == 0) {
                 tv_message.setVisibility(View.GONE);
             } else {

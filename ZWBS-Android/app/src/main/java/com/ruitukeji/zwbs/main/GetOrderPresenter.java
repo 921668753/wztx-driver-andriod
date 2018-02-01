@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.client.ProgressListener;
 import com.ruitukeji.zwbs.BuildConfig;
@@ -23,7 +24,6 @@ import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 
 /**
@@ -61,7 +61,9 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
         httpParams.put("pageSize", 5);
-        httpParams.put("city", city);
+        if (!StringUtils.isEmpty() && !city.equals(KJActivityStack.create().topActivity().getString(R.string.locateFailure))) {
+            httpParams.put("city", city);
+        }
         if (car_length_id != 0) {
             httpParams.put("car_style_length_id", car_length_id);
         }
@@ -230,7 +232,6 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             }
         });
     }
-
 
 
     @Override
