@@ -88,7 +88,7 @@ public class RequestClient {
                     return;
                 }
                 LoginBean response1 = (LoginBean) JsonUtil.getInstance().json2Obj(t, LoginBean.class);
-//                PreferenceHelper.write(context, StringConstants.FILENAME, "userId", response1.getResult().getUserId());
+                PreferenceHelper.write(context, StringConstants.FILENAME, "userId", response1.getResult().getUserId());
                 PreferenceHelper.write(context, StringConstants.FILENAME, "accessToken", response1.getResult().getAccessToken());
                 PreferenceHelper.write(context, StringConstants.FILENAME, "refreshToken", response1.getResult().getRefreshToken());
                 PreferenceHelper.write(context, StringConstants.FILENAME, "expireTime", response1.getResult().getExpireTime() + "");
