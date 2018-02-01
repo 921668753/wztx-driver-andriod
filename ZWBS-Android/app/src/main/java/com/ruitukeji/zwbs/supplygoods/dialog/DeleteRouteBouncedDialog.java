@@ -17,14 +17,14 @@ import com.ruitukeji.zwbs.common.BaseDialog;
 
 public abstract class DeleteRouteBouncedDialog extends BaseDialog implements View.OnClickListener {
 
-    private String id = "0";
+    private int id = 0;
     private String content = "";
     private Context context;
     private TextView tv_cancel;
     private TextView tv_determine;
     private TextView tv_content;
 
-    public DeleteRouteBouncedDialog(Context context, String content, String id) {
+    public DeleteRouteBouncedDialog(Context context, String content, int id) {
         super(context, R.style.dialog);
         this.context = context;
         this.content = content;
@@ -64,9 +64,9 @@ public abstract class DeleteRouteBouncedDialog extends BaseDialog implements Vie
         }
     }
 
-    public void setRouteId(String id) {
+    public void setRouteId(int id) {
         this.id = id;
     }
 
-    public abstract void confirm(String id);
+    public abstract void confirm(int id);
 }

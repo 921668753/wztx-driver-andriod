@@ -43,6 +43,7 @@ import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationActivity;
 import com.ruitukeji.zwbs.mine.vehiclecertification.VehicleCertificationActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
+import com.ruitukeji.zwbs.supplygoods.dialog.DeleteRouteBouncedDialog;
 import com.ruitukeji.zwbs.utils.FileNewUtil;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.RefreshLayoutUtil;
@@ -183,6 +184,9 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private ConductorBouncedDialog conductorBouncedDialog = null;
     private AvailableTypeBouncedDialog availableTypeBouncedDialog = null;
     private List<HomeBean.ResultBean.ListBean> adList = null;
+    private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
+    private GetOrderBouncedDialog getOrderBouncedDialog = null;
+    private DeleteRouteBouncedDialog deleteRouteBouncedDialog = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -360,7 +364,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 money = listBean.getMind_price();
             }
             //接单
-            GetOrderBouncedDialog getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
+            if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
+                getOrderBouncedDialog.setMoney(listBean.getId(), money);
+                getOrderBouncedDialog.show();
+                return;
+            }
+            getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -374,18 +383,22 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
                 ViewInject.toast(getString(R.string.notOrder));
                 return;
             }
+            GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
             //拒绝
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmReceiptRejected)) {
+            if (deleteRouteBouncedDialog != null && !deleteRouteBouncedDialog.isShowing()) {
+                deleteRouteBouncedDialog.setRouteId(listBean.getId());
+                deleteRouteBouncedDialog.show();
+                return;
+            }
+            deleteRouteBouncedDialog = new DeleteRouteBouncedDialog(KJActivityStack.create().topActivity(), getString(R.string.confirmReceiptRejected), listBean.getId()) {
                 @Override
-                public void confirm() {
+                public void confirm(int id) {
                     this.cancel();
                     //拒绝
-                    GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-                    //  showLoadingDialog(getString(R.string.submissionLoad));
-                    ((GetOrderContract.Presenter) mPresenter).postRefuseOrder(listBean.getId());
+                    ((GetOrderContract.Presenter) mPresenter).postRefuseOrder(id);
                 }
             };
-            authenticationBouncedDialog.show();
+            deleteRouteBouncedDialog.show();
         } else if (flag == 11) {
             int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
             if (isGoWork == 1) {
@@ -394,7 +407,12 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             }
             //报价
             GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
-            SendQuotationBouncedDialog sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
+            if (sendQuotationBouncedDialog != null && !sendQuotationBouncedDialog.isShowing()) {
+                sendQuotationBouncedDialog.setSysMoney(listBean.getId(), listBean.getSystem_price());
+                sendQuotationBouncedDialog.show();
+                return;
+            }
+            sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -670,6 +688,18 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         if (availableTypeBouncedDialog != null) {
             availableTypeBouncedDialog.cancel();
         }
+        if (getOrderBouncedDialog != null) {
+            getOrderBouncedDialog.cancel();
+        }
+        getOrderBouncedDialog = null;
+        if (deleteRouteBouncedDialog != null) {
+            deleteRouteBouncedDialog.cancel();
+        }
+        deleteRouteBouncedDialog = null;
+        if (sendQuotationBouncedDialog != null) {
+            sendQuotationBouncedDialog.cancel();
+        }
+        sendQuotationBouncedDialog = null;
         availableTypeBouncedDialog = null;
         sweetAlertDialog = null;
         tips.clear();

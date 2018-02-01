@@ -73,6 +73,12 @@ public abstract class GetOrderBouncedDialog extends BaseDialog implements View.O
         dismissLoadingDialog();
     }
 
+    public void setMoney(int orderId, String money) {
+        this.orderId = orderId;
+        this.money = money;
+    }
+
+
     @Override
     public void setPresenter(SendQuotationBouncedContract.Presenter presenter) {
         mPresenter = presenter;

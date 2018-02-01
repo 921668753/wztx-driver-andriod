@@ -18,7 +18,7 @@ public interface SetTheLineContract {
         /**
          * 删除路线信息
          */
-        void postDeleteRoute(String routeId);
+        void postDeleteRoute(int routeId);
     }
 
     interface View extends BaseView<Presenter> {

@@ -33,7 +33,7 @@ public class SetTheLineBean extends BaseResult<SetTheLineBean.ResultBean> {
              * destination_area : 211021
              */
 
-            private String drline_id;
+            private int drline_id;
             private String org_city;
             private String dest_city;
             private int origin_province;
@@ -43,11 +43,11 @@ public class SetTheLineBean extends BaseResult<SetTheLineBean.ResultBean> {
             private int destination_city;
             private int destination_area;
 
-            public String getDrline_id() {
+            public int getDrline_id() {
                 return drline_id;
             }
 
-            public void setDrline_id(String drline_id) {
+            public void setDrline_id(int drline_id) {
                 this.drline_id = drline_id;
             }
 

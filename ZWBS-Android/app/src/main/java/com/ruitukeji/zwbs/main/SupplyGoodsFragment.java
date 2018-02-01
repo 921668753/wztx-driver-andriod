@@ -198,22 +198,30 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
             } else {
                 money = listBean.getMind_price();
             }
-            getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
-                @Override
-                public void confirm() {
-                    this.cancel();
-                    mRefreshLayout.beginRefreshing();
-                }
-            };
+            if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
+                getOrderBouncedDialog.setMoney(listBean.getId(), money);
+            } else {
+                getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+            }
             ((SupplyGoodsContract.Presenter) mPresenter).isLogin(2);
         } else if (childView.getId() == R.id.tv_sendQuotation) {
-            sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
-                @Override
-                public void confirm() {
-                    this.cancel();
-                    mRefreshLayout.beginRefreshing();
-                }
-            };
+            if (sendQuotationBouncedDialog != null && !sendQuotationBouncedDialog.isShowing()) {
+                sendQuotationBouncedDialog.setSysMoney(listBean.getId(), listBean.getSystem_price());
+            } else {
+                sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+            }
             ((SupplyGoodsContract.Presenter) mPresenter).isLogin(3);
         }
     }

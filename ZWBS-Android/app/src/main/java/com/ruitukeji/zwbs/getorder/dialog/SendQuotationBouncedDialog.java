@@ -102,6 +102,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
 
     @Override
     public void getSuccess(String s, int flag) {
+        et_pleaseEnterPrice.setText("");
         confirm();
         dismissLoadingDialog();
     }

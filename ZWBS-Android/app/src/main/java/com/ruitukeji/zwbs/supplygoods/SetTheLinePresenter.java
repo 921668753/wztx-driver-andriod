@@ -39,7 +39,7 @@ public class SetTheLinePresenter implements SetTheLineContract.Presenter {
     }
 
     @Override
-    public void postDeleteRoute(String routeId) {
+    public void postDeleteRoute(int routeId) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("drline_id", routeId);
