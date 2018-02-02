@@ -294,5 +294,4 @@ public abstract class OriginBouncedDialog extends BaseDialog implements AdapterV
         ViewInject.toast(msg);
     }
 
-
 }
