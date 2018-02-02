@@ -136,9 +136,9 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
     public void onItemClick(View view, int position) {
         switch (view.getId()) {
             case R.id.img_delete:
-                images.remove(position);
-                selImageList.clear();
-                selImageList.addAll(images);
+                selImageList.remove(position);
+//                selImageList.clear();
+//                selImageList.addAll(images);
                 adapter.setImages(selImageList);
                 break;
             case R.id.iv_img:
