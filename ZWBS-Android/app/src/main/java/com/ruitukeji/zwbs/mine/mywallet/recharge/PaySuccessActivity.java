@@ -54,14 +54,6 @@ public class PaySuccessActivity extends BaseActivity {
             String rechargeMoney = PreferenceHelper.readString(this, StringConstants.FILENAME, "rechargeMoney");
             topUpAmount.setText(getString(R.string.topUpAmount) + rechargeMoney + getString(R.string.yuan));
         } else if (payClass.contains("PaymentActivity")) {//订单  个人  //订单  企业
-            String fragment = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshOrderFragment", "AllOrderFragment");
-            if (fragment.equals("AllOrderFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshCompleted1", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshOrder", true);
-            } else if (fragment.equals("CompletedFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshCompleted", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshOrder1", true);
-            }
             ActivityTitleUtils.initToolbar(aty, getString(R.string.payResult), true, R.id.titlebar);
             topUpAmount.setVisibility(View.GONE);
             tv_topUpSuccess.setText(getString(R.string.paySuccess));

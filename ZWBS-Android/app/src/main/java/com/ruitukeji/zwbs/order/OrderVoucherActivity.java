@@ -202,15 +202,6 @@ public class OrderVoucherActivity extends BaseActivity implements EasyPermission
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
             ViewInject.toast(getString(R.string.submittedSuccessfully));
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshOrderDetailsActivity", true);
-            String refreshName = PreferenceHelper.readString(aty, StringConstants.FILENAME, "refreshName");
-            if (refreshName != null && refreshName.equals("AllOrderFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInDistribution1", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment", true);
-            } else if (refreshName != null && refreshName.equals("InDistributionOrderFragment")) {
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshInDistribution", true);
-                PreferenceHelper.write(aty, StringConstants.FILENAME, "isRefreshAllOrderFragment1", true);
-            }
             //  发送账单状态
             finish();
         } else if (flag == 1) {
