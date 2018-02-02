@@ -125,7 +125,7 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
                 }
                 stopProvinceBouncedDialog = new AddLineProvinceBouncedDialog(aty, "", 0, 1) {
                     @Override
-                    public void confirmProvince(String provinceName,String provinceame, int provinceId, int cityId, int areaId) {
+                    public void confirmProvince(String provinceName,String address, int provinceId, int cityId, int areaId) {
                         this.cancel();
                         destination_province = provinceId;
                         destination_city = cityId;
