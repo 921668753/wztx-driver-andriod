@@ -111,7 +111,7 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
         selectCity(cityBean.getId());
         if (cityBean.getName().startsWith(context.getString(R.string.all1))) {
             cancel();
-            confirmCity("", 0, 0);
+            confirmCity("", provinceName, 0, 0);
             return;
         }
         if (addLineAreaBouncedDialog != null && !addLineAreaBouncedDialog.isShowing()) {
@@ -123,14 +123,18 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
             @Override
             public void confirmArea(String areaName, int areaId) {
                 this.cancel();
-                confirmCity(cityBean.getName() + areaName, cityBean.getId(), areaId);
+                if (StringUtils.isEmpty(areaName)) {
+                    confirmCity(cityBean.getName(), cityBean.getName(), cityBean.getId(), areaId);
+                    return;
+                }
+                confirmCity(cityBean.getName() + areaName, areaName, cityBean.getId(), areaId);
             }
         };
         addLineAreaBouncedDialog.show();
     }
 
 
-    public abstract void confirmCity(String cityName, int cityId, int areaId);
+    public abstract void confirmCity(String cityName, String addressName, int cityId, int areaId);
 
     @Override
     public void setPresenter(OriginBouncedContract.Presenter presenter) {

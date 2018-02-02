@@ -119,7 +119,7 @@ public abstract class AddLineProvinceBouncedDialog extends BaseDialog implements
         selectProvince(provinceBean.getId());
         if (provinceBean.getName().startsWith(context.getString(R.string.all1))) {
             cancel();
-            confirmProvince(provinceBean.getName(), provinceBean.getId(), 0, 0);
+            confirmProvince(provinceBean.getName(), provinceBean.getName(), provinceBean.getId(), 0, 0);
             return;
         }
         if (addLineCityBouncedDialog != null && !addLineCityBouncedDialog.isShowing()) {
@@ -129,19 +129,19 @@ public abstract class AddLineProvinceBouncedDialog extends BaseDialog implements
         }
         addLineCityBouncedDialog = new AddLineCityBouncedDialog(context, provinceBean.getName(), provinceBean.getId()) {
             @Override
-            public void confirmCity(String cityName, int cityId, int areaId) {
+            public void confirmCity(String cityName, String address, int cityId, int areaId) {
                 this.cancel();
                 if (cityName.contains(provinceBean.getName())) {
-                    confirmProvince(cityName, provinceBean.getId(), cityId, areaId);
+                    confirmProvince(cityName, address, provinceBean.getId(), cityId, areaId);
                     return;
                 }
-                confirmProvince(provinceBean.getName() + cityName, provinceBean.getId(), cityId, areaId);
+                confirmProvince(provinceBean.getName() + cityName, address, provinceBean.getId(), cityId, areaId);
             }
         };
         addLineCityBouncedDialog.show();
     }
 
-    public abstract void confirmProvince(String provinceName, int provinceId, int cityId, int areaId);
+    public abstract void confirmProvince(String provinceName, String addressName, int provinceId, int cityId, int areaId);
 
     @Override
     public void setPresenter(OriginBouncedContract.Presenter presenter) {

@@ -7,6 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.ruitukeji.zwbs.R;
@@ -95,6 +96,8 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
         tv_availableType.setOnClickListener(this);
         TextView tv_conductorModels = (TextView) findViewById(R.id.tv_conductorModels);
         tv_conductorModels.setOnClickListener(this);
+        ScrollView sv = (ScrollView) findViewById(R.id.sv);
+        sv.setOnClickListener(this);
         mPresenter = new ConductorModelsPresenter(this);
         lengthsViewAdapter = new LengthsNewViewAdapter(context);
         typesViewAdapter = new TypesNewViewAdapter(context);
@@ -109,6 +112,9 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_dialog:
+                cancel();
+                break;
+            case R.id.sv:
                 cancel();
                 break;
             case R.id.tv_setLine:
@@ -131,7 +137,9 @@ public abstract class ConductorModelsBouncedDialog extends BaseDialog implements
                 cancel();
                 break;
             case R.id.tv_emptying:
-                confirm(context.getString(R.string.conductor), 0, context.getString(R.string.models), 0);
+                selectedLength(0);
+                selectedType(0);
+              //  cancel();
                 break;
             case R.id.tv_determine:
                 if (typeBean == null || lengthBean == null) {

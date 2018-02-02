@@ -30,7 +30,6 @@ import com.ruitukeji.zwbs.entity.mine.vehiclecertification.ProvinceShortBean;
 import com.ruitukeji.zwbs.entity.mine.vehiclecertification.VehicleBrandBean;
 import com.ruitukeji.zwbs.entity.mine.vehiclecertification.VehicleCertificationBean;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
-import com.ruitukeji.zwbs.mine.identityauthentication.IdentityAuthenticationContract;
 import com.ruitukeji.zwbs.mine.vehiclecertification.dialog.SamplePictureBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.DataUtil;
@@ -82,7 +81,6 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
     private TextView tv_addressAbbreviation;
     @BindView(id = R.id.et_licenseNumber)
     private EditText et_licenseNumber;
-    String addressAbbreviation = "";
 
     /**
      * 车长车型
@@ -658,7 +656,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
                 }
                 String filePath = images.get(0).path;
                 showLoadingDialog(getString(R.string.crossLoad));
-                ((IdentityAuthenticationContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
+                ((VehicleCertificationContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
             } else {
                 ViewInject.toast(getString(R.string.noData));
             }

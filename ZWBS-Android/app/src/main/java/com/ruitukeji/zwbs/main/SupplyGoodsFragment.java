@@ -152,6 +152,7 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
     private OriginBouncedDialog originBouncedDialog1 = null;
     private AvailableTypeBouncedDialog availableTypeBouncedDialog = null;
     private ConductorModelsBouncedDialog conductorModelsBouncedDialog = null;
+    private SupplyGoodsBean.ResultBean.ListBean listBean = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -190,38 +191,10 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
 
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        SupplyGoodsBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
+        listBean = mAdapter.getItem(position);
         if (childView.getId() == R.id.tv_getorder) {
-            String money = "";
-            if (listBean.getMind_price().equals("0.00")) {
-                money = listBean.getSystem_price();
-            } else {
-                money = listBean.getMind_price();
-            }
-            if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
-                getOrderBouncedDialog.setMoney(listBean.getId(), money);
-            } else {
-                getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
-                    @Override
-                    public void confirm() {
-                        this.cancel();
-                        mRefreshLayout.beginRefreshing();
-                    }
-                };
-            }
             ((SupplyGoodsContract.Presenter) mPresenter).isLogin(2);
         } else if (childView.getId() == R.id.tv_sendQuotation) {
-            if (sendQuotationBouncedDialog != null && !sendQuotationBouncedDialog.isShowing()) {
-                sendQuotationBouncedDialog.setSysMoney(listBean.getId(), listBean.getSystem_price());
-            } else {
-                sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
-                    @Override
-                    public void confirm() {
-                        this.cancel();
-                        mRefreshLayout.beginRefreshing();
-                    }
-                };
-            }
             ((SupplyGoodsContract.Presenter) mPresenter).isLogin(3);
         }
     }
@@ -425,12 +398,40 @@ public class SupplyGoodsFragment extends BaseFragment implements SupplyGoodsCont
                 ViewInject.toast(getString(R.string.notOrder));
                 return;
             }
+            String money = "";
+            if (listBean.getMind_price().equals("0.00")) {
+                money = listBean.getSystem_price();
+            } else {
+                money = listBean.getMind_price();
+            }
+            if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
+                getOrderBouncedDialog.setMoney(listBean.getId(), money);
+            } else {
+                getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
+            }
             getOrderBouncedDialog.show();
         } else if (flag == 6) {
             int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
             if (isGoWork == 1) {
                 ViewInject.toast(getString(R.string.notOrder));
                 return;
+            }
+            if (sendQuotationBouncedDialog != null && !sendQuotationBouncedDialog.isShowing()) {
+                sendQuotationBouncedDialog.setSysMoney(listBean.getId(), listBean.getSystem_price());
+            } else {
+                sendQuotationBouncedDialog = new SendQuotationBouncedDialog(aty, listBean.getId(), listBean.getSystem_price()) {
+                    @Override
+                    public void confirm() {
+                        this.cancel();
+                        mRefreshLayout.beginRefreshing();
+                    }
+                };
             }
             sendQuotationBouncedDialog.show();
         }

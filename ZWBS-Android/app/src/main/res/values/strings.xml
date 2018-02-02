@@ -301,7 +301,7 @@
     <string name="startingpoint">出发地</string>
     <string name="endpoint">目的地</string>
     <string name="emptying">清空</string>
-    <string name="all1">全</string>
+    <string name="all1">不限</string>
     <string name="national">全国</string>
 
     <!--订单-->

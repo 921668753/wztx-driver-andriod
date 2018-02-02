@@ -113,7 +113,7 @@ public abstract class AddLineAreaBouncedDialog extends BaseDialog implements Ada
         selectArea(areaBean.getId());
         cancel();
         if (areaBean.getName().startsWith(context.getString(R.string.all1))) {
-            confirmArea("", 0);
+            confirmArea("", areaBean.getId());
         } else {
             confirmArea(areaBean.getName(), areaBean.getId());
         }

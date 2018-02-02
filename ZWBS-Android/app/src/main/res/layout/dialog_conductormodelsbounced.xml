@@ -44,7 +44,9 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/sv"
         style="@style/MatchAuto"
+        android:background="@color/transparent_1"
         android:scrollbars="none">
 
         <LinearLayout
