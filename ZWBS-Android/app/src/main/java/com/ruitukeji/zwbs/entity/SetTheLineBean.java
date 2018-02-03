@@ -35,6 +35,8 @@ public class SetTheLineBean extends BaseResult<SetTheLineBean.ResultBean> {
 
             private int drline_id;
             private String org_city;
+            private String org_address;
+            private String dest_address;
             private String dest_city;
             private int origin_province;
             private int origin_city;
@@ -57,6 +59,22 @@ public class SetTheLineBean extends BaseResult<SetTheLineBean.ResultBean> {
 
             public void setOrg_city(String org_city) {
                 this.org_city = org_city;
+            }
+
+            public String getOrg_address() {
+                return org_address;
+            }
+
+            public void setOrg_address(String org_address) {
+                this.org_address = org_address;
+            }
+
+            public String getDest_address() {
+                return dest_address;
+            }
+
+            public void setDest_address(String dest_address) {
+                this.dest_address = dest_address;
             }
 
             public String getDest_city() {

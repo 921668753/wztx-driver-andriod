@@ -31,6 +31,17 @@
         <include layout="@layout/commom_dividerwidth" />
 
         <TextView
+            android:id="@+id/tv_baidu1"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/baiDuNavigation1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <include layout="@layout/commom_dividerwidth" />
+
+        <TextView
             android:id="@+id/tv_gaode"
             style="@style/MatchWrap"
             android:gravity="center"
@@ -39,6 +50,16 @@
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize15" />
 
+        <include layout="@layout/commom_dividerwidth" />
+
+        <TextView
+            android:id="@+id/tv_gaode1"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:padding="@dimen/dimen10"
+            android:text="@string/gaoDeNavigation1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
 
         <TextView style="@style/DividerWidth" />
 

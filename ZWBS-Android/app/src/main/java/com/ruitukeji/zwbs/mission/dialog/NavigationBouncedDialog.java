@@ -23,20 +23,20 @@ import com.ruitukeji.zwbs.utils.map.GPSUtil;
  */
 
 public class NavigationBouncedDialog extends BaseDialog implements View.OnClickListener {
-    private String location = "";
-    private String destination;
+    private String orgLocation = "";
+    private String destLocation = "";
     private Context context;
     private TextView tv_baidu;
     private TextView tv_gaode;
+    private TextView tv_baidu1;
+    private TextView tv_gaode1;
 
-
-    public NavigationBouncedDialog(Context context, String destination, String location) {
+    public NavigationBouncedDialog(Context context, String orgLocation, String destLocation) {
         super(context, R.style.dialog);
         this.context = context;
-        this.destination = destination;
-        this.location = location;
+        this.orgLocation = orgLocation;
+        this.destLocation = destLocation;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +53,12 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
     private void initView() {
         tv_baidu = (TextView) findViewById(R.id.tv_baidu);
         tv_baidu.setOnClickListener(this);
+        tv_baidu1 = (TextView) findViewById(R.id.tv_baidu1);
+        tv_baidu1.setOnClickListener(this);
         tv_gaode = (TextView) findViewById(R.id.tv_gaode);
         tv_gaode.setOnClickListener(this);
+        tv_gaode1 = (TextView) findViewById(R.id.tv_gaode1);
+        tv_gaode1.setOnClickListener(this);
         setText();
         TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
         tv_cancel.setOnClickListener(this);
@@ -66,12 +70,22 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
             case R.id.tv_baidu:
                 cancel();
                 //百度
-                initBaiDuMap(destination, location);
+                initBaiDuMap(orgLocation);
+                break;
+            case R.id.tv_baidu1:
+                cancel();
+                //百度
+                initBaiDuMap(destLocation);
                 break;
             case R.id.tv_gaode:
                 cancel();
                 //高德
-                initGaoDeMap(destination, location);
+                initGaoDeMap(orgLocation);
+                break;
+            case R.id.tv_gaode1:
+                cancel();
+                //高德
+                initGaoDeMap(destLocation);
                 break;
             case R.id.tv_cancel:
                 cancel();
@@ -79,9 +93,13 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
         }
     }
 
-    public void setDestination(String destination, String location) {
-        this.destination = destination;
-        this.location = location;
+    /**
+     * @param orgLocation
+     * @param destLocation
+     */
+    public void setDestination(String orgLocation, String destLocation) {
+        this.orgLocation = orgLocation;
+        this.destLocation = destLocation;
         setText();
     }
 
@@ -89,23 +107,24 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
     private void setText() {
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
             tv_baidu.setText(context.getString(R.string.baiDuNavigation));
+            tv_baidu1.setText(context.getString(R.string.baiDuNavigation1));
         } else {
             tv_baidu.setText(context.getString(R.string.baiDuNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
+            tv_baidu1.setText(context.getString(R.string.baiDuNavigation1) + "(" + context.getString(R.string.uninstalled) + ")");
         }
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.autonavi.minimap")) {
             tv_gaode.setText(context.getString(R.string.gaoDeNavigation));
+            tv_gaode1.setText(context.getString(R.string.gaoDeNavigation1));
         } else {
             tv_gaode.setText(context.getString(R.string.gaoDeNavigation) + "(" + context.getString(R.string.uninstalled) + ")");
+            tv_gaode1.setText(context.getString(R.string.gaoDeNavigation1) + "(" + context.getString(R.string.uninstalled) + ")");
         }
     }
 
     /**
      * 调起百度地图 导航
-     *
-     * @param mudi     地址
-     * @param location 经纬度
      */
-    public void initBaiDuMap(String mudi, String location) {
+    public void initBaiDuMap(String location) {
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.baidu.BaiduMap")) {
             try {
                 // 驾车导航
@@ -113,7 +132,7 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
 //                context.startActivity(intent);
                 location = GPSUtil.gaoDeToBaiduStr(location);
                 Intent intent = new Intent();
-                intent.setData(Uri.parse("baidumap://map/navi?query=" + mudi + "&location=" + location));
+                intent.setData(Uri.parse("baidumap://map/navi?location=" + location));
                 //    intent.setPackage("com.baidu.BaiduMap");
                 context.startActivity(intent);
             } catch (Exception e) {
@@ -132,11 +151,8 @@ public class NavigationBouncedDialog extends BaseDialog implements View.OnClickL
 
     /**
      * 高德
-     *
-     * @param destination 出发地
-     * @param location    目的地
      */
-    public void initGaoDeMap(String destination, String location) {
+    public void initGaoDeMap(String location) {
         if (FileNewUtil.isAvilible(KJActivityStack.create().topActivity(), "com.autonavi.minimap")) {
             try {
                 //  Intent intent = Intent.getIntent("androidamap://keywordNavi?sourceApplication=" "&keyword=" + mudi + "&style=2");

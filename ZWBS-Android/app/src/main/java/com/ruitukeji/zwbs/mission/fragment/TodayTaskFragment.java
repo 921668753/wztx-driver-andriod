@@ -250,24 +250,22 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
             aty.showActivity(aty, intent);
         } else if (flag == 2) {
-            String address_name = "";
-            String location = "";
-            if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
-                address_name = mAdapter.getItem(position).getOrg_address_name();
-                location = mAdapter.getItem(position).getOrg_address_maps();
-            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("quoted") &&
-                    !StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str()) && StringUtils.isEmpty(mAdapter.getItem(position).getSend_time())) {
-                ViewInject.toast(getString(R.string.afterDeparture));
-                return;
-            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
-                    || !StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
-                address_name = mAdapter.getItem(position).getDest_address_name();
-                location = mAdapter.getItem(position).getDest_address_maps();
-            }
+            String orgLocation = mAdapter.getItem(position).getOrg_address_maps();
+            String destLocation = mAdapter.getItem(position).getDest_address_maps();
+//            if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
+//
+//            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("quoted") &&
+//                    !StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str()) && StringUtils.isEmpty(mAdapter.getItem(position).getSend_time())) {
+//                ViewInject.toast(getString(R.string.afterDeparture));
+//                return;
+//            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
+//                    || !StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
+//
+//            }
             if (navigationBouncedDialog == null) {
-                navigationBouncedDialog = new NavigationBouncedDialog(aty, address_name, location);
+                navigationBouncedDialog = new NavigationBouncedDialog(aty, orgLocation, destLocation);
             } else {
-                navigationBouncedDialog.setDestination(address_name, location);
+                navigationBouncedDialog.setDestination(orgLocation, destLocation);
             }
             navigationBouncedDialog.show();
         } else if (flag == 3) {

@@ -552,8 +552,10 @@
     <string name="navigation">导航</string>
     <string name="driverQuotation">司机报价</string>
     <string name="selectNavigation">选择导航</string>
-    <string name="baiDuNavigation">百度地图</string>
-    <string name="gaoDeNavigation">高德地图</string>
+    <string name="baiDuNavigation">百度地图导航至起始地</string>
+    <string name="baiDuNavigation1">百度地图导航至目的地</string>
+    <string name="gaoDeNavigation">高德地图导航至起始地</string>
+    <string name="gaoDeNavigation1">高德地图导航至目的地</string>
     <string name="uninstalled">未安装</string>
     <string name="installedBaiDu">请安装百度地图后，才能为您导航</string>
     <string name="installedGaoDe">请安装高德地图后，才能为您导航</string>

@@ -268,6 +268,17 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (isEdit == 1) {
+            ImageView img_checkbox = (ImageView) view.findViewById(R.id.img_checkbox);
+            if (mAdapter.getItem(position).getIsSelected() == 0) {
+                img_checkbox.setImageResource(R.mipmap.ic_checkbox_select);
+                mAdapter.getItem(position).setIsSelected(1);
+                return;
+            }
+            img_checkbox.setImageResource(R.mipmap.ic_checkbox_unselect);
+            mAdapter.getItem(position).setIsSelected(0);
+            return;
+        }
         Intent intent = new Intent();
         intent.putExtra("messageId", mAdapter.getItem(position).getId());
         intent.setClass(getApplicationContext(), SystemMessageDetailsActivity.class);

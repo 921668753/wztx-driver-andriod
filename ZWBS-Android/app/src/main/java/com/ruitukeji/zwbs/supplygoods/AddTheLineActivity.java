@@ -57,6 +57,10 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
     private int destination_city = 0;
     private int destination_area = 0;
 
+    private String org_address = "";
+    private String dest_address = "";
+
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_addtheline);
@@ -82,7 +86,7 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
             public void onClickRightCtv() {
                 super.onClickRightCtv();
                 showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                ((AddTheLineContract.Presenter) mPresenter).postRoute(tv_start.getText().toString(), tv_stop.getText().toString(), origin_province, origin_city, origin_area,
+                ((AddTheLineContract.Presenter) mPresenter).postRoute(tv_start.getText().toString(), tv_stop.getText().toString(), org_address, dest_address, origin_province, origin_city, origin_area,
                         destination_province, destination_city, destination_area);
             }
         };
@@ -103,6 +107,7 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
                     @Override
                     public void confirmProvince(String provinceName, String address, int provinceId, int cityId, int areaId) {
                         this.cancel();
+                        org_address = address;
                         origin_province = provinceId;
                         origin_city = cityId;
                         origin_area = areaId;
@@ -125,8 +130,9 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
                 }
                 stopProvinceBouncedDialog = new AddLineProvinceBouncedDialog(aty, "", 0, 1) {
                     @Override
-                    public void confirmProvince(String provinceName,String address, int provinceId, int cityId, int areaId) {
+                    public void confirmProvince(String provinceName, String address, int provinceId, int cityId, int areaId) {
                         this.cancel();
+                        dest_address = address;
                         destination_province = provinceId;
                         destination_city = cityId;
                         destination_area = areaId;
@@ -152,11 +158,11 @@ public class AddTheLineActivity extends BaseActivity implements AddTheLineContra
         dismissLoadingDialog();
         Intent intent = new Intent();
         // 获取内容
-        intent.putExtra("org_address", tv_start.getText().toString());
+        intent.putExtra("org_address", org_address);
         intent.putExtra("startProvinceName", origin_province);
         intent.putExtra("startCityName", origin_city);
         intent.putExtra("startAreaName", origin_area);
-        intent.putExtra("dest_address", tv_stop.getText().toString());
+        intent.putExtra("dest_address", dest_address);
         intent.putExtra("endProvinceName", destination_province);
         intent.putExtra("endCityName", destination_city);
         intent.putExtra("endAreaName", destination_area);

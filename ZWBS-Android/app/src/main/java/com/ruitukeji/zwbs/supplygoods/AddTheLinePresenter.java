@@ -26,7 +26,7 @@ public class AddTheLinePresenter implements AddTheLineContract.Presenter {
     }
 
     @Override
-    public void postRoute(String startPoint, String endPoint, int origin_province, int origin_city, int origin_area, int destination_province, int destination_city, int destination_area) {
+    public void postRoute(String startPoint, String endPoint, String org_address, String dest_address, int origin_province, int origin_city, int origin_area, int destination_province, int destination_city, int destination_area) {
         if (StringUtils.isEmpty(startPoint)) {
             mView.error(MyApplication.getContext().getString(R.string.selectOrigin));
             return;
@@ -43,6 +43,8 @@ public class AddTheLinePresenter implements AddTheLineContract.Presenter {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("org_city", startPoint);
         map.put("dest_city", endPoint);
+        map.put("org_address", org_address);
+        map.put("dest_address", dest_address);
         map.put("origin_province", origin_province);
         map.put("origin_city", origin_city);
         map.put("origin_area", origin_area);

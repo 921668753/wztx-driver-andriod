@@ -204,11 +204,11 @@ public class SetTheLineActivity extends BaseActivity implements SetTheLineContra
         PreferenceHelper.write(this, StringConstants.FILENAME, "line_id", listBean.getDrline_id());
         Intent intent = new Intent();
         // 获取内容
-        intent.putExtra("org_address", listBean.getOrg_city());
+        intent.putExtra("org_address", listBean.getOrg_address());
         intent.putExtra("startProvinceName", listBean.getOrigin_province());
         intent.putExtra("startCityName", listBean.getOrigin_city());
         intent.putExtra("startAreaName", listBean.getOrigin_area());
-        intent.putExtra("dest_address", listBean.getDest_city());
+        intent.putExtra("dest_address", listBean.getDest_address());
         intent.putExtra("endProvinceName", listBean.getDestination_province());
         intent.putExtra("endCityName", listBean.getDestination_city());
         intent.putExtra("endAreaName", listBean.getDestination_area());
