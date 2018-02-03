@@ -166,10 +166,6 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
                     titlebar.setRightText(getString(R.string.edit));
                     ll_bottom.setVisibility(View.GONE);
                 }
-
-//                Intent intent = new Intent(aty, AboutUsActivity.class);
-//                intent.putExtra("type", "type");
-//                showActivity(aty, intent);
             }
         };
         ActivityTitleUtils.initToolbar(aty, getString(R.string.message), getString(R.string.edit), R.id.titlebar, simpleDelegate);
@@ -290,9 +286,8 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             mAdapter.getItem(position).setIsSelected(0);
             return;
         }
-        Intent intent = new Intent();
+        Intent intent = new Intent(aty, SystemMessageDetailsActivity.class);
         intent.putExtra("messageId", mAdapter.getItem(position).getId());
-        intent.setClass(getApplicationContext(), SystemMessageDetailsActivity.class);
         showActivity(aty, intent);
     }
 

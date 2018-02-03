@@ -22,7 +22,7 @@ public class SystemMessageDetailsPresenter implements SystemMessageDetailsContra
     @Override
     public void getMessageDetails(int massageId) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-     //   httpParams.put("id", massageId);
+        httpParams.put("id", massageId);
         RequestClient.getMessageDetails(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

@@ -75,7 +75,8 @@ public class OrderMessageViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          *姓名
          */
-        viewHolderHelper.setText(R.id.tv_name, listBean.getReal_name());
+        viewHolderHelper.setText(R.id.tv_name, listBean.getOrg_send_name());
+
         /**
          * 标记
          */
