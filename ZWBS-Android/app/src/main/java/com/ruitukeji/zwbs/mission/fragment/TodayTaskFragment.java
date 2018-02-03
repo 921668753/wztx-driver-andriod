@@ -45,6 +45,7 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import static android.app.Activity.RESULT_OK;
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PERMISSION_CALL;
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 
 /**
@@ -55,8 +56,6 @@ import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_SELECT;
 public class TodayTaskFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks, TaskContract.View, AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnItemChildClickListener {
 
     private MainActivity aty;
-
-    private final int REQUEST_CODE_PERMISSION_CALL = 1;
 
     @BindView(id = R.id.tv_today, click = true)
     private TextView tv_today;

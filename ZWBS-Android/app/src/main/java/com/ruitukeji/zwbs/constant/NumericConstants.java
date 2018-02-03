@@ -21,6 +21,11 @@ public class NumericConstants {
      */
     public final static int START_PAGE_NUMBER = 1;
 
+    /**
+     * 拨打电话
+     */
+    public final static int REQUEST_CODE_PERMISSION_CALL = 10000;
+
     //微信支付返回码
     public final static int ERR_OK = 0;
     public final static int ERR_AUTH_DENIED = -4;

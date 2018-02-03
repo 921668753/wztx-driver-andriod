@@ -225,6 +225,10 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             mAdapter.closeOpenedSwipeItemLayoutWithAnim();
             if (messageBean.getResult().getList() == null || messageBean.getResult().getList().size() == 0) {
                 errorMsg(getString(R.string.serverReturnsDataNull), 0);
+                isEdit = 0;
+                isSelected = 0;
+                titlebar.setRightText(getString(R.string.edit));
+                ll_bottom.setVisibility(View.GONE);
                 return;
             }
             visibilityImg(isEdit, messageBean.getResult().getList());
@@ -240,6 +244,7 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             }
             dismissLoadingDialog();
         } else if (flag == 1 || flag == 2) {
+            isSelected = 0;
             mRefreshLayout.beginRefreshing();
         }
     }
@@ -259,6 +264,12 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
                 mRefreshLayout.endRefreshing();
             } else {
                 mRefreshLayout.endLoadingMore();
+            }
+            if (msg.equals(getString(R.string.noInformation))) {
+                isEdit = 0;
+                isSelected = 0;
+                titlebar.setRightText(getString(R.string.edit));
+                ll_bottom.setVisibility(View.GONE);
             }
         } else {
             ViewInject.toast(msg);

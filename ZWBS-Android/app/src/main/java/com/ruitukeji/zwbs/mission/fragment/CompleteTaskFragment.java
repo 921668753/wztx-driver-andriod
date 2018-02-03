@@ -38,6 +38,8 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
+import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PERMISSION_CALL;
+
 /**
  * 完成任务
  * Created by Administrator on 2017/12/5.
@@ -47,7 +49,6 @@ public class CompleteTaskFragment extends BaseFragment implements EasyPermission
 
     private MainActivity aty;
 
-    private final int REQUEST_CODE_PERMISSION_CALL = 1;
 
     @BindView(id = R.id.tv_today, click = true)
     private TextView tv_today;

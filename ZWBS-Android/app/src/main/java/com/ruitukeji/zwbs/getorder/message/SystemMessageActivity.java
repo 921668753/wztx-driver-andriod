@@ -224,6 +224,10 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
             totalPageNumber = messageBean.getResult().getPageTotal();
             if (messageBean.getResult().getList() == null || messageBean.getResult().getList().size() == 0) {
                 errorMsg(getString(R.string.serverReturnsDataNull), 0);
+                isEdit = 0;
+                isSelected = 0;
+                titlebar.setRightText(getString(R.string.edit));
+                ll_bottom.setVisibility(View.GONE);
                 return;
             }
             visibilityImg(isEdit, messageBean.getResult().getList());
@@ -239,6 +243,7 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
             }
             dismissLoadingDialog();
         } else if (flag == 1 || flag == 2) {
+            isSelected = 0;
             mRefreshLayout.beginRefreshing();
         }
     }
@@ -259,6 +264,12 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
             } else {
                 mRefreshLayout.endLoadingMore();
             }
+            if (msg.equals(getString(R.string.noInformation))) {
+                isEdit = 0;
+                isSelected = 0;
+                titlebar.setRightText(getString(R.string.edit));
+                ll_bottom.setVisibility(View.GONE);
+            }
         } else {
             ViewInject.toast(msg);
         }
@@ -268,6 +279,14 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (isEdit == 1) {
+            ImageView img_checkbox = (ImageView) view.findViewById(R.id.img_checkbox);
+            if (mAdapter.getItem(position).getIsSelected() == 0) {
+                img_checkbox.setImageResource(R.mipmap.ic_checkbox_select);
+                mAdapter.getItem(position).setIsSelected(1);
+                return;
+            }
+            img_checkbox.setImageResource(R.mipmap.ic_checkbox_unselect);
+            mAdapter.getItem(position).setIsSelected(0);
             return;
         }
         Intent intent = new Intent(aty, SystemMessageDetailsActivity.class);
