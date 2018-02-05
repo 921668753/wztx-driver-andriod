@@ -42,16 +42,6 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
     @BindView(id = R.id.titlebar)
     private BGATitleBar titlebar;
 
-//    /**
-//     * 系统消息
-//     */
-//    @BindView(id = R.id.ll_systemMessage, click = true)
-//    private TextView ll_systemMessage;
-//    @BindView(id = R.id.tv_systemMessage)
-//    private TextView tv_systemMessage;
-//    @BindView(id = R.id.tv_systemMessage1)
-//    private TextView tv_systemMessage1;
-
     /**
      * 订单消息
      */
@@ -62,10 +52,8 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
     @BindView(id = R.id.tv_orderMessage1)
     private TextView tv_orderMessage1;
 
-
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
-
 
     @BindView(id = R.id.lv_systemmessage)
     private ListView lv_systemmessage;
@@ -165,10 +153,6 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
                     titlebar.setRightText(getString(R.string.edit));
                     ll_bottom.setVisibility(View.GONE);
                 }
-
-//                Intent intent = new Intent(aty, AboutUsActivity.class);
-//                intent.putExtra("type", "type");
-//                showActivity(aty, intent);
             }
         };
         ActivityTitleUtils.initToolbar(aty, getString(R.string.message), getString(R.string.edit), R.id.titlebar, simpleDelegate);
@@ -193,11 +177,9 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
                 mAdapter.notifyDataSetChanged();
                 break;
             case R.id.tv_markedRead:
-                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((SystemMessageContract.Presenter) mPresenter).postReadMessage(mAdapter.getData());
                 break;
             case R.id.tv_delete:
-                //  showLoadingDialog(getString(R.string.dataLoad));
                 ((SystemMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
                 break;
             case R.id.tv_hintText:
