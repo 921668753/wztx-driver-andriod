@@ -49,7 +49,7 @@ public class ModifyPaymentPassword1Activity extends BaseActivity implements Modi
     /**
      * 验证码类型 reg=注册 restpwd=找回密码 login=登陆 bind=绑定手机号.
      */
-    private String type = "reg";
+    private String type = "resetpaypwd";
 
     @Override
     public void setRootView() {

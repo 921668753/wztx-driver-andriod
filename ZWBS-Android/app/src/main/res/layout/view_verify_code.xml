@@ -33,17 +33,17 @@
             style="@style/textview_style" />
 
 
-        <View style="@style/AutoWrap" />
+        <!--<View style="@style/AutoWrap" />-->
 
-        <TextView
-            android:id="@+id/tv_4"
-            style="@style/textview_style" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_4"-->
+            <!--style="@style/textview_style" />-->
 
-        <View style="@style/AutoWrap" />
+        <!--<View style="@style/AutoWrap" />-->
 
-        <TextView
-            android:id="@+id/tv_5"
-            style="@style/textview_style" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_5"-->
+            <!--style="@style/textview_style" />-->
 
 
     </LinearLayout>
@@ -68,13 +68,13 @@
 
         <View style="@style/textview_codeStyle" />
 
-        <View style="@style/AutoWrap" />
+        <!--<View style="@style/AutoWrap" />-->
 
-        <View style="@style/textview_codeStyle" />
+        <!--<View style="@style/textview_codeStyle" />-->
 
-        <View style="@style/AutoWrap" />
+        <!--<View style="@style/AutoWrap" />-->
 
-        <View style="@style/textview_codeStyle" />
+        <!--<View style="@style/textview_codeStyle" />-->
 
     </LinearLayout>
 
