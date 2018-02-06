@@ -200,8 +200,7 @@
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/dimen10"
                 android:paddingLeft="@dimen/dimen12"
-                android:paddingRight="@dimen/dimen12"
-                android:visibility="gone">
+                android:paddingRight="@dimen/dimen12">
 
                 <TextView
                     style="@style/WrapWrap"

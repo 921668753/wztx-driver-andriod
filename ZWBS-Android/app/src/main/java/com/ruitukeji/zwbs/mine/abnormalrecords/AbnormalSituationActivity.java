@@ -149,7 +149,7 @@ public class AbnormalSituationActivity extends BaseActivity implements AbnormalS
     @Override
     public void getSuccess(String s) {
         AbnormalSituationBean abnormalSituationBean = (AbnormalSituationBean) JsonUtil.json2Obj(s, AbnormalSituationBean.class);
-        Log.d("tag1111",abnormalSituationBean.getResult().getSp_name());
+        Log.d("tag1111", abnormalSituationBean.getResult().getSp_name());
         tv_name.setText(abnormalSituationBean.getResult().getSp_name());
         if (StringUtils.isEmpty(abnormalSituationBean.getResult().getG_type())) {
             img_label.setImageDrawable(null);
@@ -173,13 +173,13 @@ public class AbnormalSituationActivity extends BaseActivity implements AbnormalS
             }
             mAdapter.addMoreData(list);
         }
-        tv_time.setText(abnormalSituationBean.getResult().getAbnormal_time());
+        tv_time.setText(abnormalSituationBean.getResult().getCreate_time());
         tv_goodName.setText(abnormalSituationBean.getResult().getGoods_name());
         tv_orderNumber.setText(abnormalSituationBean.getResult().getOrder_code());
         tv_thePlace.setText(abnormalSituationBean.getResult().getStart_address());
         tv_destination.setText(abnormalSituationBean.getResult().getEnd_address());
         tv_abnormalLocation.setText(abnormalSituationBean.getResult().getPlace());
-        //  tv_abnormalTime.setText(abnormalSituationBean.getResult().getAbnormal_time());
+        tv_abnormalTime.setText(abnormalSituationBean.getResult().getAbnormal_time());
         tv_abnormalReason.setText(abnormalSituationBean.getResult().getReason());
         dismissLoadingDialog();
     }

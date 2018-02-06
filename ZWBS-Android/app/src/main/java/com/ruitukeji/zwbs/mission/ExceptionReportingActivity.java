@@ -246,6 +246,7 @@ public class ExceptionReportingActivity extends BaseActivity implements EasyPerm
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(s, UploadImageBean.class);
             if (!(StringUtils.isEmpty(uploadImageBean.getResult().getFile().getUrl()))) {
                 ImageItem imageItem = new ImageItem();
+                imageItem.name = uploadImageBean.getResult().getFile().getUrl();
                 imageItem.path = uploadImageBean.getResult().getFile().getUrl() + "?imageView2/1/w/110/h/110";
                 selImageList.add(imageItem);
                 adapter.setImages(selImageList);
