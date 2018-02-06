@@ -116,7 +116,6 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
 //        map.put("createtime", System.currentTimeMillis());
         httpParams.put("data", JsonUtil.getInstance().obj2JsonString(map).toString());
         httpParams.put("key", BuildConfig.GAODE_APPKEY);
-
         RequestClient.postTrackOrders(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -164,7 +163,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
         String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status", "init");
         String car_auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "car_auth_status", "init");
         if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行身份认证！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseYourIdentification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -174,7 +174,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (auth_status != null && auth_status.equals("check")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "身份认证还未通过，请耐心等待！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseNoYourIdentification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -183,7 +184,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (car_auth_status != null && car_auth_status.equals("init") || car_auth_status != null && car_auth_status.equals("refuse") || car_auth_status != null && car_auth_status.equals("delete")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行车辆认证！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseVehicleCertification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -193,7 +195,8 @@ public class GetOrderPresenter implements GetOrderContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (car_auth_status != null && car_auth_status.equals("check")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "车辆认证还未通过，请耐心等待！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseNoVehicleCertification)) {
                 @Override
                 public void confirm() {
                     this.cancel();

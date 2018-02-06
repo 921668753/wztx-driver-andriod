@@ -238,7 +238,6 @@
                     android:id="@+id/tv_abnormalReason"
                     style="@style/WrapWrap"
                     android:layout_marginLeft="@dimen/dimen8"
-                    android:singleLine="true"
                     android:text="堵车"
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize14" />

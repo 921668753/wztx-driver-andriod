@@ -100,9 +100,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     public static boolean isForeground = true;
 
     /**
-     * 是否出车 0为收车（下班）   1为出车中(上班)
+     * 是否出车 1为收车（下班）   0为出车中(上班)
      */
-    private int isGoWork = 0;
+    private int isGoWork = 1;
 
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;

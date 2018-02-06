@@ -1,6 +1,5 @@
 package com.ruitukeji.zwbs.main;
 
-import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -12,12 +11,9 @@ import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.KJActivityStack;
-import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.NationalCity;
-import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
-import com.ruitukeji.zwbs.supplygoods.SetTheLineActivity;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.GetJsonDataUtil;
 import com.ruitukeji.zwbs.utils.httputil.HttpUtilParams;
@@ -26,9 +22,6 @@ import com.ruitukeji.zwbs.utils.httputil.ResponseListener;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 
 /**
  * Created by Administrator on 2017/2/21.
@@ -49,10 +42,10 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("page", page);
         httpParams.put("pageSize", 5);
-        if (!StringUtils.isEmpty(startPoint) && !startPoint.equals(KJActivityStack.create().topActivity().getString(R.string.national))) {
+        if (!StringUtils.isEmpty(startPoint) && !startPoint.equals(KJActivityStack.create().topActivity().getString(R.string.all1))) {
             httpParams.put("org_city", startPoint);
         }
-        if (!StringUtils.isEmpty(endPoint) && !endPoint.equals(KJActivityStack.create().topActivity().getString(R.string.national))) {
+        if (!StringUtils.isEmpty(endPoint) && !endPoint.equals(KJActivityStack.create().topActivity().getString(R.string.all1))) {
             httpParams.put("dest_city", endPoint);
         }
         if (vehicleLength != 0) {
@@ -97,7 +90,8 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
         String auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "auth_status", "init");
         String car_auth_status = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "car_auth_status", "init");
         if (auth_status != null && auth_status.equals("init") || auth_status != null && auth_status.equals("refuse") || auth_status != null && auth_status.equals("delete")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行身份认证！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseYourIdentification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -107,7 +101,8 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (auth_status != null && auth_status.equals("check")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "身份认证还未通过，请耐心等待！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseNoYourIdentification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -115,8 +110,10 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
             };
             authenticationBouncedDialog.show();
             return;
-        } else if (car_auth_status != null && car_auth_status.equals("init") || car_auth_status != null && car_auth_status.equals("refuse") || car_auth_status != null && car_auth_status.equals("delete")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "请先进行车辆认证！") {
+        } else if (car_auth_status != null && car_auth_status.equals("init") || car_auth_status != null && car_auth_status.equals("refuse") ||
+                car_auth_status != null && car_auth_status.equals("delete")) {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseVehicleCertification)) {
                 @Override
                 public void confirm() {
                     this.cancel();
@@ -126,7 +123,8 @@ public class SupplyGoodsPresenter implements SupplyGoodsContract.Presenter {
             authenticationBouncedDialog.show();
             return;
         } else if (car_auth_status != null && car_auth_status.equals("check")) {
-            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(), "车辆认证还未通过，请耐心等待！") {
+            AuthenticationBouncedDialog authenticationBouncedDialog = new AuthenticationBouncedDialog(KJActivityStack.create().topActivity(),
+                    KJActivityStack.create().topActivity().getString(R.string.pleaseNoVehicleCertification)) {
                 @Override
                 public void confirm() {
                     this.cancel();

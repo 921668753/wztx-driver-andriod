@@ -305,6 +305,15 @@
     <string name="emptying">清空</string>
     <string name="all1">不限</string>
     <string name="national">全国</string>
+    <string name="pleaseYourIdentification">请先进行身份认证！</string>
+    <string name="pleaseNoYourIdentification">身份认证还未通过，请耐心等待！</string>
+    <string name="pleaseVehicleCertification">请先进行车辆认证！</string>
+    <string name="pleaseNoVehicleCertification">车辆认证还未通过，请耐心等待！</string>
+
+
+
+
+
 
     <!--订单-->
     <string name="all">全部</string>
