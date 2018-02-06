@@ -113,10 +113,10 @@ public class IncomeDetailsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          *金额
          */
-        if (StringUtils.isEmpty(listBean.getFact_pay())) {
+        if (StringUtils.isEmpty(listBean.getFinal_price())) {
             helper.setText(R.id.tv_actualPrice, "0.00" + mContext.getString(R.string.rmb));
         } else {
-            helper.setText(R.id.tv_actualPrice, listBean.getFact_pay() + mContext.getString(R.string.rmb));
+            helper.setText(R.id.tv_actualPrice, listBean.getFinal_price() + mContext.getString(R.string.rmb));
         }
 
         /**

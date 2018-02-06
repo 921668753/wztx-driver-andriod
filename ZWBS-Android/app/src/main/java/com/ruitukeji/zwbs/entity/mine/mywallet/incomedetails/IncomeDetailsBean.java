@@ -83,7 +83,7 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
              * kilometres : 5.83
              * effective_time : 0
              * is_driver_dock : 1
-             * fact_pay : 757
+             * final_price=500.00 : 757
              */
 
             private int id;
@@ -102,7 +102,7 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
             private String kilometres;
             private String effective_time;
             private int is_driver_dock;
-            private String fact_pay;
+            private String final_price;
 
             public int getId() {
                 return id;
@@ -232,12 +232,12 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
                 this.is_driver_dock = is_driver_dock;
             }
 
-            public String getFact_pay() {
-                return fact_pay;
+            public String getFinal_price() {
+                return final_price;
             }
 
-            public void setFact_pay(String fact_pay) {
-                this.fact_pay = fact_pay;
+            public void setFinal_price(String final_price) {
+                this.final_price = final_price;
             }
         }
     }
