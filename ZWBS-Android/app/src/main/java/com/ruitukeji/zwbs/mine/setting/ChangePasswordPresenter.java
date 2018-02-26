@@ -64,9 +64,9 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("old_password", CipherUtils.md5("RUITU" + originalPassword + "KEJI"));
-        map.put("new_password", CipherUtils.md5("RUITU" + newPassword + "KEJI"));
-        map.put("repeat_password", CipherUtils.md5("RUITU" + newPassword1 + "KEJI"));
+        map.put("old_password", CipherUtils.md5("WUZAI" + originalPassword + "TIANXIA"));
+        map.put("new_password", CipherUtils.md5("WUZAI" + newPassword + "TIANXIA"));
+        map.put("repeat_password", CipherUtils.md5("WUZAI" + newPassword1 + "TIANXIA"));
         httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
         RequestClient.postChangePassword(httpParams, new ResponseListener<String>() {
             @Override

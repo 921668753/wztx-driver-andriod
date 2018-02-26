@@ -10,7 +10,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 24
-        versionName "1.0.201802132011"
+        versionName "1.0.201802261618"
         multiDexEnabled true
         dataBinding {
             enabled = true

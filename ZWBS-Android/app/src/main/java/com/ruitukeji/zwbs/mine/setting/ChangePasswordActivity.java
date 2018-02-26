@@ -14,6 +14,8 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 /**
  * 修改密码
@@ -81,9 +83,18 @@ public class ChangePasswordActivity extends BaseActivity implements ChangePasswo
 
     @Override
     public void getSuccess(String s) {
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "userId", 0);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "phone", "");
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "accessToken", "");
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "refreshToken", "");
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "expireTime", "0");
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "timeBefore", "0");
         KJActivityStack.create().finishActivity(SettingsActivity.class);
         dismissLoadingDialog();
-        PreferenceHelper.clean(this, StringConstants.FILENAME);
+        /**
+         * 发送消息
+         */
+        RxBus.getInstance().post(new MsgEvent("RxBusLogOutEvent"));
         skipActivity(aty, LoginActivity.class);
     }
 
