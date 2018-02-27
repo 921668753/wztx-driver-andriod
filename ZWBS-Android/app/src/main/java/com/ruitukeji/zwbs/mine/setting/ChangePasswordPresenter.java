@@ -57,11 +57,11 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
             mView.clear(3);
             return;
         }
-        if (originalPassword.equals(newPassword)) {
-            mView.error(KJActivityStack.create().topActivity().getString(R.string.notRepeated));
-            mView.clear(3);
-            return;
-        }
+//        if (originalPassword.equals(newPassword)) {
+//            mView.error(KJActivityStack.create().topActivity().getString(R.string.notRepeated));
+//            mView.clear(3);
+//            return;
+//        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("old_password", CipherUtils.md5("WUZAI" + originalPassword + "TIANXIA"));

@@ -20,8 +20,8 @@ public class AboutUsPresenter implements AboutUsContract.Presenter {
     @Override
     public void getArticle(String type) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("type", type);
-        RequestClient.getArticle(httpParams, new ResponseListener<String>() {
+       // httpParams.put("type", type);
+        RequestClient.getArticle(httpParams,type, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response);
