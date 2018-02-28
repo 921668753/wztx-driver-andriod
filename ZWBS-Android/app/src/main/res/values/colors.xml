@@ -75,10 +75,11 @@
     <color name="announcementColors">#2c2e35</color>
     <color name="announcementCloseColors">#FA5A5A</color>
 
-
     <!-- 任务-->
     <color name="aAAAAAColors">#AAAAAA</color>
     <color name="e7E7EColors">#7E7E7E</color>
+    <color name="fEF9F9Colors">#FEF9F9</color>
+
 
     <!-- 填写快递单号-->
     <color name="c7C7CDColors">#C7C7CD</color>

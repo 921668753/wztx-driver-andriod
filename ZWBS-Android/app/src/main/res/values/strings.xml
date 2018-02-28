@@ -296,7 +296,7 @@
     <string name="expressNumber">签收单快递单号</string>
     <string name="expressCompany">签收单快递公司</string>
     <string name="completeOrder">完成订单</string>
-
+    <string name="deliveryReceipt">提交签收单</string>
 
     <!--货源-->
     <string name="setLine">设定线路</string>

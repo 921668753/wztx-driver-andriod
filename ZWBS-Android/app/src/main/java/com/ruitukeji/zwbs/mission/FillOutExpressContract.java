@@ -12,6 +12,11 @@ public interface FillOutExpressContract {
     interface Presenter extends BasePresenter {
 
         /**
+         * 获取签收单信息
+         */
+        void getReceiptInformation(int g_id);
+
+        /**
          * 填写快递单
          */
         void postFillOutExpress(int g_id, String num, String company);

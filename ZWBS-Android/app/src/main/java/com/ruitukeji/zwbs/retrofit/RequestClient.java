@@ -571,6 +571,25 @@ public class RequestClient {
     }
 
     /**
+     * 任务-- 获取签收单信息
+     */
+    public static void getCarGoInfo(HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCarGoInfo");
+        doServer(new TokenCallback() {
+            @Override
+            public void execute() {
+                String accessToken = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "accessToken");
+                if (StringUtils.isEmpty(accessToken)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("authorization-token", accessToken);
+                HttpRequest.requestGetHttp(URLConstants.CARGOINFO, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 任务--填写快递单
      */
     public static void postfillCourier(HttpParams httpParams, ResponseListener<String> listener) {

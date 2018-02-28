@@ -23,6 +23,23 @@ public class FillOutExpressPresenter implements FillOutExpressContract.Presenter
     }
 
     @Override
+    public void getReceiptInformation(int g_id) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("order_id", g_id);
+        RequestClient.getCarGoInfo(httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
+    @Override
     public void postFillOutExpress(int g_id, String num, String company) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         Map<String, Object> map = new HashMap<String, Object>();
@@ -33,7 +50,7 @@ public class FillOutExpressPresenter implements FillOutExpressContract.Presenter
         RequestClient.postfillCourier(httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
-                mView.getSuccess(response, 0);
+                mView.getSuccess(response, 1);
             }
 
             @Override

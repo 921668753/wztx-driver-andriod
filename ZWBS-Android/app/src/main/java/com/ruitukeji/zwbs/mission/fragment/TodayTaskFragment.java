@@ -22,6 +22,7 @@ import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
+import com.ruitukeji.zwbs.mission.FillOutExpressActivity;
 import com.ruitukeji.zwbs.mission.dialog.NavigationBouncedDialog;
 import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
@@ -294,6 +295,15 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             cancelOrderBouncedDialog.show();
         } else if (flag == 7) {
             mRefreshLayout.beginRefreshing();
+        } else if (flag == 8) {
+            Intent intent = new Intent(aty, FillOutExpressActivity.class);
+            intent.putExtra("order_id", mAdapter.getItem(position).getId());
+//            intent.putExtra("cargo_address", listBean.getCargo_address());
+//            intent.putExtra("cargo_address_detail", listBean.getCargo_address_detail());
+//            intent.putExtra("cargo_is_express", listBean.getCargo_is_express());
+//            intent.putExtra("cargo_man", listBean.getCargo_man());
+//            intent.putExtra("cargo_tel", listBean.getCargo_tel());
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
         }
         dismissLoadingDialog();
     }
@@ -381,6 +391,8 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             ((TaskContract.Presenter) mPresenter).isLogin(5);
         } else if (view.getId() == R.id.tv_cancelOrder) {
             ((TaskContract.Presenter) mPresenter).isLogin(6);
+        } else if (view.getId() == R.id.tv_submitDeliveryReceipt) {
+            ((TaskContract.Presenter) mPresenter).isLogin(8);
         }
     }
 
@@ -427,7 +439,6 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             ViewInject.toast(getString(R.string.phoneCallPermissions1));
         }
     }
-
 
     /**
      * 在接收消息的时候，选择性接收消息：

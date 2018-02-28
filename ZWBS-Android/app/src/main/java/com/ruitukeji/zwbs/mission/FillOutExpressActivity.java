@@ -8,7 +8,9 @@ import android.widget.TextView;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.entity.mission.UploadReceiptVoucherBean;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.utils.JsonUtil;
 
 /**
  * 填写快递单
@@ -58,6 +60,7 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
      */
     @BindView(id = R.id.tv_completeOrder, click = true)
     private TextView tv_completeOrder;
+
     private int g_id = 0;
 
     @Override
@@ -70,24 +73,14 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
         super.initData();
         mPresenter = new FillOutExpressPresenter(this);
         g_id = getIntent().getIntExtra("order_id", 0);
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((FillOutExpressContract.Presenter) mPresenter).getReceiptInformation(g_id);
     }
-
 
     @Override
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.fillOutExpress), true, R.id.titlebar);
-        int cargo_is_express = getIntent().getIntExtra("cargo_is_express", 0);
-        if (cargo_is_express == 0) {
-            tv_billReceipt.setText(getString(R.string.billReceipt1));
-        } else {
-            tv_billReceipt.setText(getString(R.string.billReceipt));
-        }
-        String cargo_address = getIntent().getStringExtra("cargo_address");
-        String cargo_address_detail = getIntent().getStringExtra("cargo_address_detail");
-        tv_mailingAddress.setText(cargo_address + cargo_address_detail);
-        tv_recipient.setText(getIntent().getStringExtra("cargo_man"));
-        tv_contactInformation.setText(getIntent().getStringExtra("cargo_tel"));
     }
 
 
@@ -109,11 +102,27 @@ public class FillOutExpressActivity extends BaseActivity implements FillOutExpre
 
     @Override
     public void getSuccess(String success, int flag) {
-        Intent intent = new Intent();
-        // 设置结果 结果码，一个数据
-        setResult(RESULT_OK, intent);
-        // 结束该activity 结束之后，前面的activity才可以处理结果
-        aty.finish();
+        if (flag == 0) {
+            UploadReceiptVoucherBean uploadReceiptVoucherBean = (UploadReceiptVoucherBean) JsonUtil.json2Obj(success, UploadReceiptVoucherBean.class);
+            UploadReceiptVoucherBean.ResultBean resultBean = uploadReceiptVoucherBean.getResult();
+            int cargo_is_express = resultBean.getCargo_is_express();
+            if (cargo_is_express == 0) {
+                tv_billReceipt.setText(getString(R.string.billReceipt1));
+            } else {
+                tv_billReceipt.setText(getString(R.string.billReceipt));
+            }
+            String cargo_address = resultBean.getCargo_address();
+            String cargo_address_detail = resultBean.getCargo_address_detail();
+            tv_mailingAddress.setText(cargo_address + cargo_address_detail);
+            tv_recipient.setText(resultBean.getCargo_man());
+            tv_contactInformation.setText(resultBean.getCargo_tel());
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 设置结果 结果码，一个数据
+            setResult(RESULT_OK, intent);
+            // 结束该activity 结束之后，前面的activity才可以处理结果
+            aty.finish();
+        }
         dismissLoadingDialog();
     }
 

@@ -105,6 +105,11 @@ public class URLConstants {
     public static String FILLCOURIER = APIURL + "goods/fillCourier";
 
     /**
+     * 任务--获取货物签收单信息
+     */
+    public static String CARGOINFO = APIURL + "goods/getCarGoInfo";
+
+    /**
      * 货源--地址
      */
     public static String ADDRESS = APIURL + "Help/getAddress";

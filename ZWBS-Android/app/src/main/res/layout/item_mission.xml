@@ -366,6 +366,19 @@
             android:textColor="@color/announcementCloseColors"
             android:textSize="@dimen/textsize15" />
 
+
+        <TextView
+            android:id="@+id/tv_submitDeliveryReceipt"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_deliveryreceipt"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/deliveryReceipt"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
         <TextView
             android:id="@+id/tv_cancelOrder"
             style="@style/AutoWrap"

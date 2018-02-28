@@ -3,6 +3,7 @@ package com.ruitukeji.zwbs.mission;
 import android.Manifest;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ import com.ruitukeji.zwbs.utils.JsonUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bingoogolapple.titlebar.BGATitleBar;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -99,7 +101,27 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.uploadReceiptVoucher), true, R.id.titlebar);
+
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                if (is_cargo_receipt == 2) {
+                    Intent intent = new Intent();
+                    // 设置结果 结果码，一个数据
+                    setResult(RESULT_OK, intent);
+                    // 结束该activity 结束之后，前面的activity才可以处理结果
+                }
+                aty.finish();
+            }
+
+            @Override
+            public void onClickRightCtv() {
+                super.onClickRightCtv();
+
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.uploadReceiptVoucher), "", R.id.titlebar, simpleDelegate);
         if (is_cargo_receipt != 0) {
             tv_submit.setText(getString(R.string.submit));
         } else {
@@ -243,13 +265,14 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
                 dismissLoadingDialog();
                 return;
             }
+            is_cargo_receipt = 2;
             Intent intent = new Intent(aty, FillOutExpressActivity.class);
             intent.putExtra("order_id", order_id);
-            intent.putExtra("cargo_address", resultBean.getCargo_address());
-            intent.putExtra("cargo_address_detail", resultBean.getCargo_address_detail());
-            intent.putExtra("cargo_is_express", resultBean.getCargo_is_express());
-            intent.putExtra("cargo_man", resultBean.getCargo_man());
-            intent.putExtra("cargo_tel", resultBean.getCargo_tel());
+//            intent.putExtra("cargo_address", resultBean.getCargo_address());
+//            intent.putExtra("cargo_address_detail", resultBean.getCargo_address_detail());
+//            intent.putExtra("cargo_is_express", resultBean.getCargo_is_express());
+//            intent.putExtra("cargo_man", resultBean.getCargo_man());
+//            intent.putExtra("cargo_tel", resultBean.getCargo_tel());
             startActivityForResult(intent, REQUEST_CODE_SELECT);
         } else if (flag == REQUEST_CODE_CHOOSE_PHOTO) {
             UploadImageBean uploadImageBean = (UploadImageBean) JsonUtil.getInstance().json2Obj(success, UploadImageBean.class);
@@ -263,6 +286,33 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
         dismissLoadingDialog();
 
     }
+
+    /**
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                if (is_cargo_receipt == 2) {
+                    Intent intent = new Intent();
+                    // 设置结果 结果码，一个数据
+                    setResult(RESULT_OK, intent);
+                    // 结束该activity 结束之后，前面的activity才可以处理结果
+                }
+                aty.finish();
+                break;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
+
+
+
+
+
 
     @Override
     public void errorMsg(String msg, int flag) {
