@@ -438,7 +438,7 @@
     <string name="inAuthentication">认证中</string>
     <string name="certified">已认证</string>
     <string name="authenticationFailure">认证失败</string>
-    <string name="certificationOverdue">认证过期</string>
+    <string name="certificationOverdue">认证过期或者存在异常，请重新认证</string>
 
     <!--查看证件-->
     <string name="startDate">起始日期</string>

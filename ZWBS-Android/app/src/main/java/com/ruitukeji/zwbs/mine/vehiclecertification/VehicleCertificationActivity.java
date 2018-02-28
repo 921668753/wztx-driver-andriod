@@ -357,6 +357,8 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             tv_certificationStatus.setText(getString(R.string.inAuthentication));
         } else if (car_auth_status != null && car_auth_status.equals("refuse")) {
             tv_certificationStatus.setText(getString(R.string.authenticationFailure));
+        }  else if (car_auth_status != null && car_auth_status.equals("reauth")) {
+            tv_certificationStatus.setText(getString(R.string.certificationOverdue));
         } else {
             tv_certificationStatus.setText(getString(R.string.unauthorized));
         }
