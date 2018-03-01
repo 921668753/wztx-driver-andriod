@@ -109,7 +109,6 @@
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />
 
-
         <TextView
             android:id="@+id/tv_conductor"
             style="@style/WrapWrap"
@@ -217,6 +216,83 @@
             android:id="@+id/tv_destination"
             style="@style/WrapWrap"
             android:layout_marginLeft="@dimen/dimen43"
+            android:text="--"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_driverCargo"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/driverCargo"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_driverCargo"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:singleLine="true"
+            android:text="@string/need"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_peiSongDian"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/peiSongDian"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_peiSongDian"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen43"
+            android:text="--"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_costDistribution"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/costDistribution"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_costDistribution"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:singleLine="true"
             android:text="--"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize14" />

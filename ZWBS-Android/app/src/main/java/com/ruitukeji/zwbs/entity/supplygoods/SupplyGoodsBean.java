@@ -109,6 +109,9 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
             private String car_style_type;
             private int car_style_type_id;
             private String usecar_time;
+            private int is_driver_dock;
+            private int spot;
+            private String spot_cost;
 
             public int getId() {
                 return id;
@@ -276,6 +279,30 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
 
             public void setUsecar_time(String usecar_time) {
                 this.usecar_time = usecar_time;
+            }
+
+            public int getIs_driver_dock() {
+                return is_driver_dock;
+            }
+
+            public void setIs_driver_dock(int is_driver_dock) {
+                this.is_driver_dock = is_driver_dock;
+            }
+
+            public int getSpot() {
+                return spot;
+            }
+
+            public void setSpot(int spot) {
+                this.spot = spot;
+            }
+
+            public String getSpot_cost() {
+                return spot_cost;
+            }
+
+            public void setSpot_cost(String spot_cost) {
+                this.spot_cost = spot_cost;
             }
         }
     }

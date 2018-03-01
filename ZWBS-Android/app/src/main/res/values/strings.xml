@@ -199,6 +199,11 @@
     <string name="volume">体积：</string>
     <string name="thePlace">起运地</string>
     <string name="expectedMileage">预计公里数</string>
+    <string name="driverCargo">司机装卸货</string>
+    <string name="need">需要</string>
+    <string name="noNeed">不需要</string>
+    <string name="peiSongDian">配送点</string>
+    <string name="costDistribution">配送点费用</string>
     <string name="estimatedTime">预计耗时</string>
     <string name="actualPrice">实际价格</string>
     <string name="orderNeeds">本订单需要签收单，签收单快递费到付</string>
@@ -674,6 +679,8 @@
     <string name="km">千米</string>
     <string name="tons">吨</string>
     <string name="cubic">立方</string>
+    <string name="ge">个</string>
+    <string name="ge1">元/个</string>
 
     <!--设置支付密码-->
     <string name="setPaymentPassword">设置支付密码</string>

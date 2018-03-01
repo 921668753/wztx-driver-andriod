@@ -102,6 +102,28 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         viewHolderHelper.setText(R.id.tv_destination, listBean.getDest_city());
 
         /**
+         * 司机装卸货
+         */
+        if (listBean.getIs_driver_dock() == 0) {
+            viewHolderHelper.setText(R.id.tv_driverCargo, mContext.getString(R.string.noNeed));
+        } else {
+            viewHolderHelper.setText(R.id.tv_driverCargo, mContext.getString(R.string.need));
+        }
+
+        /**
+         * 配送点/配送点费用
+         */
+        if (listBean.getSpot() == 0) {
+            viewHolderHelper.setVisibility(R.id.ll_peiSongDian, View.GONE);
+            viewHolderHelper.setVisibility(R.id.ll_costDistribution, View.GONE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.ll_peiSongDian, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.ll_costDistribution, View.VISIBLE);
+            viewHolderHelper.setText(R.id.tv_peiSongDian, listBean.getSpot() + mContext.getString(R.string.ge));
+            viewHolderHelper.setText(R.id.tv_costDistribution, listBean.getSpot_cost() + mContext.getString(R.string.ge1));
+        }
+
+        /**
          *预计公里数
          */
         viewHolderHelper.setText(R.id.tv_expectedMileage, listBean.getKilometres());

@@ -83,7 +83,6 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
                     ViewInject.toast(context.getString(R.string.hintDriverBid1));
                 }
                 break;
-
         }
     }
 
@@ -95,6 +94,7 @@ public abstract class SendQuotationBouncedDialog extends BaseDialog implements V
     public void setSysMoney(int orderId, String money) {
         this.orderId = orderId;
         this.money = money;
+        et_pleaseEnterPrice.setText("");
         TextView tv_estimatePrice = (TextView) findViewById(R.id.tv_estimatePrice);
         tv_estimatePrice.setText(context.getString(R.string.estimatePrice) + money);
     }
