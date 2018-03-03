@@ -124,6 +124,21 @@ public class SystemMessagePresenter implements SystemMessageContract.Presenter {
         markedAsReadBouncedDialog.show();
     }
 
+    @Override
+    public void isLogin(int flag) {
+        RequestClient.isLogin(new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, flag);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, flag);
+            }
+        });
+    }
+
     /**
      * 获取标记的id
      */

@@ -6,17 +6,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BindView;
 import com.ruitukeji.zwbs.common.KJActivityStack;
+import com.ruitukeji.zwbs.common.ViewInject;
+import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.getorder.OrderDetailsBean;
 import com.ruitukeji.zwbs.getorder.dialog.GetOrderBouncedDialog;
 import com.ruitukeji.zwbs.getorder.dialog.SendQuotationBouncedDialog;
 import com.ruitukeji.zwbs.supplygoods.dialog.AuthenticationBouncedDialog;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
+import com.ruitukeji.zwbs.utils.rx.MsgEvent;
+import com.ruitukeji.zwbs.utils.rx.RxBus;
 
 /**
  * 订单详情
@@ -92,6 +97,28 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
      */
     @BindView(id = R.id.tv_destination)
     private TextView tv_destination;
+
+    /**
+     * 司机装卸货
+     */
+    @BindView(id = R.id.tv_driverCargo)
+    private TextView tv_driverCargo;
+
+    /**
+     * 配送点
+     */
+    @BindView(id = R.id.ll_peiSongDian)
+    private LinearLayout ll_peiSongDian;
+    @BindView(id = R.id.tv_peiSongDian)
+    private TextView tv_peiSongDian;
+
+    /**
+     * 配送点费用
+     */
+    @BindView(id = R.id.ll_costDistribution)
+    private LinearLayout ll_costDistribution;
+    @BindView(id = R.id.tv_costDistribution)
+    private TextView tv_costDistribution;
 
     /**
      * 预计公里数
@@ -195,6 +222,11 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     @Override
     public void widgetClick(View v) {
         super.widgetClick(v);
+        int isGoWork = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "isGoWork", 0);
+        if (isGoWork == 1) {
+            ViewInject.toast(getString(R.string.notOrder));
+            return;
+        }
         switch (v.getId()) {
             case R.id.tv_getorder:
                 String money = "";
@@ -225,6 +257,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 getOrderBouncedDialog.show();
                 break;
             case R.id.tv_reject:
+
                 if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
                     authenticationBouncedDialog.show();
                     return;
@@ -334,8 +367,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             tv_models.setText(resultBean.getCar_style_type());
             tv_weight.setText(resultBean.getWeight());
             tv_volume.setText(resultBean.getVolume());
-            tv_thePlace.setText(resultBean.getOrg_city());
-            tv_destination.setText(resultBean.getDest_city());
             tv_expectedMileage.setText(resultBean.getKilometres());
             if (StringUtils.isEmpty(resultBean.getUsecar_time()) || !StringUtils.isEmpty(resultBean.getUsecar_time()) && resultBean.getUsecar_time().equals("0")) {
                 ll_estimatedTime.setVisibility(View.GONE);
@@ -344,17 +375,40 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_estimatedTime.setText(resultBean.getUsecar_time());
             }
             system_price = resultBean.getSystem_price();
-            if (StringUtils.isEmpty(resultBean.getMind_price()) || resultBean.getMind_price().equals("0.00")) {
-                tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getSystem_price());
+            if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("init") || !StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quote")) {
+                if (StringUtils.isEmpty(resultBean.getMind_price()) || resultBean.getMind_price().equals("0.00")) {
+                    tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getSystem_price());
+                } else {
+                    mind_price = resultBean.getMind_price();
+                    tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getMind_price());
+                }
+                tv_thePlace.setText(resultBean.getOrg_city());
+                tv_destination.setText(resultBean.getDest_city());
             } else {
-                mind_price = resultBean.getMind_price();
-                tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getMind_price());
+                tv_thePlace.setText(resultBean.getOrg_detail());
+                tv_destination.setText(resultBean.getDest_detail());
+                tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getFinal_price());
             }
             if (resultBean.getIs_cargo_receipt() == 0) {
                 tv_orderNeeds.setText(getString(R.string.orderNotNeeds));
             } else {
                 tv_orderNeeds.setText(getString(R.string.orderNeeds));
             }
+            if (resultBean.getIs_driver_dock() == 0) {
+                tv_driverCargo.setText(getString(R.string.noNeed));
+            } else {
+                tv_driverCargo.setText(getString(R.string.need));
+            }
+            if (resultBean.getSpot() == 0) {
+                ll_peiSongDian.setVisibility(View.GONE);
+                ll_costDistribution.setVisibility(View.GONE);
+            } else {
+                ll_peiSongDian.setVisibility(View.VISIBLE);
+                ll_costDistribution.setVisibility(View.VISIBLE);
+                tv_peiSongDian.setText(resultBean.getSpot() + getString(R.string.ge));
+                tv_costDistribution.setText(resultBean.getSpot_cost() + getString(R.string.ge1));
+            }
+
             if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quote")) {
                 tv_getorder.setVisibility(View.VISIBLE);
                 tv_sendQuotation.setVisibility(View.VISIBLE);
@@ -369,6 +423,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 ll_button.setVisibility(View.GONE);
                 ll_button1.setVisibility(View.GONE);
             }
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusOrderMessageDetailsEvent"));
         } else if (flag == 1) {
             Intent intent = new Intent();
             // 设置结果 结果码，一个数据

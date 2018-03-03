@@ -95,6 +95,26 @@ public class IncomeDetailsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         helper.setText(R.id.tv_destination, listBean.getDest_address_detail());
 
         /**
+         *目的地
+         */
+        helper.setText(R.id.tv_destination, listBean.getDest_address_detail());
+
+        /**
+         *司机是否装卸货
+         */
+        helper.setVisibility(R.id.ll_driverCargo, View.GONE);
+
+        /**
+         *配送点
+         */
+        helper.setVisibility(R.id.ll_peiSongDian, View.GONE);
+
+        /**
+         *配送点费用
+         */
+        helper.setVisibility(R.id.ll_costDistribution, View.GONE);
+
+        /**
          *距离
          */
         helper.setText(R.id.tv_expectedMileage, listBean.getKilometres());
@@ -102,13 +122,12 @@ public class IncomeDetailsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          *時間
          */
-//        int hours = StringUtils.toInt(listBean.getEffective_time()) / 60;
-//        int minutes = StringUtils.toInt(listBean.getEffective_time()) % 60;
-//        if (hours > 0) {
-//            helper.setText(R.id.tv_estimatedTime, hours + mContext.getString(R.string.hours) + minutes + mContext.getString(R.string.minutes));
-//        } else {
-        helper.setText(R.id.tv_estimatedTime, listBean.getEffective_time());
-        //     }
+        if (StringUtils.isEmpty(listBean.getEffective_time()) || !StringUtils.isEmpty(listBean.getEffective_time()) && listBean.getEffective_time().equals("0")) {
+            helper.setVisibility(R.id.ll_estimatedTime, View.GONE);
+        } else {
+            helper.setVisibility(R.id.ll_estimatedTime, View.VISIBLE);
+            helper.setText(R.id.tv_estimatedTime, listBean.getEffective_time());
+        }
 
         /**
          *金额

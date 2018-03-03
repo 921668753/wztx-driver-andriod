@@ -60,6 +60,9 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
         private int is_driver_dock;
         private int spot;
         private String spot_cost;
+        private String final_price;
+        private String dest_detail;
+        private String org_detail;
 
         public int getId() {
             return id;
@@ -267,6 +270,30 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
 
         public void setSpot_cost(String spot_cost) {
             this.spot_cost = spot_cost;
+        }
+
+        public String getFinal_price() {
+            return final_price;
+        }
+
+        public void setFinal_price(String final_price) {
+            this.final_price = final_price;
+        }
+
+        public String getDest_detail() {
+            return dest_detail;
+        }
+
+        public void setDest_detail(String dest_detail) {
+            this.dest_detail = dest_detail;
+        }
+
+        public String getOrg_detail() {
+            return org_detail;
+        }
+
+        public void setOrg_detail(String org_detail) {
+            this.org_detail = org_detail;
         }
     }
 }

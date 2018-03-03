@@ -27,6 +27,11 @@ public interface SystemMessageContract {
          * 标记已读
          */
         void postReadMessage(List<ListBean> masageList);
+
+        /**
+         * 是否登录
+         */
+        void isLogin(int flag);
     }
 
     interface View extends BaseNewView<Presenter,String> {

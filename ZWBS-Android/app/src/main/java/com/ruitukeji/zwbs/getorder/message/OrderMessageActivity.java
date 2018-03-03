@@ -21,6 +21,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.entity.getorder.message.OrderMessageBean;
 import com.ruitukeji.zwbs.entity.getorder.message.OrderMessageBean.ResultBean.ListBean;
+import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
 import com.ruitukeji.zwbs.loginregister.LoginActivity;
 import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
@@ -198,6 +199,10 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
                 ((OrderMessageContract.Presenter) mPresenter).postDeleteMessage(mAdapter.getData());
                 break;
             case R.id.tv_hintText:
+                if (tv_hintText.getText().toString().equals(getString(R.string.login1))) {
+                    errorMsg(NumericConstants.TOLINGIN + "", 2);
+                    break;
+                }
                 mRefreshLayout.beginRefreshing();
                 break;
         }
@@ -247,15 +252,16 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
 
     @Override
     public void errorMsg(String msg, int flag) {
-        if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
-            showActivity(aty, LoginActivity.class);
-            return;
-        }
         if (flag == 0) {
             isShowLoadingMore = false;
             mRefreshLayout.setVisibility(View.GONE);
             ll_commonError.setVisibility(View.VISIBLE);
-            tv_hintText.setText(msg + getString(R.string.clickRefresh));
+            if (msg.equals("" + NumericConstants.TOLINGIN)) {
+                tv_hintText.setText(getString(R.string.login1));
+            } else {
+                tv_hintText.setText(msg + getString(R.string.clickRefresh));
+            }
+            // tv_hintText.setText(msg + getString(R.string.clickRefresh));
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
             } else {
@@ -268,7 +274,11 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
                 ll_bottom.setVisibility(View.GONE);
             }
         } else {
-            ViewInject.toast(msg);
+            if (msg != null && msg.equals("" + NumericConstants.TOLINGIN)) {
+                showActivity(aty, LoginActivity.class);
+            } else {
+                ViewInject.toast(msg);
+            }
         }
         dismissLoadingDialog();
     }
@@ -286,8 +296,8 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             mAdapter.getItem(position).setIsSelected(0);
             return;
         }
-        Intent intent = new Intent(aty, SystemMessageDetailsActivity.class);
-        intent.putExtra("messageId", mAdapter.getItem(position).getId());
+        Intent intent = new Intent(aty, OrderDetailsActivity.class);
+        intent.putExtra("order_id", mAdapter.getItem(position).getOrder_id());
         showActivity(aty, intent);
     }
 
@@ -375,7 +385,8 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusOrderMessageDetailsEvent")) {
-            mRefreshLayout.beginRefreshing();
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            ((OrderMessageContract.Presenter) mPresenter).getMessage(push_type, mMorePageNumber);
         }
 //        else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
 ////            img_headPortrait.setImageURI(Uri.parse(msgEvent.getMsg() + "?imageView2/1/w/70/h/70"));

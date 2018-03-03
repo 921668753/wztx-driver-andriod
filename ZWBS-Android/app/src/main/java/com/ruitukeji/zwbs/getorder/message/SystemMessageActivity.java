@@ -168,8 +168,7 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.ll_orderMessage:
-                showActivity(aty, OrderMessageActivity.class);
-                overridePendingTransition(0, 0);
+                ((SystemMessageContract.Presenter) mPresenter).isLogin(3);
                 break;
             case R.id.tv_generalElection:
                 isSelected = 1;
@@ -227,6 +226,9 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
         } else if (flag == 1 || flag == 2) {
             isSelected = 0;
             mRefreshLayout.beginRefreshing();
+        } else if (flag == 3) {
+            showActivity(aty, OrderMessageActivity.class);
+            overridePendingTransition(0, 0);
         }
     }
 
@@ -360,7 +362,8 @@ public class SystemMessageActivity extends BaseActivity implements SystemMessage
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusSystemMessageDetailsEvent")) {
-            mRefreshLayout.beginRefreshing();
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            ((SystemMessageContract.Presenter) mPresenter).getMessage(push_type, mMorePageNumber);
         }
 //        else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent")) {
 ////            img_headPortrait.setImageURI(Uri.parse(msgEvent.getMsg() + "?imageView2/1/w/70/h/70"));

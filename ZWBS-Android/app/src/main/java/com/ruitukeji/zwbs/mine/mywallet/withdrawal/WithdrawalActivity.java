@@ -138,6 +138,9 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
                 showActivity(aty, intentDriver);
                 break;
             case R.id.tv_confirmSubmit:
+
+
+
                 ((WithdrawalContract.Presenter) mPresenter).postWithdrawal(et_withdrawalAmount1.getText().toString(), bankCardId);
                 break;
         }
