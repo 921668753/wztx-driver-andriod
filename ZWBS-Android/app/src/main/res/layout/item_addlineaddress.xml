@@ -12,4 +12,5 @@
         android:text="河南"
         android:textColor="@color/f2222Colors"
         android:textSize="@dimen/textsize15" />
+
 </LinearLayout>

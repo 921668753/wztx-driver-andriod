@@ -193,6 +193,8 @@ public abstract class AddLineCityBouncedDialog extends BaseDialog implements Ada
         if (addLineAreaBouncedDialog != null) {
             addLineAreaBouncedDialog.cancel();
         }
+        cityViewAdapter.clear();
+        cityViewAdapter = null;
         addLineAreaBouncedDialog = null;
         super.setOnDismissListener(listener);
     }

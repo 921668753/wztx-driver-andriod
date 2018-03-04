@@ -193,6 +193,8 @@ public abstract class AddLineProvinceBouncedDialog extends BaseDialog implements
         if (addLineCityBouncedDialog != null) {
             addLineCityBouncedDialog.cancel();
         }
+        addLineProvinceViewAdapter.clear();
+        addLineProvinceViewAdapter = null;
         addLineCityBouncedDialog = null;
         super.setOnDismissListener(listener);
     }

@@ -10,7 +10,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 24
-        versionName "1.0.201803020900"
+        versionName "1.0.201803040900"
         multiDexEnabled true
         dataBinding {
             enabled = true
@@ -170,7 +170,7 @@ dependencies {
     compile 'com.lzy.widget:imagepicker:0.6.1'
     compile 'com.github.nanchen2251:CompressHelper:1.0.5'
     //    compile 'net.orfjackal.retrolambda:retrolambda:2.1.0'
-    compile 'com.android.support:multidex:1.0.2'
+    compile 'com.android.support:multidex:1.0.3'
     //让应用支持多DEX文件
     //高德地图
     compile 'com.amap.api:location:3.7.0'
