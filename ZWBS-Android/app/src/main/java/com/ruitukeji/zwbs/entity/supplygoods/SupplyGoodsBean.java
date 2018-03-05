@@ -104,6 +104,7 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
             private String appoint_at;
             private String goods_name;
             private String status;
+            private int is_express;
             private String car_style_length;
             private int car_style_length_id;
             private String car_style_type;
@@ -303,6 +304,14 @@ public class SupplyGoodsBean extends BaseResult<SupplyGoodsBean.ResultBean> {
 
             public void setSpot_cost(String spot_cost) {
                 this.spot_cost = spot_cost;
+            }
+
+            public int getIs_express() {
+                return is_express;
+            }
+
+            public void setIs_express(int is_express) {
+                this.is_express = is_express;
             }
         }
     }

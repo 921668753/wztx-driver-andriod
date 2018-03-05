@@ -115,6 +115,7 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
             private int effective_time;
             private String usecar_time;
             private int spot;
+            private int is_express;
             private String spot_cost;
 
             public int getId() {
@@ -315,6 +316,14 @@ public class GetOrderBean extends BaseResult<GetOrderBean.ResultBean> {
 
             public void setSpot_cost(String spot_cost) {
                 this.spot_cost = spot_cost;
+            }
+
+            public int getIs_express() {
+                return is_express;
+            }
+
+            public void setIs_express(int is_express) {
+                this.is_express = is_express;
             }
         }
     }

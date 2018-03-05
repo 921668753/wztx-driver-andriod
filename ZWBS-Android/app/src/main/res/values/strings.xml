@@ -207,6 +207,7 @@
     <string name="estimatedTime">预计耗时</string>
     <string name="actualPrice">实际价格</string>
     <string name="orderNeeds">本订单需要签收单，签收单快递费到付</string>
+    <string name="orderNeeds1">本订单需要签收单，签收单快递费需要司机付款</string>
     <string name="orderNotNeeds">本订单不需要签收单</string>
     <string name="sendQuotation">发送报价</string>
     <string name="amount">金额</string>

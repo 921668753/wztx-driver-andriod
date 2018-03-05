@@ -135,7 +135,7 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 实际价格
          */
-        if (StringUtils.isEmpty(listBean.getMind_price()) || listBean.getMind_price().equals("0.00")) {
+        if (StringUtils.isEmpty(listBean.getMind_price()) || StringUtils.toDouble(listBean.getMind_price()) == 0) {
             viewHolderHelper.setText(R.id.tv_actualPrice, mContext.getString(R.string.renminbi) + listBean.getSystem_price());
         } else {
             viewHolderHelper.setText(R.id.tv_actualPrice, mContext.getString(R.string.renminbi) + listBean.getMind_price());
@@ -144,11 +144,19 @@ public class SupplyGoodsViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         /**
          * 是否有签收单
          */
-        if (listBean.getIs_cargo_receipt() == 0) {
+        if (listBean.getIs_cargo_receipt() == 1 && listBean.getIs_express() == 1) {
+            viewHolderHelper.setVisibility(R.id.tv_orderNeeds, View.VISIBLE);
+            viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds));
+        } else if (listBean.getIs_cargo_receipt() == 1 && listBean.getIs_express() == 0) {
+            viewHolderHelper.setVisibility(R.id.tv_orderNeeds, View.VISIBLE);
+            viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds1));
+        } else if (listBean.getIs_cargo_receipt() == 0) {
+            viewHolderHelper.setVisibility(R.id.tv_orderNeeds, View.VISIBLE);
             viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNotNeeds));
         } else {
-            viewHolderHelper.setText(R.id.tv_orderNeeds, mContext.getString(R.string.orderNeeds));
+            viewHolderHelper.setVisibility(R.id.tv_orderNeeds, View.GONE);
         }
+
 
         if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quote")) {
             viewHolderHelper.setVisibility(R.id.tv_getorder, View.VISIBLE);

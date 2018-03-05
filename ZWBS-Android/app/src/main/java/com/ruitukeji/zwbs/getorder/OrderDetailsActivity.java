@@ -376,7 +376,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             }
             system_price = resultBean.getSystem_price();
             if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("init") || !StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quote")) {
-                if (StringUtils.isEmpty(resultBean.getMind_price()) || resultBean.getMind_price().equals("0.00")) {
+                if (StringUtils.isEmpty(resultBean.getMind_price()) || StringUtils.toDouble(resultBean.getMind_price()) == 0) {
                     tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getSystem_price());
                 } else {
                     mind_price = resultBean.getMind_price();
@@ -389,11 +389,25 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_destination.setText(resultBean.getDest_detail());
                 tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getFinal_price());
             }
-            if (resultBean.getIs_cargo_receipt() == 0) {
+//            if (resultBean.getIs_cargo_receipt() == 0) {
+//                tv_orderNeeds.setText(getString(R.string.orderNotNeeds));
+//            } else {
+//                tv_orderNeeds.setText(getString(R.string.orderNeeds));
+//            }
+            if (resultBean.getIs_cargo_receipt() == 1 && resultBean.getIs_express() == 1) {
+                tv_orderNeeds.setVisibility(View.VISIBLE);
+                tv_orderNeeds.setText(getString(R.string.orderNeeds));
+            } else if (resultBean.getIs_cargo_receipt() == 1 && resultBean.getIs_express() == 0) {
+                tv_orderNeeds.setVisibility(View.VISIBLE);
+                tv_orderNeeds.setText(getString(R.string.orderNeeds1));
+            } else if (resultBean.getIs_cargo_receipt() == 0) {
+                tv_orderNeeds.setVisibility(View.VISIBLE);
                 tv_orderNeeds.setText(getString(R.string.orderNotNeeds));
             } else {
-                tv_orderNeeds.setText(getString(R.string.orderNeeds));
+                tv_orderNeeds.setVisibility(View.GONE);
             }
+
+
             if (resultBean.getIs_driver_dock() == 0) {
                 tv_driverCargo.setText(getString(R.string.noNeed));
             } else {

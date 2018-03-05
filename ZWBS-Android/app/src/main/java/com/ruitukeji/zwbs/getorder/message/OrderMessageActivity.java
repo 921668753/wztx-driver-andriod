@@ -296,9 +296,13 @@ public class OrderMessageActivity extends BaseActivity implements OrderMessageCo
             mAdapter.getItem(position).setIsSelected(0);
             return;
         }
-        Intent intent = new Intent(aty, OrderDetailsActivity.class);
-        intent.putExtra("order_id", mAdapter.getItem(position).getOrder_id());
+        Intent intent = new Intent(aty, SystemMessageDetailsActivity.class);
+        intent.putExtra("messageId", mAdapter.getItem(position).getId());
+        intent.putExtra("name", "RxBusOrderMessageDetailsEvent");
         showActivity(aty, intent);
+//        Intent intent = new Intent(aty, OrderDetailsActivity.class);
+//        intent.putExtra("order_id", mAdapter.getItem(position).getOrder_id());
+//        showActivity(aty, intent);
     }
 
     /**

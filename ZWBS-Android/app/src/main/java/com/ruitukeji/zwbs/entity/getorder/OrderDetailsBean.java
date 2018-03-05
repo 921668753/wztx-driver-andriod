@@ -63,6 +63,8 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
         private String final_price;
         private String dest_detail;
         private String org_detail;
+        private int is_express;
+
 
         public int getId() {
             return id;
@@ -294,6 +296,14 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
 
         public void setOrg_detail(String org_detail) {
             this.org_detail = org_detail;
+        }
+
+        public int getIs_express() {
+            return is_express;
+        }
+
+        public void setIs_express(int is_express) {
+            this.is_express = is_express;
         }
     }
 }

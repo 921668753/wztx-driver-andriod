@@ -358,15 +358,15 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
             }
             GetOrderBean.ResultBean.ListBean listBean = mAdapter.getItem(position);
             String money = "";
-            if (listBean.getMind_price().equals("0.00")) {
+            if (StringUtils.isEmpty(listBean.getMind_price()) || StringUtils.toDouble(listBean.getMind_price()) == 0) {
                 money = listBean.getSystem_price();
             } else {
                 money = listBean.getMind_price();
             }
             //接单
             if (getOrderBouncedDialog != null && !getOrderBouncedDialog.isShowing()) {
-                getOrderBouncedDialog.setMoney(listBean.getId(), money);
                 getOrderBouncedDialog.show();
+                getOrderBouncedDialog.setMoney(listBean.getId(), money);
                 return;
             }
             getOrderBouncedDialog = new GetOrderBouncedDialog(aty, listBean.getId(), money) {

@@ -52,6 +52,7 @@ public class SystemMessageDetailsActivity extends BaseActivity implements System
 
 
     private int messageId;
+    private String name = null;
 
     @Override
     public void setRootView() {
@@ -61,6 +62,7 @@ public class SystemMessageDetailsActivity extends BaseActivity implements System
     @Override
     public void initData() {
         super.initData();
+        name = getIntent().getStringExtra("name");
         mPresenter = new SystemMessageDetailsPresenter(this);
     }
 
@@ -115,7 +117,11 @@ public class SystemMessageDetailsActivity extends BaseActivity implements System
                     + "</body></html>";
             web_content.loadDataWithBaseURL("baseurl", code, "text/html", "utf-8", null);
         }
-        RxBus.getInstance().post(new MsgEvent<String>("RxBusSystemMessageDetailsEvent"));
+        if (!StringUtils.isEmpty(name) && name.equals("RxBusOrderMessageDetailsEvent")) {
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusOrderMessageDetailsEvent"));
+        } else {
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusSystemMessageDetailsEvent"));
+        }
         dismissLoadingDialog();
     }
 
