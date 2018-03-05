@@ -6,7 +6,7 @@
     android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.ruitukeji.zwbs.getorder.message.MessageActivity">
+    tools:context="com.ruitukeji.zwbs.getorder.message.SystemMessageActivity">
 
     <include layout="@layout/common_title1" />
 
@@ -32,7 +32,7 @@
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <include layout="@layout/common_error"></include>
+    <include layout="@layout/common_error"/>
 
     <LinearLayout
         android:layout_width="match_parent"

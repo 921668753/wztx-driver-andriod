@@ -18,11 +18,12 @@ import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
  * Created by Administrator on 2017/11/28.
  */
 
-public abstract class CancelOrderNoticBouncedDialog extends BaseDialog implements View.OnClickListener {
+public class CancelOrderNoticBouncedDialog extends BaseDialog implements View.OnClickListener {
 
     private String orderCode = "";
     private int orderId = 0;
     private Context context;
+    private TextView tv_orderNumber;
 
     public CancelOrderNoticBouncedDialog(Context context, int orderId, String orderCode) {
         super(context, R.style.dialog);
@@ -48,7 +49,7 @@ public abstract class CancelOrderNoticBouncedDialog extends BaseDialog implement
         img_cancel.setOnClickListener(this);
         TextView tv_checkDetails = (TextView) findViewById(R.id.tv_checkDetails);
         tv_checkDetails.setOnClickListener(this);
-        TextView tv_orderNumber = (TextView) findViewById(R.id.tv_orderNumber);
+        tv_orderNumber = (TextView) findViewById(R.id.tv_orderNumber);
         tv_orderNumber.setText(context.getString(R.string.orderNumber1) + orderCode);
     }
 
@@ -61,6 +62,7 @@ public abstract class CancelOrderNoticBouncedDialog extends BaseDialog implement
             case R.id.tv_checkDetails:
                 Intent intent = new Intent(context, OrderDetailsActivity.class);
                 intent.putExtra("order_id", orderId);
+                intent.putExtra("is_cancel", 2);
                 context.startActivity(intent);
                 cancel();
                 break;
@@ -70,6 +72,7 @@ public abstract class CancelOrderNoticBouncedDialog extends BaseDialog implement
     public void setOrderId(int orderId, String orderCode) {
         this.orderId = orderId;
         this.orderCode = orderCode;
+        tv_orderNumber.setText(context.getString(R.string.orderNumber1) + orderCode);
     }
 
 }

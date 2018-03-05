@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.ruitukeji.zwbs.getorder.message.MessageCenterActivity;
 import com.ruitukeji.zwbs.main.MainActivity;
 import com.ruitukeji.zwbs.main.MainActivity.MessageReceiver;
+import com.ruitukeji.zwbs.mission.fragment.TodayTaskFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,8 +25,8 @@ import cn.jpush.android.api.JPushInterface;
  * 2) 接收不到自定义消息
  */
 public class MyReceiver extends BroadcastReceiver {
-    private static final String TAG = "JPush";
 
+    private static final String TAG = "JPush";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -53,14 +53,22 @@ public class MyReceiver extends BroadcastReceiver {
                 intent1.setClass(context, MainActivity.class);
                 context.startActivity(intent1);
                 Log.d(TAG, "[MyReceiver] 用户点击打开了通知 MainActivity");
+            } else if (bundle.getString("cn.jpush.android.NOTIFICATION_CONTENT_TITLE").startsWith("您有一条被取消的订单")) {
+                Intent intent1 = new Intent();
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent1.putExtra("newChageIcon", 1);
+                intent1.setClass(context, MainActivity.class);
+                context.startActivity(intent1);
+                Log.d(TAG, "[MyReceiver] 用户点击打开了通知 MainActivity");
             } else {
 //        	//打开自定义的Activity
-                Intent i = new Intent(context, MessageCenterActivity.class);
-//        	i.putExtras(bundle);
-                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(i);
-                Log.d(TAG, "[MyReceiver] 用户点击打开了通知 MessageCenterActivity");
+                //打开自定义的Activity
+//                Intent i = new Intent(context, MessageCenterActivity.class);
+////        	i.putExtras(bundle);
+//                //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                context.startActivity(i);
+//                Log.d(TAG, "[MyReceiver] 用户点击打开了通知 MessageCenterActivity");
             }
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
@@ -75,6 +83,7 @@ public class MyReceiver extends BroadcastReceiver {
     }
 
     // 打印所有的 intent extra 数据
+
     private static String printBundle(Bundle bundle) {
         StringBuilder sb = new StringBuilder();
         for (String key : bundle.keySet()) {

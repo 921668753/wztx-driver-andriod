@@ -129,9 +129,6 @@
             android:screenOrientation="portrait" />
 
         <!--消息列表-->
-        <activity
-            android:name=".getorder.message.MessageActivity"
-            android:screenOrientation="portrait" />
 
         <!--接单  公告通知-->
         <activity
@@ -169,9 +166,6 @@
             android:screenOrientation="portrait" />
 
         <!--消息中心-->
-        <activity
-            android:name=".getorder.message.MessageCenterActivity"
-            android:screenOrientation="portrait" />
 
         <!--订单详情-->
         <activity

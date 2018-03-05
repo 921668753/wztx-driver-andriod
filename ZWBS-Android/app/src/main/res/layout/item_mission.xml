@@ -354,7 +354,6 @@
         android:paddingLeft="@dimen/dimen10"
         android:paddingRight="@dimen/dimen12">
 
-
         <TextView
             android:id="@+id/tv_submitDocuments"
             style="@style/AutoWrap"
@@ -406,5 +405,47 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_divider1"
+        style="@style/DividerWidth"
+        android:layout_marginTop="@dimen/dimen12"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_button1"
+        style="@style/MatchWrap"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen28"
+        android:paddingRight="@dimen/dimen28"
+        android:paddingTop="@dimen/dimen12"
+        android:visibility="gone">
+
+        <TextView style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_refusedLift"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_getorder"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/refusedLift"
+            android:textColor="@color/announcementCloseColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_agreedCancel"
+            style="@style/AutoWrap"
+            android:layout_marginLeft="@dimen/dimen15"
+            android:background="@drawable/shape_sendquotation"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen10.5"
+            android:paddingTop="@dimen/dimen10.5"
+            android:text="@string/agreedCancel"
+            android:textColor="@color/mainColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
 
 </LinearLayout>

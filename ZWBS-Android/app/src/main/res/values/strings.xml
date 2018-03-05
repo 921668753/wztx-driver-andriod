@@ -220,6 +220,7 @@
     <string name="afterSubmission">报价提交后不可修改</string>
     <string name="confirmAgreeCancelOrder1">确认不同意取消该接单？</string>
     <string name="confirmAgreeCancelOrder">确认同意取消该接单？</string>
+    <string name="systemForecast">系统预估</string>
 
     <!--城市选择-->
     <string name="selectCity">选择城市</string>
@@ -315,10 +316,6 @@
     <string name="pleaseNoYourIdentification">身份认证还未通过，请耐心等待！</string>
     <string name="pleaseVehicleCertification">请先进行车辆认证！</string>
     <string name="pleaseNoVehicleCertification">车辆认证还未通过，请耐心等待！</string>
-
-
-
-
 
 
     <!--订单-->
@@ -581,7 +578,8 @@
     <string name="orderId">订单id错误</string>
     <string name="locateFailure">定位失败请重新定位！</string>
     <string name="donotAgree">不同意</string>
-
+    <string name="refusedLift">拒绝取消</string>
+    <string name="agreedCancel">同意取消</string>
 
     <!--评价-->
     <string name="share">分享</string>

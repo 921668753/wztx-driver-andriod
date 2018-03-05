@@ -74,7 +74,7 @@ public class VehicleCertificationPresenter implements VehicleCertificationContra
             return;
         }
         if (StringUtils.isEmpty(car_type)) {
-            mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseFillOut) + MyApplication.getContext().getString(R.string.IdNumber), 0);
+            mView.errorMsg(MyApplication.getContext().getString(R.string.pleaseSelect) + MyApplication.getContext().getString(R.string.conductormodels), 0);
             return;
         }
         if (car_style_type_id < 1 || car_style_length_id < 1) {

@@ -139,6 +139,11 @@ public class GetOrderViewAdapter extends BGAAdapterViewAdapter<ListBean> {
         }
 
         /**
+         * 系统预估
+         */
+        viewHolderHelper.setText(R.id.tv_systemForecast, mContext.getString(R.string.renminbi) + listBean.getSystem_price());
+
+        /**
          * 实际价格
          */
         if (StringUtils.isEmpty(listBean.getMind_price()) || StringUtils.toDouble(listBean.getMind_price()) == 0) {

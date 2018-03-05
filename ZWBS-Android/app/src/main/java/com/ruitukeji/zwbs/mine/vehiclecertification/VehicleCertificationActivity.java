@@ -357,7 +357,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             tv_certificationStatus.setText(getString(R.string.inAuthentication));
         } else if (car_auth_status != null && car_auth_status.equals("refuse")) {
             tv_certificationStatus.setText(getString(R.string.authenticationFailure));
-        }  else if (car_auth_status != null && car_auth_status.equals("reauth")) {
+        } else if (car_auth_status != null && car_auth_status.equals("reauth")) {
             tv_certificationStatus.setText(getString(R.string.certificationOverdue));
         } else {
             tv_certificationStatus.setText(getString(R.string.unauthorized));
@@ -787,6 +787,10 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             }
         } else if (flag == 0) {
             VehicleCertificationBean vehicleCertificationBean = (VehicleCertificationBean) JsonUtil.getInstance().json2Obj(success, VehicleCertificationBean.class);
+            if (vehicleCertificationBean.getResult() == null) {
+                errorMsg(getString(R.string.serverReturnsDataError), 0);
+                return;
+            }
             String card_number = vehicleCertificationBean.getResult().getCard_number();
             tv_addressAbbreviation.setText(card_number.substring(0, 1));
             et_licenseNumber.setText(card_number.substring(1));
@@ -795,25 +799,21 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             tv_conductorModels.setText(getString(R.string.conductor) + vehicleLength + "  " + getString(R.string.models) + vehicleModel);
             vehicleModelId = vehicleCertificationBean.getResult().getCar_style_type_id();
             vehicleLengthId = vehicleCertificationBean.getResult().getCar_style_length_id();
-
             if (!StringUtils.isEmpty(vehicleCertificationBean.getResult().getCar_band())) {
                 tv_vehicleBrand.setText(vehicleCertificationBean.getResult().getCar_band());
                 setVehicleBrand(vehicleCertificationBean.getResult().getCar_band());
             }
-
             vehicleRegistrationDate = StringUtils.toLong(vehicleCertificationBean.getResult().getCar_registered_time());
             String d = DataUtil.formatData(vehicleRegistrationDate, "yyyy-MM-dd");
             tv_vehicleRegistrationDate.setText(d);
             Date date = new Date(vehicleRegistrationDate * 1000);
             calendar.setTime(date);
-
             if (!StringUtils.isEmpty(vehicleCertificationBean.getResult().getPermanent_address())) {
                 tv_residentAddress.setText(vehicleCertificationBean.getResult().getPermanent_address());
                 province = vehicleCertificationBean.getResult().getProvince();
                 city = vehicleCertificationBean.getResult().getCity();
                 area = vehicleCertificationBean.getResult().getArea();
             }
-
             uploadFaceLightUrl = vehicleCertificationBean.getResult().getCar_front_pic();
             GlideImageLoader.glideOrdinaryLoader(this, uploadFaceLightUrl + "?imageView2/1/w/161/h/103", img_uploadFaceLight);
             isUploadFaceLight = false;

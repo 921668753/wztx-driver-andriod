@@ -359,6 +359,30 @@
 
         <TextView
             style="@style/WrapWrap"
+            android:text="@string/systemForecast"
+            android:textColor="@color/descriptionGoodsColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_systemForecast"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen26"
+            android:singleLine="true"
+            android:text="--"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen10"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen10"
+        android:paddingRight="@dimen/dimen12">
+
+        <TextView
+            style="@style/WrapWrap"
             android:text="@string/actualPrice"
             android:textColor="@color/descriptionGoodsColors"
             android:textSize="@dimen/textsize13" />
@@ -435,6 +459,7 @@
     <TextView
         android:id="@+id/tv_divider"
         style="@style/DividerWidth"
+        android:layout_marginTop="@dimen/dimen12"
         android:visibility="gone" />
 
     <LinearLayout
@@ -449,26 +474,26 @@
         <TextView style="@style/AutoWrap" />
 
         <TextView
-            android:id="@+id/tv_donotAgree"
+            android:id="@+id/tv_refusedLift"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen15"
             android:background="@drawable/shape_getorder"
             android:gravity="center"
             android:paddingBottom="@dimen/dimen10.5"
             android:paddingTop="@dimen/dimen10.5"
-            android:text="@string/donotAgree"
+            android:text="@string/refusedLift"
             android:textColor="@color/announcementCloseColors"
             android:textSize="@dimen/textsize15" />
 
         <TextView
-            android:id="@+id/tv_consent"
+            android:id="@+id/tv_agreedCancel"
             style="@style/AutoWrap"
             android:layout_marginLeft="@dimen/dimen15"
             android:background="@drawable/shape_sendquotation"
             android:gravity="center"
             android:paddingBottom="@dimen/dimen10.5"
             android:paddingTop="@dimen/dimen10.5"
-            android:text="@string/consent"
+            android:text="@string/agreedCancel"
             android:textColor="@color/mainColor"
             android:textSize="@dimen/textsize15" />
 

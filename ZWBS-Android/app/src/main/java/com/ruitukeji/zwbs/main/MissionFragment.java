@@ -43,7 +43,7 @@ public class MissionFragment extends BaseFragment {
     @BindView(id = R.id.tv_dividerCompleteMission)
     private TextView tv_dividerCompleteMission;
 
-    private BaseFragment contentFragment;
+    public BaseFragment contentFragment;
     private BaseFragment contentFragment1;
 
     /**
@@ -84,6 +84,23 @@ public class MissionFragment extends BaseFragment {
         }
     }
 
+    public void setChageIcon(int chageIcon) {
+        if (contentFragment == null || contentFragment1 != null) {
+            return;
+        }
+        this.chageIcon = chageIcon;
+        if (chageIcon == 20) {
+            cleanColors(20);
+            changeFragment(contentFragment);
+            ((TodayTaskFragment) contentFragment).showCancelOrderNoticBouncedDialog();
+        } else if (chageIcon == 21) {
+            cleanColors(21);
+            changeFragment(contentFragment1);
+        } else {
+            cleanColors(20);
+            changeFragment(contentFragment);
+        }
+    }
 
     public void changeFragment(BaseFragment targetFragment) {
         super.changeFragment(R.id.fragment_contentMission, targetFragment);

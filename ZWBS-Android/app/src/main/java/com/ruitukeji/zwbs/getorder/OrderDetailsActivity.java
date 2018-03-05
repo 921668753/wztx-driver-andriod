@@ -135,6 +135,12 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     private TextView tv_estimatedTime;
 
     /**
+     * 系统预估
+     */
+    @BindView(id = R.id.tv_systemForecast)
+    private TextView tv_systemForecast;
+
+    /**
      * 实际价格
      */
     @BindView(id = R.id.tv_actualPrice)
@@ -179,15 +185,14 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     /**
      * 不同意
      */
-    @BindView(id = R.id.tv_donotAgree, click = true)
-    private TextView tv_donotAgree;
+    @BindView(id = R.id.tv_refusedLift, click = true)
+    private TextView tv_refusedLift;
 
     /**
      * 同意
      */
-    @BindView(id = R.id.tv_consent, click = true)
-    private TextView tv_consent;
-
+    @BindView(id = R.id.tv_agreedCancel, click = true)
+    private TextView tv_agreedCancel;
 
     private int order_id = 0;
     private String system_price = "0.00";
@@ -197,6 +202,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
     private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
     private AuthenticationBouncedDialog authenticationBouncedDialog1 = null;
     private AuthenticationBouncedDialog authenticationBouncedDialog2 = null;
+    private int is_cancel = 0;
 
     @Override
     public void setRootView() {
@@ -208,6 +214,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
         super.initData();
         mPresenter = new OrderDetailsPresenter(this);
         order_id = getIntent().getIntExtra("order_id", 0);
+        is_cancel = getIntent().getIntExtra("is_cancel", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((OrderDetailsContract.Presenter) mPresenter).getGoodDetails(order_id);
     }
@@ -217,7 +224,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.orderDetails), true, R.id.titlebar);
     }
-
 
     @Override
     public void widgetClick(View v) {
@@ -257,7 +263,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 getOrderBouncedDialog.show();
                 break;
             case R.id.tv_reject:
-
                 if (authenticationBouncedDialog != null && !authenticationBouncedDialog.isShowing()) {
                     authenticationBouncedDialog.show();
                     return;
@@ -296,7 +301,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 };
                 sendQuotationBouncedDialog.show();
                 break;
-            case R.id.tv_donotAgree:
+            case R.id.tv_refusedLift:
                 if (authenticationBouncedDialog1 != null && !authenticationBouncedDialog1.isShowing()) {
                     authenticationBouncedDialog1.show();
                     return;
@@ -307,13 +312,13 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                     public void confirm() {
                         this.cancel();
                         //不同意
-                        showLoadingDialog(getString(R.string.submissionLoad));
+                       // showLoadingDialog(getString(R.string.submissionLoad));
                         ((OrderDetailsContract.Presenter) mPresenter).postCancelGoodsComplete(order_id, 0);
                     }
                 };
                 authenticationBouncedDialog1.show();
                 break;
-            case R.id.tv_consent:
+            case R.id.tv_agreedCancel:
                 if (authenticationBouncedDialog2 != null && !authenticationBouncedDialog2.isShowing()) {
                     authenticationBouncedDialog2.show();
                     return;
@@ -324,7 +329,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                     public void confirm() {
                         this.cancel();
                         //同意
-                        showLoadingDialog(getString(R.string.submissionLoad));
+                     //   showLoadingDialog(getString(R.string.submissionLoad));
                         ((OrderDetailsContract.Presenter) mPresenter).postCancelGoodsComplete(order_id, 1);
                     }
                 };
@@ -375,6 +380,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_estimatedTime.setText(resultBean.getUsecar_time());
             }
             system_price = resultBean.getSystem_price();
+            tv_systemForecast.setText(getString(R.string.renminbi) + system_price);
             if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("init") || !StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quote")) {
                 if (StringUtils.isEmpty(resultBean.getMind_price()) || StringUtils.toDouble(resultBean.getMind_price()) == 0) {
                     tv_actualPrice.setText(getString(R.string.renminbi) + resultBean.getSystem_price());
@@ -406,8 +412,6 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
             } else {
                 tv_orderNeeds.setVisibility(View.GONE);
             }
-
-
             if (resultBean.getIs_driver_dock() == 0) {
                 tv_driverCargo.setText(getString(R.string.noNeed));
             } else {
@@ -428,7 +432,7 @@ public class OrderDetailsActivity extends BaseActivity implements OrderDetailsCo
                 tv_sendQuotation.setVisibility(View.VISIBLE);
                 tv_divider.setVisibility(View.GONE);
                 ll_button1.setVisibility(View.GONE);
-            } else if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quoted") && resultBean.getIs_cancel() == 2) {
+            } else if (!StringUtils.isEmpty(resultBean.getStatus()) && resultBean.getStatus().equals("quoted") && is_cancel == 2) {
                 ll_button.setVisibility(View.GONE);
                 tv_divider.setVisibility(View.VISIBLE);
                 ll_button1.setVisibility(View.VISIBLE);

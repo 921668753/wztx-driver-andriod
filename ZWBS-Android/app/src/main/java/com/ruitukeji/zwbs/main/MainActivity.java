@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     private TextView tv_getorder;
 
     @BindView(id = R.id.bottombar_mission, click = true)
-    private LinearLayout bottombar_order;
+    private LinearLayout bottombar_mission;
 
     @BindView(id = R.id.img_mission)
     private ImageView img_mission;
@@ -107,6 +107,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
     //声明mLocationOption对象
     public AMapLocationClientOption mLocationOption = null;
     AMapLocationClient mlocationClient = null;
+    private int isMission = 0;
 
     @Override
     public void setRootView() {
@@ -144,6 +145,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
         if (newChageIcon == 0) {
             ((MainContract.Presenter) mPresenter).setSimulateClick(bottombar_getorder, 160, 100);
         } else if (newChageIcon == 1) {
+            ((MainContract.Presenter) mPresenter).setSimulateClick(bottombar_mission, 160, 100);
+            isMission = 1;
         }
     }
 
@@ -282,6 +285,9 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
             chageIcon = 1;
             cleanColors(chageIcon);
             changeFragment(contentFragment1);
+            if (isMission == 1) {
+                ((MissionFragment) contentFragment1).setChageIcon(20);
+            }
         } else if (flag == 1) {
             WorkingStateBean workingStateBean = (WorkingStateBean) JsonUtil.getInstance().json2Obj(s, WorkingStateBean.class);
             PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());

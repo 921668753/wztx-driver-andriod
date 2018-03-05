@@ -23,6 +23,7 @@ import com.ruitukeji.zwbs.common.ViewInject;
 import com.ruitukeji.zwbs.constant.NumericConstants;
 import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.mission.FillOutExpressActivity;
+import com.ruitukeji.zwbs.mission.dialog.CancelOrderNoticBouncedDialog;
 import com.ruitukeji.zwbs.mission.dialog.NavigationBouncedDialog;
 import com.ruitukeji.zwbs.entity.mission.TaskBean;
 import com.ruitukeji.zwbs.getorder.OrderDetailsActivity;
@@ -114,6 +115,8 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     private NavigationBouncedDialog navigationBouncedDialog = null;
     private CancelOrderBouncedDialog cancelOrderBouncedDialog = null;
     private SelectContactBouncedDialog selectContactBouncedDialog = null;
+    private CancelOrderNoticBouncedDialog cancelOrderNoticBouncedDialog = null;
+    public int isShowingOrderNotic1 = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -121,13 +124,13 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
         return View.inflate(aty, R.layout.fragment_task, null);
     }
 
-
     @Override
     protected void initData() {
         super.initData();
         mPresenter = new TaskPresenter(this);
         mAdapter = new TaskViewAdapter(getActivity());
         dataLong = System.currentTimeMillis() / 1000;
+        cancelOrderNoticBouncedDialog = new CancelOrderNoticBouncedDialog(aty, 0, "0");
     }
 
     @Override
@@ -245,23 +248,25 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
                 mRefreshLayout.endLoadingMore();
                 mAdapter.addMoreData(taskBean.getResult().getList());
             }
+            int isShowingOrderNotic = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+            if (isShowingOrderNotic == 1 && isShowingOrderNotic1 == 0) {
+                if (cancelOrderNoticBouncedDialog != null && !cancelOrderNoticBouncedDialog.isShowing()) {
+                    cancelOrderNoticBouncedDialog.show();
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+                    isShowingOrderNotic1 = 1;
+                    int orderId = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "orderId", 0);
+                    String orderCode = PreferenceHelper.readString(aty, StringConstants.FILENAME, "orderCode", "");
+                    cancelOrderNoticBouncedDialog.setOrderId(orderId, orderCode);
+                }
+            }
         } else if (flag == 1) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
-            aty.showActivity(aty, intent);
+            intent.putExtra("is_cancel", mAdapter.getItem(position).getIs_cancel());
+            startActivityForResult(intent, REQUEST_CODE_SELECT);
         } else if (flag == 2) {
             String orgLocation = mAdapter.getItem(position).getOrg_address_maps();
             String destLocation = mAdapter.getItem(position).getDest_address_maps();
-//            if (StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str())) {
-//
-//            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("quoted") &&
-//                    !StringUtils.isEmpty(mAdapter.getItem(position).getArr_org_time_str()) && StringUtils.isEmpty(mAdapter.getItem(position).getSend_time())) {
-//                ViewInject.toast(getString(R.string.afterDeparture));
-//                return;
-//            } else if (!StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("distribute")
-//                    || !StringUtils.isEmpty(mAdapter.getItem(position).getStatus()) && mAdapter.getItem(position).getStatus().equals("arrive")) {
-//
-//            }
             if (navigationBouncedDialog == null) {
                 navigationBouncedDialog = new NavigationBouncedDialog(aty, orgLocation, destLocation);
             } else {
@@ -358,6 +363,10 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
         if (cancelOrderBouncedDialog != null) {
             cancelOrderBouncedDialog.cancel();
         }
+        if (cancelOrderNoticBouncedDialog != null) {
+            cancelOrderNoticBouncedDialog.cancel();
+        }
+        cancelOrderNoticBouncedDialog = null;
         cancelOrderBouncedDialog = null;
         calendarBouncedDialog = null;
         mAdapter = null;
@@ -369,6 +378,7 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
         ((TaskContract.Presenter) mPresenter).isLogin(1);
     }
 
+
     @Override
     public void onItemChildClick(ViewGroup viewGroup, View view, int i) {
         position = i;
@@ -377,6 +387,9 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
         } else if (view.getId() == R.id.img_phone) {
             ((TaskContract.Presenter) mPresenter).isLogin(3);
         } else if (view.getId() == R.id.img_start && StringUtils.isEmpty(mAdapter.getItem(i).getArr_org_time_str())) {
+            if (mAdapter.getItem(i).getIs_cancel() != 0) {
+                return;
+            }
             showLoadingDialog(getString(R.string.submissionLoad));
             ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 0);
         } else if (view.getId() == R.id.img_car && StringUtils.isEmpty(mAdapter.getItem(i).getSend_time())) {
@@ -464,5 +477,12 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
         }
     }
 
+    public void showCancelOrderNoticBouncedDialog() {
+        isShowingOrderNotic1 = 0;
+        if (mRefreshLayout.isLoadingMore()) {
+            return;
+        }
+        mRefreshLayout.beginRefreshing();
+    }
 
 }

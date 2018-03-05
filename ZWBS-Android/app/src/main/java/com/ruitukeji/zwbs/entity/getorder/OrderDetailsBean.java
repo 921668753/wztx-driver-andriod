@@ -65,7 +65,6 @@ public class OrderDetailsBean extends BaseResult<OrderDetailsBean.ResultBean> {
         private String org_detail;
         private int is_express;
 
-
         public int getId() {
             return id;
         }
