@@ -103,6 +103,7 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
             private String effective_time;
             private int is_driver_dock;
             private String final_price;
+            private String system_price;
 
             public int getId() {
                 return id;
@@ -238,6 +239,14 @@ public class IncomeDetailsBean extends BaseResult<IncomeDetailsBean.ResultBean> 
 
             public void setFinal_price(String final_price) {
                 this.final_price = final_price;
+            }
+
+            public String getSystem_price() {
+                return system_price;
+            }
+
+            public void setSystem_price(String system_price) {
+                this.system_price = system_price;
             }
         }
     }
