@@ -26,17 +26,6 @@ public class AddLineProvinceViewAdapter extends BGAAdapterViewAdapter<ResultBean
          * 城市名称
          */
         viewHolderHelper.setText(R.id.tv_adress, listBean.getName());
-
-//        TextView tv_divider = (TextView) viewHolderHelper.getTextView(R.id.tv_divider);
-//        if (listBean.getStatus() == 0) {
-//            viewHolderHelper.setTextColorRes(R.id.tv_CityName, R.color.titletextcolors);
-//            tv_divider.setBackgroundResource(R.color.strokecolors);
-//            tv_divider.setHeight(1);
-//        } else {
-//            viewHolderHelper.setTextColorRes(R.id.tv_CityName, R.color.announcementCloseColors);
-//            tv_divider.setBackgroundResource(R.color.announcementCloseColors);
-//            tv_divider.setHeight(2);
-//        }
     }
 
 }

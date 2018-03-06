@@ -66,8 +66,8 @@ public abstract class AddLineProvinceBouncedDialog extends BaseDialog implements
     }
 
     private void initView() {
-        mPresenter = new OriginBouncedPresenter(this);
         addLineProvinceViewAdapter = new AddLineProvinceViewAdapter(context);
+        mPresenter = new OriginBouncedPresenter(this);
         gv_address = (GridView) findViewById(R.id.gv_address);
         gv_address.setOnItemClickListener(this);
         gv_address.setAdapter(addLineProvinceViewAdapter);
@@ -193,8 +193,6 @@ public abstract class AddLineProvinceBouncedDialog extends BaseDialog implements
         if (addLineCityBouncedDialog != null) {
             addLineCityBouncedDialog.cancel();
         }
-        addLineProvinceViewAdapter.clear();
-        addLineProvinceViewAdapter = null;
         addLineCityBouncedDialog = null;
         super.setOnDismissListener(listener);
     }
