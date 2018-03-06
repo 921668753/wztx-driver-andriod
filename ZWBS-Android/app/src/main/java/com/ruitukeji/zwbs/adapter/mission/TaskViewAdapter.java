@@ -7,10 +7,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
 
-import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
-import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.mission.TaskBean.ResultBean.ListBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
@@ -212,11 +210,9 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.ll_right, View.GONE);
             viewHolderHelper.setVisibility(R.id.tv_divider, View.GONE);
         }
-        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 2) {
+        if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 2
+                || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 1) {
             viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
-            PreferenceHelper.write(mContext, StringConstants.FILENAME, "isShowingOrderNotic", 1);
-            PreferenceHelper.write(mContext, StringConstants.FILENAME, "orderId", listBean.getId());
-            PreferenceHelper.write(mContext, StringConstants.FILENAME, "orderCode", listBean.getOrder_code());
         }
     }
 

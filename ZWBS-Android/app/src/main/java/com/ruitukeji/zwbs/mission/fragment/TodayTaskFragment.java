@@ -118,7 +118,7 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     private SelectContactBouncedDialog selectContactBouncedDialog = null;
     private CancelOrderNoticBouncedDialog cancelOrderNoticBouncedDialog = null;
     public int isShowingOrderNotic1 = 0;
-    private Handler handler = null;
+
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -129,7 +129,6 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     @Override
     protected void initData() {
         super.initData();
-        handler = new Handler();
         mPresenter = new TaskPresenter(this);
         mAdapter = new TaskViewAdapter(getActivity());
         dataLong = System.currentTimeMillis() / 1000;
@@ -243,6 +242,14 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
                 errorMsg(getString(R.string.serverReturnsDataNull), 0);
                 return;
             }
+            for (int i = 0; i < taskBean.getResult().getList().size(); i++) {
+                TaskBean.ResultBean.ListBean listBean = taskBean.getResult().getList().get(i);
+                if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("quoted") && listBean.getIs_cancel() == 2) {
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 1);
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "orderId", listBean.getId());
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "orderCode", listBean.getOrder_code());
+                }
+            }
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mAdapter.clear();
                 mAdapter.addNewData(taskBean.getResult().getList());
@@ -251,22 +258,17 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
                 mRefreshLayout.endLoadingMore();
                 mAdapter.addMoreData(taskBean.getResult().getList());
             }
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    int isShowingOrderNotic = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
-                    if (isShowingOrderNotic == 1 && isShowingOrderNotic1 == 0) {
-                        if (cancelOrderNoticBouncedDialog != null && !cancelOrderNoticBouncedDialog.isShowing()) {
-                            cancelOrderNoticBouncedDialog.show();
-                            PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
-                            isShowingOrderNotic1 = 1;
-                            int orderId = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "orderId", 0);
-                            String orderCode = PreferenceHelper.readString(aty, StringConstants.FILENAME, "orderCode", "");
-                            cancelOrderNoticBouncedDialog.setOrderId(orderId, orderCode);
-                        }
-                    }
+            int isShowingOrderNotic = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+            if (isShowingOrderNotic == 1 && isShowingOrderNotic1 == 0) {
+                if (cancelOrderNoticBouncedDialog != null && !cancelOrderNoticBouncedDialog.isShowing()) {
+                    cancelOrderNoticBouncedDialog.show();
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+                    isShowingOrderNotic1 = 1;
+                    int orderId = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "orderId", 0);
+                    String orderCode = PreferenceHelper.readString(aty, StringConstants.FILENAME, "orderCode", "");
+                    cancelOrderNoticBouncedDialog.setOrderId(orderId, orderCode);
                 }
-            }, 800);
+            }
         } else if (flag == 1) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
@@ -355,10 +357,6 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
-        handler = null;
         mAdapter.clear();
         mAdapter.cancelAllTimers();
         if (selectContactBouncedDialog != null) {
