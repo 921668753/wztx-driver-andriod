@@ -85,6 +85,9 @@ public class StartPageActivity extends BaseInstrumentedActivity implements Start
 
 
     private void jumpTo() {
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "orderId", 0);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "orderCode", "");
         boolean isFirst = PreferenceHelper.readBoolean(this, StringConstants.FILENAME, "isFirstOpen", false);
         Intent jumpIntent = new Intent();
         jumpIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
