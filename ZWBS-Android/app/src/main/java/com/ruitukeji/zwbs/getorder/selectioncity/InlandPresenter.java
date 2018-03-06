@@ -89,7 +89,6 @@ public class InlandPresenter implements InlandContract.Presenter {
                 mView.errorMsg(msg, 0);
             }
         });
-
     }
 
     @Override

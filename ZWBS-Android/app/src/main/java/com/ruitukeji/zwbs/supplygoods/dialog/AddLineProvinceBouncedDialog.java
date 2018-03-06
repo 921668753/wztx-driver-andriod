@@ -1,7 +1,6 @@
 package com.ruitukeji.zwbs.supplygoods.dialog;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;

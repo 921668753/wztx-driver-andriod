@@ -33,7 +33,8 @@
 
     <!--SelectRegisterTypeActivity-->
     <color name="typecolors">#666666</color>
-
+    <color name="searchTextColors">#767676</color>
+    <color name="searchBackgroundColors">#eaebed</color>
 
     <!--<color name="timertext">#B3B3B3</color>-->
     <color name="strokecolors">#DDDDDD</color>

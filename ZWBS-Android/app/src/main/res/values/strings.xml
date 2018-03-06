@@ -222,14 +222,20 @@
     <string name="confirmAgreeCancelOrder">确认同意取消该接单？</string>
     <string name="systemForecast">系统预估</string>
 
-    <!--城市选择-->
+    <!--接单 城市选择-->
     <string name="selectCity">选择城市</string>
     <string name="china">中国</string>
+    <string name="cityName1">请输入您要搜索的地址</string>
     <string name="currentPositioningCity">当前定位城市</string>
     <string name="recentVisitCity">最近访问城市</string>
     <string name="recent">最近</string>
     <string name="hotCity">热门城市</string>
     <string name="hot">热门</string>
+
+    <!--接单 城市选择 搜索地区-->
+    <string name="cityName">城市名、拼音首字母 ……</string>
+    <string name="searchHistory">搜索历史</string>
+    <string name="clearSearchRecord">清除搜索记录</string>
 
     <!--消息列表-->
     <string name="message">消息</string>
