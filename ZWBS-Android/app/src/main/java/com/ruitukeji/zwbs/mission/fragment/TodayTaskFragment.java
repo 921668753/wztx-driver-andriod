@@ -3,6 +3,7 @@ package com.ruitukeji.zwbs.mission.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -117,6 +118,7 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     private SelectContactBouncedDialog selectContactBouncedDialog = null;
     private CancelOrderNoticBouncedDialog cancelOrderNoticBouncedDialog = null;
     public int isShowingOrderNotic1 = 0;
+    private Handler handler = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -127,6 +129,7 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     @Override
     protected void initData() {
         super.initData();
+        handler = new Handler();
         mPresenter = new TaskPresenter(this);
         mAdapter = new TaskViewAdapter(getActivity());
         dataLong = System.currentTimeMillis() / 1000;
@@ -248,17 +251,22 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
                 mRefreshLayout.endLoadingMore();
                 mAdapter.addMoreData(taskBean.getResult().getList());
             }
-            int isShowingOrderNotic = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
-            if (isShowingOrderNotic == 1 && isShowingOrderNotic1 == 0) {
-                if (cancelOrderNoticBouncedDialog != null && !cancelOrderNoticBouncedDialog.isShowing()) {
-                    cancelOrderNoticBouncedDialog.show();
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
-                    isShowingOrderNotic1 = 1;
-                    int orderId = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "orderId", 0);
-                    String orderCode = PreferenceHelper.readString(aty, StringConstants.FILENAME, "orderCode", "");
-                    cancelOrderNoticBouncedDialog.setOrderId(orderId, orderCode);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    int isShowingOrderNotic = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+                    if (isShowingOrderNotic == 1 && isShowingOrderNotic1 == 0) {
+                        if (cancelOrderNoticBouncedDialog != null && !cancelOrderNoticBouncedDialog.isShowing()) {
+                            cancelOrderNoticBouncedDialog.show();
+                            PreferenceHelper.write(aty, StringConstants.FILENAME, "isShowingOrderNotic", 0);
+                            isShowingOrderNotic1 = 1;
+                            int orderId = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "orderId", 0);
+                            String orderCode = PreferenceHelper.readString(aty, StringConstants.FILENAME, "orderCode", "");
+                            cancelOrderNoticBouncedDialog.setOrderId(orderId, orderCode);
+                        }
+                    }
                 }
-            }
+            }, 800);
         } else if (flag == 1) {
             Intent intent = new Intent(aty, OrderDetailsActivity.class);
             intent.putExtra("order_id", mAdapter.getItem(position).getId());
@@ -347,6 +355,10 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        handler = null;
         mAdapter.clear();
         mAdapter.cancelAllTimers();
         if (selectContactBouncedDialog != null) {
@@ -479,9 +491,6 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
 
     public void showCancelOrderNoticBouncedDialog() {
         isShowingOrderNotic1 = 0;
-        if (mRefreshLayout.isLoadingMore()) {
-            return;
-        }
         mRefreshLayout.beginRefreshing();
     }
 

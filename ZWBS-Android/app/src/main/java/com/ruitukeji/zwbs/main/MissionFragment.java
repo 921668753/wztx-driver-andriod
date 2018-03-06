@@ -85,7 +85,7 @@ public class MissionFragment extends BaseFragment {
     }
 
     public void setChageIcon(int chageIcon) {
-        if (contentFragment == null || contentFragment1 != null) {
+        if (contentFragment == null ) {
             return;
         }
         this.chageIcon = chageIcon;

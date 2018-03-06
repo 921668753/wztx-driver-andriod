@@ -54,6 +54,7 @@ public class MyReceiver extends BroadcastReceiver {
                 context.startActivity(intent1);
                 Log.d(TAG, "[MyReceiver] 用户点击打开了通知 MainActivity");
             } else if (bundle.getString("cn.jpush.android.NOTIFICATION_CONTENT_TITLE").startsWith("您有一条被取消的订单")) {
+                //"cn.jpush.android.NOTIFICATION_CONTENT_TITLE"
                 Intent intent1 = new Intent();
                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent1.putExtra("newChageIcon", 1);
