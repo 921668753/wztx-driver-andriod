@@ -98,7 +98,6 @@ public class GlideImageLoader implements ImageLoader {
      * @param tag       ==0为圆形  ==1为圆角
      */
     public static void glideLoader(Context context, Object url, ImageView imageView, int tag) {
-
         if (0 == tag) {
             GlideApp.with(context)
                     .load(url)
@@ -111,16 +110,26 @@ public class GlideImageLoader implements ImageLoader {
                     //    .transition(withCrossFade().crossFade())//应用在淡入淡出
                     .into(imageView);
         } else if (1 == tag) {
-            GlideApp.with(context)
-                    .load(url)
-                    .placeholder(R.mipmap.loading)
-                    //   .error(R.mipmap.default_image)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .transform(new GlideRoundTransform(context, 10))
-                    //   .skipMemoryCache(true)//设置跳过内存缓存
-                    .dontAnimate()//没有任何淡入淡出效果
-                    //   .transition(withCrossFade().crossFade())//应用在淡入淡出
-                    .into(imageView);
+            if (url.toString().startsWith("http")) {
+                GlideApp.with(context)
+                        .load(url)
+                        .placeholder(R.mipmap.loading)
+                        //   .error(R.mipmap.default_image)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .transform(new GlideRoundTransform(context, 10))
+                        //   .skipMemoryCache(true)//设置跳过内存缓存
+                        .dontAnimate()//没有任何淡入淡出效果
+                        //   .transition(withCrossFade().crossFade())//应用在淡入淡出
+                        .into(imageView);
+            } else {
+                GlideApp.with(context)                      //配置上下文
+                        .load(Uri.fromFile(new File(url.toString())))//设置图片路径(fix #8,文件名包含%符号 无法识别和显示)
+                        //      .error(R.mipmap.default_image)           //设置错误图片
+                        .placeholder(R.mipmap.load)     //设置占位图片
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+                        .centerInside()
+                        .into(imageView);
+            }
         }
     }
 

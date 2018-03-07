@@ -71,6 +71,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
     private ArrayList<ImageItem> images = null;
     private int order_id = 0;
     private int is_cargo_receipt = 0;
+    private String filePath = null;
 
     @Override
     public void setRootView() {
@@ -143,7 +144,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
                 }
                 images.clear();
                 ImageItem imageItem = new ImageItem();
-                imageItem.path = uploadPicturesUrl;
+                imageItem.path = filePath;
                 images.add(imageItem);
                 //打开预览
                 toImagePreviewDelActivity(images, NumericConstants.REQUEST_CODE_PREVIEW);
@@ -198,7 +199,7 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
                     ViewInject.toast(getString(R.string.noData));
                     return;
                 }
-                String filePath = images.get(0).path;
+                filePath = images.get(0).path;
                 showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad));
                 ((UploadReceiptVoucherContract.Presenter) mPresenter).postUpLoadImg(filePath, requestCode);
             } else {
@@ -307,11 +308,6 @@ public class UploadReceiptVoucherActivity extends BaseActivity implements Upload
         }
         return super.onKeyUp(keyCode, event);
     }
-
-
-
-
-
 
 
     @Override
