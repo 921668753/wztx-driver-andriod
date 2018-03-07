@@ -23,7 +23,6 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean;
 import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean.ResultBean;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
 import com.ruitukeji.zwbs.utils.myview.ChildListView;
 
