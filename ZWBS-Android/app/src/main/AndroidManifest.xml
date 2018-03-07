@@ -111,6 +111,11 @@
             android:name=".getorder.selectioncity.SelectionCityActivity"
             android:screenOrientation="portrait" />
 
+        <!--接单  城市选择 地址搜索-->
+        <activity
+            android:name=".getorder.selectioncity.addresssearch.AddressSearchActivity"
+            android:screenOrientation="portrait" />
+
         <!--接单  系统消息-->
         <activity
             android:name=".getorder.message.SystemMessageActivity"

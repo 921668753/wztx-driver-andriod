@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.stuxuhai.jpinyin.PinyinException;
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.ruitukeji.zwbs.R;
@@ -21,8 +23,9 @@ import com.ruitukeji.zwbs.constant.StringConstants;
 import com.ruitukeji.zwbs.entity.BaseResult;
 import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean;
 import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean.ResultBean;
+import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
 import com.ruitukeji.zwbs.utils.JsonUtil;
-import com.ruitukeji.zwbs.utils.myview.ChildLiistView;
+import com.ruitukeji.zwbs.utils.myview.ChildListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,7 +78,7 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
     private TextView tv_divider1;
 
     @BindView(id = R.id.lv_addressSearch)
-    private ChildLiistView lv_addressSearch;
+    private ChildListView lv_addressSearch;
 
     /**
      * 错误提示页
@@ -93,13 +96,12 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
 
     private List<InlandBean.ResultBean> historyCityList;
     private List<InlandBean.ResultBean> cityList;
-
+    private List<InlandBean.ResultBean> searchList;
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_addresssearch);
     }
-
 
     @Override
     public void initData() {
@@ -113,6 +115,7 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
     @Override
     public void initWidget() {
         super.initWidget();
+        //  ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCity), true, R.id.titlebar);
         lv_addressSearch.setAdapter(addressSearchViewAdapter);
         lv_addressSearch.setOnItemClickListener(this);
         et_cityName.addTextChangedListener(this);
@@ -161,7 +164,30 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
             readHistory();
             return;
         }
-        ((AddressSearchContract.Presenter) mPresenter).getSearchCity(cityList, s.toString().trim());
+        // searchList = ((AddressSearchContract.Presenter) mPresenter).getSearchCity(cityList, s.toString().trim());
+        searchList = new ArrayList<ResultBean>();
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < cityList.size(); i++) {
+                    String py = cityList.get(i).getName();
+                    try {
+                        if (py.startsWith(s.toString().trim()) || PinyinHelper.getShortPinyin(py).startsWith(s.toString().trim().toLowerCase())) {
+                            searchList.add(cityList.get(i));
+                        }
+                    } catch (PinyinException e) {
+                        e.printStackTrace();
+                    }
+                }
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        addressSearchViewAdapter.clear();
+                        addressSearchViewAdapter.addNewData(searchList);
+                    }
+                });
+            }
+        });
+        thread.start();
         img_quxiao.setVisibility(View.VISIBLE);
         lv_addressSearch.setVisibility(View.VISIBLE);
         tv_divider.setVisibility(View.GONE);

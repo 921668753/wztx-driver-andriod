@@ -1,12 +1,16 @@
 package com.ruitukeji.zwbs.getorder.selectioncity;
 
 import android.content.Intent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.kymjs.common.Log;
 import com.ruitukeji.zwbs.R;
 import com.ruitukeji.zwbs.common.BaseActivity;
 import com.ruitukeji.zwbs.common.BaseFragment;
-import com.ruitukeji.zwbs.utils.ActivityTitleUtils;
+import com.ruitukeji.zwbs.common.BindView;
+import com.ruitukeji.zwbs.getorder.selectioncity.addresssearch.AddressSearchActivity;
 
 import static com.ruitukeji.zwbs.constant.NumericConstants.REQUEST_CODE_PHOTO_PREVIEW;
 
@@ -19,6 +23,13 @@ public class SelectionCityActivity extends BaseActivity {
 
     private BaseFragment contentFragment;
     private int chageIcon = 0;
+
+    @BindView(id = R.id.ll_addressSearch, click = true)
+    private LinearLayout ll_addressSearch;
+
+    @BindView(id = R.id.img_back, click = true)
+    private ImageView img_back;
+
 
     @Override
     public void setRootView() {
@@ -36,10 +47,25 @@ public class SelectionCityActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCity), true, R.id.titlebar);
+//        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCity), true, R.id.titlebar);
         changeFragment(contentFragment);
     }
 
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.img_back:
+                finish();
+                break;
+            case R.id.ll_addressSearch:
+                Intent intent = new Intent(aty, AddressSearchActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_PHOTO_PREVIEW);
+                overridePendingTransition(0, 0);
+                break;
+        }
+    }
 
     public void changeFragment(BaseFragment targetFragment) {
         super.changeFragment(R.id.main_content, targetFragment);

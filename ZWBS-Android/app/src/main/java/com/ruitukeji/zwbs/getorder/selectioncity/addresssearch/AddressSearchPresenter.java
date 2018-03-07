@@ -1,5 +1,7 @@
 package com.ruitukeji.zwbs.getorder.selectioncity.addresssearch;
 
+import com.github.stuxuhai.jpinyin.PinyinException;
+import com.github.stuxuhai.jpinyin.PinyinHelper;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.ruitukeji.zwbs.entity.getorder.selectioncity.InlandBean.ResultBean;
 import com.ruitukeji.zwbs.retrofit.RequestClient;
@@ -40,13 +42,22 @@ public class AddressSearchPresenter implements AddressSearchContract.Presenter {
     @Override
     public List<ResultBean> getSearchCity(List<ResultBean> cityList, String name) {
         List<ResultBean> cityList1 = new ArrayList<ResultBean>();
-        for (int i = 0; i < cityList.size(); i++) {
-            if (cityList.get(i).getName().startsWith(name)) {
-                cityList1.add(cityList.get(i));
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < cityList.size(); i++) {
+                    String py = cityList.get(i).getName();
+                    try {
+                        if (py.startsWith(name) || PinyinHelper.getShortPinyin(py).startsWith(name.toLowerCase())) {
+                            cityList1.add(cityList.get(i));
+                        }
+                    } catch (PinyinException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        });
+        thread.start();
         return cityList1;
     }
-
-
 }

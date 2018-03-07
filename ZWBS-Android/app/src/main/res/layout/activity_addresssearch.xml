@@ -9,6 +9,7 @@
     <LinearLayout
         style="@style/MatchWrap"
         android:background="@color/white"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <ImageView
@@ -90,12 +91,15 @@
                 android:id="@+id/tv_divider"
                 style="@style/DividerWidth" />
 
-            <com.common.cklibrary.utils.myview.ChildLiistView
+            <com.ruitukeji.zwbs.utils.myview.ChildListView
                 android:id="@+id/lv_addressSearch"
                 style="@style/MatchWrap"
-                android:divider="@android:color/transparent"
+                android:background="@color/white"
+                android:divider="@color/dividercolors"
+                android:dividerHeight="@dimen/dimen1"
                 android:overScrollMode="never"
                 android:scrollbars="none"
+                android:paddingLeft="@dimen/dimen15"
                 tools:listitem="@layout/item_addresssearch" />
 
             <TextView
