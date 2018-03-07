@@ -403,9 +403,15 @@ public class TodayTaskFragment extends BaseFragment implements EasyPermissions.P
             showLoadingDialog(getString(R.string.submissionLoad));
             ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 0);
         } else if (view.getId() == R.id.img_car && StringUtils.isEmpty(mAdapter.getItem(i).getSend_time())) {
+            if (mAdapter.getItem(i).getIs_cancel() != 0) {
+                return;
+            }
             showLoadingDialog(getString(R.string.submissionLoad));
             ((TaskContract.Presenter) mPresenter).postShipping(mAdapter.getItem(i).getId());
         } else if (view.getId() == R.id.img_end && StringUtils.isEmpty(mAdapter.getItem(i).getArr_time())) {
+            if (mAdapter.getItem(i).getIs_cancel() != 0) {
+                return;
+            }
             showLoadingDialog(getString(R.string.submissionLoad));
             ((TaskContract.Presenter) mPresenter).postArrOrgTime(mAdapter.getItem(i).getId(), 1);
         } else if (view.getId() == R.id.tv_submitDocuments) {

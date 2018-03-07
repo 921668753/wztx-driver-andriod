@@ -851,7 +851,7 @@ public class VehicleCertificationActivity extends BaseActivity implements EasyPe
             Date date3 = new Date(durationInsurance * 1000);
             calendar3.setTime(date3);
 
-            uploadBusinessInsurancePolicyPhotoUrl = vehicleCertificationBean.getResult().getLicense_pic();
+            uploadBusinessInsurancePolicyPhotoUrl = vehicleCertificationBean.getResult().getPolicy_pic();
             GlideImageLoader.glideOrdinaryLoader(this, uploadBusinessInsurancePolicyPhotoUrl + "?imageView2/1/w/161/h/103", img_uploadBusinessInsurancePolicyPhoto);
             isUploadBusinessInsurancePolicyPhoto = false;
 

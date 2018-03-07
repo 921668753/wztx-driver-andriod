@@ -170,7 +170,20 @@ public class TaskViewAdapter extends BGAAdapterViewAdapter<ListBean> {
             viewHolderHelper.setVisibility(R.id.img_navigation, View.VISIBLE);
             viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_unselected);
             viewHolderHelper.setImageResource(R.id.img_end, R.mipmap.ic_end_unselected);
-        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("distribute") || !StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("arrive")) {
+        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("distribute")) {
+            viewHolderHelper.setVisibility(R.id.ll_bottom, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.GONE);
+            viewHolderHelper.setVisibility(R.id.img_navigation, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_submitDocuments, View.INVISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_submitDeliveryReceipt, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_exceptionReporting, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_onArrival, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_start, View.VISIBLE);
+            viewHolderHelper.setVisibility(R.id.tv_remainingTime, View.GONE);
+            viewHolderHelper.setVisibility(R.id.tv_remainingTime1, View.GONE);
+            viewHolderHelper.setImageResource(R.id.img_start, R.mipmap.ic_start_selected);
+            viewHolderHelper.setImageResource(R.id.img_car, R.mipmap.ic_car_selected);
+        } else if (!StringUtils.isEmpty(listBean.getStatus()) && listBean.getStatus().equals("arrive")) {
             viewHolderHelper.setVisibility(R.id.ll_bottom, View.VISIBLE);
             viewHolderHelper.setVisibility(R.id.tv_cancelOrder, View.GONE);
             viewHolderHelper.setVisibility(R.id.img_navigation, View.VISIBLE);
