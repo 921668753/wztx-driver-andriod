@@ -97,6 +97,7 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
     private List<InlandBean.ResultBean> historyCityList;
     private List<InlandBean.ResultBean> cityList;
     private List<InlandBean.ResultBean> searchList;
+    private Thread thread = null;
 
     @Override
     public void setRootView() {
@@ -166,7 +167,10 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
         }
         // searchList = ((AddressSearchContract.Presenter) mPresenter).getSearchCity(cityList, s.toString().trim());
         searchList = new ArrayList<ResultBean>();
-        Thread thread = new Thread(new Runnable() {
+        if (thread != null) {
+            thread = null;
+        }
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < cityList.size(); i++) {
@@ -236,6 +240,7 @@ public class AddressSearchActivity extends BaseActivity implements TextWatcher, 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        thread = null;
         historyCityList.clear();
         historyCityList = null;
         addressSearchViewAdapter.clear();
