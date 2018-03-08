@@ -657,17 +657,6 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
         }
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        marqueeView.startFlipping();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        marqueeView.stopFlipping();
-//    }
 
     @Override
     public void onDestroy() {
