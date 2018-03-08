@@ -731,6 +731,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") || ((String) msgEvent.getData()).equals("RxBusGoWorkEvent")) {
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
         } else if (((String) msgEvent.getData()).equals("RxBusModelsEvent")) {
             setModels();

@@ -332,7 +332,7 @@ public class IdentityAuthenticationActivity extends BaseActivity implements Easy
                 }
                 images.clear();
                 ImageItem imageItem5 = new ImageItem();
-                imageItem5.path = uploadRoadQualificationUrl;
+                imageItem5.path = uploadIntegrityAssessmentUrl;
                 images.add(imageItem5);
                 //打开预览
                 toImagePreviewDelActivity(img_uploadIntegrityAssessment, images, NumericConstants.REQUEST_CODE_PREVIEW5);

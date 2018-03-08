@@ -28,7 +28,6 @@ public class URLConstants {
     public static String UPLOADQFCTIMG = APIURL + "file/uploadImg";
 //    public static String UPLOADQFCTIMG = "http://wztx.shp.api.ruitukeji.com/file/uploadImg";
 
-
     /**
      * 应用配置参数
      */
