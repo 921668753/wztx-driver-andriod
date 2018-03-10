@@ -293,6 +293,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Eas
             PreferenceHelper.write(aty, StringConstants.FILENAME, "map_code", workingStateBean.getResult().getMap_code());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "isGoWork", workingStateBean.getResult().getOnline());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "auth_status", workingStateBean.getResult().getAuth_status());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "car_auth_status", workingStateBean.getResult().getCar_auth_status());
             if (workingStateBean.getResult().getOnline() == 0) {
                 img_chuche.setImageResource(R.mipmap.shouche);
                 isGoWork = 0;

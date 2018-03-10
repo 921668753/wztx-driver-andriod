@@ -24,6 +24,7 @@ public class WorkingStateBean extends BaseResult<WorkingStateBean.ResultBean> {
         private int online;
         private String map_code;
         private String auth_status;
+        private String car_auth_status;
 
         public int getOnline() {
             return online;
@@ -47,6 +48,14 @@ public class WorkingStateBean extends BaseResult<WorkingStateBean.ResultBean> {
 
         public void setAuth_status(String auth_status) {
             this.auth_status = auth_status;
+        }
+
+        public String getCar_auth_status() {
+            return car_auth_status;
+        }
+
+        public void setCar_auth_status(String car_auth_status) {
+            this.car_auth_status = car_auth_status;
         }
     }
 }
