@@ -46,7 +46,7 @@ public class PayUtils {
      * @param orderParam
      */
 
-    public void doPay(String orderParam) {
+    public void doAlipay(String orderParam) {
         final String payInfo = orderParam;
         Log.d("payInfo", payInfo);
         Runnable payRunnable = new Runnable() {
@@ -132,7 +132,7 @@ public class PayUtils {
      * @param timeStamp
      * @param paySign
      */
-    public void doPayment(String appId, String partnerId, String prepayId, String packages, String nonceStr, String timeStamp, String paySign) {
+    public void doWxPay(String appId, String partnerId, String prepayId, String packages, String nonceStr, String timeStamp, String paySign) {
         PreferenceHelper.write(context, StringConstants.FILENAME, "payClass", context.getClass().getName());
         IWXAPI msgApi = WXAPIFactory.createWXAPI(context, appId);
         if (msgApi.isWXAppInstalled() && msgApi.isWXAppSupportAPI()) {

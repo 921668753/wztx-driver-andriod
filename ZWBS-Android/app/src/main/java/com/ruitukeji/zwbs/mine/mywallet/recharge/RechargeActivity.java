@@ -128,14 +128,14 @@ public class RechargeActivity extends BaseActivity implements RechargeContract.V
             if (alipayBean.getResult().getIsUseSandbox().equals("1")) {
                 EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
             }
-            payUtils.doPay(alipayBean.getResult().getOrderString());
+            payUtils.doAlipay(alipayBean.getResult().getOrderString());
         } else if (flag == 2) {
             //微信
             WxPayBean wxPayBean = (WxPayBean) JsonUtil.getInstance().json2Obj(s, WxPayBean.class);
             if (payUtils == null) {
                 payUtils = new PayUtils(this, PaySuccessActivity.class);
             }
-            payUtils.doPayment(wxPayBean.getResult().getAppid(), wxPayBean.getResult().getPartnerid(), wxPayBean.getResult().getPrepayid(), wxPayBean.getResult().getPackageX(), wxPayBean.getResult().getNoncestr(), wxPayBean.getResult().getTimestamp(), wxPayBean.getResult().getSign());
+            payUtils.doWxPay(wxPayBean.getResult().getAppid(), wxPayBean.getResult().getPartnerid(), wxPayBean.getResult().getPrepayid(), wxPayBean.getResult().getPackageX(), wxPayBean.getResult().getNoncestr(), wxPayBean.getResult().getTimestamp(), wxPayBean.getResult().getSign());
         }
 
         dismissLoadingDialog();
