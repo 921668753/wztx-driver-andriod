@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -185,6 +186,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     private SendQuotationBouncedDialog sendQuotationBouncedDialog = null;
     private GetOrderBouncedDialog getOrderBouncedDialog = null;
     private DeleteRouteBouncedDialog deleteRouteBouncedDialog = null;
+    private Handler handler = null;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -195,6 +197,7 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     @Override
     protected void initData() {
         super.initData();
+        handler = new Handler();
         mPresenter = new GetOrderPresenter(this);
         mAdapter = new GetOrderViewAdapter(getActivity());
         showLoadingDialog(getString(R.string.dataLoad));
@@ -731,8 +734,13 @@ public class GetOrderFragment extends BaseFragment implements EasyPermissions.Pe
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") || ((String) msgEvent.getData()).equals("RxBusGoWorkEvent")) {
-            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+                    ((GetOrderContract.Presenter) mPresenter).getQuoteOrder(mMorePageNumber, tv_city.getText().toString(), modelsId, vehicleLengthId, availableTypeName);
+                }
+            }, 400);
         } else if (((String) msgEvent.getData()).equals("RxBusModelsEvent")) {
             setModels();
         } else if (((String) msgEvent.getData()).equals("RxBusConductorEvent")) {
