@@ -239,14 +239,14 @@ public class BindPhoneActivity extends BaseActivity implements BindPhoneContract
             /**
              * 发送消息
              */
+            KJActivityStack.create().finishActivity(LoginActivity.class);
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
+            MobclickAgent.onProfileSignIn(openid);
             if (type != null && type.equals("personalCenter")) {
                 PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", false);
             } else {
                 PreferenceHelper.write(this, StringConstants.FILENAME, "isAvatar", true);
             }
-            MobclickAgent.onProfileSignIn(openid);
-            KJActivityStack.create().finishActivity(LoginActivity.class);
-            RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
             dismissLoadingDialog();
             finish();
         }
