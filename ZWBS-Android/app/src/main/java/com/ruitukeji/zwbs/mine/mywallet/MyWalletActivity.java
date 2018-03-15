@@ -81,7 +81,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     @BindView(id = R.id.ll_paymentPassword, click = true)
     private LinearLayout ll_paymentPassword;
 
-    private Handler handler = null;
+  //  private Handler handler = null;
 
     private String bankName = "";
     private String bankCard = "";
@@ -96,7 +96,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     public void initData() {
         super.initData();
         mPresenter = new MyWalletPresenter(this);
-        handler = new Handler();
+     //   handler = new Handler();
     }
 
     @Override
@@ -214,21 +214,22 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusWithdrawalEvent")) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mRefreshLayout.beginRefreshing();
-                }
-            }, 600);
+            ((MyWalletContract.Presenter) mPresenter).getMyWallet();
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    mRefreshLayout.beginRefreshing();
+//                }
+//            }, 600);
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        if (handler != null) {
+//            handler.removeCallbacksAndMessages(null);
+//            handler = null;
+//        }
+//    }
 }

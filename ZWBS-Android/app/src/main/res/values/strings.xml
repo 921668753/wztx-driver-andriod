@@ -694,6 +694,7 @@
     <string name="oldPpaymentPasswordsNotMatch">新支付密码和旧支付密码不能一致</string>
     <string name="pleaseEnterConfirm">请再次输入以确认</string>
     <string name="paymentPasswordsNotMatch">两次输入的支付密码不一致</string>
+    <string name="notPaymentPassword">您还未设置支付密码，请先设置</string>
 
     <!--修改支付密码-->
     <string name="modifyPaymentPassword">修改支付密码</string>

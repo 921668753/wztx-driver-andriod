@@ -196,16 +196,6 @@
             android:name=".mine.personaldata.PersonalDataActivity"
             android:screenOrientation="portrait" />
 
-        <!--个人认证-->
-        <activity
-            android:name=".mine.personalcertificate.PersonalCertificateActivity"
-            android:screenOrientation="portrait" />
-
-        <!--查看证件-->
-        <activity
-            android:name=".mine.personalcertificate.CheckDocumentsActivity"
-            android:screenOrientation="portrait" />
-
         <!--个人中心  我的钱包-->
         <activity
             android:name=".mine.mywallet.MyWalletActivity"
@@ -232,6 +222,13 @@
         <activity
             android:name=".mine.mywallet.withdrawal.WithdrawalActivity"
             android:screenOrientation="portrait" />
+
+        <!--个人中心  我的钱包  提现  支付密码弹框-->
+        <activity
+            android:name=".mine.mywallet.withdrawal.dialog.PayPasswordBouncedDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/transcutestyle"
+            android:windowSoftInputMode="adjustPan" />
 
         <!--个人中心 我的钱包   提现记录-->
         <activity

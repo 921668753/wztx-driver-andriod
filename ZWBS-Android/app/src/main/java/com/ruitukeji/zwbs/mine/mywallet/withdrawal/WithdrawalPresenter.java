@@ -47,30 +47,30 @@ public class WithdrawalPresenter implements WithdrawalContract.Presenter {
             mView.errorMsg(MyApplication.getContext().getString(R.string.withdrawalsBank1), 0);
             return;
         }
-        SubmitBouncedDialog submitBouncedDialog = new SubmitBouncedDialog(KJActivityStack.create().topActivity()) {
-            @Override
-            public void confirm() {
-                this.cancel();
-                mView.showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
-                HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-                Map<String, Object> map = new HashMap<String, Object>();
-                map.put("withdrawal_amount", withdrawalAmount);
-                map.put("bank_id", bankId);
-                httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
-                RequestClient.postWithdrawal(httpParams, new ResponseListener<String>() {
-                    @Override
-                    public void onSuccess(String response) {
-                        mView.getSuccess(response, 0);
-                    }
-
-                    @Override
-                    public void onFailure(String msg) {
-                        mView.errorMsg(msg, 0);
-                    }
-                });
-            }
-        };
-        submitBouncedDialog.show();
+//        SubmitBouncedDialog submitBouncedDialog = new SubmitBouncedDialog(KJActivityStack.create().topActivity()) {
+//            @Override
+//            public void confirm() {
+//                this.cancel();
+//                mView.showLoadingDialog(MyApplication.getContext().getString(R.string.submissionLoad));
+//                HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+//                Map<String, Object> map = new HashMap<String, Object>();
+//                map.put("withdrawal_amount", withdrawalAmount);
+//                map.put("bank_id", bankId);
+//                httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map).toString());
+//                RequestClient.postWithdrawal(httpParams, new ResponseListener<String>() {
+//                    @Override
+//                    public void onSuccess(String response) {
+        mView.getSuccess("", 0);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(String msg) {
+//                        mView.errorMsg(msg, 0);
+//                    }
+//                });
+//            }
+//        };
+//        submitBouncedDialog.show();
     }
 
     @Override
